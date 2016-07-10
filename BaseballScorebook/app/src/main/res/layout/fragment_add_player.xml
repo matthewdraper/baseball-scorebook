@@ -1,0 +1,65 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.duxnort.baseballscorebook.AddPlayerFragment"
+    android:background="@color/colorPrimaryBackground">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Add A Player"
+            android:id="@+id/textView2"
+            android:layout_gravity="center_horizontal|top"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:layout_margin="5dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editText2"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorWhite"
+            android:textColor="@color/colorBlack"
+            android:textStyle="italic"
+            android:hint="First Name"
+            android:textColorHint="@color/button_material_dark"
+            android:textSize="25dp"
+            android:layout_margin="5dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editText3"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorWhite"
+            android:textColor="@color/colorBlack"
+            android:textStyle="italic"
+            android:hint="Last Name"
+            android:textColorHint="@color/button_material_dark"
+            android:textSize="25dp"
+            android:layout_margin="5dp" />
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/playerNumPicker"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorWhite"
+            android:visibility="visible" />
+    </LinearLayout>
+</FrameLayout>
