@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Baseball Scorebook</string>
+
+    <string name="record_game">Record Game</string>
+    <string name="create_team">Create Team</string>
+    <string name="settings">Settings</string>
+    <string name="help">Help</string>
 </resources>
