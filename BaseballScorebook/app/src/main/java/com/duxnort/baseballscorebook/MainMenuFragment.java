@@ -1,6 +1,14 @@
+/*
+    Just finished working on btnCreateTeamClicked() method. I need to implement the other
+    btn******Clicked() methods and then clean up the onCreateView() method by initializing
+    all the buttons in the initializeButtons() method. Also need to work on a shit ton of
+    new activities for the UI.
+ */
+
 package com.duxnort.baseballscorebook;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,6 +32,10 @@ public class MainMenuFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static Button btnRecordGame;
+    private static Button btnCreateTeam;
+    private static Button btnSettings;
+    private static Button btnHelp;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -68,6 +80,43 @@ public class MainMenuFragment extends Fragment {
         // Inflate the layout for this fragment
         // Assign the fragment to a view
         View rootView = inflater.inflate(R.layout.fragment_main_menu, container, false);
+        // Set all the class attributes
+        btnRecordGame = (Button) rootView.findViewById(R.id.button_record_game);
+        btnCreateTeam = (Button) rootView.findViewById(R.id.button_create_team);
+        btnSettings =  (Button) rootView.findViewById(R.id.button_settings);
+        btnHelp = (Button) rootView.findViewById(R.id.button_help);
+
+        btnRecordGame.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        btnRecordGameClicked(v);
+                    }
+                }
+        );
+
+        btnCreateTeam.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        btnCreateTeamClicked(v);
+                    }
+                }
+        );
+
+        btnSettings.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        btnSettingsClicked(v);
+                    }
+                }
+        );
+
+        btnHelp.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        btnHelpClicked(v);
+                    }
+                }
+        );
 //        // Find mainMenuContainer inside of rootView.
 //        LinearLayout mainMenuContainer =
 //                (LinearLayout) rootView.findViewById(R.id.main_menu_container);
@@ -99,6 +148,30 @@ public class MainMenuFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void initializeButtons(){
+        /*
+            Going to de-clutter the onCreateView() method here.
+        */
+    }
+
+    public void btnRecordGameClicked(View v){
+        // Need to fill
+    }
+
+    public void btnCreateTeamClicked(View v){
+        // These lines allow for the button to start a new activity
+        Intent intent = new Intent(getActivity(), CreateTeamActivity.class);
+        startActivity(intent);
+    }
+
+    public void btnSettingsClicked(View v){
+        // Need to fill
+    }
+
+    public void btnHelpClicked(View v){
+        // Need to fill
     }
 
     /**

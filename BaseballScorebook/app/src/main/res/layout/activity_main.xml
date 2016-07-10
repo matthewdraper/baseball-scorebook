@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.duxnort.baseballscorebook.MainActivity"
-    android:background="#e6f5e5">
+    android:background="@color/colorPrimaryBackground">
 
     <LinearLayout
         android:orientation="vertical"
