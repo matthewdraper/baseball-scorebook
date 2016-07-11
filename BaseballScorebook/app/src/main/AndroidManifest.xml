@@ -18,7 +18,8 @@
         <activity android:name=".CreateTeamActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".HelpActivity" />
-        <activity android:name=".RecordGameSetupActivity"></activity>
+        <activity android:name=".RecordGameSetupActivity" />
+        <activity android:name=".LineupSetupActivity"></activity>
     </application>
 
 </manifest>

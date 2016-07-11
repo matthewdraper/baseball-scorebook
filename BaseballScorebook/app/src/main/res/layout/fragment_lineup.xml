@@ -1,0 +1,272 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.duxnort.baseballscorebook.LineupFragment"
+    android:id="@+id/lineupContainer">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/orderContainer">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:weightSum="1"
+            android:id="@+id/batterContainer1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="1."
+                android:id="@+id/batter1"
+                android:layout_gravity="center"
+                android:textColor="@color/colorTextPrimary" />
+
+            <Spinner
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:id="@+id/name1" />
+
+            <Spinner
+                android:layout_width="75dp"
+                android:layout_height="30dp"
+                android:id="@+id/position1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/batterContainer2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="2."
+                android:id="@+id/batter2"
+                android:layout_gravity="center"
+                android:textColor="@color/colorTextPrimary" />
+
+            <Spinner
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:id="@+id/name2" />
+
+            <Spinner
+                android:layout_width="75dp"
+                android:layout_height="30dp"
+                android:id="@+id/position2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/batterContainer3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="3."
+                android:id="@+id/batter3"
+                android:layout_gravity="center"
+                android:textColor="@color/colorTextPrimary" />
+
+            <Spinner
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:id="@+id/name3" />
+
+            <Spinner
+                android:layout_width="75dp"
+                android:layout_height="30dp"
+                android:id="@+id/position3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/batterContainer4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="4."
+                android:id="@+id/batter4"
+                android:layout_gravity="center"
+                android:textColor="@color/colorTextPrimary" />
+
+            <Spinner
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:id="@+id/name4" />
+
+            <Spinner
+                android:layout_width="75dp"
+                android:layout_height="30dp"
+                android:id="@+id/position4" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/batterContainer5">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="5."
+                android:id="@+id/batter5"
+                android:layout_gravity="center"
+                android:textColor="@color/colorTextPrimary" />
+
+            <Spinner
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:id="@+id/name5" />
+
+            <Spinner
+                android:layout_width="75dp"
+                android:layout_height="30dp"
+                android:id="@+id/position5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/batterContainer6">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="6."
+                android:id="@+id/batter6"
+                android:layout_gravity="center"
+                android:textColor="@color/colorTextPrimary" />
+
+            <Spinner
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:id="@+id/name6" />
+
+            <Spinner
+                android:layout_width="75dp"
+                android:layout_height="30dp"
+                android:id="@+id/position6" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/batterContainer7">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="7."
+                android:id="@+id/batter7"
+                android:layout_gravity="center"
+                android:textColor="@color/colorTextPrimary" />
+
+            <Spinner
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:id="@+id/name7" />
+
+            <Spinner
+                android:layout_width="75dp"
+                android:layout_height="30dp"
+                android:id="@+id/position7" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/batterContainer8">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="8."
+                android:id="@+id/batter8"
+                android:layout_gravity="center"
+                android:textColor="@color/colorTextPrimary" />
+
+            <Spinner
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:id="@+id/name8" />
+
+            <Spinner
+                android:layout_width="75dp"
+                android:layout_height="30dp"
+                android:id="@+id/position8" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/batterContainer9">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="9."
+                android:id="@+id/batter9"
+                android:layout_gravity="center"
+                android:textColor="@color/colorTextPrimary" />
+
+            <Spinner
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:id="@+id/name9" />
+
+            <Spinner
+                android:layout_width="75dp"
+                android:layout_height="30dp"
+                android:id="@+id/position9" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/pitcherContainer">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Pitcher:"
+                android:id="@+id/pitcher"
+                android:layout_gravity="center"
+                android:textColor="@color/colorTextPrimary" />
+
+            <Spinner
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:id="@+id/pitcherName" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -7,4 +7,5 @@
     <color name="colorPrimaryBackground">#e6f5e5</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorTextPrimary">#000000</color>
 </resources>
