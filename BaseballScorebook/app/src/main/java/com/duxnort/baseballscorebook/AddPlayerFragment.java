@@ -1,19 +1,20 @@
 package com.duxnort.baseballscorebook;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.NumberPicker;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 
 /**
@@ -68,48 +69,14 @@ public class AddPlayerFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_add_player, container, false);
-        numberPicker = (NumberPicker) rootView.findViewById(R.id.playerNumPicker);
-
-        int numValues = 110; // Number of possibilities for jersey numbers
-        String[] nums = new String[numValues];
-        nums[0] = "00";
-        nums[1] = "01";
-        nums[2] = "02";
-        nums[3] = "03";
-        nums[4] = "04";
-        nums[5] = "05";
-        nums[6] = "06";
-        nums[7] = "07";
-        nums[8] = "08";
-        nums[9] = "09";
-        int num = 0;
-        for (int i = 10; i < nums.length; i++){
-            nums[i] = Integer.toString(num); // Converts int type to string and stores it in array
-            num++;
-        }
-        numberPicker.setMinValue(0);
-        numberPicker.setMaxValue(numValues - 1); // This represents max array index not max int
-        numberPicker.setDisplayedValues(nums);
-        numberPicker.setValue(11);
-
-
-        //Gets whether the selector wheel wraps when reaching the min/max value.
-        numberPicker.setWrapSelectorWheel(true);
-
-        setNumberPickerTextColor(numberPicker, Color.BLACK);
-//        numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-//            @Override
-//            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-//
-//            }
-//        });
-
         // Inflate the layout for this fragment
         return rootView;
     }

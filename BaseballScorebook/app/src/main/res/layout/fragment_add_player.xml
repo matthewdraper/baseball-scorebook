@@ -12,54 +12,96 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Add A Player"
-            android:id="@+id/textView2"
-            android:layout_gravity="center_horizontal|top"
-            android:textColor="@color/colorBlack"
-            android:textStyle="bold"
-            android:textSize="30dp"
-            android:layout_margin="5dp" />
-
-        <EditText
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/editText2"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/colorWhite"
-            android:textColor="@color/colorBlack"
-            android:textStyle="italic"
-            android:hint="First Name"
-            android:textColorHint="@color/button_material_dark"
-            android:textSize="25dp"
-            android:layout_margin="5dp" />
+            android:layout_height="match_parent"
+            android:weightSum="1">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/editText3"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/colorWhite"
-            android:textColor="@color/colorBlack"
-            android:textStyle="italic"
-            android:hint="Last Name"
-            android:textColorHint="@color/button_material_dark"
-            android:textSize="25dp"
-            android:layout_margin="5dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.96">
 
-        <NumberPicker
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/playerNumPicker"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/colorWhite"
-            android:visibility="visible" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/editText2"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/colorWhite"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="italic"
+                    android:hint="First Name"
+                    android:textColorHint="@color/button_material_dark"
+                    android:textSize="25dp"
+                    android:layout_margin="5dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/editText3"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/colorWhite"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="italic"
+                    android:hint="Last Name"
+                    android:textColorHint="@color/button_material_dark"
+                    android:textSize="25dp"
+                    android:layout_margin="5dp" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Number:"
+                        android:id="@+id/textView3"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="25dp"
+                        android:layout_margin="5dp"
+                        android:layout_gravity="top" />
+
+                    <EditText
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:inputType="numberSigned"
+                        android:ems="10"
+                        android:id="@+id/editText4"
+                        android:background="@color/colorWhite"
+                        android:hint="ex: 99"
+                        android:textStyle="italic"
+                        android:textColorHint="@color/abc_background_cache_hint_selector_material_dark"
+                        android:typeface="monospace"
+                        android:textAlignment="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center_vertical" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:id="@+id/button"
+                android:layout_margin="10dp"
+                android:textStyle="bold"
+                android:textSize="40dp"
+                android:padding="5dp"
+                android:background="@android:color/holo_green_dark" />
+        </LinearLayout>
     </LinearLayout>
+
 </FrameLayout>
