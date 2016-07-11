@@ -30,12 +30,12 @@
                 android:textColor="@color/colorTextPrimary" />
 
             <Spinner
-                android:layout_width="200dp"
+                android:layout_width="@dimen/lineup_name_width"
                 android:layout_height="30dp"
                 android:id="@+id/name1" />
 
             <Spinner
-                android:layout_width="75dp"
+                android:layout_width="@dimen/lineup_position_width"
                 android:layout_height="30dp"
                 android:id="@+id/position1" />
         </LinearLayout>
@@ -56,12 +56,12 @@
                 android:textColor="@color/colorTextPrimary" />
 
             <Spinner
-                android:layout_width="200dp"
+                android:layout_width="@dimen/lineup_name_width"
                 android:layout_height="30dp"
                 android:id="@+id/name2" />
 
             <Spinner
-                android:layout_width="75dp"
+                android:layout_width="@dimen/lineup_position_width"
                 android:layout_height="30dp"
                 android:id="@+id/position2" />
         </LinearLayout>
@@ -82,12 +82,12 @@
                 android:textColor="@color/colorTextPrimary" />
 
             <Spinner
-                android:layout_width="200dp"
+                android:layout_width="@dimen/lineup_name_width"
                 android:layout_height="30dp"
                 android:id="@+id/name3" />
 
             <Spinner
-                android:layout_width="75dp"
+                android:layout_width="@dimen/lineup_position_width"
                 android:layout_height="30dp"
                 android:id="@+id/position3" />
         </LinearLayout>
@@ -108,12 +108,12 @@
                 android:textColor="@color/colorTextPrimary" />
 
             <Spinner
-                android:layout_width="200dp"
+                android:layout_width="@dimen/lineup_name_width"
                 android:layout_height="30dp"
                 android:id="@+id/name4" />
 
             <Spinner
-                android:layout_width="75dp"
+                android:layout_width="@dimen/lineup_position_width"
                 android:layout_height="30dp"
                 android:id="@+id/position4" />
         </LinearLayout>
@@ -134,12 +134,12 @@
                 android:textColor="@color/colorTextPrimary" />
 
             <Spinner
-                android:layout_width="200dp"
+                android:layout_width="@dimen/lineup_name_width"
                 android:layout_height="30dp"
                 android:id="@+id/name5" />
 
             <Spinner
-                android:layout_width="75dp"
+                android:layout_width="@dimen/lineup_position_width"
                 android:layout_height="30dp"
                 android:id="@+id/position5" />
         </LinearLayout>
@@ -160,12 +160,12 @@
                 android:textColor="@color/colorTextPrimary" />
 
             <Spinner
-                android:layout_width="200dp"
+                android:layout_width="@dimen/lineup_name_width"
                 android:layout_height="30dp"
                 android:id="@+id/name6" />
 
             <Spinner
-                android:layout_width="75dp"
+                android:layout_width="@dimen/lineup_position_width"
                 android:layout_height="30dp"
                 android:id="@+id/position6" />
         </LinearLayout>
@@ -186,12 +186,12 @@
                 android:textColor="@color/colorTextPrimary" />
 
             <Spinner
-                android:layout_width="200dp"
+                android:layout_width="@dimen/lineup_name_width"
                 android:layout_height="30dp"
                 android:id="@+id/name7" />
 
             <Spinner
-                android:layout_width="75dp"
+                android:layout_width="@dimen/lineup_position_width"
                 android:layout_height="30dp"
                 android:id="@+id/position7" />
         </LinearLayout>
@@ -212,12 +212,12 @@
                 android:textColor="@color/colorTextPrimary" />
 
             <Spinner
-                android:layout_width="200dp"
+                android:layout_width="@dimen/lineup_name_width"
                 android:layout_height="30dp"
                 android:id="@+id/name8" />
 
             <Spinner
-                android:layout_width="75dp"
+                android:layout_width="@dimen/lineup_position_width"
                 android:layout_height="30dp"
                 android:id="@+id/position8" />
         </LinearLayout>
@@ -238,12 +238,12 @@
                 android:textColor="@color/colorTextPrimary" />
 
             <Spinner
-                android:layout_width="200dp"
+                android:layout_width="@dimen/lineup_name_width"
                 android:layout_height="30dp"
                 android:id="@+id/name9" />
 
             <Spinner
-                android:layout_width="75dp"
+                android:layout_width="@dimen/lineup_position_width"
                 android:layout_height="30dp"
                 android:id="@+id/position9" />
         </LinearLayout>
@@ -264,7 +264,7 @@
                 android:textColor="@color/colorTextPrimary" />
 
             <Spinner
-                android:layout_width="200dp"
+                android:layout_width="@dimen/lineup_name_width"
                 android:layout_height="30dp"
                 android:id="@+id/pitcherName" />
         </LinearLayout>

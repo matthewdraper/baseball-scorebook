@@ -24,18 +24,29 @@
             <TabWidget
                 android:id="@android:id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></TabWidget>
+                android:layout_height="wrap_content"
+                android:background="@color/colorButton"
+                android:tabStripEnabled="false"></TabWidget>
 
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:id="@+id/homeContainer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Home Team"
+                        android:id="@+id/textView11"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/colorBlack" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -53,6 +64,14 @@
                         android:id="@+id/homeLineup"
                         tools:layout="@layout/fragment_lineup" />
 
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Start Game"
+                        android:id="@+id/button4"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/holo_green_dark" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -60,6 +79,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Away Team"
+                        android:id="@+id/textView12"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/colorBlack" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -76,6 +104,14 @@
                         android:layout_height="wrap_content"
                         android:name="com.duxnort.baseballscorebook.LineupFragment"
                         android:id="@+id/awayLineup" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Start Game"
+                        android:id="@+id/button5"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/holo_green_dark" />
                 </LinearLayout>
 
                 <LinearLayout
