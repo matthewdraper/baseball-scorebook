@@ -80,7 +80,36 @@ public class MainMenuFragment extends Fragment {
         // Inflate the layout for this fragment
         // Assign the fragment to a view
         View rootView = inflater.inflate(R.layout.fragment_main_menu, container, false);
-        // Set all the class attributes
+        initializeButtons(rootView);
+
+        return rootView;
+    }
+
+//    // TODO: Rename method, update argument and hook method into UI event
+//    public void onButtonPressed(Uri uri) {
+//        if (mListener != null) {
+//            mListener.onFragmentInteraction(uri);
+//        }
+//    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public void initializeButtons(View rootView){
         btnRecordGame = (Button) rootView.findViewById(R.id.button_record_game);
         btnCreateTeam = (Button) rootView.findViewById(R.id.button_create_team);
         btnSettings =  (Button) rootView.findViewById(R.id.button_settings);
@@ -117,47 +146,12 @@ public class MainMenuFragment extends Fragment {
                     }
                 }
         );
-//        // Find mainMenuContainer inside of rootView.
-//        LinearLayout mainMenuContainer =
-//                (LinearLayout) rootView.findViewById(R.id.main_menu_container);
-//        Button tempBtn = (Button) rootView.findViewById(R.id.button_create_team);
-//        tempBtn.setText("Record Game");
-
-        return rootView;
-    }
-
-//    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
-//        }
-//    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    public void initializeButtons(){
-        /*
-            Going to de-clutter the onCreateView() method here.
-        */
     }
 
     public void btnRecordGameClicked(View v){
-        // Need to fill
+        // These lines allow for the button to start a new activity
+        Intent intent = new Intent(getActivity(), RecordGameSetupActivity.class);
+        startActivity(intent);
     }
 
     public void btnCreateTeamClicked(View v){
@@ -167,11 +161,15 @@ public class MainMenuFragment extends Fragment {
     }
 
     public void btnSettingsClicked(View v){
-        // Need to fill
+        // These lines allow for the button to start a new activity
+        Intent intent = new Intent(getActivity(), SettingsActivity.class);
+        startActivity(intent);
     }
 
     public void btnHelpClicked(View v){
-        // Need to fill
+        // These lines allow for the button to start a new activity
+        Intent intent = new Intent(getActivity(), HelpActivity.class);
+        startActivity(intent);
     }
 
     /**

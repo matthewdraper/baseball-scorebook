@@ -10,4 +10,13 @@
     tools:context="com.duxnort.baseballscorebook.SettingsActivity"
     android:background="@color/colorPrimaryBackground">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Settings Activity"
+        android:id="@+id/textView6"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorBlack" />
 </RelativeLayout>
