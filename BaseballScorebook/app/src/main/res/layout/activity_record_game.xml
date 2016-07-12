@@ -18,4 +18,13 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         tools:layout="@layout/fragment_scoreboard" />
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.duxnort.baseballscorebook.AtBatFragment"
+        android:id="@+id/fragment4"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        tools:layout="@layout/fragment_at_bat" />
 </RelativeLayout>

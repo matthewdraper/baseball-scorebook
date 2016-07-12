@@ -3,7 +3,9 @@ package com.duxnort.baseballscorebook;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class RecordGameActivity extends AppCompatActivity implements ScoreboardFragment.OnFragmentInteractionListener{
+public class RecordGameActivity extends AppCompatActivity implements
+        ScoreboardFragment.OnFragmentInteractionListener,
+        AtBatFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
