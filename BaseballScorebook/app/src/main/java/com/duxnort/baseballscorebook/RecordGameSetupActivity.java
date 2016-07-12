@@ -17,7 +17,7 @@ public class RecordGameSetupActivity extends AppCompatActivity {
         initializeButtons();
     }
 
-    public void initializeButtons(){
+    private void initializeButtons(){
         btnNext = (Button) this.findViewById(R.id.btnNext);
         btnBack = (Button) this.findViewById((R.id.btnBack));
 
@@ -38,13 +38,13 @@ public class RecordGameSetupActivity extends AppCompatActivity {
         );
     }
 
-    public void btnNextClicked(View v){
+    private void btnNextClicked(View v){
         // These lines allow for the button to start a new activity
         Intent intent = new Intent(this, LineupSetupActivity.class);
         startActivity(intent);
     }
 
-    public void btnBackClicked(View v){
+    private void btnBackClicked(View v){
         // These lines allow for the button to start a new activity
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

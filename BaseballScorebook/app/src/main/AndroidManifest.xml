@@ -19,7 +19,8 @@
         <activity android:name=".SettingsActivity" />
         <activity android:name=".HelpActivity" />
         <activity android:name=".RecordGameSetupActivity" />
-        <activity android:name=".LineupSetupActivity"></activity>
+        <activity android:name=".LineupSetupActivity" />
+        <activity android:name=".RecordGameActivity"></activity>
     </application>
 
 </manifest>

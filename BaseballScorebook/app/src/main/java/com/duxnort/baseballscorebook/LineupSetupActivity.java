@@ -1,8 +1,12 @@
 package com.duxnort.baseballscorebook;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TabHost;
@@ -14,12 +18,13 @@ public class LineupSetupActivity extends AppCompatActivity implements LineupFrag
     private TabHost tabHost;
     private Spinner name1, name2, name3, name4, name5, name6, name7, name8, name9, namePitcher;
     private Spinner pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9;
+    private Button btnStartGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lineup_setup);
-
+        initializeButtons();
         tabHost = (TabHost) this.findViewById(R.id.tabHostLineupSetup); // Get the TabHost
 
         tabHost.setup();
@@ -35,9 +40,10 @@ public class LineupSetupActivity extends AppCompatActivity implements LineupFrag
         tabHost.addTab(tabSpec);
 
         initializeLineupSpinners();
+
         }
 
-    public void initializeLineupSpinners(){
+    private void initializeLineupSpinners(){
         ArrayList<String> fakeNameData = new ArrayList<>();
         fakeNameData.add("J. Thompson");
         fakeNameData.add("C. McGee");
@@ -153,5 +159,23 @@ public class LineupSetupActivity extends AppCompatActivity implements LineupFrag
         pos9 = (Spinner) away.findViewById(R.id.position9);
         pos9.setAdapter(adapter);
 
+    }
+
+    private void initializeButtons(){
+        btnStartGame = (Button) this.findViewById(R.id.btnStartGame);
+
+        btnStartGame.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        btnStartGame.setBackgroundColor(Color.BLACK);
+                        btnStartGameClicked(v);
+                    }
+                }
+        );
+    }
+
+    private void btnStartGameClicked(View v){
+        Intent intent = new Intent(this, RecordGameActivity.class);
+        startActivity(intent);
     }
 }

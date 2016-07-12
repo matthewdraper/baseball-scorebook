@@ -64,14 +64,6 @@
                         android:id="@+id/homeLineup"
                         tools:layout="@layout/fragment_lineup" />
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Start Game"
-                        android:id="@+id/button4"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@android:color/holo_green_dark" />
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -105,13 +97,6 @@
                         android:name="com.duxnort.baseballscorebook.LineupFragment"
                         android:id="@+id/awayLineup" />
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Start Game"
-                        android:id="@+id/button5"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@android:color/holo_green_dark" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -120,6 +105,14 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"></LinearLayout>
             </FrameLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Game"
+                android:id="@+id/btnStartGame"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/holo_green_dark" />
         </LinearLayout>
     </TabHost>
 </FrameLayout>
