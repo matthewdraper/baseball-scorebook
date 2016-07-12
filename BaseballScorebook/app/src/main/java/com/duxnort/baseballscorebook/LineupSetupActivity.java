@@ -24,7 +24,29 @@ public class LineupSetupActivity extends AppCompatActivity implements LineupFrag
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lineup_setup);
+        initializeTabs();
         initializeButtons();
+        }
+
+    private void initializeButtons(){
+        btnStartGame = (Button) this.findViewById(R.id.btnStartGame);
+
+        btnStartGame.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        btnStartGameOnClick();
+                    }
+                }
+        );
+    }
+
+    private void btnStartGameOnClick(){
+        // These lines allow for the button to start a new activity
+        Intent intent = new Intent(this, RecordGameActivity.class);
+        startActivity(intent);
+    }
+
+    private void initializeTabs(){
         tabHost = (TabHost) this.findViewById(R.id.tabHostLineupSetup); // Get the TabHost
 
         tabHost.setup();
@@ -40,8 +62,7 @@ public class LineupSetupActivity extends AppCompatActivity implements LineupFrag
         tabHost.addTab(tabSpec);
 
         initializeLineupSpinners();
-
-        }
+    }
 
     private void initializeLineupSpinners(){
         ArrayList<String> fakeNameData = new ArrayList<>();
@@ -161,21 +182,4 @@ public class LineupSetupActivity extends AppCompatActivity implements LineupFrag
 
     }
 
-    private void initializeButtons(){
-        btnStartGame = (Button) this.findViewById(R.id.btnStartGame);
-
-        btnStartGame.setOnClickListener(
-                new View.OnClickListener(){
-                    public void onClick(View v){
-                        btnStartGame.setBackgroundColor(Color.BLACK);
-                        btnStartGameClicked(v);
-                    }
-                }
-        );
-    }
-
-    private void btnStartGameClicked(View v){
-        Intent intent = new Intent(this, RecordGameActivity.class);
-        startActivity(intent);
-    }
 }
