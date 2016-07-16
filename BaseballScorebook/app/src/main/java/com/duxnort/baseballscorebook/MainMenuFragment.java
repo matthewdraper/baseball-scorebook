@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -123,6 +124,17 @@ public class MainMenuFragment extends Fragment {
                 }
         );
 
+        btnRecordGame.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnRecordGameOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnRecordGame.setBackground(getResources().getDrawable(R.drawable.mainmenu));
+                return false;
+            }
+        });
+
         btnCreateTeam.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
@@ -130,6 +142,17 @@ public class MainMenuFragment extends Fragment {
                     }
                 }
         );
+
+        btnCreateTeam.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnCreateTeamOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnCreateTeam.setBackground(getResources().getDrawable(R.drawable.mainmenu));
+                return false;
+            }
+        });
 
         btnSettings.setOnClickListener(
                 new View.OnClickListener(){
@@ -139,6 +162,17 @@ public class MainMenuFragment extends Fragment {
                 }
         );
 
+        btnSettings.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnSettingsOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnSettings.setBackground(getResources().getDrawable(R.drawable.mainmenu));
+                return false;
+            }
+        });
+
         btnHelp.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
@@ -146,30 +180,58 @@ public class MainMenuFragment extends Fragment {
                     }
                 }
         );
+
+        btnHelp.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnHelpOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnHelp.setBackground(getResources().getDrawable(R.drawable.mainmenu));
+                return false;
+            }
+        });
     }
 
-    public void btnRecordGameClicked(View v){
+    private void btnRecordGameClicked(View v){
         // These lines allow for the button to start a new activity
         Intent intent = new Intent(getActivity(), RecordGameSetupActivity.class);
         startActivity(intent);
     }
 
-    public void btnCreateTeamClicked(View v){
+    private void btnRecordGameOnTouch(){
+        btnRecordGame.setBackground(getResources().getDrawable(R.drawable.mainmenu_pressed));
+    }
+
+    private void btnCreateTeamClicked(View v){
         // These lines allow for the button to start a new activity
         Intent intent = new Intent(getActivity(), CreateTeamActivity.class);
         startActivity(intent);
     }
 
-    public void btnSettingsClicked(View v){
+    private void btnCreateTeamOnTouch(){
+        btnCreateTeam.setBackground(getResources().getDrawable(R.drawable.mainmenu_pressed));
+    }
+
+    private void btnSettingsClicked(View v){
         // These lines allow for the button to start a new activity
         Intent intent = new Intent(getActivity(), SettingsActivity.class);
         startActivity(intent);
     }
 
-    public void btnHelpClicked(View v){
+    private void btnSettingsOnTouch(){
+        btnSettings.setBackground(getResources().getDrawable(R.drawable.mainmenu_pressed));
+    }
+
+
+    private void btnHelpClicked(View v){
         // These lines allow for the button to start a new activity
         Intent intent = new Intent(getActivity(), HelpActivity.class);
         startActivity(intent);
+    }
+
+    private void btnHelpOnTouch(){
+        btnHelp.setBackground(getResources().getDrawable(R.drawable.mainmenu_pressed));
     }
 
     /**
