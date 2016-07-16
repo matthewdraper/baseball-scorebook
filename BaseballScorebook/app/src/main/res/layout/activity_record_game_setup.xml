@@ -43,7 +43,8 @@
                 layout="@layout/add_button"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:id="@+id/btnAddTeamHome" />
         </LinearLayout>
 
         <LinearLayout
@@ -72,7 +73,8 @@
             <include
                 layout="@layout/add_button"
                 android:layout_width="50dp"
-                android:layout_height="50dp" />
+                android:layout_height="50dp"
+                android:id="@+id/btnAddTeamAway" />
         </LinearLayout>
 
         <TextView
@@ -130,7 +132,7 @@
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:text="Add"
-                android:id="@+id/button3"
+                android:id="@+id/btnAddUmpire"
                 android:background="@drawable/green_rounded01"
                 android:layout_gravity="center" />
         </LinearLayout>
