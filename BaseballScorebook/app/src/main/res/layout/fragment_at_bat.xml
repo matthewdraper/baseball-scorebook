@@ -9,7 +9,19 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Batter Events"
+            android:id="@+id/textView38"
+            android:layout_gravity="center"
+            android:textColor="@color/colorTextPrimary"
+            android:background="@color/colorWhite"
+            android:textAlignment="center" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -24,10 +36,14 @@
                 android:id="@+id/button7" />
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="75dp"
                 android:text="Reached Base"
-                android:id="@+id/button8" />
+                android:id="@+id/btnReachedBase"
+                android:background="@drawable/green_rounded01"
+                android:textColor="@color/background_floating_material_dark"
+                android:textStyle="bold"
+                android:textAlignment="center" />
 
         </LinearLayout>
 

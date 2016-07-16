@@ -1,12 +1,15 @@
 package com.duxnort.baseballscorebook;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -26,6 +29,8 @@ public class AtBatFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Button btnReachedBase;
 
     private OnFragmentInteractionListener mListener;
 
@@ -63,8 +68,11 @@ public class AtBatFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View rootView =  inflater.inflate(R.layout.fragment_at_bat, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_at_bat, container, false);
+
+        initializeButtons(rootView);
+        return rootView;
     }
 
 //    // TODO: Rename method, update argument and hook method into UI event
@@ -90,6 +98,26 @@ public class AtBatFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+    private void initializeButtons(View rootView){
+        btnReachedBase = (Button) rootView.findViewById(R.id.btnReachedBase);
+
+        btnReachedBase.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnReachedBaseOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnReachedBase.setBackground(getResources().getDrawable(R.drawable.green_rounded01));
+                return false;
+            }
+        });
+    }
+
+    private void btnReachedBaseOnTouch(){
+        btnReachedBase.setBackground(getResources().getDrawable(R.drawable.green_rounded01_pressed));
+    }
+
 
     /**
      * This interface must be implemented by activities that contain this

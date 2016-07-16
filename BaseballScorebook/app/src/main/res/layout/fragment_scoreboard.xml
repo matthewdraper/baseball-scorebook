@@ -1,15 +1,18 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:context="com.duxnort.baseballscorebook.ScoreboardFragment">
+    tools:context="com.duxnort.baseballscorebook.ScoreboardFragment"
+    android:background="@color/colorBlack">
 
     <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_gravity="center">
 
         <LinearLayout
             android:orientation="vertical"
@@ -25,7 +28,9 @@
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/containerTeams">
+                    android:id="@+id/containerTeams"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp">
 
                     <Space
                         android:layout_width="match_parent"
@@ -42,7 +47,7 @@
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:text="HOME"
                             android:id="@+id/textView13"
-                            android:textColor="@color/colorTextPrimary" />
+                            android:textColor="@color/colorWhite" />
 
                     </LinearLayout>
 
@@ -57,7 +62,7 @@
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:text="AWAY"
                             android:id="@+id/textView15"
-                            android:textColor="@color/colorTextPrimary" />
+                            android:textColor="@color/colorWhite" />
 
                     </LinearLayout>
 
@@ -67,17 +72,19 @@
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/conatinerRuns">
+                    android:id="@+id/conatinerRuns"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="RUNS"
+                        android:text="R"
                         android:id="@+id/textView14"
                         android:textSize="15dp"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/colorTextPrimary" />
+                        android:textColor="@color/colorWhite" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -86,7 +93,7 @@
                         android:text="0"
                         android:id="@+id/textView16"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/colorTextPrimary" />
+                        android:textColor="@color/colorWhite" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -95,7 +102,7 @@
                         android:text="0"
                         android:id="@+id/textView17"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/colorTextPrimary" />
+                        android:textColor="@color/colorWhite" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -114,7 +121,7 @@
                         android:id="@+id/textView18"
                         android:textSize="15dp"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/colorTextPrimary" />
+                        android:textColor="@color/colorWhite" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -123,7 +130,7 @@
                         android:text="0"
                         android:id="@+id/textView19"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/colorTextPrimary" />
+                        android:textColor="@color/colorWhite" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -132,7 +139,7 @@
                         android:text="0"
                         android:id="@+id/textView20"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/colorTextPrimary" />
+                        android:textColor="@color/colorWhite" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -151,7 +158,7 @@
                         android:id="@+id/textView23"
                         android:textSize="15dp"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/colorTextPrimary" />
+                        android:textColor="@color/colorWhite" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -160,7 +167,7 @@
                         android:text="0"
                         android:id="@+id/textView24"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/colorTextPrimary" />
+                        android:textColor="@color/colorWhite" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -169,7 +176,7 @@
                         android:text="0"
                         android:id="@+id/textView25"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/colorTextPrimary" />
+                        android:textColor="@color/colorWhite" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -189,7 +196,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
-                        android:textColor="@color/colorTextPrimary" />
+                        android:textColor="@color/colorWhite" />
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -204,7 +211,7 @@
                             android:id="@+id/textView27"
                             android:textSize="40dp"
                             android:layout_gravity="center"
-                            android:textColor="@color/colorTextPrimary" />
+                            android:textColor="@color/colorWhite" />
 
                         <LinearLayout
                             android:orientation="vertical"
@@ -226,7 +233,7 @@
                                     android:text="TOP"
                                     android:id="@+id/textView28"
                                     android:textSize="12dp"
-                                    android:textColor="@color/colorTextPrimary" />
+                                    android:textColor="@color/colorWhite" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -235,7 +242,7 @@
                                     android:text="BOT"
                                     android:id="@+id/textView29"
                                     android:textSize="12dp"
-                                    android:textColor="@color/colorTextPrimary" />
+                                    android:textColor="@color/colorWhite" />
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
@@ -243,123 +250,127 @@
                 </LinearLayout>
             </LinearLayout>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:id="@+id/containerLights">
 
                     <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:text="B"
-                                android:id="@+id/textView30"
-                                android:textColor="@color/colorTextPrimary" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:text=" o o o"
-                                android:id="@+id/textView31"
-                                android:textColor="@color/colorTextPrimary" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" >
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:text="S"
-                                android:id="@+id/textView32"
-                                android:textColor="@color/colorTextPrimary" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:text=" o o"
-                                android:id="@+id/textView33"
-                                android:textColor="@color/colorTextPrimary" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" >
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:text="OUT"
-                                android:id="@+id/textView34"
-                                android:textColor="@color/colorTextPrimary" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:text=" o o"
-                                android:id="@+id/textView35"
-                                android:textColor="@color/colorTextPrimary" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent">
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/containerBalls">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="PITCH COUNT"
-                            android:id="@+id/textView36"
-                            android:textSize="15dp"
-                            android:layout_gravity="center"
-                            android:textColor="@color/colorTextPrimary" />
+                            android:text="B"
+                            android:id="@+id/textView30"
+                            android:textColor="@color/colorWhite" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="100"
-                            android:id="@+id/textView37"
-                            android:textSize="30dp"
-                            android:layout_gravity="center"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text=" o o o"
+                            android:id="@+id/textView31"
+                            android:textColor="@color/colorTextPrimary" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/containerStrikes">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="S"
+                            android:id="@+id/textView32"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text=" o o"
+                            android:id="@+id/textView33"
+                            android:textColor="@color/colorTextPrimary" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/containerOuts">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="OUT"
+                            android:id="@+id/textView34"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text=" o o"
+                            android:id="@+id/textView35"
                             android:textColor="@color/colorTextPrimary" />
                     </LinearLayout>
                 </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/containerPitchCount"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="PITCH COUNT"
+                        android:id="@+id/pitchCountLabel"
+                        android:textSize="10dp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/colorWhite" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="100"
+                        android:id="@+id/pitchCountNumber"
+                        android:textSize="30dp"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/colorWhite" />
+
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/imageView2"
-            android:src="@mipmap/tempdiamond" />
     </LinearLayout>
 
 </FrameLayout>

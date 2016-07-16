@@ -107,12 +107,14 @@
             </FrameLayout>
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="125dp"
+                android:layout_height="75dp"
                 android:text="Start Game"
                 android:id="@+id/btnStartGame"
                 android:layout_gravity="center_horizontal"
-                android:background="@android:color/holo_green_dark" />
+                android:background="@drawable/green_rounded01"
+                android:textStyle="bold"
+                android:textColor="@color/background_floating_material_dark" />
         </LinearLayout>
     </TabHost>
 </FrameLayout>
