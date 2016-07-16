@@ -16,7 +16,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:weightSum="1"
             android:id="@+id/batterContainer1">
 
@@ -27,23 +27,26 @@
                 android:text="1."
                 android:id="@+id/batter1"
                 android:layout_gravity="center"
-                android:textColor="@color/colorTextPrimary" />
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
 
             <Spinner
                 android:layout_width="@dimen/lineup_name_width"
                 android:layout_height="30dp"
-                android:id="@+id/name1" />
+                android:id="@+id/name1"
+                android:layout_gravity="center" />
 
             <Spinner
                 android:layout_width="@dimen/lineup_position_width"
                 android:layout_height="30dp"
-                android:id="@+id/position1" />
+                android:id="@+id/position1"
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:id="@+id/batterContainer2">
 
             <TextView
@@ -53,23 +56,26 @@
                 android:text="2."
                 android:id="@+id/batter2"
                 android:layout_gravity="center"
-                android:textColor="@color/colorTextPrimary" />
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
 
             <Spinner
                 android:layout_width="@dimen/lineup_name_width"
                 android:layout_height="30dp"
-                android:id="@+id/name2" />
+                android:id="@+id/name2"
+                android:layout_gravity="center" />
 
             <Spinner
                 android:layout_width="@dimen/lineup_position_width"
                 android:layout_height="30dp"
-                android:id="@+id/position2" />
+                android:id="@+id/position2"
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:id="@+id/batterContainer3">
 
             <TextView
@@ -79,24 +85,28 @@
                 android:text="3."
                 android:id="@+id/batter3"
                 android:layout_gravity="center"
-                android:textColor="@color/colorTextPrimary" />
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
 
             <Spinner
                 android:layout_width="@dimen/lineup_name_width"
                 android:layout_height="30dp"
-                android:id="@+id/name3" />
+                android:id="@+id/name3"
+                android:layout_gravity="center" />
 
             <Spinner
                 android:layout_width="@dimen/lineup_position_width"
                 android:layout_height="30dp"
-                android:id="@+id/position3" />
+                android:id="@+id/position3"
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/batterContainer4">
+            android:layout_height="35dp"
+            android:id="@+id/batterContainer4"
+            android:layout_gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -105,23 +115,26 @@
                 android:text="4."
                 android:id="@+id/batter4"
                 android:layout_gravity="center"
-                android:textColor="@color/colorTextPrimary" />
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
 
             <Spinner
                 android:layout_width="@dimen/lineup_name_width"
                 android:layout_height="30dp"
-                android:id="@+id/name4" />
+                android:id="@+id/name4"
+                android:layout_gravity="center" />
 
             <Spinner
                 android:layout_width="@dimen/lineup_position_width"
                 android:layout_height="30dp"
-                android:id="@+id/position4" />
+                android:id="@+id/position4"
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:id="@+id/batterContainer5">
 
             <TextView
@@ -131,23 +144,26 @@
                 android:text="5."
                 android:id="@+id/batter5"
                 android:layout_gravity="center"
-                android:textColor="@color/colorTextPrimary" />
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
 
             <Spinner
                 android:layout_width="@dimen/lineup_name_width"
                 android:layout_height="30dp"
-                android:id="@+id/name5" />
+                android:id="@+id/name5"
+                android:layout_gravity="center" />
 
             <Spinner
                 android:layout_width="@dimen/lineup_position_width"
                 android:layout_height="30dp"
-                android:id="@+id/position5" />
+                android:id="@+id/position5"
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:id="@+id/batterContainer6">
 
             <TextView
@@ -157,23 +173,26 @@
                 android:text="6."
                 android:id="@+id/batter6"
                 android:layout_gravity="center"
-                android:textColor="@color/colorTextPrimary" />
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
 
             <Spinner
                 android:layout_width="@dimen/lineup_name_width"
                 android:layout_height="30dp"
-                android:id="@+id/name6" />
+                android:id="@+id/name6"
+                android:layout_gravity="center" />
 
             <Spinner
                 android:layout_width="@dimen/lineup_position_width"
                 android:layout_height="30dp"
-                android:id="@+id/position6" />
+                android:id="@+id/position6"
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:id="@+id/batterContainer7">
 
             <TextView
@@ -183,23 +202,26 @@
                 android:text="7."
                 android:id="@+id/batter7"
                 android:layout_gravity="center"
-                android:textColor="@color/colorTextPrimary" />
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
 
             <Spinner
                 android:layout_width="@dimen/lineup_name_width"
                 android:layout_height="30dp"
-                android:id="@+id/name7" />
+                android:id="@+id/name7"
+                android:layout_gravity="center" />
 
             <Spinner
                 android:layout_width="@dimen/lineup_position_width"
                 android:layout_height="30dp"
-                android:id="@+id/position7" />
+                android:id="@+id/position7"
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:id="@+id/batterContainer8">
 
             <TextView
@@ -209,23 +231,26 @@
                 android:text="8."
                 android:id="@+id/batter8"
                 android:layout_gravity="center"
-                android:textColor="@color/colorTextPrimary" />
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
 
             <Spinner
                 android:layout_width="@dimen/lineup_name_width"
                 android:layout_height="30dp"
-                android:id="@+id/name8" />
+                android:id="@+id/name8"
+                android:layout_gravity="center" />
 
             <Spinner
                 android:layout_width="@dimen/lineup_position_width"
                 android:layout_height="30dp"
-                android:id="@+id/position8" />
+                android:id="@+id/position8"
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:id="@+id/batterContainer9">
 
             <TextView
@@ -235,23 +260,26 @@
                 android:text="9."
                 android:id="@+id/batter9"
                 android:layout_gravity="center"
-                android:textColor="@color/colorTextPrimary" />
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
 
             <Spinner
                 android:layout_width="@dimen/lineup_name_width"
                 android:layout_height="30dp"
-                android:id="@+id/name9" />
+                android:id="@+id/name9"
+                android:layout_gravity="center" />
 
             <Spinner
                 android:layout_width="@dimen/lineup_position_width"
                 android:layout_height="30dp"
-                android:id="@+id/position9" />
+                android:id="@+id/position9"
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:id="@+id/pitcherContainer">
 
             <TextView
@@ -261,12 +289,14 @@
                 android:text="Pitcher:"
                 android:id="@+id/pitcher"
                 android:layout_gravity="center"
-                android:textColor="@color/colorTextPrimary" />
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
 
             <Spinner
                 android:layout_width="@dimen/lineup_name_width"
                 android:layout_height="30dp"
-                android:id="@+id/pitcherName" />
+                android:id="@+id/pitcherName"
+                android:layout_gravity="center" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
     tools:context="com.duxnort.baseballscorebook.LineupSetupActivity"
-    android:background="@color/colorPrimaryBackground">
+    android:background="@drawable/fieldbackground">
 
     <TabHost
         android:layout_width="fill_parent"
@@ -37,7 +37,8 @@
                     android:id="@+id/homeContainer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_margin="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -46,7 +47,8 @@
                         android:text="Home Team"
                         android:id="@+id/textView11"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -55,7 +57,8 @@
                         android:text="Starting Lineup"
                         android:id="@+id/textView21"
                         android:layout_gravity="center"
-                        android:textColor="@color/colorTextPrimary" />
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold" />
 
                     <fragment
                         android:layout_width="match_parent"
@@ -79,7 +82,8 @@
                         android:text="Away Team"
                         android:id="@+id/textView12"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -88,7 +92,8 @@
                         android:text="Starting Lineup"
                         android:id="@+id/textView22"
                         android:layout_gravity="center"
-                        android:textColor="@color/colorTextPrimary" />
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold" />
 
                     <fragment
                         tools:layout="@layout/fragment_lineup"
@@ -108,13 +113,13 @@
 
             <Button
                 android:layout_width="125dp"
-                android:layout_height="75dp"
+                android:layout_height="50dp"
                 android:text="Start Game"
                 android:id="@+id/btnStartGame"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/green_rounded01"
                 android:textStyle="bold"
-                android:textColor="@color/background_floating_material_dark" />
+                android:textColor="@color/colorWhite" />
         </LinearLayout>
     </TabHost>
 </FrameLayout>
