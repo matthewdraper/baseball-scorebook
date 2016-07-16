@@ -18,7 +18,7 @@
 
         <fragment
             android:layout_width="fill_parent"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:name="com.duxnort.baseballscorebook.ScoreboardFragment"
             android:id="@+id/fragment3"
             android:layout_alignParentTop="true"
@@ -27,11 +27,12 @@
             android:layout_weight="0.92" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="352dp"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
             android:id="@+id/imageView2"
             android:layout_alignParentStart="true"
-            android:src="@drawable/baseball_diamond_base_textures_tilted" />
+            android:src="@drawable/baseball_diamond_base_textures_tilted"
+            android:background="@color/background_floating_material_dark" />
 
         <fragment
             android:layout_width="match_parent"

@@ -30,7 +30,7 @@ public class AtBatFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private Button btnReachedBase;
+    private Button btnReachedBase, btnStrike, btnBall, btnFoul, btnRetired;
 
     private OnFragmentInteractionListener mListener;
 
@@ -101,22 +101,92 @@ public class AtBatFragment extends Fragment {
 
     private void initializeButtons(View rootView){
         btnReachedBase = (Button) rootView.findViewById(R.id.btnReachedBase);
+        btnBall = (Button) rootView.findViewById(R.id.btnBall);
+        btnStrike  = (Button) rootView.findViewById(R.id.btnStrike);
+        btnFoul = (Button) rootView.findViewById(R.id.btnFoul);
+        btnRetired = (Button) rootView.findViewById(R.id.btnRetired);
 
+        initializeOnTouchListeners();
+    }
+
+    private void initializeOnTouchListeners(){
         btnReachedBase.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN)
                     btnReachedBaseOnTouch();
                 else if (event.getAction() == MotionEvent.ACTION_UP)
-                    btnReachedBase.setBackground(getResources().getDrawable(R.drawable.green_rounded01));
+                    btnReachedBase.setBackground(getResources().getDrawable(R.drawable.blue_rounded01));
+                return false;
+            }
+        });
+
+        btnRetired.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnRetiredOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnRetired.setBackground(getResources().getDrawable(R.drawable.red_rounded01));
+                return false;
+            }
+        });
+
+        btnStrike.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnStrikeOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnStrike.setBackground(getResources().getDrawable(R.drawable.yellow_rounded01));
+                return false;
+            }
+        });
+
+        btnFoul.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnFoulOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnFoul.setBackground(getResources().getDrawable(R.drawable.orange_rounded01));
+                return false;
+            }
+        });
+
+        btnBall.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnBallOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnBall.setBackground(getResources().getDrawable(R.drawable.pink_rounded01));
                 return false;
             }
         });
     }
 
     private void btnReachedBaseOnTouch(){
-        btnReachedBase.setBackground(getResources().getDrawable(R.drawable.green_rounded01_pressed));
+        btnReachedBase.setBackground(getResources().getDrawable(R.drawable.blue_rounded01_pressed));
     }
+
+    private void btnRetiredOnTouch(){
+        btnRetired.setBackground(getResources().getDrawable(R.drawable.red_rounded01_pressed));
+    }
+
+    private void btnStrikeOnTouch(){
+        btnStrike.setBackground(getResources().getDrawable(R.drawable.yellow_rounded01_pressed));
+    }
+
+    private void btnFoulOnTouch(){
+        btnFoul.setBackground(getResources().getDrawable(R.drawable.orange_rounded01_pressed));
+    }
+
+    private void btnBallOnTouch(){
+        btnBall.setBackground(getResources().getDrawable(R.drawable.pink_rounded01_pressed));
+    }
+
+
 
 
     /**

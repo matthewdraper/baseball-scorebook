@@ -24,8 +24,8 @@
             <TabWidget
                 android:id="@android:id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorButton"
+                android:layout_height="60dp"
+                android:background="@drawable/scoreboard"
                 android:tabStripEnabled="false"></TabWidget>
 
             <FrameLayout

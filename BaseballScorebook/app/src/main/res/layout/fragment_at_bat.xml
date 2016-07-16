@@ -2,15 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="com.duxnort.baseballscorebook.AtBatFragment">
+    tools:context="com.duxnort.baseballscorebook.AtBatFragment"
+    android:background="@drawable/scoreboard">
 
     <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimary">
+        android:layout_height="match_parent">
 
         <TextView
             android:layout_width="fill_parent"
@@ -30,20 +30,22 @@
             android:layout_gravity="center">
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="75dp"
                 android:text="Retired"
-                android:id="@+id/button7" />
+                android:id="@+id/btnRetired"
+                android:background="@drawable/red_rounded01"
+                android:typeface="normal"
+                android:textStyle="bold" />
 
             <Button
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="75dp"
                 android:text="Reached Base"
                 android:id="@+id/btnReachedBase"
-                android:background="@drawable/green_rounded01"
-                android:textColor="@color/background_floating_material_dark"
-                android:textStyle="bold"
-                android:textAlignment="center" />
+                android:background="@drawable/blue_rounded01"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -54,22 +56,29 @@
             android:layout_gravity="center">
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="75dp"
                 android:text="Strike"
-                android:id="@+id/button5" />
+                android:id="@+id/btnStrike"
+                android:background="@drawable/yellow_rounded01"
+                android:textStyle="bold"
+                android:textColor="@color/material_grey_600" />
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="75dp"
                 android:text="Foul"
-                android:id="@+id/button6" />
+                android:id="@+id/btnFoul"
+                android:background="@drawable/orange_rounded01"
+                android:textStyle="bold" />
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="75dp"
                 android:text="Ball"
-                android:id="@+id/button4" />
+                android:id="@+id/btnBall"
+                android:background="@drawable/pink_rounded01"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
