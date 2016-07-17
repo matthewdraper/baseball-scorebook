@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 
 /**
@@ -31,6 +32,7 @@ public class AtBatFragment extends Fragment {
     private String mParam2;
 
     private Button btnReachedBase, btnStrike, btnBall, btnFoul, btnRetired;
+    //private ImageView imgBall1, imgBall2, imgBall3, imgStrike1, imgStrike2, imgOut1, imgOut2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -70,7 +72,6 @@ public class AtBatFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_at_bat, container, false);
         // Inflate the layout for this fragment
-
         initializeButtons(rootView);
         return rootView;
     }
@@ -107,6 +108,49 @@ public class AtBatFragment extends Fragment {
         btnRetired = (Button) rootView.findViewById(R.id.btnRetired);
 
         initializeOnTouchListeners();
+        initializeOnClickListeners();
+    }
+
+    private void initializeOnClickListeners(){
+        btnReachedBase.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        btnReachedBaseOnClick();
+                    }
+                }
+        );
+
+        btnRetired.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        btnRetiredOnClick();
+                    }
+                }
+        );
+
+        btnStrike.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        btnStrikeOnClick();
+                    }
+                }
+        );
+
+        btnFoul.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        btnFoulOnClick();
+                    }
+                }
+        );
+
+        btnBall.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        btnBallOnClick();
+                    }
+                }
+        );
     }
 
     private void initializeOnTouchListeners(){
@@ -166,20 +210,40 @@ public class AtBatFragment extends Fragment {
         });
     }
 
+    private void btnReachedBaseOnClick(){
+
+    }
+
     private void btnReachedBaseOnTouch(){
         btnReachedBase.setBackground(getResources().getDrawable(R.drawable.blue_rounded01_pressed));
+    }
+
+    private void btnRetiredOnClick(){
+
     }
 
     private void btnRetiredOnTouch(){
         btnRetired.setBackground(getResources().getDrawable(R.drawable.red_rounded01_pressed));
     }
 
+    private void btnStrikeOnClick(){
+
+    }
+
     private void btnStrikeOnTouch(){
         btnStrike.setBackground(getResources().getDrawable(R.drawable.yellow_rounded01_pressed));
     }
 
+    private void btnFoulOnClick(){
+
+    }
+
     private void btnFoulOnTouch(){
         btnFoul.setBackground(getResources().getDrawable(R.drawable.orange_rounded01_pressed));
+    }
+
+    private void btnBallOnClick(){
+
     }
 
     private void btnBallOnTouch(){

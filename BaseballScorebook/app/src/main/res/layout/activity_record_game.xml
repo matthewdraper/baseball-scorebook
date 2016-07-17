@@ -32,51 +32,49 @@
                  />
             <Button
                 android:layout_width="30dp"
-                app:layout_widthPercent="10%"
+                app:layout_widthPercent="11%"
                 android:layout_height="30dp"
-                app:layout_heightPercent="5%"
-                android:text="@string/record_game"
+                app:layout_heightPercent="6%"
                 android:id="@+id/button_record_game1"
-                android:background="@color/colorWhite"
-                app:layout_marginLeftPercent="27%"
-                app:layout_marginTopPercent="33%"
+                android:background="@drawable/baserunner"
+                app:layout_marginLeftPercent="24.5%"
+                app:layout_marginTopPercent="34%"
                 android:textStyle="bold"
-                android:alpha="0" />
+                android:alpha="1" />
 
             <Button
                 android:layout_width="30dp"
-                app:layout_widthPercent="10%"
+                app:layout_widthPercent="11%"
                 android:layout_height="30dp"
-                app:layout_heightPercent="5%"
-                android:text="@string/record_game"
+                app:layout_heightPercent="6%"
                 android:id="@+id/button_record_game2"
-                android:background="@color/colorWhite"
-                app:layout_marginLeftPercent="45%"
-                app:layout_marginTopPercent="28%"
+                android:background="@drawable/baserunner"
+                app:layout_marginLeftPercent="43.75%"
+                app:layout_marginTopPercent="28.5%"
                 android:textStyle="bold"
-                android:alpha="0" />
+                android:alpha="1"
+                android:allowUndo="false" />
 
             <Button
                 android:layout_width="30dp"
-                app:layout_widthPercent="10%"
+                app:layout_widthPercent="11%"
                 android:layout_height="30dp"
-                app:layout_heightPercent="5%"
-                android:text="@string/record_game"
+                app:layout_heightPercent="6%"
                 android:id="@+id/button_record_game3"
-                android:background="@color/colorWhite"
-                app:layout_marginLeftPercent="61.5%"
-                app:layout_marginTopPercent="33%"
+                android:background="@drawable/baserunner"
+                app:layout_marginLeftPercent="62.5%"
+                app:layout_marginTopPercent="34%"
                 android:textStyle="bold"
-                android:alpha="0" />
+                android:alpha="1" />
             <ImageView
                 android:layout_width="match_parent"
                 app:layout_widthPercent="100%"
                 app:layout_marginTopPercent="20%"
                 android:layout_height="300dp"
-                app:layout_heightPercent="30%"
+                app:layout_heightPercent="35%"
                 android:id="@+id/imageView2"
                 android:layout_alignParentStart="true"
-                android:src="@drawable/baseball_diamond_base_textures_tilted"
+                android:src="@drawable/baseball_diamond_tilted"
                 android:background="@drawable/fieldbackground"
                 android:contentDescription="@string/baseballfieldimage" />
 
@@ -84,7 +82,7 @@
             android:layout_width="match_parent"
             app:layout_widthPercent="100%"
             android:layout_height="wrap_content"
-            app:layout_heightPercent="35%"
+            app:layout_heightPercent="45%"
             android:name="com.duxnort.baseballscorebook.AtBatFragment"
             android:id="@+id/fragment4"
 

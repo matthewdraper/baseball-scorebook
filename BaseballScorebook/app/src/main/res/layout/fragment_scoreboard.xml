@@ -1,8 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="100dp"
-    tools:context="com.duxnort.baseballscorebook.ScoreboardFragment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/scoreboard">
 
     <!-- TODO: Update blank fragment layout -->
@@ -16,13 +15,15 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="fill_parent"
+                android:layout_gravity="center">
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -46,7 +47,7 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:text="HOME"
-                            android:id="@+id/textView13"
+                            android:id="@+id/txtHome"
                             android:textColor="@color/colorWhite" />
 
                     </LinearLayout>
@@ -61,7 +62,7 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:text="AWAY"
-                            android:id="@+id/textView15"
+                            android:id="@+id/txtAway"
                             android:textColor="@color/colorWhite" />
 
                     </LinearLayout>
@@ -81,7 +82,7 @@
                         android:layout_height="20dp"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="R"
-                        android:id="@+id/textView14"
+                        android:id="@+id/txtRunsCol"
                         android:textSize="15dp"
                         android:layout_gravity="center_horizontal"
                         android:textColor="@color/colorWhite" />
@@ -91,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="0"
-                        android:id="@+id/textView16"
+                        android:id="@+id/txtRunsHome"
                         android:layout_gravity="center_horizontal"
                         android:textColor="@color/colorWhite" />
 
@@ -100,7 +101,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="0"
-                        android:id="@+id/textView17"
+                        android:id="@+id/txtRunsAway"
                         android:layout_gravity="center_horizontal"
                         android:textColor="@color/colorWhite" />
                 </LinearLayout>
@@ -118,7 +119,7 @@
                         android:layout_height="20dp"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="H"
-                        android:id="@+id/textView18"
+                        android:id="@+id/txtHitsCol"
                         android:textSize="15dp"
                         android:layout_gravity="center_horizontal"
                         android:textColor="@color/colorWhite" />
@@ -128,7 +129,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="0"
-                        android:id="@+id/textView19"
+                        android:id="@+id/txtHitsHome"
                         android:layout_gravity="center_horizontal"
                         android:textColor="@color/colorWhite" />
 
@@ -137,7 +138,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="0"
-                        android:id="@+id/textView20"
+                        android:id="@+id/txtHitsAway"
                         android:layout_gravity="center_horizontal"
                         android:textColor="@color/colorWhite" />
                 </LinearLayout>
@@ -155,7 +156,7 @@
                         android:layout_height="20dp"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="E"
-                        android:id="@+id/textView23"
+                        android:id="@+id/txtErrorsCol"
                         android:textSize="15dp"
                         android:layout_gravity="center_horizontal"
                         android:textColor="@color/colorWhite" />
@@ -165,7 +166,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="0"
-                        android:id="@+id/textView24"
+                        android:id="@+id/txtErrorsHome"
                         android:layout_gravity="center_horizontal"
                         android:textColor="@color/colorWhite" />
 
@@ -174,7 +175,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="0"
-                        android:id="@+id/textView25"
+                        android:id="@+id/txtErrorsAway"
                         android:layout_gravity="center_horizontal"
                         android:textColor="@color/colorWhite" />
                 </LinearLayout>
@@ -192,7 +193,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="INN"
-                        android:id="@+id/textView26"
+                        android:id="@+id/txtInningLabel"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
@@ -208,7 +209,7 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:text="9"
-                            android:id="@+id/textView27"
+                            android:id="@+id/txtInnNum"
                             android:textSize="40dp"
                             android:layout_gravity="center"
                             android:textColor="@color/colorWhite" />
@@ -231,7 +232,7 @@
                                     android:layout_height="wrap_content"
                                     android:textAppearance="?android:attr/textAppearanceSmall"
                                     android:text="TOP"
-                                    android:id="@+id/textView28"
+                                    android:id="@+id/txtInnTop"
                                     android:textSize="12dp"
                                     android:textColor="@color/colorWhite" />
 
@@ -240,7 +241,7 @@
                                     android:layout_height="wrap_content"
                                     android:textAppearance="?android:attr/textAppearanceSmall"
                                     android:text="BOT"
-                                    android:id="@+id/textView29"
+                                    android:id="@+id/txtInnBot"
                                     android:textSize="12dp"
                                     android:textColor="@color/colorWhite" />
                             </LinearLayout>
@@ -260,13 +261,15 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_gravity="center">
 
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/containerLights">
+                    android:id="@+id/containerLights"
+                    android:layout_gravity="center">
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -280,28 +283,28 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:text="B"
-                            android:id="@+id/textView30"
+                            android:id="@+id/txtBallsLbl"
                             android:textColor="@color/colorWhite"
                             android:layout_gravity="center" />
 
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:id="@+id/imageView3"
-                            android:background="@drawable/lights_on"
-                            android:layout_gravity="center" />
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:id="@+id/imageView4"
+                            android:id="@+id/imgBall1"
                             android:background="@drawable/lights_off"
                             android:layout_gravity="center" />
 
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:id="@+id/imageView5"
+                            android:id="@+id/imgBall2"
+                            android:background="@drawable/lights_off"
+                            android:layout_gravity="center" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:id="@+id/imgBall3"
                             android:background="@drawable/lights_off"
                             android:layout_gravity="center" />
 
@@ -319,21 +322,21 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:text="S"
-                            android:id="@+id/textView32"
+                            android:id="@+id/txtStrikeLbl"
                             android:textColor="@color/colorWhite"
                             android:layout_gravity="center" />
 
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:id="@+id/imageView6"
+                            android:id="@+id/imgStrike1"
                             android:background="@drawable/lights_off"
                             android:layout_gravity="center" />
 
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:id="@+id/imageView7"
+                            android:id="@+id/imgStrike2"
                             android:background="@drawable/lights_off"
                             android:layout_gravity="center" />
 
@@ -351,21 +354,21 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:text="O"
-                            android:id="@+id/textView34"
+                            android:id="@+id/txtOutLbl"
                             android:textColor="@color/colorWhite"
                             android:layout_gravity="center" />
 
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:id="@+id/imageView10"
+                            android:id="@+id/imgOut1"
                             android:background="@drawable/lights_off"
                             android:layout_gravity="center" />
 
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:id="@+id/imageView8"
+                            android:id="@+id/imgOut2"
                             android:background="@drawable/lights_off"
                             android:layout_gravity="center" />
 
@@ -384,7 +387,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="PITCH COUNT"
-                        android:id="@+id/pitchCountLabel"
+                        android:id="@+id/txtPitchCountLbl"
                         android:textSize="10dp"
                         android:layout_gravity="center"
                         android:textColor="@color/colorWhite"
@@ -395,7 +398,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="100"
-                        android:id="@+id/pitchCountNumber"
+                        android:id="@+id/txtPitchCountNum"
                         android:textSize="30dp"
                         android:layout_gravity="center"
                         android:textColor="@color/colorWhite" />

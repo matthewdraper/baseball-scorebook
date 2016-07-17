@@ -1,12 +1,15 @@
 package com.duxnort.baseballscorebook;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 /**
@@ -22,6 +25,11 @@ public class ScoreboardFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private TextView txtHome, txtAway, txtRunsHome, txtRunsAway, txtHitsHome, txtHitsAway,
+            txtErrorsHome, txtErrorsAway, txtInnNum, txtInnTop, txtInnBot, txtPitchCounNum;
+
+    private ImageView imgBall1, imgBall2, imgBall3, imgStrike1, imgStrike2, imgOut1, imgOut2;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -89,6 +97,122 @@ public class ScoreboardFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    private void setTxtHomeText(String text){
+        txtHome.setText(text);
+    }
+
+    private void setTxtAwayText(String text){
+        txtAway.setText(text);
+    }
+
+    private void setTxtRunsHome(String num){
+        txtRunsHome.setText(num);
+    }
+
+    private void setTxtRunsAway(String num){
+        txtRunsAway.setText(num);
+    }
+
+    private void setTxtErrorsHome(String num){
+        txtErrorsHome.setText(num);
+    }
+
+    private void setTxtErrorsAway(String num){
+        txtErrorsAway.setText(num);
+    }
+
+    private void setTxtInnNum(String num){
+        txtInnNum.setText(num);
+    }
+
+    private void setTxtInnTopVisible(){
+        txtInnTop.setAlpha(1);
+    }
+
+    private void setTxtInnTopHidden(){
+        txtInnTop.setAlpha(0);
+    }
+
+    private void setTxtInnBotVisible(){
+        txtInnBot.setAlpha(1);
+    }
+
+    private void setTxtInnBotHidden(){
+        txtInnBot.setAlpha(0);
+    }
+
+    private void setBallLights(int num){
+        switch (num){
+            case 0:
+                imgBall1.setImageResource(R.drawable.lights_off);
+                imgBall2.setImageResource(R.drawable.lights_off);
+                imgBall3.setImageResource(R.drawable.lights_off);
+                break;
+            case 1:
+                imgBall1.setImageResource(R.drawable.lights_on);
+                imgBall2.setImageResource(R.drawable.lights_off);
+                imgBall3.setImageResource(R.drawable.lights_off);
+                break;
+            case 2:
+                imgBall1.setImageResource(R.drawable.lights_on);
+                imgBall2.setImageResource(R.drawable.lights_on);
+                imgBall3.setImageResource(R.drawable.lights_off);
+                break;
+            case 3:
+                imgBall1.setImageResource(R.drawable.lights_on);
+                imgBall2.setImageResource(R.drawable.lights_on);
+                imgBall3.setImageResource(R.drawable.lights_on);
+                break;
+            default:
+                imgBall1.setImageResource(R.drawable.lights_off);
+                imgBall2.setImageResource(R.drawable.lights_off);
+                imgBall3.setImageResource(R.drawable.lights_off);
+                break;
+        }
+    }
+
+    private void setStrikeLights(int num){
+        switch (num){
+            case 0:
+                imgStrike1.setImageResource(R.drawable.lights_off);
+                imgStrike2.setImageResource(R.drawable.lights_off);
+                break;
+            case 1:
+                imgStrike1.setImageResource(R.drawable.lights_on);
+                imgStrike2.setImageResource(R.drawable.lights_off);
+                break;
+            case 2:
+                imgStrike1.setImageResource(R.drawable.lights_on);
+                imgStrike2.setImageResource(R.drawable.lights_on);
+                break;
+            default:
+                imgStrike1.setImageResource(R.drawable.lights_off);
+                imgStrike2.setImageResource(R.drawable.lights_off);
+                break;
+        }
+    }
+
+    private void setOutLights(int num){
+        switch (num){
+            case 0:
+                imgOut1.setImageResource(R.drawable.lights_off);
+                imgOut2.setImageResource(R.drawable.lights_off);
+                break;
+            case 1:
+                imgOut1.setImageResource(R.drawable.lights_on);
+                imgOut2.setImageResource(R.drawable.lights_off);
+                break;
+            case 2:
+                imgOut1.setImageResource(R.drawable.lights_on);
+                imgOut2.setImageResource(R.drawable.lights_on);
+                break;
+            default:
+                imgOut1.setImageResource(R.drawable.lights_off);
+                imgOut2.setImageResource(R.drawable.lights_off);
+                break;
+        }
     }
 
     /**
