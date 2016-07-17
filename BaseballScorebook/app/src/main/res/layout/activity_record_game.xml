@@ -27,7 +27,7 @@
                 app:layout_widthPercent="100%"
                 app:layout_heightPercent="20%"
                 android:name="com.duxnort.baseballscorebook.ScoreboardFragment"
-                android:id="@+id/fragment3"
+                android:id="@+id/fragScoreboard"
                 tools:layout="@layout/fragment_scoreboard"
                  />
             <Button
@@ -35,7 +35,7 @@
                 app:layout_widthPercent="11%"
                 android:layout_height="30dp"
                 app:layout_heightPercent="6%"
-                android:id="@+id/button_record_game1"
+                android:id="@+id/btnThirdBase"
                 android:background="@drawable/baserunner"
                 app:layout_marginLeftPercent="24.5%"
                 app:layout_marginTopPercent="34%"
@@ -47,7 +47,7 @@
                 app:layout_widthPercent="11%"
                 android:layout_height="30dp"
                 app:layout_heightPercent="6%"
-                android:id="@+id/button_record_game2"
+                android:id="@+id/btnSecondBase"
                 android:background="@drawable/baserunner"
                 app:layout_marginLeftPercent="43.75%"
                 app:layout_marginTopPercent="28.5%"
@@ -60,7 +60,7 @@
                 app:layout_widthPercent="11%"
                 android:layout_height="30dp"
                 app:layout_heightPercent="6%"
-                android:id="@+id/button_record_game3"
+                android:id="@+id/btnFirstBase"
                 android:background="@drawable/baserunner"
                 app:layout_marginLeftPercent="62.5%"
                 app:layout_marginTopPercent="34%"
@@ -72,7 +72,7 @@
                 app:layout_marginTopPercent="20%"
                 android:layout_height="300dp"
                 app:layout_heightPercent="35%"
-                android:id="@+id/imageView2"
+                android:id="@+id/imgField"
                 android:layout_alignParentStart="true"
                 android:src="@drawable/baseball_diamond_tilted"
                 android:background="@drawable/fieldbackground"
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             app:layout_heightPercent="45%"
             android:name="com.duxnort.baseballscorebook.AtBatFragment"
-            android:id="@+id/fragment4"
+            android:id="@+id/fragEvents"
 
             tools:layout="@layout/fragment_at_bat"
             android:layout_gravity="bottom" />

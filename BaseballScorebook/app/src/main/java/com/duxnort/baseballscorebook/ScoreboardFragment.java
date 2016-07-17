@@ -27,7 +27,7 @@ public class ScoreboardFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     private TextView txtHome, txtAway, txtRunsHome, txtRunsAway, txtHitsHome, txtHitsAway,
-            txtErrorsHome, txtErrorsAway, txtInnNum, txtInnTop, txtInnBot, txtPitchCounNum;
+            txtErrorsHome, txtErrorsAway, txtInnNum, txtInnTop, txtInnBot, txtPitchCountNum;
 
     private ImageView imgBall1, imgBall2, imgBall3, imgStrike1, imgStrike2, imgOut1, imgOut2;
 
@@ -71,8 +71,11 @@ public class ScoreboardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_scoreboard, container, false);
+        initializeImageViews(rootView);
+        initializeTextViews(rootView);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_scoreboard, container, false);
+        return rootView;
     }
 
 //    // TODO: Rename method, update argument and hook method into UI event
@@ -99,51 +102,88 @@ public class ScoreboardFragment extends Fragment {
         mListener = null;
     }
 
-    private void setTxtHomeText(String text){
+    private void initializeTextViews(View rootView){
+        txtHome = (TextView) rootView.findViewById(R.id.txtHome);
+        txtAway = (TextView) rootView.findViewById(R.id.txtAway);
+        txtRunsHome = (TextView) rootView.findViewById(R.id.txtRunsHome);
+        txtRunsAway = (TextView) rootView.findViewById(R.id.txtRunsAway);
+        txtHitsHome = (TextView) rootView.findViewById(R.id.txtHitsHome);
+        txtHitsAway = (TextView) rootView.findViewById(R.id.txtHitsAway);
+        txtErrorsHome = (TextView) rootView.findViewById(R.id.txtErrorsHome);
+        txtErrorsAway = (TextView) rootView.findViewById(R.id.txtErrorsAway);
+        txtInnNum = (TextView) rootView.findViewById(R.id.txtInnNum);
+        txtInnTop = (TextView) rootView.findViewById(R.id.txtInnTop);
+        txtInnBot = (TextView) rootView.findViewById(R.id.txtInnBot);
+        txtPitchCountNum = (TextView) rootView.findViewById(R.id.txtPitchCountNum);
+    }
+
+    private void initializeImageViews(View rootView){
+        imgBall1 = (ImageView) rootView.findViewById(R.id.imgBall1);
+        imgBall2 = (ImageView) rootView.findViewById(R.id.imgBall2);
+        imgBall3 = (ImageView) rootView.findViewById(R.id.imgBall3);
+        imgStrike1 = (ImageView) rootView.findViewById(R.id.imgStrike1);
+        imgStrike2 = (ImageView) rootView.findViewById(R.id.imgStrike2);
+        imgOut1 = (ImageView) rootView.findViewById(R.id.imgOut1);
+        imgOut2 = (ImageView) rootView.findViewById(R.id.imgOut2);
+    }
+
+    public void setTxtHomeText(String text){
         txtHome.setText(text);
     }
 
-    private void setTxtAwayText(String text){
+    public void setTxtAwayText(String text){
         txtAway.setText(text);
     }
 
-    private void setTxtRunsHome(String num){
+    public void setTxtRunsHome(String num){
         txtRunsHome.setText(num);
     }
 
-    private void setTxtRunsAway(String num){
+    public void setTxtRunsAway(String num){
         txtRunsAway.setText(num);
     }
 
-    private void setTxtErrorsHome(String num){
+    public void setTextHitsHome(String num){
+        txtHitsHome.setText(num);
+    }
+
+    public void setTextHitsAway(String num){
+        txtHitsAway.setText(num);
+    }
+
+    public void setTxtErrorsHome(String num){
         txtErrorsHome.setText(num);
     }
 
-    private void setTxtErrorsAway(String num){
+    public void setTxtErrorsAway(String num){
         txtErrorsAway.setText(num);
     }
 
-    private void setTxtInnNum(String num){
+    public void setTxtInnNum(String num){
         txtInnNum.setText(num);
     }
 
-    private void setTxtInnTopVisible(){
+    public void setTxtInnTopVisible(){
         txtInnTop.setAlpha(1);
     }
 
-    private void setTxtInnTopHidden(){
+    public void setTxtInnTopHidden(){
         txtInnTop.setAlpha(0);
     }
 
-    private void setTxtInnBotVisible(){
+    public void setTxtInnBotVisible(){
         txtInnBot.setAlpha(1);
     }
 
-    private void setTxtInnBotHidden(){
+    public void setTxtInnBotHidden(){
         txtInnBot.setAlpha(0);
     }
 
-    private void setBallLights(int num){
+    public void setTxtPitchCountNum(String num){
+        txtPitchCountNum.setText(num);
+    }
+
+    public void setBallLights(int num){
         switch (num){
             case 0:
                 imgBall1.setImageResource(R.drawable.lights_off);
@@ -173,7 +213,7 @@ public class ScoreboardFragment extends Fragment {
         }
     }
 
-    private void setStrikeLights(int num){
+    public void setStrikeLights(int num){
         switch (num){
             case 0:
                 imgStrike1.setImageResource(R.drawable.lights_off);
@@ -194,7 +234,7 @@ public class ScoreboardFragment extends Fragment {
         }
     }
 
-    private void setOutLights(int num){
+    public void setOutLights(int num){
         switch (num){
             case 0:
                 imgOut1.setImageResource(R.drawable.lights_off);

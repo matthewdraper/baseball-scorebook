@@ -32,7 +32,6 @@ public class AtBatFragment extends Fragment {
     private String mParam2;
 
     private Button btnReachedBase, btnStrike, btnBall, btnFoul, btnRetired;
-    //private ImageView imgBall1, imgBall2, imgBall3, imgStrike1, imgStrike2, imgOut1, imgOut2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -219,7 +218,10 @@ public class AtBatFragment extends Fragment {
     }
 
     private void btnRetiredOnClick(){
-
+        // Calls the method(s) that must be implemented by the activity
+        // that this fragment is used in.
+        mListener.incrementOuts();
+        mListener.incrementPitchCount();
     }
 
     private void btnRetiredOnTouch(){
@@ -227,7 +229,10 @@ public class AtBatFragment extends Fragment {
     }
 
     private void btnStrikeOnClick(){
-
+        // Calls the method(s) that must be implemented by the activity
+        // that this fragment is used in.
+        mListener.incrementPitchCount();
+        mListener.incrementStrikes();
     }
 
     private void btnStrikeOnTouch(){
@@ -235,7 +240,10 @@ public class AtBatFragment extends Fragment {
     }
 
     private void btnFoulOnClick(){
-
+        // Calls the method(s) that must be implemented by the activity
+        // that this fragment is used in.
+        mListener.incrementPitchCount();
+        mListener.incrementFoulStrikes();
     }
 
     private void btnFoulOnTouch(){
@@ -243,7 +251,10 @@ public class AtBatFragment extends Fragment {
     }
 
     private void btnBallOnClick(){
-
+        // Calls the method(s) that must be implemented by the activity
+        // that this fragment is used in.
+        mListener.incrementPitchCount();
+        mListener.incrementBalls();
     }
 
     private void btnBallOnTouch(){
@@ -264,7 +275,18 @@ public class AtBatFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-//        // TODO: Update argument type and name
-//        void onFragmentInteraction(Uri uri);
+        // These methods must be implemented by whatever activity implements
+        // this interface (which also means uses this fragment)
+
+        // Increment the strike count
+        void incrementStrikes();
+        // Increment the strike count based on a foul ball
+        void incrementFoulStrikes();
+        // Increment the ball count
+        void incrementBalls();
+        // Increment the pitch count
+        void incrementPitchCount();
+        // Increment the out count
+        void incrementOuts();
     }
 }
