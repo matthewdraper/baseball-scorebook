@@ -28,14 +28,26 @@
                 android:layout_margin="10dp" />
 
             <Button
-                android:layout_width="150dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:text="Reached Base"
                 android:id="@+id/btnReachedBase"
                 android:background="@drawable/blue_rounded"
                 android:textColor="@color/colorWhite"
                 android:textStyle="bold"
-                android:layout_margin="10dp" />
+                android:layout_margin="10dp"
+                android:layout_gravity="center" />
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="UNDO"
+                android:id="@+id/button8"
+                android:background="@drawable/white_rounded"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                android:alpha=".95"
+                android:textColor="@color/colorBlack" />
 
         </LinearLayout>
 

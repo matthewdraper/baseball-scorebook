@@ -20,7 +20,11 @@
         <activity android:name=".HelpActivity" />
         <activity android:name=".RecordGameSetupActivity" />
         <activity android:name=".LineupSetupActivity" />
-        <activity android:name=".RecordGameActivity"></activity>
+        <activity android:name=".RecordGameActivity" />
+        <activity android:name=".ActionSelectionActivity"
+                  android:theme="@style/AppTheme.CustomTheme">
+
+        </activity>
     </application>
 
 </manifest>

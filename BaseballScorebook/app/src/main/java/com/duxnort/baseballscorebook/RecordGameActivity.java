@@ -5,31 +5,30 @@ import android.app.FragmentTransaction;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 public class RecordGameActivity extends AppCompatActivity implements
         ScoreboardFragment.OnFragmentInteractionListener,
         AtBatFragment.OnFragmentInteractionListener,
         RunnerFragment.OnFragmentInteractionListener{
 
-    public int strikeCount = 0;
-    public int ballCount = 0;
-    public int pitchCount = 0;
-    public int outCount = 0;
-    public int innNum = 1;
-    public boolean isTop = true;
-    public boolean isBottom = false;
-    public Button btnSwitch;
-    public Button btnNextPlayer;
-    public Button btnPrevPlayer;
-    public RunnerFragment r1;
-    public RunnerFragment r2;
-    public RunnerFragment r3;
-    public AtBatFragment ab;
-    public Fragment[] fragmentsArr;
-    int currFragIndex = 0;
+    private  int strikeCount = 0;
+    private  int ballCount = 0;
+    private  int pitchCount = 0;
+    private  int outCount = 0;
+    private  int innNum = 1;
+    private  boolean isTop = true;
+    private  boolean isBottom = false;
+    private  Button btnFirstBase, btnSecondBase, btnThirdBase, btnNextPlayer, btnPrevPlayer;
+    private  RunnerFragment r1, r2, r3;
+    private  AtBatFragment ab;
+    private  Fragment[] fragmentsArr;
+    private int currFragIndex = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +36,7 @@ public class RecordGameActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_record_game);
         setInnNum();
         setTopInning();
+        setPitchCount(0);
 
         initializePlayerFragments();
 
@@ -159,9 +159,17 @@ public class RecordGameActivity extends AppCompatActivity implements
         scoreboard.setTxtInnBotVisible();
     }
 
+    private void setPitchCount(int num){
+        ScoreboardFragment scoreboard = (ScoreboardFragment) getSupportFragmentManager().findFragmentById(R.id.fragScoreboard);
+        scoreboard.setTxtPitchCountNum(Integer.toString(num));
+    }
+
     private void initializeButtons(){
         btnNextPlayer = (Button) findViewById(R.id.btnNextPlayer);
         btnPrevPlayer = (Button) findViewById(R.id.btnPrevPlayer);
+        btnFirstBase = (Button) findViewById(R.id.btnFirstBase);
+        btnSecondBase = (Button) findViewById(R.id.btnSecondBase);
+        btnThirdBase = (Button) findViewById(R.id.btnThirdBase);
 
 
         btnNextPlayer.setOnClickListener(new View.OnClickListener(){
@@ -176,6 +184,36 @@ public class RecordGameActivity extends AppCompatActivity implements
             }
         });
 
+        btnFirstBase.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                currFragIndex = 1;
+                loadFragment(fragmentsArr[currFragIndex]);
+                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner_selected));
+                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+            }
+        });
+
+        btnSecondBase.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                currFragIndex = 2;
+                loadFragment(fragmentsArr[currFragIndex]);
+                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner_selected));
+                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+            }
+        });
+
+        btnThirdBase.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                currFragIndex = 3;
+                loadFragment(fragmentsArr[currFragIndex]);
+                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner_selected));
+            }
+        });
+
     }
 
     private void nextPlayersFragment(){
@@ -183,6 +221,30 @@ public class RecordGameActivity extends AppCompatActivity implements
             currFragIndex++;
         } else if(currFragIndex == 3){
             currFragIndex = 0;
+        }
+        switch (currFragIndex){
+            case 0:
+                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                break;
+            case 1:
+                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner_selected));
+                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                break;
+            case 2:
+                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner_selected));
+                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                break;
+            case 3:
+                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner_selected));
+                break;
+            default:
+                break;
         }
         loadFragment(fragmentsArr[currFragIndex]);
     }
@@ -194,6 +256,30 @@ public class RecordGameActivity extends AppCompatActivity implements
             currFragIndex = 3;
         }
         loadFragment(fragmentsArr[currFragIndex]);
+        switch (currFragIndex){
+            case 0:
+                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                break;
+            case 1:
+                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner_selected));
+                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                break;
+            case 2:
+                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner_selected));
+                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                break;
+            case 3:
+                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner_selected));
+                break;
+            default:
+                break;
+        }
     }
 
     public void initializePlayerFragments(){

@@ -2,6 +2,7 @@ package com.duxnort.baseballscorebook;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -114,6 +115,7 @@ public class AtBatFragment extends Fragment {
                 new View.OnClickListener(){
                     public void onClick(View v){
                         btnReachedBaseOnClick();
+                        startActivity(new Intent(getActivity(), ActionSelectionActivity.class));
                     }
                 }
         );
