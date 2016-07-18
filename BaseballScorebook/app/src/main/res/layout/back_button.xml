@@ -2,7 +2,7 @@
 <Button xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="100dp" android:layout_height="50dp"
     android:text="Back"
-    android:background="@drawable/red_rounded01"
+    android:background="@drawable/red_rounded"
     android:textColor="@color/colorWhite"
     android:textStyle="bold">
 

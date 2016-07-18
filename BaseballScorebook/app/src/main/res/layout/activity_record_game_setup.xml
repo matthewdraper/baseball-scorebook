@@ -133,7 +133,7 @@
                 android:layout_height="50dp"
                 android:text="Add"
                 android:id="@+id/btnAddUmpire"
-                android:background="@drawable/green_rounded01"
+                android:background="@drawable/green_rounded"
                 android:layout_gravity="center" />
         </LinearLayout>
 
