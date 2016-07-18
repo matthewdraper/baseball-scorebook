@@ -1,13 +1,18 @@
 package com.duxnort.baseballscorebook;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 public class RecordGameActivity extends AppCompatActivity implements
         ScoreboardFragment.OnFragmentInteractionListener,
-        AtBatFragment.OnFragmentInteractionListener{
+        AtBatFragment.OnFragmentInteractionListener,
+        RunnerFragment.OnFragmentInteractionListener{
 
     public int strikeCount = 0;
     public int ballCount = 0;
@@ -24,6 +29,8 @@ public class RecordGameActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_record_game);
         setInnNum();
         setTopInning();
+        initializeFragment();
+        initializeButtons();
     }
 
     @Override
@@ -140,18 +147,37 @@ public class RecordGameActivity extends AppCompatActivity implements
         scoreboard.setTxtInnBotVisible();
     }
 
-    private void initializeButtons(View view){
-        btnSwitch = (Button) view.findViewById(R.id.btnSwitch);
+    private void initializeButtons(){
+        btnSwitch = (Button) findViewById(R.id.btnSwitch);
 
         btnSwitch.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                btnSwitchOnClick(v);
+                btnSwitchOnClick();
             }
         });
 
     }
 
-    private void btnSwitchOnClick(View v){
-        
+    private void btnSwitchOnClick(){
+        // Create new fragment and transaction
+        Fragment newFragment = new RunnerFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+// Replace whatever is in the fragment_container view with this fragment,
+// and add the transaction to the back stack if needed
+        transaction.replace(R.id.containerEvents, newFragment);
+        transaction.addToBackStack(null);
+
+// Commit the transaction
+        transaction.commit();
+    }
+
+    private void initializeFragment(){
+        Fragment atBatFrag = new AtBatFragment();
+        FragmentTransaction fragTransaction = getFragmentManager().beginTransaction();
+
+        fragTransaction.add(R.id.containerEvents, atBatFrag , "fragment" + atBatFrag);
+        fragTransaction.commit();
+
     }
 }
