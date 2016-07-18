@@ -162,7 +162,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginStart="46dp"
                     android:id="@+id/btnBack"
-                    android:layout_alignTop="@+id/btnNext"
+                    android:layout_alignTop="@+id/btnNextPlayer"
                     android:layout_alignParentStart="true" />
 
                 <include
@@ -172,7 +172,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:id="@+id/btnNext"
+                    android:id="@+id/btnNextPlayer"
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="56dp" />

@@ -22,6 +22,10 @@ public class RecordGameActivity extends AppCompatActivity implements
     public boolean isTop = true;
     public boolean isBottom = false;
     public Button btnSwitch;
+    public Button btnNextPlayer;
+    public Button btnPrevPlayer;
+    public RunnerFragment r1;
+    public AtBatFragment ab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +33,12 @@ public class RecordGameActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_record_game);
         setInnNum();
         setTopInning();
-        initializeFragment();
+
+        r1 = new RunnerFragment();
+        ab = new AtBatFragment();
+
+        initializeFragment(); // This sets the fragment in to be displayed since
+                              // in order to switch fragments it cannot be declared in the XML
         initializeButtons();
     }
 
@@ -149,6 +158,8 @@ public class RecordGameActivity extends AppCompatActivity implements
 
     private void initializeButtons(){
         btnSwitch = (Button) findViewById(R.id.btnSwitch);
+        btnNextPlayer = (Button) findViewById(R.id.btnNextPlayer);
+        btnPrevPlayer = (Button) findViewById(R.id.btnPrevPlayer);
 
         btnSwitch.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
@@ -156,27 +167,47 @@ public class RecordGameActivity extends AppCompatActivity implements
             }
         });
 
+        btnNextPlayer.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+
+            }
+        });
+
+        btnPrevPlayer.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+
+            }
+        });
+
+    }
+
+    private void nextPlayersFragment(){
+
+    }
+
+    private void prevPlayersFragment(){
+
     }
 
     private void btnSwitchOnClick(){
         // Create new fragment and transaction
-        Fragment newFragment = new RunnerFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
 // Replace whatever is in the fragment_container view with this fragment,
 // and add the transaction to the back stack if needed
-        transaction.replace(R.id.containerEvents, newFragment);
+        transaction.replace(R.id.containerEvents, r1);
         transaction.addToBackStack(null);
 
 // Commit the transaction
         transaction.commit();
     }
 
+    // Initialize the first fragment into the Activity
     private void initializeFragment(){
-        Fragment atBatFrag = new AtBatFragment();
+
         FragmentTransaction fragTransaction = getFragmentManager().beginTransaction();
 
-        fragTransaction.add(R.id.containerEvents, atBatFrag , "fragment" + atBatFrag);
+        fragTransaction.add(R.id.containerEvents, ab , "fragment" + ab);
         fragTransaction.commit();
 
     }

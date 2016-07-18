@@ -19,7 +19,7 @@ public class RecordGameSetupActivity extends AppCompatActivity {
     }
 
     private void initializeButtons(){
-        btnNext = (Button) this.findViewById(R.id.btnNext);
+        btnNext = (Button) this.findViewById(R.id.btnNextPlayer);
         btnBack = (Button) this.findViewById((R.id.btnBack));
         btnAddTeamAway = (Button) this.findViewById((R.id.btnAddTeamAway));
         btnAddTeamHome = (Button) this.findViewById((R.id.btnAddTeamHome));
