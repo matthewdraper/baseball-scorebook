@@ -25,7 +25,11 @@ public class RecordGameActivity extends AppCompatActivity implements
     public Button btnNextPlayer;
     public Button btnPrevPlayer;
     public RunnerFragment r1;
+    public RunnerFragment r2;
+    public RunnerFragment r3;
     public AtBatFragment ab;
+    public Fragment[] fragmentsArr;
+    int currFragIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +38,9 @@ public class RecordGameActivity extends AppCompatActivity implements
         setInnNum();
         setTopInning();
 
-        r1 = new RunnerFragment();
-        ab = new AtBatFragment();
+        initializePlayerFragments();
 
-        initializeFragment(); // This sets the fragment in to be displayed since
+        loadFragment(ab); // This sets the fragment in to be displayed since
                               // in order to switch fragments it cannot be declared in the XML
         initializeButtons();
     }
@@ -157,57 +160,54 @@ public class RecordGameActivity extends AppCompatActivity implements
     }
 
     private void initializeButtons(){
-        btnSwitch = (Button) findViewById(R.id.btnSwitch);
         btnNextPlayer = (Button) findViewById(R.id.btnNextPlayer);
         btnPrevPlayer = (Button) findViewById(R.id.btnPrevPlayer);
 
-        btnSwitch.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                btnSwitchOnClick();
-            }
-        });
 
         btnNextPlayer.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-
+                nextPlayersFragment();
             }
         });
 
         btnPrevPlayer.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-
+                prevPlayersFragment();
             }
         });
 
     }
 
     private void nextPlayersFragment(){
-
+        if(currFragIndex < 3){
+            currFragIndex++;
+        } else if(currFragIndex == 3){
+            currFragIndex = 0;
+        }
+        loadFragment(fragmentsArr[currFragIndex]);
     }
 
     private void prevPlayersFragment(){
-
+        if(currFragIndex > 0){
+            currFragIndex--;
+        } else if(currFragIndex == 0){
+            currFragIndex = 3;
+        }
+        loadFragment(fragmentsArr[currFragIndex]);
     }
 
-    private void btnSwitchOnClick(){
-        // Create new fragment and transaction
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-// Replace whatever is in the fragment_container view with this fragment,
-// and add the transaction to the back stack if needed
-        transaction.replace(R.id.containerEvents, r1);
-        transaction.addToBackStack(null);
-
-// Commit the transaction
-        transaction.commit();
+    public void initializePlayerFragments(){
+        ab = new AtBatFragment();
+        r1 = new RunnerFragment();
+        r2 = new RunnerFragment();
+        r3 = new RunnerFragment();
+        fragmentsArr = new Fragment[]{ab, r1, r2, r3};
     }
 
     // Initialize the first fragment into the Activity
-    private void initializeFragment(){
-
+    private void loadFragment(Fragment frag){
         FragmentTransaction fragTransaction = getFragmentManager().beginTransaction();
-
-        fragTransaction.add(R.id.containerEvents, ab , "fragment" + ab);
+        fragTransaction.replace(R.id.containerEvents, frag , "fragment" + frag);
         fragTransaction.commit();
 
     }
