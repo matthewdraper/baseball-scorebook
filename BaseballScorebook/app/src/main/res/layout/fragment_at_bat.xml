@@ -12,37 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorWhite">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Batter Events"
-                android:id="@+id/textView38"
-                android:textColor="@color/colorWhite"
-                android:background="@drawable/mainmenu"
-                android:textAlignment="center"
-                android:textSize="30dp"
-                android:textStyle="bold"
-                android:typeface="normal"
-                android:layout_gravity="center" />
-
-            <Button
-                android:layout_width="100dp"
-                android:layout_height="45dp"
-                android:text="Retired"
-                android:id="@+id/button4"
-                android:background="@drawable/red_rounded"
-                android:typeface="normal"
-                android:textStyle="bold"
-                android:textColor="@color/colorWhite"
-                android:layout_margin="10dp" />
-        </LinearLayout>
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Batter Events"
+            android:id="@+id/textView38"
+            android:layout_gravity="center"
+            android:textColor="@color/colorTextPrimary"
+            android:background="@color/colorWhite"
+            android:textAlignment="center" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -52,78 +31,55 @@
 
             <Button
                 android:layout_width="100dp"
-                android:layout_height="45dp"
+                android:layout_height="75dp"
                 android:text="Retired"
                 android:id="@+id/btnRetired"
-                android:background="@drawable/red_rounded"
+                android:background="@drawable/red_rounded01"
                 android:typeface="normal"
-                android:textStyle="bold"
-                android:textColor="@color/colorWhite"
-                android:layout_margin="10dp" />
+                android:textStyle="bold" />
 
             <Button
-                android:layout_width="125dp"
-                android:layout_height="45dp"
+                android:layout_width="150dp"
+                android:layout_height="75dp"
                 android:text="Reached Base"
                 android:id="@+id/btnReachedBase"
-                android:background="@drawable/blue_rounded"
+                android:background="@drawable/blue_rounded01"
                 android:textColor="@color/colorWhite"
-                android:textStyle="bold"
-                android:layout_margin="10dp" />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center">
 
             <Button
                 android:layout_width="100dp"
-                android:layout_height="45dp"
+                android:layout_height="75dp"
                 android:text="Strike"
                 android:id="@+id/btnStrike"
-                android:background="@drawable/yellow_rounded"
+                android:background="@drawable/yellow_rounded01"
                 android:textStyle="bold"
-                android:textColor="@color/material_grey_600"
-                android:layout_margin="10dp" />
+                android:textColor="@color/material_grey_600" />
 
             <Button
                 android:layout_width="100dp"
-                android:layout_height="45dp"
+                android:layout_height="75dp"
                 android:text="Foul"
                 android:id="@+id/btnFoul"
-                android:background="@drawable/orange_rounded"
-                android:textStyle="bold"
-                android:layout_margin="10dp" />
+                android:background="@drawable/orange_rounded01"
+                android:textStyle="bold" />
 
             <Button
                 android:layout_width="100dp"
-                android:layout_height="45dp"
+                android:layout_height="75dp"
                 android:text="Ball"
                 android:id="@+id/btnBall"
-                android:background="@drawable/pink_rounded"
-                android:textStyle="bold"
-                android:layout_margin="10dp" />
+                android:background="@drawable/pink_rounded01"
+                android:textStyle="bold" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
-
-            <Button
-                android:layout_width="100dp"
-                android:layout_height="45dp"
-                android:text="Undo"
-                android:id="@+id/button3"
-                android:background="@drawable/black_rounded"
-                android:textColor="@color/colorWhite"
-                android:textStyle="bold"
-                android:layout_margin="10dp" />
         </LinearLayout>
 
     </LinearLayout>

@@ -21,7 +21,6 @@ public class RecordGameActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_record_game);
         setInnNum();
         setTopInning();
-        setPitchCount();
     }
 
     @Override
@@ -136,10 +135,5 @@ public class RecordGameActivity extends AppCompatActivity implements
         ScoreboardFragment scoreboard = (ScoreboardFragment) getSupportFragmentManager().findFragmentById(R.id.fragScoreboard);
         scoreboard.setTxtInnTopHidden();
         scoreboard.setTxtInnBotVisible();
-    }
-
-    private void setPitchCount(){
-        ScoreboardFragment scoreboard = (ScoreboardFragment) getSupportFragmentManager().findFragmentById(R.id.fragScoreboard);
-        scoreboard.setTxtPitchCountNum(Integer.toString(pitchCount));
     }
 }

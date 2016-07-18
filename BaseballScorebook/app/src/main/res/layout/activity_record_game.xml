@@ -66,18 +66,6 @@
                 app:layout_marginTopPercent="34%"
                 android:textStyle="bold"
                 android:alpha="1" />
-
-            <Button
-                android:layout_width="70dp"
-                android:layout_height="40dp"
-                app:layout_marginLeftPercent="73%"
-                app:layout_marginTopPercent="46%"
-                android:text="Subs"
-                android:id="@+id/btnSubs"
-                android:background="@drawable/purple_rounded"
-                android:textColor="@color/colorWhite"
-                android:textStyle="bold" />
-
             <ImageView
                 android:layout_width="match_parent"
                 app:layout_widthPercent="100%"

@@ -23,17 +23,17 @@
             android:layout_gravity="center">
 
             <TextView
-                android:layout_width="130dp"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Home Team"
                 android:id="@+id/textView9"
                 android:textColor="@color/colorWhite"
-                android:layout_gravity="center"
+                android:layout_gravity="center_vertical"
                 android:textStyle="bold" />
 
             <Spinner
-                android:layout_width="120dp"
+                android:layout_width="150dp"
                 android:layout_height="40dp"
                 android:id="@+id/spinner3"
                 android:background="@color/colorWhite"
@@ -41,11 +41,10 @@
 
             <include
                 layout="@layout/add_button"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:id="@+id/btnAddTeamHome"
-                android:layout_margin="5dp" />
+                android:id="@+id/btnAddTeamHome" />
         </LinearLayout>
 
         <LinearLayout
@@ -55,7 +54,7 @@
             android:layout_gravity="center">
 
             <TextView
-                android:layout_width="130dp"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Away Team"
@@ -65,7 +64,7 @@
                 android:textStyle="bold" />
 
             <Spinner
-                android:layout_width="120dp"
+                android:layout_width="150dp"
                 android:layout_height="40dp"
                 android:id="@+id/spinner2"
                 android:background="@color/colorWhite"
@@ -73,10 +72,9 @@
 
             <include
                 layout="@layout/add_button"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:id="@+id/btnAddTeamAway"
-                android:layout_margin="5dp" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/btnAddTeamAway" />
         </LinearLayout>
 
         <TextView
@@ -88,11 +86,11 @@
             android:textColor="@color/colorWhite"
             android:layout_gravity="center"
             android:textStyle="bold"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="25dp" />
 
         <EditText
             android:layout_width="250dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:id="@+id/editText5"
             android:layout_gravity="center"
             android:background="@color/colorWhite"
@@ -109,20 +107,17 @@
             android:textColor="@color/colorWhite"
             android:layout_gravity="center"
             android:textStyle="bold"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="25dp" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_gravity="center">
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/editText6"
@@ -134,14 +129,12 @@
                 android:layout_gravity="center" />
 
             <Button
-                android:layout_width="75dp"
-                android:layout_height="40dp"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
                 android:text="Add"
                 android:id="@+id/btnAddUmpire"
-                android:background="@drawable/green_rounded"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                android:layout_marginLeft="25dp" />
+                android:background="@drawable/green_rounded01"
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <ListView

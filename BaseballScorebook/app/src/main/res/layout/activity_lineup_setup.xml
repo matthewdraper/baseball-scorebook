@@ -117,7 +117,7 @@
                 android:text="Start Game"
                 android:id="@+id/btnStartGame"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/green_rounded"
+                android:background="@drawable/green_rounded01"
                 android:textStyle="bold"
                 android:textColor="@color/colorWhite" />
         </LinearLayout>
