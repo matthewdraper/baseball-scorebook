@@ -1,8 +1,6 @@
 package com.duxnort.baseballscorebook;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,7 +8,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 
 
 /**
@@ -159,7 +156,7 @@ public class AtBatFragment extends Fragment {
                 if (event.getAction() == MotionEvent.ACTION_DOWN)
                     btnReachedBaseOnTouch();
                 else if (event.getAction() == MotionEvent.ACTION_UP)
-                    btnReachedBase.setBackground(getResources().getDrawable(R.drawable.blue_rounded01));
+                    btnReachedBase.setBackground(getResources().getDrawable(R.drawable.blue_rounded));
                 return false;
             }
         });
@@ -170,7 +167,7 @@ public class AtBatFragment extends Fragment {
                 if (event.getAction() == MotionEvent.ACTION_DOWN)
                     btnRetiredOnTouch();
                 else if (event.getAction() == MotionEvent.ACTION_UP)
-                    btnRetired.setBackground(getResources().getDrawable(R.drawable.red_rounded01));
+                    btnRetired.setBackground(getResources().getDrawable(R.drawable.red_rounded));
                 return false;
             }
         });
@@ -181,7 +178,7 @@ public class AtBatFragment extends Fragment {
                 if (event.getAction() == MotionEvent.ACTION_DOWN)
                     btnStrikeOnTouch();
                 else if (event.getAction() == MotionEvent.ACTION_UP)
-                    btnStrike.setBackground(getResources().getDrawable(R.drawable.yellow_rounded01));
+                    btnStrike.setBackground(getResources().getDrawable(R.drawable.yellow_rounded));
                 return false;
             }
         });
@@ -192,7 +189,7 @@ public class AtBatFragment extends Fragment {
                 if (event.getAction() == MotionEvent.ACTION_DOWN)
                     btnFoulOnTouch();
                 else if (event.getAction() == MotionEvent.ACTION_UP)
-                    btnFoul.setBackground(getResources().getDrawable(R.drawable.orange_rounded01));
+                    btnFoul.setBackground(getResources().getDrawable(R.drawable.orange_rounded));
                 return false;
             }
         });
@@ -203,7 +200,7 @@ public class AtBatFragment extends Fragment {
                 if (event.getAction() == MotionEvent.ACTION_DOWN)
                     btnBallOnTouch();
                 else if (event.getAction() == MotionEvent.ACTION_UP)
-                    btnBall.setBackground(getResources().getDrawable(R.drawable.pink_rounded01));
+                    btnBall.setBackground(getResources().getDrawable(R.drawable.pink_rounded));
                 return false;
             }
         });
@@ -214,7 +211,7 @@ public class AtBatFragment extends Fragment {
     }
 
     private void btnReachedBaseOnTouch(){
-        btnReachedBase.setBackground(getResources().getDrawable(R.drawable.blue_rounded01_pressed));
+        btnReachedBase.setBackground(getResources().getDrawable(R.drawable.blue_rounded_pressed));
     }
 
     private void btnRetiredOnClick(){
@@ -225,7 +222,7 @@ public class AtBatFragment extends Fragment {
     }
 
     private void btnRetiredOnTouch(){
-        btnRetired.setBackground(getResources().getDrawable(R.drawable.red_rounded01_pressed));
+        btnRetired.setBackground(getResources().getDrawable(R.drawable.red_rounded_pressed));
     }
 
     private void btnStrikeOnClick(){
@@ -236,7 +233,7 @@ public class AtBatFragment extends Fragment {
     }
 
     private void btnStrikeOnTouch(){
-        btnStrike.setBackground(getResources().getDrawable(R.drawable.yellow_rounded01_pressed));
+        btnStrike.setBackground(getResources().getDrawable(R.drawable.yellow_rounded_pressed));
     }
 
     private void btnFoulOnClick(){
@@ -247,7 +244,7 @@ public class AtBatFragment extends Fragment {
     }
 
     private void btnFoulOnTouch(){
-        btnFoul.setBackground(getResources().getDrawable(R.drawable.orange_rounded01_pressed));
+        btnFoul.setBackground(getResources().getDrawable(R.drawable.orange_rounded_pressed));
     }
 
     private void btnBallOnClick(){
@@ -258,7 +255,7 @@ public class AtBatFragment extends Fragment {
     }
 
     private void btnBallOnTouch(){
-        btnBall.setBackground(getResources().getDrawable(R.drawable.pink_rounded01_pressed));
+        btnBall.setBackground(getResources().getDrawable(R.drawable.pink_rounded_pressed));
     }
 
 

@@ -39,7 +39,7 @@ public class RecordGameSetupActivity extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN)
                     btnNextOnTouch();
                 else if (event.getAction() == MotionEvent.ACTION_UP)
-                    btnNext.setBackground(getResources().getDrawable(R.drawable.green_rounded01));
+                    btnNext.setBackground(getResources().getDrawable(R.drawable.green_rounded));
                 return false;
             }
         });
@@ -58,7 +58,7 @@ public class RecordGameSetupActivity extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN)
                     btnBackOnTouch();
                 else if (event.getAction() == MotionEvent.ACTION_UP)
-                    btnBack.setBackground(getResources().getDrawable(R.drawable.red_rounded01));
+                    btnBack.setBackground(getResources().getDrawable(R.drawable.red_rounded));
                 return false;
             }
         });
@@ -77,7 +77,7 @@ public class RecordGameSetupActivity extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN)
                     btnAddTeamAwayOnTouch();
                 else if (event.getAction() == MotionEvent.ACTION_UP)
-                    btnAddTeamAway.setBackground(getResources().getDrawable(R.drawable.green_rounded01));
+                    btnAddTeamAway.setBackground(getResources().getDrawable(R.drawable.green_rounded));
                 return false;
             }
         });
@@ -97,7 +97,7 @@ public class RecordGameSetupActivity extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN)
                     btnAddTeamHomeOnTouch();
                 else if (event.getAction() == MotionEvent.ACTION_UP)
-                    btnAddTeamHome.setBackground(getResources().getDrawable(R.drawable.green_rounded01));
+                    btnAddTeamHome.setBackground(getResources().getDrawable(R.drawable.green_rounded));
                 return false;
             }
         });
@@ -116,7 +116,7 @@ public class RecordGameSetupActivity extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN)
                     btnUmpireAddOnTouch();
                 else if (event.getAction() == MotionEvent.ACTION_UP)
-                    btnUmpireAdd.setBackground(getResources().getDrawable(R.drawable.green_rounded01));
+                    btnUmpireAdd.setBackground(getResources().getDrawable(R.drawable.green_rounded));
                 return false;
             }
         });
@@ -129,7 +129,7 @@ public class RecordGameSetupActivity extends AppCompatActivity {
     }
 
     private void btnNextOnTouch(){
-        btnNext.setBackground(getResources().getDrawable(R.drawable.green_rounded01_pressed));
+        btnNext.setBackground(getResources().getDrawable(R.drawable.green_rounded_pressed));
     }
 
     private void btnBackClicked(){
@@ -139,7 +139,7 @@ public class RecordGameSetupActivity extends AppCompatActivity {
     }
 
     private void btnBackOnTouch(){
-        btnBack.setBackground(getResources().getDrawable(R.drawable.red_rounded01_pressed));
+        btnBack.setBackground(getResources().getDrawable(R.drawable.red_rounded_pressed));
     }
 
     private void btnUmpireAddClicked(){
@@ -147,7 +147,7 @@ public class RecordGameSetupActivity extends AppCompatActivity {
     }
 
     private void btnUmpireAddOnTouch(){
-        btnUmpireAdd.setBackground(getResources().getDrawable(R.drawable.green_rounded01_pressed));
+        btnUmpireAdd.setBackground(getResources().getDrawable(R.drawable.green_rounded_pressed));
     }
 
     private void btnAddTeamHomeClicked(){
@@ -155,7 +155,7 @@ public class RecordGameSetupActivity extends AppCompatActivity {
     }
 
     private void btnAddTeamHomeOnTouch(){
-        btnAddTeamHome.setBackground(getResources().getDrawable(R.drawable.green_rounded01_pressed));
+        btnAddTeamHome.setBackground(getResources().getDrawable(R.drawable.green_rounded_pressed));
     }
 
     private void btnAddTeamAwayClicked(){
@@ -163,6 +163,6 @@ public class RecordGameSetupActivity extends AppCompatActivity {
     }
 
     private void btnAddTeamAwayOnTouch(){
-        btnAddTeamAway.setBackground(getResources().getDrawable(R.drawable.green_rounded01_pressed));
+        btnAddTeamAway.setBackground(getResources().getDrawable(R.drawable.green_rounded_pressed));
     }
 }
