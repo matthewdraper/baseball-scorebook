@@ -2,6 +2,8 @@ package com.duxnort.baseballscorebook;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 public class RecordGameActivity extends AppCompatActivity implements
         ScoreboardFragment.OnFragmentInteractionListener,
@@ -14,6 +16,7 @@ public class RecordGameActivity extends AppCompatActivity implements
     public int innNum = 1;
     public boolean isTop = true;
     public boolean isBottom = false;
+    public Button btnSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,5 +138,20 @@ public class RecordGameActivity extends AppCompatActivity implements
         ScoreboardFragment scoreboard = (ScoreboardFragment) getSupportFragmentManager().findFragmentById(R.id.fragScoreboard);
         scoreboard.setTxtInnTopHidden();
         scoreboard.setTxtInnBotVisible();
+    }
+
+    private void initializeButtons(View view){
+        btnSwitch = (Button) view.findViewById(R.id.btnSwitch);
+
+        btnSwitch.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                btnSwitchOnClick(v);
+            }
+        });
+
+    }
+
+    private void btnSwitchOnClick(View v){
+        
     }
 }
