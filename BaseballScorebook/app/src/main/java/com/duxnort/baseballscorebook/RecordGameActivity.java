@@ -189,43 +189,37 @@ public class RecordGameActivity extends AppCompatActivity implements
     private void initializeOnClickListeners() {
         btnNextPlayer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                nextPlayersFragment();
+                btnNextPlayerOnClick();
             }
         });
 
         btnPrevPlayer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                prevPlayersFragment();
+                btnPrevPlayerOnClick();
             }
         });
 
         btnFirstBase.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                currFragIndex = 1;
-                loadFragment(fragmentsArr[currFragIndex]);
-//                btnFirstBase.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.baserunner_selected));
-//                btnSecondBase.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.baserunner));
-//                btnThirdBase.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.baserunner));
+//                currFragIndex = 1;
+//                loadFragment(fragmentsArr[currFragIndex]);
+                btnFirstBaseOnClick();
             }
         });
 
         btnSecondBase.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                currFragIndex = 2;
-                loadFragment(fragmentsArr[currFragIndex]);
-//                btnFirstBase.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.baserunner));
-//                btnSecondBase.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.baserunner_selected));
-//                btnThirdBase.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.baserunner));
+//                currFragIndex = 2;
+//                loadFragment(fragmentsArr[currFragIndex]);
+                btnSecondBaseOnClick();
             }
         });
 
         btnThirdBase.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                currFragIndex = 3;
-                loadFragment(fragmentsArr[currFragIndex]);
-//                btnFirstBase.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.baserunner));
-//                btnSecondBase.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.baserunner));
-//                btnThirdBase.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.baserunner_selected));
+//                currFragIndex = 3;
+//                loadFragment(fragmentsArr[currFragIndex]);
+                btnThirdBaseOnClick();
             }
         });
     }
@@ -234,14 +228,25 @@ public class RecordGameActivity extends AppCompatActivity implements
         // TODO: 8/5/16  Insert code for buttons that inicates they are pressed.
     }
 
-    // Need to edit this method and change it from next players fragment to a method that takes
-    // a int as a parameter to determine which baserunner is selected.
-    private void nextPlayersFragment() {
+    private void incrementCurrFragIndex() {
         if (currFragIndex < 3) {
             currFragIndex++;
-        } else if (currFragIndex == 3) {
+        } else if (currFragIndex >= 3) {
             currFragIndex = 0;
         }
+    }
+
+    private void decrementCurrFragIndex() {
+        if (currFragIndex > 0) {
+            currFragIndex--;
+        } else if (currFragIndex <= 0) {
+            currFragIndex = 3;
+        }
+    }
+
+    // Need to edit this method and change it from next players fragment to a method that takes
+    // a int as a parameter to determine which baserunner is selected.
+    private void switchToPlayerFragment() {
         switch (currFragIndex) {
             case 0:
                 btnFirstBase.setBackground(ContextCompat.getDrawable(this, R.drawable.baserunner));
@@ -269,37 +274,49 @@ public class RecordGameActivity extends AppCompatActivity implements
         loadFragment(fragmentsArr[currFragIndex]);
     }
 
-    private void prevPlayersFragment() {
-        if (currFragIndex > 0) {
-            currFragIndex--;
-        } else if (currFragIndex == 0) {
-            currFragIndex = 3;
-        }
-        loadFragment(fragmentsArr[currFragIndex]);
-        switch (currFragIndex) {
-            case 0:
-                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
-                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
-                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
-                break;
-            case 1:
-                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner_selected));
-                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
-                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
-                break;
-            case 2:
-                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
-                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner_selected));
-                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
-                break;
-            case 3:
-                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
-                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
-                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner_selected));
-                break;
-            default:
-                break;
-        }
+    private void btnNextPlayerOnClick() {
+        incrementCurrFragIndex();
+        switchToPlayerFragment();
+    }
+
+    private void btnNextPlayerOnTouch() {
+        // Fill with graphical events
+    }
+
+    private void btnPrevPlayerOnClick() {
+        decrementCurrFragIndex();
+        switchToPlayerFragment();
+    }
+
+    private void btnPrevPlayerOnTouch() {
+        // Fill with graphical events
+    }
+
+    private void btnFirstBaseOnClick() {
+        currFragIndex = 1;
+        switchToPlayerFragment();
+    }
+
+    private void btnFirstBaseOnTouch() {
+        // Fill with graphical events
+    }
+
+    private void btnSecondBaseOnClick() {
+        currFragIndex = 2;
+        switchToPlayerFragment();
+    }
+
+    private void btnSecondBaseOnTouch() {
+        // Fill with graphical events
+    }
+
+    private void btnThirdBaseOnClick() {
+        currFragIndex = 3;
+        switchToPlayerFragment();
+    }
+
+    private void btnThirdBaseOnTouch() {
+        // Fill with graphical events
     }
 
     public void initializePlayerFragments() {
