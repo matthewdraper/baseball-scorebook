@@ -30,7 +30,7 @@ public class AtBatFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    // Buttons for the UI
     private Button btnReachedBase, btnStrike, btnBall, btnFoul, btnRetired;
 
     private OnFragmentInteractionListener mListener;
@@ -110,6 +110,12 @@ public class AtBatFragment extends Fragment {
         initializeOnClickListeners();
     }
 
+    /**
+     *  This sets the onClickListener for every button in the UI. The onClickListener
+     *  is in charge of the action that the button needs to take when it is pressed. This
+     *  does not take into account the length of time it is pressed. It simply determines
+     *  if the button was clicked or not.
+     */
     private void initializeOnClickListeners(){
         btnReachedBase.setOnClickListener(
                 new View.OnClickListener(){
@@ -153,6 +159,11 @@ public class AtBatFragment extends Fragment {
         );
     }
 
+    /**
+     * This sets the onTouchListeners for every button in the UI. The onTouchListeners
+     * constantly poll the button to see if it is being pressed. This method will take
+     * effect as long as the button is being pressed.
+     */
     private void initializeOnTouchListeners(){
         btnReachedBase.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -210,10 +221,17 @@ public class AtBatFragment extends Fragment {
         });
     }
 
+    /**
+     * This method is in charge of handling a batter reaching base.
+     */
     private void btnReachedBaseOnClick(){
 
     }
 
+    /**
+     * This method is in charge of changing the Reached Base button's background image of
+     * the button to a "pressed" image.
+     */
     private void btnReachedBaseOnTouch(){
         btnReachedBase.setBackground(getResources().getDrawable(R.drawable.blue_rounded_pressed));
     }
@@ -225,6 +243,10 @@ public class AtBatFragment extends Fragment {
         mListener.incrementPitchCount();
     }
 
+    /**
+     * This method is in charge of changing the Retired button's background image of
+     * the button to a "pressed" image.
+     */
     private void btnRetiredOnTouch(){
         btnRetired.setBackground(getResources().getDrawable(R.drawable.red_rounded_pressed));
     }
@@ -236,6 +258,10 @@ public class AtBatFragment extends Fragment {
         mListener.incrementStrikes();
     }
 
+    /**
+     * This method is in charge of changing the Retired button's background image of
+     * the button to a "pressed" image.
+     */
     private void btnStrikeOnTouch(){
         btnStrike.setBackground(getResources().getDrawable(R.drawable.yellow_rounded_pressed));
     }
@@ -247,6 +273,10 @@ public class AtBatFragment extends Fragment {
         mListener.incrementFoulStrikes();
     }
 
+    /**
+     * This method is in charge of changing the Foul button's background image of
+     * the button to a "pressed" image.
+     */
     private void btnFoulOnTouch(){
         btnFoul.setBackground(getResources().getDrawable(R.drawable.orange_rounded_pressed));
     }
@@ -258,22 +288,17 @@ public class AtBatFragment extends Fragment {
         mListener.incrementBalls();
     }
 
+    /**
+     * This method is in charge of changing the Ball button's background image of
+     * the button to a "pressed" image.
+     */
     private void btnBallOnTouch(){
         btnBall.setBackground(getResources().getDrawable(R.drawable.pink_rounded_pressed));
     }
 
-
-
-
     /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
+     * This interface must be implemented by any class that wishes to include this
+     * fragment. It must implements all of the method stubs detailedby this interface.
      */
     public interface OnFragmentInteractionListener {
         // These methods must be implemented by whatever activity implements
