@@ -1,13 +1,13 @@
 package com.duxnort.baseballscorebook;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class CreateTeamActivity extends AppCompatActivity implements AddPlayerFragment.OnFragmentInteractionListener{
+public class CreateTeamActivity extends AppCompatActivity implements AddPlayerFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +28,13 @@ public class CreateTeamActivity extends AppCompatActivity implements AddPlayerFr
         fakeData.add("Bobby Archer - #22");
         fakeData.add("Niles Jackson - #11");
         // Create adapter for the list view
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this, // The activity
                 R.layout.roster_item, // ID of the layout for the list items to be displayed
                 fakeData); // The data
         // The list view to be populated
         ListView list = (ListView) this.findViewById(R.id.listViewRoster);
+        assert list != null;
         list.setAdapter(adapter);
     }
 }

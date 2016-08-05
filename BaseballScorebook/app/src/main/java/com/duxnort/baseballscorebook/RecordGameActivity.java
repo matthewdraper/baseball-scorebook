@@ -2,32 +2,38 @@ package com.duxnort.baseballscorebook;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
+
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 public class RecordGameActivity extends AppCompatActivity implements
         ScoreboardFragment.OnFragmentInteractionListener,
         AtBatFragment.OnFragmentInteractionListener,
-        RunnerFragment.OnFragmentInteractionListener{
+        RunnerFragment.OnFragmentInteractionListener {
 
-    private  int strikeCount = 0;
-    private  int ballCount = 0;
-    private  int pitchCount = 0;
-    private  int outCount = 0;
-    private  int innNum = 1;
-    private  boolean isTop = true;
-    private  boolean isBottom = false;
-    private  Button btnFirstBase, btnSecondBase, btnThirdBase, btnNextPlayer, btnPrevPlayer;
-    private  RunnerFragment r1, r2, r3;
-    private  AtBatFragment ab;
-    private  Fragment[] fragmentsArr;
+    private int strikeCount = 0;
+    private int ballCount = 0;
+    private int pitchCount = 0;
+    private int outCount = 0;
+    private int innNum = 1;
+    private boolean isTop = true;
+    private boolean isBottom = false;
+    private Button btnFirstBase, btnSecondBase, btnThirdBase, btnNextPlayer, btnPrevPlayer;
+    private RunnerFragment r1, r2, r3;
+    private AtBatFragment ab;
+    private Fragment[] fragmentsArr;
     private int currFragIndex = 0;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
 
     @Override
@@ -41,8 +47,11 @@ public class RecordGameActivity extends AppCompatActivity implements
         initializePlayerFragments();
 
         loadFragment(ab); // This sets the fragment in to be displayed since
-                              // in order to switch fragments it cannot be declared in the XML
+        // in order to switch fragments it cannot be declared in the XML
         initializeButtons();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -57,7 +66,7 @@ public class RecordGameActivity extends AppCompatActivity implements
     @Override
     public void incrementFoulStrikes() {
         // Depending on the strike count increment the strike count
-        if(strikeCount != 2){
+        if (strikeCount != 2) {
             incrementStrikeCount();
         }
         ScoreboardFragment scoreboard = (ScoreboardFragment) getSupportFragmentManager().findFragmentById(R.id.fragScoreboard);
@@ -96,17 +105,17 @@ public class RecordGameActivity extends AppCompatActivity implements
         scoreboard.setOutLights(outCount);
     }
 
-    private void incrementStrikeCount(){
-        if(strikeCount < 2){
+    private void incrementStrikeCount() {
+        if (strikeCount < 2) {
             strikeCount++;
-        } else if(strikeCount == 2){
+        } else if (strikeCount == 2) {
             incrementOuts();
             strikeCount = 0;
         }
     }
 
-    private void incrementBallCount(){
-        if(ballCount < 3){
+    private void incrementBallCount() {
+        if (ballCount < 3) {
             ballCount++;
         } else {
             ballCount = 0;
@@ -117,10 +126,10 @@ public class RecordGameActivity extends AppCompatActivity implements
         }
     }
 
-    private void incrementOutCount(){
+    private void incrementOutCount() {
         strikeCount = 0;
         ballCount = 0;
-        if(outCount < 2){
+        if (outCount < 2) {
             outCount++;
         } else {
             outCount = 0;
@@ -128,8 +137,8 @@ public class RecordGameActivity extends AppCompatActivity implements
         }
     }
 
-    private void nextHalfInning(){
-        if(isTop == true){
+    private void nextHalfInning() {
+        if (isTop == true) {
             setBottomInning();
         } else {
             innNum++;
@@ -138,12 +147,12 @@ public class RecordGameActivity extends AppCompatActivity implements
         }
     }
 
-    private void setInnNum(){
+    private void setInnNum() {
         ScoreboardFragment scoreboard = (ScoreboardFragment) getSupportFragmentManager().findFragmentById(R.id.fragScoreboard);
         scoreboard.setTxtInnNum(Integer.toString(innNum));
     }
 
-    private void setTopInning(){
+    private void setTopInning() {
         isTop = true;
         isBottom = false;
         ScoreboardFragment scoreboard = (ScoreboardFragment) getSupportFragmentManager().findFragmentById(R.id.fragScoreboard);
@@ -151,7 +160,7 @@ public class RecordGameActivity extends AppCompatActivity implements
         scoreboard.setTxtInnBotHidden();
     }
 
-    private void setBottomInning(){
+    private void setBottomInning() {
         isTop = false;
         isBottom = true;
         ScoreboardFragment scoreboard = (ScoreboardFragment) getSupportFragmentManager().findFragmentById(R.id.fragScoreboard);
@@ -159,12 +168,12 @@ public class RecordGameActivity extends AppCompatActivity implements
         scoreboard.setTxtInnBotVisible();
     }
 
-    private void setPitchCount(int num){
+    private void setPitchCount(int num) {
         ScoreboardFragment scoreboard = (ScoreboardFragment) getSupportFragmentManager().findFragmentById(R.id.fragScoreboard);
         scoreboard.setTxtPitchCountNum(Integer.toString(num));
     }
 
-    private void initializeButtons(){
+    private void initializeButtons() {
         btnNextPlayer = (Button) findViewById(R.id.btnNextPlayer);
         btnPrevPlayer = (Button) findViewById(R.id.btnPrevPlayer);
         btnFirstBase = (Button) findViewById(R.id.btnFirstBase);
@@ -172,19 +181,19 @@ public class RecordGameActivity extends AppCompatActivity implements
         btnThirdBase = (Button) findViewById(R.id.btnThirdBase);
 
 
-        btnNextPlayer.setOnClickListener(new View.OnClickListener(){
+        btnNextPlayer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 nextPlayersFragment();
             }
         });
 
-        btnPrevPlayer.setOnClickListener(new View.OnClickListener(){
+        btnPrevPlayer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 prevPlayersFragment();
             }
         });
 
-        btnFirstBase.setOnClickListener(new View.OnClickListener(){
+        btnFirstBase.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 currFragIndex = 1;
                 loadFragment(fragmentsArr[currFragIndex]);
@@ -194,7 +203,7 @@ public class RecordGameActivity extends AppCompatActivity implements
             }
         });
 
-        btnSecondBase.setOnClickListener(new View.OnClickListener(){
+        btnSecondBase.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 currFragIndex = 2;
                 loadFragment(fragmentsArr[currFragIndex]);
@@ -204,7 +213,7 @@ public class RecordGameActivity extends AppCompatActivity implements
             }
         });
 
-        btnThirdBase.setOnClickListener(new View.OnClickListener(){
+        btnThirdBase.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 currFragIndex = 3;
                 loadFragment(fragmentsArr[currFragIndex]);
@@ -216,13 +225,13 @@ public class RecordGameActivity extends AppCompatActivity implements
 
     }
 
-    private void nextPlayersFragment(){
-        if(currFragIndex < 3){
+    private void nextPlayersFragment() {
+        if (currFragIndex < 3) {
             currFragIndex++;
-        } else if(currFragIndex == 3){
+        } else if (currFragIndex == 3) {
             currFragIndex = 0;
         }
-        switch (currFragIndex){
+        switch (currFragIndex) {
             case 0:
                 btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
                 btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
@@ -249,14 +258,14 @@ public class RecordGameActivity extends AppCompatActivity implements
         loadFragment(fragmentsArr[currFragIndex]);
     }
 
-    private void prevPlayersFragment(){
-        if(currFragIndex > 0){
+    private void prevPlayersFragment() {
+        if (currFragIndex > 0) {
             currFragIndex--;
-        } else if(currFragIndex == 0){
+        } else if (currFragIndex == 0) {
             currFragIndex = 3;
         }
         loadFragment(fragmentsArr[currFragIndex]);
-        switch (currFragIndex){
+        switch (currFragIndex) {
             case 0:
                 btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
                 btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
@@ -282,7 +291,7 @@ public class RecordGameActivity extends AppCompatActivity implements
         }
     }
 
-    public void initializePlayerFragments(){
+    public void initializePlayerFragments() {
         ab = new AtBatFragment();
         r1 = new RunnerFragment();
         r2 = new RunnerFragment();
@@ -291,10 +300,50 @@ public class RecordGameActivity extends AppCompatActivity implements
     }
 
     // Initialize the first fragment into the Activity
-    private void loadFragment(Fragment frag){
+    private void loadFragment(Fragment frag) {
         FragmentTransaction fragTransaction = getFragmentManager().beginTransaction();
-        fragTransaction.replace(R.id.containerEvents, frag , "fragment" + frag);
+        fragTransaction.replace(R.id.containerEvents, frag, "fragment" + frag);
         fragTransaction.commit();
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "RecordGame Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://com.duxnort.baseballscorebook/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "RecordGame Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://com.duxnort.baseballscorebook/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
     }
 }

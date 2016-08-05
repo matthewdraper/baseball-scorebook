@@ -1,8 +1,9 @@
 package com.duxnort.baseballscorebook;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +19,7 @@ public class RecordGameSetupActivity extends AppCompatActivity {
         initializeButtons();
     }
 
-    private void initializeButtons(){
+    private void initializeButtons() {
         btnNext = (Button) this.findViewById(R.id.btnNextPlayer);
         btnBack = (Button) this.findViewById((R.id.btnBack));
         btnAddTeamAway = (Button) this.findViewById((R.id.btnAddTeamAway));
@@ -26,8 +27,8 @@ public class RecordGameSetupActivity extends AppCompatActivity {
         btnUmpireAdd = (Button) this.findViewById((R.id.btnAddUmpire));
 
         btnNext.setOnClickListener(
-                new View.OnClickListener(){
-                    public void onClick(View v){
+                new View.OnClickListener() {
+                    public void onClick(View v) {
                         btnNextClicked();
                     }
                 }
@@ -39,14 +40,14 @@ public class RecordGameSetupActivity extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN)
                     btnNextOnTouch();
                 else if (event.getAction() == MotionEvent.ACTION_UP)
-                    btnNext.setBackground(getResources().getDrawable(R.drawable.green_rounded));
+                    btnNext.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.green_rounded));
                 return false;
             }
         });
 
         btnBack.setOnClickListener(
-                new View.OnClickListener(){
-                    public void onClick(View v){
+                new View.OnClickListener() {
+                    public void onClick(View v) {
                         btnBackClicked();
                     }
                 }
@@ -58,14 +59,14 @@ public class RecordGameSetupActivity extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN)
                     btnBackOnTouch();
                 else if (event.getAction() == MotionEvent.ACTION_UP)
-                    btnBack.setBackground(getResources().getDrawable(R.drawable.red_rounded));
+                    btnBack.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.red_rounded));
                 return false;
             }
         });
 
         btnAddTeamAway.setOnClickListener(
-                new View.OnClickListener(){
-                    public void onClick(View v){
+                new View.OnClickListener() {
+                    public void onClick(View v) {
                         btnAddTeamAwayClicked();
                     }
                 }
@@ -77,15 +78,15 @@ public class RecordGameSetupActivity extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN)
                     btnAddTeamAwayOnTouch();
                 else if (event.getAction() == MotionEvent.ACTION_UP)
-                    btnAddTeamAway.setBackground(getResources().getDrawable(R.drawable.green_rounded));
+                    btnAddTeamAway.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.green_rounded));
                 return false;
             }
         });
 
 
         btnAddTeamHome.setOnClickListener(
-                new View.OnClickListener(){
-                    public void onClick(View v){
+                new View.OnClickListener() {
+                    public void onClick(View v) {
                         btnAddTeamHomeClicked();
                     }
                 }
@@ -97,14 +98,14 @@ public class RecordGameSetupActivity extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN)
                     btnAddTeamHomeOnTouch();
                 else if (event.getAction() == MotionEvent.ACTION_UP)
-                    btnAddTeamHome.setBackground(getResources().getDrawable(R.drawable.green_rounded));
+                    btnAddTeamHome.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.green_rounded));
                 return false;
             }
         });
 
         btnUmpireAdd.setOnClickListener(
-                new View.OnClickListener(){
-                    public void onClick(View v){
+                new View.OnClickListener() {
+                    public void onClick(View v) {
                         btnUmpireAddClicked();
                     }
                 }
@@ -116,53 +117,53 @@ public class RecordGameSetupActivity extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN)
                     btnUmpireAddOnTouch();
                 else if (event.getAction() == MotionEvent.ACTION_UP)
-                    btnUmpireAdd.setBackground(getResources().getDrawable(R.drawable.green_rounded));
+                    btnUmpireAdd.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.green_rounded));
                 return false;
             }
         });
     }
 
-    private void btnNextClicked(){
+    private void btnNextClicked() {
         // These lines allow for the button to start a new activity
         Intent intent = new Intent(this, LineupSetupActivity.class);
         startActivity(intent);
     }
 
-    private void btnNextOnTouch(){
-        btnNext.setBackground(getResources().getDrawable(R.drawable.green_rounded_pressed));
+    private void btnNextOnTouch() {
+        btnNext.setBackground(ContextCompat.getDrawable(this, R.drawable.green_rounded_pressed));
     }
 
-    private void btnBackClicked(){
+    private void btnBackClicked() {
         // These lines allow for the button to start a new activity
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
-    private void btnBackOnTouch(){
-        btnBack.setBackground(getResources().getDrawable(R.drawable.red_rounded_pressed));
+    private void btnBackOnTouch() {
+        btnBack.setBackground(ContextCompat.getDrawable(this, R.drawable.red_rounded_pressed));
     }
 
-    private void btnUmpireAddClicked(){
-
-    }
-
-    private void btnUmpireAddOnTouch(){
-        btnUmpireAdd.setBackground(getResources().getDrawable(R.drawable.green_rounded_pressed));
-    }
-
-    private void btnAddTeamHomeClicked(){
+    private void btnUmpireAddClicked() {
 
     }
 
-    private void btnAddTeamHomeOnTouch(){
-        btnAddTeamHome.setBackground(getResources().getDrawable(R.drawable.green_rounded_pressed));
+    private void btnUmpireAddOnTouch() {
+        btnUmpireAdd.setBackground(ContextCompat.getDrawable(this, R.drawable.green_rounded_pressed));
     }
 
-    private void btnAddTeamAwayClicked(){
+    private void btnAddTeamHomeClicked() {
 
     }
 
-    private void btnAddTeamAwayOnTouch(){
-        btnAddTeamAway.setBackground(getResources().getDrawable(R.drawable.green_rounded_pressed));
+    private void btnAddTeamHomeOnTouch() {
+        btnAddTeamHome.setBackground(ContextCompat.getDrawable(this, R.drawable.green_rounded_pressed));
+    }
+
+    private void btnAddTeamAwayClicked() {
+
+    }
+
+    private void btnAddTeamAwayOnTouch() {
+        btnAddTeamAway.setBackground(ContextCompat.getDrawable(this, R.drawable.green_rounded_pressed));
     }
 }
