@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -180,7 +181,12 @@ public class RecordGameActivity extends AppCompatActivity implements
         btnSecondBase = (Button) findViewById(R.id.btnSecondBase);
         btnThirdBase = (Button) findViewById(R.id.btnThirdBase);
 
+        initializeOnTouchListeners();
+        initializeOnClickListeners();
 
+    }
+
+    private void initializeOnClickListeners() {
         btnNextPlayer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 nextPlayersFragment();
@@ -197,9 +203,9 @@ public class RecordGameActivity extends AppCompatActivity implements
             public void onClick(View v) {
                 currFragIndex = 1;
                 loadFragment(fragmentsArr[currFragIndex]);
-                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner_selected));
-                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
-                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+//                btnFirstBase.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.baserunner_selected));
+//                btnSecondBase.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.baserunner));
+//                btnThirdBase.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.baserunner));
             }
         });
 
@@ -207,9 +213,9 @@ public class RecordGameActivity extends AppCompatActivity implements
             public void onClick(View v) {
                 currFragIndex = 2;
                 loadFragment(fragmentsArr[currFragIndex]);
-                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
-                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner_selected));
-                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+//                btnFirstBase.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.baserunner));
+//                btnSecondBase.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.baserunner_selected));
+//                btnThirdBase.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.baserunner));
             }
         });
 
@@ -217,14 +223,19 @@ public class RecordGameActivity extends AppCompatActivity implements
             public void onClick(View v) {
                 currFragIndex = 3;
                 loadFragment(fragmentsArr[currFragIndex]);
-                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
-                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
-                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner_selected));
+//                btnFirstBase.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.baserunner));
+//                btnSecondBase.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.baserunner));
+//                btnThirdBase.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.baserunner_selected));
             }
         });
-
     }
 
+    private void initializeOnTouchListeners() {
+        // TODO: 8/5/16  Insert code for buttons that inicates they are pressed.
+    }
+
+    // Need to edit this method and change it from next players fragment to a method that takes
+    // a int as a parameter to determine which baserunner is selected.
     private void nextPlayersFragment() {
         if (currFragIndex < 3) {
             currFragIndex++;
@@ -233,24 +244,24 @@ public class RecordGameActivity extends AppCompatActivity implements
         }
         switch (currFragIndex) {
             case 0:
-                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
-                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
-                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                btnFirstBase.setBackground(ContextCompat.getDrawable(this, R.drawable.baserunner));
+                btnSecondBase.setBackground(ContextCompat.getDrawable(this, R.drawable.baserunner));
+                btnThirdBase.setBackground(ContextCompat.getDrawable(this, R.drawable.baserunner));
                 break;
             case 1:
-                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner_selected));
-                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
-                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                btnFirstBase.setBackground(ContextCompat.getDrawable(this, R.drawable.baserunner_selected));
+                btnSecondBase.setBackground(ContextCompat.getDrawable(this, R.drawable.baserunner));
+                btnThirdBase.setBackground(ContextCompat.getDrawable(this, R.drawable.baserunner));
                 break;
             case 2:
-                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
-                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner_selected));
-                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
+                btnFirstBase.setBackground(ContextCompat.getDrawable(this, R.drawable.baserunner));
+                btnSecondBase.setBackground(ContextCompat.getDrawable(this, R.drawable.baserunner_selected));
+                btnThirdBase.setBackground(ContextCompat.getDrawable(this, R.drawable.baserunner));
                 break;
             case 3:
-                btnFirstBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
-                btnSecondBase.setBackground(getResources().getDrawable(R.drawable.baserunner));
-                btnThirdBase.setBackground(getResources().getDrawable(R.drawable.baserunner_selected));
+                btnFirstBase.setBackground(ContextCompat.getDrawable(this, R.drawable.baserunner));
+                btnSecondBase.setBackground(ContextCompat.getDrawable(this, R.drawable.baserunner));
+                btnThirdBase.setBackground(ContextCompat.getDrawable(this, R.drawable.baserunner_selected));
                 break;
             default:
                 break;
