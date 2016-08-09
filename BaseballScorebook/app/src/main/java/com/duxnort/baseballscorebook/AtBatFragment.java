@@ -2,7 +2,6 @@ package com.duxnort.baseballscorebook;
 
 import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -83,7 +82,6 @@ public class AtBatFragment extends Fragment {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         btnReachedBaseOnClick();
-                        startActivity(new Intent(getActivity(), ActionSelectionActivity.class));
                     }
                 }
         );
@@ -206,7 +204,7 @@ public class AtBatFragment extends Fragment {
      * This method is in charge of handling a batter reaching base.
      */
     private void btnReachedBaseOnClick() {
-
+        mListener.loadFragment(new ReachedBaseFragment());
     }
 
     /**
@@ -222,6 +220,7 @@ public class AtBatFragment extends Fragment {
         // that this fragment is used in.
         mListener.incrementOuts();
         mListener.incrementPitchCount();
+        mListener.loadFragment(new BatterRetiredFragment());
     }
 
     /**
@@ -309,5 +308,8 @@ public class AtBatFragment extends Fragment {
         void incrementOuts();
 
         void undoLastAction();
+
+        void loadFragment(Fragment f);
+
     }
 }

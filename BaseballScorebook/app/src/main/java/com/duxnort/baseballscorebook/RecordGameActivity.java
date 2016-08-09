@@ -17,7 +17,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 public class RecordGameActivity extends AppCompatActivity implements
         ScoreboardFragment.OnFragmentInteractionListener,
         AtBatFragment.OnFragmentInteractionListener,
-        RunnerFragment.OnFragmentInteractionListener {
+        RunnerFragment.OnFragmentInteractionListener,
+        BatterRetiredFragment.OnFragmentInteractionListener,
+        ReachedBaseFragment.OnFragmentInteractionListener {
 
     private int strikeCount = 0;
     private int ballCount = 0;
@@ -406,11 +408,10 @@ public class RecordGameActivity extends AppCompatActivity implements
     }
 
     // Initialize the first fragment into the Activity
-    private void loadFragment(Fragment frag) {
+    public void loadFragment(Fragment frag) {
         FragmentTransaction fragTransaction = getFragmentManager().beginTransaction();
         fragTransaction.replace(R.id.containerEvents, frag, "fragment" + frag);
         fragTransaction.commit();
-
     }
 
     @Override
