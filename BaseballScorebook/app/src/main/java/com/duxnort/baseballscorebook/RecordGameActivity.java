@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -23,9 +24,11 @@ public class RecordGameActivity extends AppCompatActivity implements
     private int pitchCount = 0;
     private int outCount = 0;
     private int innNum = 1;
+    private int runsHome = 0;
+    private int runsAway = 0;
     private boolean isTop = true;
     private boolean isBottom = false;
-    private Button btnFirstBase, btnSecondBase, btnThirdBase, btnNextPlayer, btnPrevPlayer;
+    private Button btnFirstBase, btnSecondBase, btnThirdBase, btnNextPlayer, btnPrevPlayer, btnSubstitute;
     private RunnerFragment r1, r2, r3;
     private AtBatFragment ab;
     private Fragment[] fragmentsArr;
@@ -106,6 +109,43 @@ public class RecordGameActivity extends AppCompatActivity implements
         scoreboard.setOutLights(outCount);
     }
 
+    @Override
+    public void advanceBaseRunner() {
+
+    }
+
+    @Override
+    public void stolenBase() {
+
+    }
+
+    @Override
+    public void caughtStealing() {
+        incrementOuts();
+    }
+
+    @Override
+    public void undoLastAction() {
+
+    }
+
+    @Override
+    public void incrementScore() {
+        ScoreboardFragment scoreboard = (ScoreboardFragment)
+                getSupportFragmentManager().findFragmentById(R.id.fragScoreboard);
+        if (isTop == true && isBottom == false) {
+            runsAway++;
+            scoreboard.setTxtRunsAway(Integer.toString(runsAway));
+        } else if (isBottom == true && isTop == false) {
+            runsHome++;
+            scoreboard.setTxtRunsHome(Integer.toString(runsHome));
+        }
+    }
+
+    private void substitute() {
+
+    }
+
     private void incrementStrikeCount() {
         if (strikeCount < 2) {
             strikeCount++;
@@ -180,6 +220,7 @@ public class RecordGameActivity extends AppCompatActivity implements
         btnFirstBase = (Button) findViewById(R.id.btnFirstBase);
         btnSecondBase = (Button) findViewById(R.id.btnSecondBase);
         btnThirdBase = (Button) findViewById(R.id.btnThirdBase);
+        btnSubstitute = (Button) findViewById(R.id.btnSubstitute);
 
         initializeOnTouchListeners();
         initializeOnClickListeners();
@@ -201,31 +242,60 @@ public class RecordGameActivity extends AppCompatActivity implements
 
         btnFirstBase.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-//                currFragIndex = 1;
-//                loadFragment(fragmentsArr[currFragIndex]);
                 btnFirstBaseOnClick();
             }
         });
 
         btnSecondBase.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-//                currFragIndex = 2;
-//                loadFragment(fragmentsArr[currFragIndex]);
                 btnSecondBaseOnClick();
             }
         });
 
         btnThirdBase.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-//                currFragIndex = 3;
-//                loadFragment(fragmentsArr[currFragIndex]);
                 btnThirdBaseOnClick();
+            }
+        });
+
+        btnSubstitute.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                btnSubstituteOnClick();
             }
         });
     }
 
     private void initializeOnTouchListeners() {
-        // TODO: 8/5/16  Insert code for buttons that inicates they are pressed.
+        btnNextPlayer.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnNextPlayerOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnNextPlayer.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.blue_rounded));
+                return false;
+            }
+        });
+        btnPrevPlayer.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnPrevPlayerOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnPrevPlayer.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.blue_rounded));
+                return false;
+            }
+        });
+        btnSubstitute.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnSubstituteOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnSubstitute.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.white_rounded));
+                return false;
+            }
+        });
     }
 
     private void incrementCurrFragIndex() {
@@ -280,7 +350,7 @@ public class RecordGameActivity extends AppCompatActivity implements
     }
 
     private void btnNextPlayerOnTouch() {
-        // Fill with graphical events
+        btnNextPlayer.setBackground(ContextCompat.getDrawable(this, R.drawable.blue_rounded_pressed));
     }
 
     private void btnPrevPlayerOnClick() {
@@ -289,7 +359,7 @@ public class RecordGameActivity extends AppCompatActivity implements
     }
 
     private void btnPrevPlayerOnTouch() {
-        // Fill with graphical events
+        btnPrevPlayer.setBackground(ContextCompat.getDrawable(this, R.drawable.blue_rounded_pressed));
     }
 
     private void btnFirstBaseOnClick() {
@@ -317,6 +387,14 @@ public class RecordGameActivity extends AppCompatActivity implements
 
     private void btnThirdBaseOnTouch() {
         // Fill with graphical events
+    }
+
+    private void btnSubstituteOnClick() {
+        substitute();
+    }
+
+    private void btnSubstituteOnTouch() {
+        btnSubstitute.setBackground(ContextCompat.getDrawable(this, R.drawable.white_rounded_pressed));
     }
 
     public void initializePlayerFragments() {

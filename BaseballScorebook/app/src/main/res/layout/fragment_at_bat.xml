@@ -42,7 +42,7 @@
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:text="UNDO"
-                android:id="@+id/button8"
+                android:id="@+id/btnUndo"
                 android:background="@drawable/white_rounded"
                 android:textStyle="bold"
                 android:layout_margin="10dp"

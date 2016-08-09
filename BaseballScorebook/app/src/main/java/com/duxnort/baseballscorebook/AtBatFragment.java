@@ -14,7 +14,7 @@ import android.widget.Button;
 public class AtBatFragment extends Fragment {
 
     // Buttons for the UI
-    private Button btnReachedBase, btnStrike, btnBall, btnFoul, btnRetired;
+    private Button btnReachedBase, btnStrike, btnBall, btnFoul, btnRetired, btnUndo;
 
     private OnFragmentInteractionListener mListener;
 
@@ -54,12 +54,19 @@ public class AtBatFragment extends Fragment {
         mListener = null;
     }
 
+    /**
+     * This sets initializes all the buttons that are definied in the XML layout file
+     * and sets their actions.
+     *
+     * @param rootView
+     */
     private void initializeButtons(View rootView) {
         btnReachedBase = (Button) rootView.findViewById(R.id.btnReachedBase);
         btnBall = (Button) rootView.findViewById(R.id.btnBall);
         btnStrike = (Button) rootView.findViewById(R.id.btnStrike);
         btnFoul = (Button) rootView.findViewById(R.id.btnFoul);
         btnRetired = (Button) rootView.findViewById(R.id.btnRetired);
+        btnUndo = (Button) rootView.findViewById(R.id.btnUndo);
 
         initializeOnTouchListeners();
         initializeOnClickListeners();
@@ -109,6 +116,14 @@ public class AtBatFragment extends Fragment {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         btnBallOnClick();
+                    }
+                }
+        );
+
+        btnUndo.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnUndoOnClick();
                     }
                 }
         );
@@ -171,6 +186,17 @@ public class AtBatFragment extends Fragment {
                     btnBallOnTouch();
                 else if (event.getAction() == MotionEvent.ACTION_UP)
                     btnBall.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.pink_rounded));
+                return false;
+            }
+        });
+
+        btnUndo.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnUndoOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnUndo.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.white_rounded));
                 return false;
             }
         });
@@ -251,6 +277,14 @@ public class AtBatFragment extends Fragment {
         btnBall.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.pink_rounded_pressed));
     }
 
+    private void btnUndoOnClick() {
+        mListener.undoLastAction();
+    }
+
+    private void btnUndoOnTouch() {
+        btnUndo.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.white_rounded_pressed));
+    }
+
     /**
      * This interface must be implemented by any class that wishes to include this
      * fragment. It must implements all of the method stubs detailedby this interface.
@@ -273,5 +307,7 @@ public class AtBatFragment extends Fragment {
 
         // Increment the out count
         void incrementOuts();
+
+        void undoLastAction();
     }
 }

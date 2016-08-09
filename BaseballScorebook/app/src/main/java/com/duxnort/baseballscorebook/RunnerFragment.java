@@ -3,7 +3,9 @@ package com.duxnort.baseballscorebook;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -45,59 +47,164 @@ public class RunnerFragment extends Fragment {
     }
 
     private void initializeOnClickListeners() {
-
+        btnOut.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnOutOnClick();
+                    }
+                }
+        );
+        btnScored.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnScoredOnClick();
+                    }
+                }
+        );
+        btnAdvanced.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnAdvancedOnClick();
+                    }
+                }
+        );
+        btnStolenBase.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnStolenBaseOnClick();
+                    }
+                }
+        );
+        btnCaughtStealing.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnCaughtStealingOnClick();
+                    }
+                }
+        );
+        btnUndo.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnUndoOnClick();
+                    }
+                }
+        );
     }
 
     private void initializeOnTouchListeners() {
+        btnOut.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnOutOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnOut.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.red_rounded));
+                return false;
+            }
+        });
 
+        btnScored.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnScoredOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnScored.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.orange_rounded));
+                return false;
+            }
+        });
+
+        btnAdvanced.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnAdvancedOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnAdvanced.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.green_rounded));
+                return false;
+            }
+        });
+
+        btnStolenBase.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnStolenBaseOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnStolenBase.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.purple_rounded));
+                return false;
+            }
+        });
+
+        btnCaughtStealing.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnCaughtStealingOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnCaughtStealing.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded));
+                return false;
+            }
+        });
+
+        btnUndo.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnUndoOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnUndo.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.white_rounded));
+                return false;
+            }
+        });
     }
 
     private void btnOutOnClick() {
-
+        mListener.incrementOuts();
     }
 
     private void btnOutOnTouch() {
-
+        btnOut.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.red_rounded_pressed));
     }
 
     private void btnScoredOnClick() {
-
+        mListener.incrementScore();
     }
 
     private void btnScoredOnTouch() {
-
+        btnScored.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.orange_rounded_pressed));
     }
 
     private void btnAdvancedOnClick() {
-
+        mListener.advanceBaseRunner();
     }
 
     private void btnAdvancedOnTouch() {
-
+        btnAdvanced.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.green_rounded_pressed));
     }
 
     private void btnStolenBaseOnClick() {
-
+        mListener.stolenBase();
     }
 
     private void btnStolenBaseOnTouch() {
-
+        btnStolenBase.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.purple_rounded_pressed));
     }
 
     private void btnCaughtStealingOnClick() {
-
+        mListener.caughtStealing();
     }
 
     private void btnCaughtStealingOnTouch() {
-
+        btnCaughtStealing.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded_pressed));
     }
 
     private void btnUndoOnClick() {
-
+        mListener.undoLastAction();
     }
 
     private void btnUndoOnTouch() {
-
+        btnUndo.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.white_rounded_pressed));
     }
 
     @Override
@@ -120,5 +227,16 @@ public class RunnerFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         //void onFragmentInteraction(Uri uri);
+        void undoLastAction();
+
+        void incrementScore();
+
+        void incrementOuts();
+
+        void advanceBaseRunner();
+
+        void stolenBase();
+
+        void caughtStealing();
     }
 }
