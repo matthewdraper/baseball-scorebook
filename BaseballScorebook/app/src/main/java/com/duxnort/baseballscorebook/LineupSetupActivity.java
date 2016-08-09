@@ -3,7 +3,9 @@ package com.duxnort.baseballscorebook;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,7 +24,7 @@ public class LineupSetupActivity extends AppCompatActivity implements LineupFrag
     private TabHost tabHost;
     private Spinner name1, name2, name3, name4, name5, name6, name7, name8, name9, namePitcher;
     private Spinner pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9;
-    private Button btnStartGame;
+    private Button btnStartGame, btnBack;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -41,8 +43,14 @@ public class LineupSetupActivity extends AppCompatActivity implements LineupFrag
     }
 
     private void initializeButtons() {
-        btnStartGame = (Button) this.findViewById(R.id.btnStartGame);
+        btnStartGame = (Button) findViewById(R.id.btnStartGame);
+        btnBack = (Button) findViewById(R.id.btnBack);
 
+        initializeOnTouchListeners();
+        initializeOnClickListeners();
+    }
+
+    private void initializeOnClickListeners() {
         btnStartGame.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
@@ -50,12 +58,57 @@ public class LineupSetupActivity extends AppCompatActivity implements LineupFrag
                     }
                 }
         );
+
+        btnBack.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnBackOnClick();
+                    }
+                }
+        );
+    }
+
+    private void initializeOnTouchListeners() {
+        btnStartGame.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnStartGameOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnStartGame.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.green_rounded));
+                return false;
+            }
+        });
+        btnBack.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnBackOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnBack.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.red_rounded));
+                return false;
+            }
+        });
     }
 
     private void btnStartGameOnClick() {
         // These lines allow for the button to start a new activity
         Intent intent = new Intent(this, RecordGameActivity.class);
         startActivity(intent);
+    }
+
+    private void btnStartGameOnTouch() {
+        btnStartGame.setBackground(ContextCompat.getDrawable(this, R.drawable.green_rounded_pressed));
+    }
+
+    private void btnBackOnClick() {
+        // These lines allow for the button to start a new activity
+        Intent intent = new Intent(this, RecordGameSetupActivity.class);
+        startActivity(intent);
+    }
+
+    private void btnBackOnTouch() {
+        btnBack.setBackground(ContextCompat.getDrawable(this, R.drawable.red_rounded_pressed));
     }
 
     private void initializeTabs() {

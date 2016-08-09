@@ -66,7 +66,7 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Number:"
                         android:id="@+id/textView3"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/colorWhite"
                         android:textSize="25dp"
                         android:layout_margin="5dp"
                         android:layout_gravity="top" />
@@ -91,15 +91,15 @@
             </LinearLayout>
 
             <Button
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="60dp"
                 android:text="+"
                 android:id="@+id/button"
                 android:layout_margin="10dp"
                 android:textStyle="bold"
                 android:textSize="40dp"
                 android:padding="5dp"
-                android:background="@android:color/holo_green_dark" />
+                android:background="@drawable/green_rounded" />
         </LinearLayout>
     </LinearLayout>
 
