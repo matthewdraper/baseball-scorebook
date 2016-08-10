@@ -34,6 +34,7 @@ public class FieldersRetiredFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_fielders_retired, container, false);
         initializeButtons(rootView);
+        initializeText(rootView);
         return rootView;
     }
 
@@ -69,6 +70,11 @@ public class FieldersRetiredFragment extends Fragment {
 
         initializeOnTouchListeners();
         initializeOnClickListeners();
+    }
+
+    private void initializeText(View rootView) {
+        txtPositions = (TextView) rootView.findViewById(R.id.txtPositions);
+        setTxtPositions("");
     }
 
     private void initializeOnClickListeners() {
@@ -265,83 +271,83 @@ public class FieldersRetiredFragment extends Fragment {
     }
 
     private void btnCatcherOnClick() {
-
+        appendPosition(Position.CATCHER);
     }
 
     private void btnCatcherOnTouch() {
-
+        btnCatcher.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded_pressed));
     }
 
     private void btnPitcherOnClick() {
-
+        appendPosition(Position.PITCHER);
     }
 
     private void btnPitcherOnTouch() {
-
+        btnPitcher.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded_pressed));
     }
 
     private void btnFirstBaseOnClick() {
-
+        appendPosition(Position.FIRSTBASE);
     }
 
     private void btnFirstBaseOnTouch() {
-
+        btnFirstBase.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded_pressed));
     }
 
     private void btnSecondBaseOnClick() {
-
+        appendPosition(Position.SECONDBASE);
     }
 
     private void btnSecondBaseOnTouch() {
-
+        btnSecondBase.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded_pressed));
     }
 
     private void btnShortStopOnClick() {
-
+        appendPosition(Position.SHORTSTOP);
     }
 
     private void btnShortStopOnTouch() {
-
+        btnShortStop.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded_pressed));
     }
 
     private void btnThirdBaseOnClick() {
-
+        appendPosition(Position.THIRDBASE);
     }
 
     private void btnThirdBaseOnTouch() {
-
+        btnThirdBase.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded_pressed));
     }
 
     private void btnLeftFieldOnClick() {
-
+        appendPosition(Position.LEFTFIELD);
     }
 
     private void btnLeftFieldOnTouch() {
-
+        btnLeftField.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded_pressed));
     }
 
     private void btnCenterFieldOnClick() {
-
+        appendPosition(Position.CENTERFIELD);
     }
 
     private void btnCenterFieldOnTouch() {
-
+        btnCenterField.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded_pressed));
     }
 
     private void btnRightFieldOnClick() {
-
+        appendPosition(Position.RIGHTFIELD);
     }
 
     private void btnRightFieldOnTouch() {
-
+        btnRightField.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded_pressed));
     }
 
     private void btnDeleteOnClick() {
-
+        removePosition();
     }
 
     private void btnDeleteOnTouch() {
-
+        btnDelete.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded_pressed));
     }
 
     private void btnDoneOnClick() {
@@ -349,7 +355,7 @@ public class FieldersRetiredFragment extends Fragment {
     }
 
     private void btnDoneOnTouch() {
-
+        btnDone.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded_pressed));
     }
 
     private void setTxtEnterPositions(String text) {
@@ -361,15 +367,33 @@ public class FieldersRetiredFragment extends Fragment {
     }
 
     private void setTxtPositions(String text) {
-
+        txtPositions.setText(text);
     }
 
     private String getTxtPositions() {
-        return null;
+        return txtPositions.getText().toString();
     }
 
-    private void appendPosition(String position) {
+    private void appendPosition(Position position) {
+        String dash = "-";
+        String text = getTxtPositions();
+        //// TODO: 8/10/16 Fix this messy code 
+        if (getTxtPositions().equalsIgnoreCase("")) {
+            setTxtPositions(text.concat(Integer.toString(position.getScoreNum())));
+        } else if (text.length() == 1 && !text.equalsIgnoreCase(Integer.toString(position.getScoreNum()))) {
+            setTxtPositions(text.concat(dash.concat(Integer.toString(position.getScoreNum()))));
+        } else if (!Integer.toString(position.getScoreNum()).equalsIgnoreCase(Character.toString(text.charAt(text.length() - 1)))) {
+            setTxtPositions(text.concat(dash.concat(Integer.toString(position.getScoreNum()))));
+        }
 
+    }
+
+    private void removePosition() {
+        if (getTxtPositions().length() > 1) {
+            setTxtPositions(getTxtPositions().substring(0, getTxtPositions().length() - 2));
+        } else {
+            setTxtPositions("");
+        }
     }
 
     public interface OnFragmentInteractionListener {
