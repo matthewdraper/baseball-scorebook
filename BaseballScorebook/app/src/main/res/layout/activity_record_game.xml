@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 app:layout_widthPercent="100%"
-                app:layout_heightPercent="20%"
+                app:layout_heightPercent="18%"
                 android:name="com.duxnort.baseballscorebook.ScoreboardFragment"
                 android:id="@+id/fragScoreboard"
                 tools:layout="@layout/fragment_scoreboard"
@@ -38,7 +38,7 @@
                 android:id="@+id/btnThirdBase"
                 android:background="@drawable/baserunner"
                 app:layout_marginLeftPercent="24.5%"
-                app:layout_marginTopPercent="34%"
+                app:layout_marginTopPercent="32%"
                 android:textStyle="bold"
                 android:alpha="1" />
 
@@ -50,7 +50,7 @@
                 android:id="@+id/btnSecondBase"
                 android:background="@drawable/baserunner"
                 app:layout_marginLeftPercent="43.75%"
-                app:layout_marginTopPercent="28.5%"
+                app:layout_marginTopPercent="26.5%"
                 android:textStyle="bold"
                 android:alpha="1"
                 android:allowUndo="false" />
@@ -63,7 +63,7 @@
                 android:id="@+id/btnFirstBase"
                 android:background="@drawable/baserunner"
                 app:layout_marginLeftPercent="62.5%"
-                app:layout_marginTopPercent="34%"
+                app:layout_marginTopPercent="32%"
                 android:textStyle="bold"
                 android:alpha="1" />
             <Button
@@ -74,15 +74,29 @@
                 android:id="@+id/btnSubstitute"
                 android:background="@drawable/white_rounded"
                 app:layout_marginLeftPercent="77%"
-                app:layout_marginTopPercent="46%"
+                app:layout_marginTopPercent="44%"
                 android:textStyle="bold"
                 android:alpha="1"
                 android:textColor="@color/colorBlack"
                 android:text="SUB" />
+
+            <Button
+                android:layout_width="80dp"
+                app:layout_widthPercent="15%"
+                android:layout_height="80dp"
+                app:layout_heightPercent="6%"
+                android:id="@+id/btnUndo"
+                android:background="@drawable/orange_rounded"
+                app:layout_marginLeftPercent="7.5%"
+                app:layout_marginTopPercent="44%"
+                android:textStyle="bold"
+                android:alpha="1"
+                android:textColor="@color/colorBlack"
+                android:text="UNDO" />
             <ImageView
                 android:layout_width="match_parent"
                 app:layout_widthPercent="100%"
-                app:layout_marginTopPercent="20%"
+                app:layout_marginTopPercent="18%"
                 android:layout_height="300dp"
                 app:layout_heightPercent="35%"
                 android:id="@+id/imgField"
@@ -94,29 +108,31 @@
                 android:layout_width="match_parent"
                 app:layout_widthPercent="100%"
                 android:layout_height="wrap_content"
-                app:layout_heightPercent="46%"
-                app:layout_marginTopPercent="55%"
+                app:layout_heightPercent="48%"
+                app:layout_marginTopPercent="53%"
                 android:orientation="vertical">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:background="@android:drawable/title_bar"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:padding="5dp">
 
                     <Button
-                        android:layout_width="75dp"
+                        android:layout_width="70dp"
                         android:layout_height="35dp"
                         android:background="@drawable/blue_rounded"
                         android:text="PREV"
                         android:textStyle="bold|italic"
-                        android:id="@+id/btnPrevPlayer" />
+                        android:id="@+id/btnPrevPlayer"
+                        android:layout_gravity="center" />
 
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="200dp"
                         app:layout_widthPercent="10%"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="center">
 
                         <TextView
@@ -125,26 +141,26 @@
                             android:text="A. Johnson  # 32"
                             android:textColor="@color/colorBlack"
                             android:textStyle="bold|italic"
-                            android:textSize="25dp"
+                            android:textSize="20dp"
                             android:gravity="center"
-                            android:phoneNumber="true" />
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center" />
                     </LinearLayout>
 
                     <Button
-                        android:layout_width="75dp"
+                        android:layout_width="70dp"
                         android:layout_height="35dp"
                         android:background="@drawable/blue_rounded"
                         android:text="NEXT"
                         android:textStyle="bold|italic"
-                        android:id="@+id/btnNextPlayer" />
+                        android:id="@+id/btnNextPlayer"
+                        android:layout_gravity="center" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     app:layout_widthPercent="100%"
                     android:layout_height="wrap_content"
-                    app:layout_heightPercent="30%"
-
                     android:id="@+id/containerEvents"
                     android:orientation="vertical"
                     android:background="@drawable/button_background">
