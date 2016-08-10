@@ -390,9 +390,21 @@ public class FieldersRetiredFragment extends Fragment {
         //// TODO: 8/10/16 Fix this messy code 
         if (getTxtPositions().equalsIgnoreCase("")) {
             setTxtPositions(text.concat(Integer.toString(position.getScoreNum())));
-        } else if (text.length() == 1 && !text.equalsIgnoreCase(Integer.toString(position.getScoreNum()))) {
+        } else if (text.length() == 1 && !text.equalsIgnoreCase(Integer.toString(position.getScoreNum()))
+                && (scoringSymbol.equals(ScoringSymbol.GROUNDOUT)
+                || scoringSymbol.equals(ScoringSymbol.SACRIFICE_BUNT)
+                || scoringSymbol.equals(ScoringSymbol.DOUBLE_PLAY)
+                || scoringSymbol.equals(ScoringSymbol.TRIPLE_PLAY)
+                || scoringSymbol.equals(ScoringSymbol.STRIKEOUT_LOOKING)
+                || scoringSymbol.equals(ScoringSymbol.STRIKEOUT_SWINGING))) {
             setTxtPositions(text.concat(dash.concat(Integer.toString(position.getScoreNum()))));
-        } else if (!Integer.toString(position.getScoreNum()).equalsIgnoreCase(Character.toString(text.charAt(text.length() - 1)))) {
+        } else if (!Integer.toString(position.getScoreNum()).equalsIgnoreCase(Character.toString(text.charAt(text.length() - 1)))
+                && (scoringSymbol.equals(ScoringSymbol.GROUNDOUT)
+                || scoringSymbol.equals(ScoringSymbol.SACRIFICE_BUNT)
+                || scoringSymbol.equals(ScoringSymbol.DOUBLE_PLAY)
+                || scoringSymbol.equals(ScoringSymbol.TRIPLE_PLAY)
+                || scoringSymbol.equals(ScoringSymbol.STRIKEOUT_LOOKING)
+                || scoringSymbol.equals(ScoringSymbol.STRIKEOUT_SWINGING))) {
             setTxtPositions(text.concat(dash.concat(Integer.toString(position.getScoreNum()))));
         }
 
