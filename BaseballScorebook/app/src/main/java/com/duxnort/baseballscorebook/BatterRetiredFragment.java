@@ -16,6 +16,7 @@ public class BatterRetiredFragment extends Fragment {
     private Button btnFoulOut, btnFlyOut, btnSwinging, btnLooking, btnGroundOut, btnLineOut,
             btnUnassisted, btnSacFly, btnSacBunt, btnDoublePlay, btnTriplePlay;
 
+
     public BatterRetiredFragment() {
         // Required empty public constructor
     }
@@ -262,7 +263,7 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     private void btnFoulOutOnClick() {
-        mListener.loadFragment(new FieldersRetiredFragment());
+        mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.FOULOUT);
     }
 
     private void btnFoulOutOnTouch() {
@@ -270,7 +271,7 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     private void btnFlyOutOnClick() {
-        mListener.loadFragment(new FieldersRetiredFragment());
+        mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.FLYOUT);
     }
 
     private void btnFlyOutOnTouch() {
@@ -294,7 +295,7 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     private void btnGroundOutOnClick() {
-        mListener.loadFragment(new FieldersRetiredFragment());
+        mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.GROUNDOUT);
     }
 
     private void btnGroundOutOnTouch() {
@@ -302,7 +303,7 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     private void btnLineOutOnClick() {
-        mListener.loadFragment(new FieldersRetiredFragment());
+        mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.LINEOUT);
     }
 
     private void btnLineOutOnTouch() {
@@ -310,7 +311,7 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     private void btnUnassistedOnClick() {
-        mListener.loadFragment(new FieldersRetiredFragment());
+        mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.UNASSISTED_PUTOUT);
     }
 
     private void btnUnassistedOnTouch() {
@@ -318,7 +319,7 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     private void btnSacFlyOnClick() {
-        mListener.loadFragment(new FieldersRetiredFragment());
+        mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.SACRIFICE_FLY);
     }
 
     private void btnSacFlyOnTouch() {
@@ -326,7 +327,7 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     private void btnSacBuntOnClick() {
-        mListener.loadFragment(new FieldersRetiredFragment());
+        mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.SACRIFICE_BUNT);
     }
 
     private void btnSacBuntOnTouch() {
@@ -334,7 +335,7 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     private void btnDoublePlayOnClick() {
-        mListener.loadFragment(new FieldersRetiredFragment());
+        mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.DOUBLE_PLAY);
     }
 
     private void btnDoublePlayOnTouch() {
@@ -342,7 +343,7 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     private void btnTriplePlayOnClick() {
-        mListener.loadFragment(new FieldersRetiredFragment());
+        mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.TRIPLE_PLAY);
     }
 
     private void btnTriplePlayOnTouch() {
@@ -350,6 +351,6 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     public interface OnFragmentInteractionListener {
-        void loadFragment(Fragment f);
+        void loadFragment(Fragment frag, ScoringSymbol scoringSymbol);
     }
 }

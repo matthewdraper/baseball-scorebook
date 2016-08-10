@@ -17,6 +17,8 @@ public class FieldersRetiredFragment extends Fragment {
     private Button btnCatcher, btnPitcher, btnFirstBase, btnSecondBase, btnShortStop, btnThirdBase,
             btnLeftField, btnCenterField, btnRightField, btnDelete, btnDone;
 
+    private ScoringSymbol scoringSymbol;
+
     private TextView txtEnterPositions, txtOutType, txtPositions;
 
     public FieldersRetiredFragment() {
@@ -55,6 +57,10 @@ public class FieldersRetiredFragment extends Fragment {
         mListener = null;
     }
 
+    private void initializeScoringSymbol() {
+        scoringSymbol = mListener.getScoringSymbol();
+    }
+
     private void initializeButtons(View rootView) {
         btnCatcher = (Button) rootView.findViewById(R.id.btnCatcher);
         btnPitcher = (Button) rootView.findViewById(R.id.btnPitcher);
@@ -74,7 +80,11 @@ public class FieldersRetiredFragment extends Fragment {
 
     private void initializeText(View rootView) {
         txtPositions = (TextView) rootView.findViewById(R.id.txtPositions);
+        txtOutType = (TextView) rootView.findViewById(R.id.txtOutType);
+        txtEnterPositions = (TextView) rootView.findViewById(R.id.txtEnterPositions);
         setTxtPositions("");
+        initializeScoringSymbol();
+        setTxtOutType(scoringSymbol.getScoringSymbol());
     }
 
     private void initializeOnClickListeners() {
@@ -363,7 +373,7 @@ public class FieldersRetiredFragment extends Fragment {
     }
 
     private void setTxtOutType(String text) {
-
+        txtOutType.setText(text.concat(" "));
     }
 
     private void setTxtPositions(String text) {
@@ -397,6 +407,6 @@ public class FieldersRetiredFragment extends Fragment {
     }
 
     public interface OnFragmentInteractionListener {
-
+        ScoringSymbol getScoringSymbol();
     }
 }

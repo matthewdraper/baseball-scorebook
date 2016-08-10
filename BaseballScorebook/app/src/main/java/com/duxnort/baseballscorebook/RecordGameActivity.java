@@ -36,6 +36,7 @@ public class RecordGameActivity extends AppCompatActivity implements
     private AtBatFragment ab;
     private Fragment[] fragmentsArr;
     private int currFragIndex = 0;
+    private ScoringSymbol scoringSymbol;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -416,6 +417,12 @@ public class RecordGameActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void loadFragment(Fragment frag, ScoringSymbol scoringSymbol) {
+        this.scoringSymbol = scoringSymbol;
+        loadFragment(frag);
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
 
@@ -453,5 +460,11 @@ public class RecordGameActivity extends AppCompatActivity implements
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
+    }
+
+
+    @Override
+    public ScoringSymbol getScoringSymbol() {
+        return this.scoringSymbol;
     }
 }
