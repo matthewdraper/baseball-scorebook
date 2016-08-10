@@ -420,5 +420,7 @@ public class FieldersRetiredFragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         ScoringSymbol getScoringSymbol();
+
+        void loadFragment(Fragment frag);
     }
 }

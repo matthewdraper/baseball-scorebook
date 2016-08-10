@@ -37,6 +37,10 @@ public class RecordGameActivity extends AppCompatActivity implements
     private Fragment[] fragmentsArr;
     private int currFragIndex = 0;
     private ScoringSymbol scoringSymbol;
+    private int baseRunners = 0;
+    private boolean isFirstBaseOccupied = false;
+    private boolean isSecondBaseOccupied = false;
+    private boolean isThirdBaseOccupied = false;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -101,6 +105,11 @@ public class RecordGameActivity extends AppCompatActivity implements
     }
 
     @Override
+    public int getNumOuts() {
+        return this.outCount;
+    }
+
+    @Override
     public void incrementOuts() {
         // Increment the out count
         incrementOutCount();
@@ -137,6 +146,7 @@ public class RecordGameActivity extends AppCompatActivity implements
     public void incrementScore() {
         ScoreboardFragment scoreboard = (ScoreboardFragment)
                 getSupportFragmentManager().findFragmentById(R.id.fragScoreboard);
+        baseRunners--;
         if (isTop == true && isBottom == false) {
             runsAway++;
             scoreboard.setTxtRunsAway(Integer.toString(runsAway));
@@ -144,6 +154,11 @@ public class RecordGameActivity extends AppCompatActivity implements
             runsHome++;
             scoreboard.setTxtRunsHome(Integer.toString(runsHome));
         }
+    }
+
+    @Override
+    public void incrementBaserunners() {
+        baseRunners++;
     }
 
     private void substitute() {
@@ -178,6 +193,7 @@ public class RecordGameActivity extends AppCompatActivity implements
             outCount++;
         } else {
             outCount = 0;
+            baseRunners = 0;
             nextHalfInning();
         }
     }
@@ -222,9 +238,13 @@ public class RecordGameActivity extends AppCompatActivity implements
         btnNextPlayer = (Button) findViewById(R.id.btnNextPlayer);
         btnPrevPlayer = (Button) findViewById(R.id.btnPrevPlayer);
         btnFirstBase = (Button) findViewById(R.id.btnFirstBase);
+        btnFirstBase.setAlpha(0);
         btnSecondBase = (Button) findViewById(R.id.btnSecondBase);
+        btnSecondBase.setAlpha(0);
         btnThirdBase = (Button) findViewById(R.id.btnThirdBase);
+        btnThirdBase.setAlpha(0);
         btnSubstitute = (Button) findViewById(R.id.btnSubstitute);
+
 
         initializeOnTouchListeners();
         initializeOnClickListeners();
@@ -417,6 +437,16 @@ public class RecordGameActivity extends AppCompatActivity implements
     }
 
     @Override
+    public int getNumStrikes() {
+        return this.strikeCount;
+    }
+
+    @Override
+    public int getNumBaserunners() {
+        return this.baseRunners;
+    }
+
+    @Override
     public void loadFragment(Fragment frag, ScoringSymbol scoringSymbol) {
         this.scoringSymbol = scoringSymbol;
         loadFragment(frag);
@@ -466,5 +496,35 @@ public class RecordGameActivity extends AppCompatActivity implements
     @Override
     public ScoringSymbol getScoringSymbol() {
         return this.scoringSymbol;
+    }
+
+    @Override
+    public void setFirstBaseOccupied(boolean isOccupied) {
+        isFirstBaseOccupied = isOccupied;
+        if (isFirstBaseOccupied) {
+            btnFirstBase.setAlpha(1);
+        } else {
+            btnFirstBase.setAlpha(0);
+        }
+    }
+
+    @Override
+    public void setSecondBaseOccupied(boolean isOccupied) {
+        isSecondBaseOccupied = isOccupied;
+        if (isSecondBaseOccupied) {
+            btnSecondBase.setAlpha(1);
+        } else {
+            btnSecondBase.setAlpha(0);
+        }
+    }
+
+    @Override
+    public void setThirdBaseOccupied(boolean isOccupied) {
+        isThirdBaseOccupied = isOccupied;
+        if (isThirdBaseOccupied) {
+            btnThirdBase.setAlpha(1);
+        } else {
+            btnThirdBase.setAlpha(0);
+        }
     }
 }

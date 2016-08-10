@@ -19,52 +19,152 @@
             android:layout_gravity="center">
 
             <Button
-                android:layout_width="80dp"
+                android:layout_width="60dp"
                 android:layout_height="50dp"
                 android:text="Single"
-                android:id="@+id/button9"
+                android:id="@+id/btnSingle"
                 android:background="@drawable/black_rounded"
                 android:typeface="normal"
                 android:textStyle="bold"
-                android:layout_margin="5dp"
+                android:layout_margin="2.5dp"
                 android:textColor="#ffe100"
-                android:textSize="15dp" />
+                android:textSize="12dp"
+                android:padding="5dp"
+                android:layout_gravity="center" />
 
             <Button
-                android:layout_width="80dp"
+                android:layout_width="60dp"
                 android:layout_height="50dp"
                 android:text="Double"
-                android:id="@+id/button3"
+                android:id="@+id/btnDouble"
                 android:background="@drawable/black_rounded"
                 android:typeface="normal"
                 android:textStyle="bold"
-                android:layout_margin="5dp"
+                android:layout_margin="2.5dp"
                 android:textColor="#ffe100"
-                android:textSize="15dp" />
+                android:textSize="12dp"
+                android:padding="5dp"
+                android:layout_gravity="center" />
 
             <Button
-                android:layout_width="80dp"
+                android:layout_width="60dp"
                 android:layout_height="50dp"
                 android:text="Triple"
-                android:id="@+id/button4"
+                android:id="@+id/btnTriple"
                 android:background="@drawable/black_rounded"
                 android:typeface="normal"
                 android:textStyle="bold"
-                android:layout_margin="5dp"
+                android:layout_margin="2.5dp"
                 android:textColor="#ffe100"
-                android:textSize="15dp" />
+                android:textSize="12dp"
+                android:padding="5dp"
+                android:layout_gravity="center" />
 
             <Button
-                android:layout_width="80dp"
+                android:layout_width="60dp"
                 android:layout_height="50dp"
                 android:text="Home Run"
-                android:id="@+id/button6"
+                android:id="@+id/btnHomeRun"
                 android:background="@drawable/black_rounded"
                 android:typeface="normal"
                 android:textStyle="bold"
-                android:layout_margin="5dp"
+                android:layout_margin="2.5dp"
                 android:textColor="#ffe100"
-                android:textSize="15dp" />
+                android:textSize="12dp"
+                android:padding="5dp"
+                android:gravity="center"
+                android:layout_gravity="center" />
+
+            <Button
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:text="Interference"
+                android:id="@+id/btnInterference"
+                android:background="@drawable/black_rounded"
+                android:typeface="normal"
+                android:textStyle="bold"
+                android:layout_margin="2.5dp"
+                android:textColor="#ffe100"
+                android:textSize="10dp"
+                android:padding="5dp"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:text="Error"
+                android:id="@+id/btnError"
+                android:background="@drawable/black_rounded"
+                android:typeface="normal"
+                android:textStyle="bold"
+                android:layout_margin="2.5dp"
+                android:textColor="#ffe100"
+                android:textSize="12dp"
+                android:layout_gravity="center"
+                android:padding="5dp" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:text="Hit By Pitch"
+                android:id="@+id/btnHitByPitch"
+                android:background="@drawable/black_rounded"
+                android:typeface="normal"
+                android:textStyle="bold"
+                android:layout_margin="2.5dp"
+                android:textColor="#ffe100"
+                android:textSize="12dp"
+                android:layout_gravity="center"
+                android:padding="5dp" />
+
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="50dp"
+                android:text="Intentional Walk"
+                android:id="@+id/btnIntWalk"
+                android:background="@drawable/black_rounded"
+                android:typeface="normal"
+                android:textStyle="bold"
+                android:layout_margin="2.5dp"
+                android:textColor="#ffe100"
+                android:textSize="10dp"
+                android:layout_gravity="center"
+                android:padding="5dp" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:text="Walk"
+                android:id="@+id/btnWalk"
+                android:background="@drawable/black_rounded"
+                android:typeface="normal"
+                android:textStyle="bold"
+                android:layout_margin="2.5dp"
+                android:textColor="#ffe100"
+                android:textSize="15dp"
+                android:layout_gravity="center"
+                android:padding="5dp" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:text="Ground  Rule Double"
+                android:id="@+id/btnGroundRule"
+                android:background="@drawable/black_rounded"
+                android:typeface="normal"
+                android:textStyle="bold"
+                android:layout_margin="2.5dp"
+                android:textColor="#ffe100"
+                android:textSize="10dp"
+                android:padding="5dp" />
 
         </LinearLayout>
 
@@ -77,54 +177,57 @@
             <Button
                 android:layout_width="80dp"
                 android:layout_height="50dp"
-                android:text="Error"
-                android:id="@+id/button7"
-                android:background="@drawable/black_rounded"
-                android:typeface="normal"
-                android:textStyle="bold"
-                android:layout_margin="5dp"
-                android:textColor="#ffe100"
-                android:textSize="15dp"
-                android:layout_gravity="center" />
-
-            <Button
-                android:layout_width="80dp"
-                android:layout_height="50dp"
                 android:text="Fielder&apos;s Choice"
-                android:id="@+id/button8"
+                android:id="@+id/btnFieldersChoice"
                 android:background="@drawable/black_rounded"
                 android:typeface="normal"
                 android:textStyle="bold"
-                android:layout_margin="5dp"
+                android:layout_margin="2.5dp"
                 android:textColor="#ffe100"
-                android:textSize="15dp"
-                android:layout_gravity="center" />
+                android:textSize="10dp"
+                android:padding="5dp" />
 
             <Button
                 android:layout_width="80dp"
                 android:layout_height="50dp"
-                android:text="Intentional Walk"
-                android:id="@+id/button12"
+                android:text="Dropped 3rd Strike Swinging"
+                android:id="@+id/btnDroppedSwing"
                 android:background="@drawable/black_rounded"
                 android:typeface="normal"
                 android:textStyle="bold"
-                android:layout_margin="5dp"
+                android:layout_margin="2.5dp"
                 android:textColor="#ffe100"
-                android:textSize="12dp"
-                android:layout_gravity="center" />
+                android:textSize="10dp"
+                android:layout_gravity="center"
+                android:padding="5dp" />
 
             <Button
                 android:layout_width="80dp"
                 android:layout_height="50dp"
-                android:text="Walk"
-                android:id="@+id/button13"
+                android:text="Dropped 3rd Strike Looking"
+                android:id="@+id/btnDroppedLook"
                 android:background="@drawable/black_rounded"
                 android:typeface="normal"
                 android:textStyle="bold"
-                android:layout_margin="5dp"
+                android:layout_margin="2.5dp"
                 android:textColor="#ffe100"
-                android:textSize="15dp"
-                android:layout_gravity="center" />
+                android:textSize="10dp"
+                android:layout_gravity="center"
+                android:padding="5dp" />
+
+            <Button
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:text="Wild Pitch 3rd Strike"
+                android:id="@+id/btnWildSwing"
+                android:background="@drawable/black_rounded"
+                android:typeface="normal"
+                android:textStyle="bold"
+                android:layout_margin="2.5dp"
+                android:textColor="#ffe100"
+                android:textSize="10dp"
+                android:layout_gravity="center"
+                android:padding="5dp" />
 
         </LinearLayout>
 

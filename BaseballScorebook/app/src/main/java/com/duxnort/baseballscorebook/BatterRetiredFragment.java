@@ -2,6 +2,7 @@ package com.duxnort.baseballscorebook;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -88,20 +89,6 @@ public class BatterRetiredFragment extends Fragment {
                     }
                 }
         );
-        btnSwinging.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        btnSwingingOnClick();
-                    }
-                }
-        );
-        btnLooking.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        btnLookingOnClick();
-                    }
-                }
-        );
         btnGroundOut.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
@@ -123,55 +110,95 @@ public class BatterRetiredFragment extends Fragment {
                     }
                 }
         );
-        btnSacFly.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        btnSacFlyOnClick();
+
+        if (mListener.getNumBaserunners() > 0) {
+            btnSacBunt.setOnClickListener(
+                    new View.OnClickListener() {
+                        public void onClick(View v) {
+                            btnSacBuntOnClick();
+                        }
                     }
-                }
-        );
-        btnSacBunt.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        btnSacBuntOnClick();
+            );
+            btnSacFly.setOnClickListener(
+                    new View.OnClickListener() {
+                        public void onClick(View v) {
+                            btnSacFlyOnClick();
+                        }
                     }
-                }
-        );
-        btnDoublePlay.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        btnDoublePlayOnClick();
+            );
+            if (mListener.getNumOuts() < 2) {
+                btnDoublePlay.setOnClickListener(
+                        new View.OnClickListener() {
+                            public void onClick(View v) {
+                                btnDoublePlayOnClick();
+                            }
+                        }
+                );
+            } else {
+                btnDoublePlay.setTextColor(Color.BLACK);
+            }
+
+        } else {
+            btnSacBunt.setTextColor(Color.BLACK);
+            btnSacFly.setTextColor(Color.BLACK);
+            btnDoublePlay.setTextColor(Color.BLACK);
+        }
+        if (mListener.getNumBaserunners() > 1) {
+            btnTriplePlay.setOnClickListener(
+                    new View.OnClickListener() {
+                        public void onClick(View v) {
+                            btnTriplePlayOnClick();
+                        }
                     }
-                }
-        );
-        btnTriplePlay.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        btnTriplePlayOnClick();
+            );
+        } else {
+            btnTriplePlay.setTextColor(Color.BLACK);
+        }
+        if (mListener.getNumStrikes() > 1) {
+            btnDroppedLook.setOnClickListener(
+                    new View.OnClickListener() {
+                        public void onClick(View v) {
+                            btnDroppedLookOnClick();
+                        }
                     }
-                }
-        );
-        btnDroppedLook.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        btnDroppedLookOnClick();
+            );
+            btnDroppedSwing.setOnClickListener(
+                    new View.OnClickListener() {
+                        public void onClick(View v) {
+                            btnDroppedSwingOnClick();
+                        }
                     }
-                }
-        );
-        btnDroppedSwing.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        btnDroppedSwingOnClick();
+            );
+            btnWildSwing.setOnClickListener(
+                    new View.OnClickListener() {
+                        public void onClick(View v) {
+                            btnWildSwingOnClick();
+                        }
                     }
-                }
-        );
-        btnWildSwing.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        btnWildSwingOnClick();
+            );
+            btnSwinging.setOnClickListener(
+                    new View.OnClickListener() {
+                        public void onClick(View v) {
+                            btnSwingingOnClick();
+                        }
                     }
-                }
-        );
+            );
+            btnLooking.setOnClickListener(
+                    new View.OnClickListener() {
+                        public void onClick(View v) {
+                            btnLookingOnClick();
+                        }
+                    }
+            );
+        } else {
+            btnDroppedLook.setTextColor(Color.BLACK);
+            btnDroppedSwing.setTextColor(Color.BLACK);
+            btnWildSwing.setTextColor(Color.BLACK);
+            btnSwinging.setTextColor(Color.BLACK);
+            btnLooking.setTextColor(Color.BLACK);
+        }
+
+
     }
 
     private void initializeOnTouchListeners() {
@@ -319,6 +346,8 @@ public class BatterRetiredFragment extends Fragment {
 
     private void btnFoulOutOnClick() {
         mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.FOULOUT);
+        mListener.incrementOuts();
+        mListener.incrementPitchCount();
     }
 
     private void btnFoulOutOnTouch() {
@@ -327,6 +356,8 @@ public class BatterRetiredFragment extends Fragment {
 
     private void btnFlyOutOnClick() {
         mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.FLYOUT);
+        mListener.incrementOuts();
+        mListener.incrementPitchCount();
     }
 
     private void btnFlyOutOnTouch() {
@@ -334,7 +365,9 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     private void btnSwingingOnClick() {
-
+        mListener.loadFragment(new AtBatFragment());
+        mListener.incrementOuts();
+        mListener.incrementPitchCount();
     }
 
     private void btnSwingingOnTouch() {
@@ -342,7 +375,9 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     private void btnLookingOnClick() {
-
+        mListener.loadFragment(new AtBatFragment());
+        mListener.incrementOuts();
+        mListener.incrementPitchCount();
     }
 
     private void btnLookingOnTouch() {
@@ -351,6 +386,8 @@ public class BatterRetiredFragment extends Fragment {
 
     private void btnGroundOutOnClick() {
         mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.GROUNDOUT);
+        mListener.incrementOuts();
+        mListener.incrementPitchCount();
     }
 
     private void btnGroundOutOnTouch() {
@@ -359,6 +396,8 @@ public class BatterRetiredFragment extends Fragment {
 
     private void btnLineOutOnClick() {
         mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.LINEOUT);
+        mListener.incrementOuts();
+        mListener.incrementPitchCount();
     }
 
     private void btnLineOutOnTouch() {
@@ -367,6 +406,8 @@ public class BatterRetiredFragment extends Fragment {
 
     private void btnUnassistedOnClick() {
         mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.UNASSISTED_PUTOUT);
+        mListener.incrementOuts();
+        mListener.incrementPitchCount();
     }
 
     private void btnUnassistedOnTouch() {
@@ -375,6 +416,8 @@ public class BatterRetiredFragment extends Fragment {
 
     private void btnSacFlyOnClick() {
         mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.SACRIFICE_FLY);
+        mListener.incrementOuts();
+        mListener.incrementPitchCount();
     }
 
     private void btnSacFlyOnTouch() {
@@ -383,6 +426,8 @@ public class BatterRetiredFragment extends Fragment {
 
     private void btnSacBuntOnClick() {
         mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.SACRIFICE_BUNT);
+        mListener.incrementOuts();
+        mListener.incrementPitchCount();
     }
 
     private void btnSacBuntOnTouch() {
@@ -391,6 +436,8 @@ public class BatterRetiredFragment extends Fragment {
 
     private void btnDoublePlayOnClick() {
         mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.DOUBLE_PLAY);
+        mListener.incrementOuts();
+        mListener.incrementPitchCount();
     }
 
     private void btnDoublePlayOnTouch() {
@@ -399,6 +446,8 @@ public class BatterRetiredFragment extends Fragment {
 
     private void btnTriplePlayOnClick() {
         mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.TRIPLE_PLAY);
+        mListener.incrementOuts();
+        mListener.incrementPitchCount();
     }
 
     private void btnTriplePlayOnTouch() {
@@ -407,6 +456,8 @@ public class BatterRetiredFragment extends Fragment {
 
     private void btnDroppedLookOnClick() {
         mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.STRIKEOUT_LOOKING);
+        mListener.incrementOuts();
+        mListener.incrementPitchCount();
     }
 
     private void btnDroppedLookOnTouch() {
@@ -415,6 +466,8 @@ public class BatterRetiredFragment extends Fragment {
 
     private void btnDroppedSwingOnClick() {
         mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.STRIKEOUT_SWINGING);
+        mListener.incrementOuts();
+        mListener.incrementPitchCount();
     }
 
     private void btnDroppedSwingOnTouch() {
@@ -423,6 +476,8 @@ public class BatterRetiredFragment extends Fragment {
 
     private void btnWildSwingOnClick() {
         mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.STRIKEOUT_SWINGING);
+        mListener.incrementOuts();
+        mListener.incrementPitchCount();
     }
 
     private void btnWildSwingOnTouch() {
@@ -431,5 +486,17 @@ public class BatterRetiredFragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void loadFragment(Fragment frag, ScoringSymbol scoringSymbol);
+
+        void loadFragment(Fragment frag);
+
+        int getNumStrikes();
+
+        int getNumBaserunners();
+
+        void incrementOuts();
+
+        void incrementPitchCount();
+
+        int getNumOuts();
     }
 }

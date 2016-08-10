@@ -218,8 +218,6 @@ public class AtBatFragment extends Fragment {
     private void btnRetiredOnClick() {
         // Calls the method(s) that must be implemented by the activity
         // that this fragment is used in.
-        mListener.incrementOuts();
-        mListener.incrementPitchCount();
         mListener.loadFragment(new BatterRetiredFragment());
     }
 
