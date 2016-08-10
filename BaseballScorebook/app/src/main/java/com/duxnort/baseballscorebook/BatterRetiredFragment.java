@@ -14,7 +14,8 @@ public class BatterRetiredFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private Button btnFoulOut, btnFlyOut, btnSwinging, btnLooking, btnGroundOut, btnLineOut,
-            btnUnassisted, btnSacFly, btnSacBunt, btnDoublePlay, btnTriplePlay;
+            btnUnassisted, btnSacFly, btnSacBunt, btnDoublePlay, btnTriplePlay, btnDroppedLook,
+            btnDroppedSwing, btnWildSwing;
 
 
     public BatterRetiredFragment() {
@@ -64,6 +65,9 @@ public class BatterRetiredFragment extends Fragment {
         btnSacBunt = (Button) rootView.findViewById(R.id.btnSacBunt);
         btnDoublePlay = (Button) rootView.findViewById(R.id.btnDoublePlay);
         btnTriplePlay = (Button) rootView.findViewById(R.id.btnTriplePlay);
+        btnDroppedLook = (Button) rootView.findViewById(R.id.btnDroppedLook);
+        btnDroppedSwing = (Button) rootView.findViewById(R.id.btnDroppedSwing);
+        btnWildSwing = (Button) rootView.findViewById(R.id.btnWildSwing);
 
         initializeOnTouchListeners();
         initializeOnClickListeners();
@@ -144,6 +148,27 @@ public class BatterRetiredFragment extends Fragment {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         btnTriplePlayOnClick();
+                    }
+                }
+        );
+        btnDroppedLook.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnDroppedLookOnClick();
+                    }
+                }
+        );
+        btnDroppedSwing.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnDroppedSwingOnClick();
+                    }
+                }
+        );
+        btnWildSwing.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnWildSwingOnClick();
                     }
                 }
         );
@@ -260,6 +285,36 @@ public class BatterRetiredFragment extends Fragment {
                 return false;
             }
         });
+        btnDroppedLook.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnDroppedLookOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnDroppedLook.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded));
+                return false;
+            }
+        });
+        btnDroppedSwing.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnDroppedSwingOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnDroppedSwing.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded));
+                return false;
+            }
+        });
+        btnWildSwing.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnWildSwingOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnWildSwing.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded));
+                return false;
+            }
+        });
     }
 
     private void btnFoulOutOnClick() {
@@ -348,6 +403,30 @@ public class BatterRetiredFragment extends Fragment {
 
     private void btnTriplePlayOnTouch() {
         btnTriplePlay.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded_pressed));
+    }
+
+    private void btnDroppedLookOnClick() {
+        mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.STRIKEOUT_LOOKING);
+    }
+
+    private void btnDroppedLookOnTouch() {
+        btnDroppedLook.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded_pressed));
+    }
+
+    private void btnDroppedSwingOnClick() {
+        mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.STRIKEOUT_SWINGING);
+    }
+
+    private void btnDroppedSwingOnTouch() {
+        btnDroppedSwing.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded_pressed));
+    }
+
+    private void btnWildSwingOnClick() {
+        mListener.loadFragment(new FieldersRetiredFragment(), ScoringSymbol.STRIKEOUT_SWINGING);
+    }
+
+    private void btnWildSwingOnTouch() {
+        btnWildSwing.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded_pressed));
     }
 
     public interface OnFragmentInteractionListener {

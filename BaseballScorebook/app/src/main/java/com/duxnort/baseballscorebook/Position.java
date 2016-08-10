@@ -3,8 +3,8 @@ package com.duxnort.baseballscorebook;
 
 public enum Position {
     DESIGNATED_HITTER("Designate Hitter", "DH", 0),
-    CATCHER("Catcher", "C", 1),
-    PITCHER("Pitcher", "P", 2),
+    PITCHER("Pitcher", "P", 1),
+    CATCHER("Catcher", "C", 2),
     FIRSTBASE("First Base", "1B", 3),
     SECONDBASE("Second Base", "2B", 4),
     THIRDBASE("Third Base", "3B", 5),

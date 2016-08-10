@@ -163,7 +163,9 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/containerEvents"
                     android:orientation="vertical"
-                    android:background="@drawable/button_background">
+                    android:background="@drawable/button_background"
+                    android:layout_gravity="center"
+                    android:gravity="center">
                     <!-- This is for testing purposes
                         <fragment
                             android:layout_width="match_parent"

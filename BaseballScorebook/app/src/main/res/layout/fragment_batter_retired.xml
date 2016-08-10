@@ -22,57 +22,6 @@
             android:layout_gravity="center"
             android:gravity="center">
 
-            <Button
-                android:layout_width="80dp"
-                android:layout_height="50dp"
-                android:text="Foul Out"
-                android:id="@+id/btnFoulOut"
-                android:background="@drawable/black_rounded"
-                android:typeface="normal"
-                android:textStyle="bold"
-                android:layout_margin="2.5dp"
-                android:textColor="#ffe100"
-                android:textSize="15dp"
-                android:layout_gravity="center" />
-
-            <Button
-                android:layout_width="80dp"
-                android:layout_height="50dp"
-                android:text="Fly Out"
-                android:id="@+id/btnFlyOut"
-                android:background="@drawable/black_rounded"
-                android:typeface="normal"
-                android:textStyle="bold"
-                android:layout_margin="2.5dp"
-                android:textColor="#ffe100"
-                android:textSize="15dp"
-                android:layout_gravity="center" />
-
-            <Button
-                android:layout_width="80dp"
-                android:layout_height="50dp"
-                android:text="Strikeout Swinging"
-                android:id="@+id/btnSwinging"
-                android:background="@drawable/black_rounded"
-                android:typeface="normal"
-                android:textStyle="bold"
-                android:layout_margin="2.5dp"
-                android:textColor="#ffe100"
-                android:textSize="13dp"
-                android:layout_gravity="center" />
-
-            <Button
-                android:layout_width="80dp"
-                android:layout_height="50dp"
-                android:text="Strikeout Looking"
-                android:id="@+id/btnLooking"
-                android:background="@drawable/black_rounded"
-                android:typeface="normal"
-                android:textStyle="bold"
-                android:layout_margin="2.5dp"
-                android:textColor="#ffe100"
-                android:textSize="13dp"
-                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -85,7 +34,43 @@
             android:layout_marginBottom="2.5dp">
 
             <Button
-                android:layout_width="100dp"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:text="Foul Out"
+                android:id="@+id/btnFoulOut"
+                android:background="@drawable/black_rounded"
+                android:typeface="normal"
+                android:textStyle="bold"
+                android:layout_margin="2.5dp"
+                android:textColor="#ffe100"
+                android:textSize="15dp" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:text="Line Out"
+                android:id="@+id/btnLineOut"
+                android:background="@drawable/black_rounded"
+                android:typeface="normal"
+                android:textStyle="bold"
+                android:textColor="#ffe100"
+                android:textSize="15dp"
+                android:layout_margin="2.5dp" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:text="Fly Out"
+                android:id="@+id/btnFlyOut"
+                android:background="@drawable/black_rounded"
+                android:typeface="normal"
+                android:textStyle="bold"
+                android:layout_margin="2.5dp"
+                android:textColor="#ffe100"
+                android:textSize="12dp" />
+
+            <Button
+                android:layout_width="60dp"
                 android:layout_height="50dp"
                 android:text="Ground Out"
                 android:id="@+id/btnGroundOut"
@@ -93,29 +78,11 @@
                 android:typeface="normal"
                 android:textStyle="bold"
                 android:textColor="#ffe100"
-                android:textSize="15dp"
-                android:layout_marginRight="7.5dp"
-                android:layout_marginTop="2.5dp"
-                android:layout_marginBottom="2.5dp" />
+                android:textSize="12dp"
+                android:layout_margin="2.5dp" />
 
             <Button
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:text="Lineout"
-                android:id="@+id/btnLineOut"
-                android:background="@drawable/black_rounded"
-                android:typeface="normal"
-                android:textStyle="bold"
-                android:textColor="#ffe100"
-                android:textSize="15dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="2.5dp"
-                android:layout_marginTop="2.5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <Button
-                android:layout_width="100dp"
+                android:layout_width="80dp"
                 android:layout_height="50dp"
                 android:text="Unassisted"
                 android:id="@+id/btnUnassisted"
@@ -123,11 +90,9 @@
                 android:typeface="normal"
                 android:textStyle="bold"
                 android:textColor="#ffe100"
-                android:textSize="15dp"
+                android:textSize="12dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="2.5dp"
-                android:layout_marginBottom="2.5dp"
-                android:layout_marginLeft="7.5dp" />
+                android:layout_margin="2.5dp" />
 
         </LinearLayout>
 
@@ -139,56 +104,127 @@
             android:gravity="center">
 
             <Button
-                android:layout_width="80dp"
-                android:layout_height="50dp"
-                android:text="Sac Fly"
-                android:id="@+id/btnSacFly"
-                android:background="@drawable/black_rounded"
-                android:typeface="normal"
-                android:textStyle="bold"
-                android:layout_margin="2.5dp"
-                android:textColor="#ffe100"
-                android:textSize="15dp"
-                android:layout_gravity="center" />
-
-            <Button
-                android:layout_width="80dp"
+                android:layout_width="60dp"
                 android:layout_height="50dp"
                 android:text="Sac Bunt"
                 android:id="@+id/btnSacBunt"
                 android:background="@drawable/black_rounded"
                 android:typeface="normal"
                 android:textStyle="bold"
-                android:layout_margin="2.5dp"
                 android:textColor="#ffe100"
                 android:textSize="15dp"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:layout_margin="2.5dp" />
 
             <Button
-                android:layout_width="80dp"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:text="Sac Fly"
+                android:id="@+id/btnSacFly"
+                android:background="@drawable/black_rounded"
+                android:typeface="normal"
+                android:textStyle="bold"
+                android:textColor="#ffe100"
+                android:textSize="12dp"
+                android:layout_margin="2.5dp" />
+
+            <Button
+                android:layout_width="70dp"
                 android:layout_height="50dp"
                 android:text="Double Play"
                 android:id="@+id/btnDoublePlay"
                 android:background="@drawable/black_rounded"
                 android:typeface="normal"
                 android:textStyle="bold"
-                android:layout_margin="2.5dp"
                 android:textColor="#ffe100"
                 android:textSize="15dp"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:layout_margin="2.5dp" />
 
             <Button
-                android:layout_width="80dp"
+                android:layout_width="70dp"
                 android:layout_height="50dp"
                 android:text="Triple Play"
                 android:id="@+id/btnTriplePlay"
                 android:background="@drawable/black_rounded"
                 android:typeface="normal"
                 android:textStyle="bold"
-                android:layout_margin="2.5dp"
                 android:textColor="#ffe100"
                 android:textSize="15dp"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:layout_margin="2.5dp" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:text="Dropped 3rd Strike Looking"
+                android:id="@+id/btnDroppedLook"
+                android:background="@drawable/black_rounded"
+                android:typeface="normal"
+                android:textStyle="bold"
+                android:layout_margin="2.5dp"
+                android:textColor="#ffe100"
+                android:textSize="10dp" />
+
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:text="Dropped 3rd Strike Swinging"
+            android:id="@+id/btnDroppedSwing"
+            android:background="@drawable/black_rounded"
+            android:typeface="normal"
+            android:textStyle="bold"
+            android:layout_margin="2.5dp"
+            android:textColor="#ffe100"
+            android:textSize="10dp"
+            android:layout_gravity="center" />
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:text="Wild Pitch 3rd Strike"
+            android:id="@+id/btnWildSwing"
+            android:background="@drawable/black_rounded"
+            android:typeface="normal"
+            android:textStyle="bold"
+            android:layout_margin="2.5dp"
+            android:textColor="#ffe100"
+            android:textSize="12dp"
+            android:layout_gravity="center" />
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:text="Strikeout Looking"
+            android:id="@+id/btnLooking"
+            android:background="@drawable/black_rounded"
+            android:typeface="normal"
+            android:textStyle="bold"
+            android:layout_margin="2.5dp"
+            android:textColor="#ffe100"
+            android:textSize="13dp" />
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:text="Strikeout Swinging"
+            android:id="@+id/btnSwinging"
+            android:background="@drawable/black_rounded"
+            android:typeface="normal"
+            android:textStyle="bold"
+            android:layout_margin="2.5dp"
+            android:textColor="#ffe100"
+            android:textSize="13dp" />
+
     </LinearLayout>
 </LinearLayout>

@@ -20,7 +20,7 @@ public enum ScoringSymbol {
     GROUNDOUT("Ground Out", "G"),
     FOULOUT("Foul Out", "FO"),
     STRIKEOUT_SWINGING("Strikeout Swinging", "K"),
-    STRIKEOUT_LOOKING("Stirkeout Looking", "Kc"),
+    STRIKEOUT_LOOKING("Strikeout Looking", "Kc"),
     LINEOUT("Line Out", "L"),
     SACRIFICE_FLY("Sacrifice Fly", "SF"),
     SACRIFICE_BUNT("Sacrifice Bunt", "SH"),
