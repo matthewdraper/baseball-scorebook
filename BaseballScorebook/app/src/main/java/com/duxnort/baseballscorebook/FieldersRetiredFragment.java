@@ -2,76 +2,39 @@ package com.duxnort.baseballscorebook;
 
 import android.app.Fragment;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link FieldersRetiredFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link FieldersRetiredFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FieldersRetiredFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     private OnFragmentInteractionListener mListener;
+
+    private Button btnCatcher, btnPitcher, btnFirstBase, btnSecondBase, btnShortStop, btnThirdBase,
+            btnLeftField, btnCenterField, btnRightField, btnDelete, btnDone;
+
+    private TextView txtEnterPositions, txtOutType, txtPositions;
 
     public FieldersRetiredFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FieldersRetiredFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FieldersRetiredFragment newInstance(String param1, String param2) {
-        FieldersRetiredFragment fragment = new FieldersRetiredFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fielders_retired, container, false);
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+        View rootView = inflater.inflate(R.layout.fragment_fielders_retired, container, false);
+        initializeButtons(rootView);
+        return rootView;
     }
 
     @Override
@@ -91,18 +54,325 @@ public class FieldersRetiredFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+    private void initializeButtons(View rootView) {
+        btnCatcher = (Button) rootView.findViewById(R.id.btnCatcher);
+        btnPitcher = (Button) rootView.findViewById(R.id.btnPitcher);
+        btnFirstBase = (Button) rootView.findViewById(R.id.btnFirstBase);
+        btnSecondBase = (Button) rootView.findViewById(R.id.btnSecondBase);
+        btnShortStop = (Button) rootView.findViewById(R.id.btnShortStop);
+        btnThirdBase = (Button) rootView.findViewById(R.id.btnThirdBase);
+        btnLeftField = (Button) rootView.findViewById(R.id.btnLeftField);
+        btnCenterField = (Button) rootView.findViewById(R.id.btnCenterField);
+        btnRightField = (Button) rootView.findViewById(R.id.btnRightField);
+        btnDelete = (Button) rootView.findViewById(R.id.btnDelete);
+        btnDone = (Button) rootView.findViewById(R.id.btnDone);
+
+        initializeOnTouchListeners();
+        initializeOnClickListeners();
+    }
+
+    private void initializeOnClickListeners() {
+        btnCatcher.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnCatcherOnClick();
+                    }
+                }
+        );
+        btnPitcher.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnPitcherOnClick();
+                    }
+                }
+        );
+        btnFirstBase.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnFirstBaseOnClick();
+                    }
+                }
+        );
+        btnSecondBase.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnSecondBaseOnClick();
+                    }
+                }
+        );
+        btnShortStop.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnShortStopOnClick();
+                    }
+                }
+        );
+        btnThirdBase.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnThirdBaseOnClick();
+                    }
+                }
+        );
+        btnLeftField.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnLeftFieldOnClick();
+                    }
+                }
+        );
+        btnCenterField.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnCenterFieldOnClick();
+                    }
+                }
+        );
+        btnRightField.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnRightFieldOnClick();
+                    }
+                }
+        );
+        btnDelete.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnDeleteOnClick();
+                    }
+                }
+        );
+        btnDone.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        btnDoneOnClick();
+                    }
+                }
+        );
+    }
+
+    private void initializeOnTouchListeners() {
+        btnCatcher.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnCatcherOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnCatcher.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded));
+                return false;
+            }
+        });
+        btnPitcher.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnPitcherOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnPitcher.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded));
+                return false;
+            }
+        });
+        btnFirstBase.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnFirstBaseOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnFirstBase.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded));
+                return false;
+            }
+        });
+        btnSecondBase.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnSecondBaseOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnSecondBase.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded));
+                return false;
+            }
+        });
+        btnShortStop.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnShortStopOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnShortStop.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded));
+                return false;
+            }
+        });
+        btnThirdBase.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnThirdBaseOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnThirdBase.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded));
+                return false;
+            }
+        });
+        btnLeftField.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnLeftFieldOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnLeftField.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded));
+                return false;
+            }
+        });
+        btnCenterField.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnCenterFieldOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnCenterField.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded));
+                return false;
+            }
+        });
+        btnRightField.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnRightFieldOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnRightField.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded));
+                return false;
+            }
+        });
+        btnDelete.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnDeleteOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnDelete.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded));
+                return false;
+            }
+        });
+        btnDone.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    btnDoneOnTouch();
+                else if (event.getAction() == MotionEvent.ACTION_UP)
+                    btnDone.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.black_rounded));
+                return false;
+            }
+        });
+    }
+
+    private void btnCatcherOnClick() {
+
+    }
+
+    private void btnCatcherOnTouch() {
+
+    }
+
+    private void btnPitcherOnClick() {
+
+    }
+
+    private void btnPitcherOnTouch() {
+
+    }
+
+    private void btnFirstBaseOnClick() {
+
+    }
+
+    private void btnFirstBaseOnTouch() {
+
+    }
+
+    private void btnSecondBaseOnClick() {
+
+    }
+
+    private void btnSecondBaseOnTouch() {
+
+    }
+
+    private void btnShortStopOnClick() {
+
+    }
+
+    private void btnShortStopOnTouch() {
+
+    }
+
+    private void btnThirdBaseOnClick() {
+
+    }
+
+    private void btnThirdBaseOnTouch() {
+
+    }
+
+    private void btnLeftFieldOnClick() {
+
+    }
+
+    private void btnLeftFieldOnTouch() {
+
+    }
+
+    private void btnCenterFieldOnClick() {
+
+    }
+
+    private void btnCenterFieldOnTouch() {
+
+    }
+
+    private void btnRightFieldOnClick() {
+
+    }
+
+    private void btnRightFieldOnTouch() {
+
+    }
+
+    private void btnDeleteOnClick() {
+
+    }
+
+    private void btnDeleteOnTouch() {
+
+    }
+
+    private void btnDoneOnClick() {
+
+    }
+
+    private void btnDoneOnTouch() {
+
+    }
+
+    private void setTxtEnterPositions(String text) {
+
+    }
+
+    private void setTxtOutType(String text) {
+
+    }
+
+    private void setTxtPositions(String text) {
+
+    }
+
+    private String getTxtPositions() {
+        return null;
+    }
+
+    private void appendPosition(String position) {
+
+    }
+
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+
     }
 }

@@ -19,7 +19,8 @@ public class RecordGameActivity extends AppCompatActivity implements
         AtBatFragment.OnFragmentInteractionListener,
         RunnerFragment.OnFragmentInteractionListener,
         BatterRetiredFragment.OnFragmentInteractionListener,
-        ReachedBaseFragment.OnFragmentInteractionListener {
+        ReachedBaseFragment.OnFragmentInteractionListener,
+        FieldersRetiredFragment.OnFragmentInteractionListener {
 
     private int strikeCount = 0;
     private int ballCount = 0;

@@ -262,7 +262,7 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     private void btnFoulOutOnClick() {
-
+        mListener.loadFragment(new FieldersRetiredFragment());
     }
 
     private void btnFoulOutOnTouch() {
@@ -270,7 +270,7 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     private void btnFlyOutOnClick() {
-
+        mListener.loadFragment(new FieldersRetiredFragment());
     }
 
     private void btnFlyOutOnTouch() {
@@ -294,7 +294,7 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     private void btnGroundOutOnClick() {
-
+        mListener.loadFragment(new FieldersRetiredFragment());
     }
 
     private void btnGroundOutOnTouch() {
@@ -302,7 +302,7 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     private void btnLineOutOnClick() {
-
+        mListener.loadFragment(new FieldersRetiredFragment());
     }
 
     private void btnLineOutOnTouch() {
@@ -310,7 +310,7 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     private void btnUnassistedOnClick() {
-
+        mListener.loadFragment(new FieldersRetiredFragment());
     }
 
     private void btnUnassistedOnTouch() {
@@ -318,7 +318,7 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     private void btnSacFlyOnClick() {
-
+        mListener.loadFragment(new FieldersRetiredFragment());
     }
 
     private void btnSacFlyOnTouch() {
@@ -326,7 +326,7 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     private void btnSacBuntOnClick() {
-
+        mListener.loadFragment(new FieldersRetiredFragment());
     }
 
     private void btnSacBuntOnTouch() {
@@ -334,7 +334,7 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     private void btnDoublePlayOnClick() {
-
+        mListener.loadFragment(new FieldersRetiredFragment());
     }
 
     private void btnDoublePlayOnTouch() {
@@ -342,7 +342,7 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     private void btnTriplePlayOnClick() {
-
+        mListener.loadFragment(new FieldersRetiredFragment());
     }
 
     private void btnTriplePlayOnTouch() {
@@ -350,6 +350,6 @@ public class BatterRetiredFragment extends Fragment {
     }
 
     public interface OnFragmentInteractionListener {
-
+        void loadFragment(Fragment f);
     }
 }
