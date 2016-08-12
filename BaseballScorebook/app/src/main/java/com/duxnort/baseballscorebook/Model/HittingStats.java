@@ -4,7 +4,7 @@ public class HittingStats {
     private int games = 0;
     private int atBats = 0;
     private int runs = 0;
-    private int hits = 0;
+    private int singles = 0;
     private int doubles = 0;
     private int triples = 0;
     private int homeRuns = 0;
@@ -49,12 +49,12 @@ public class HittingStats {
         this.runs = runs;
     }
 
-    public int getHits() {
-        return hits;
+    public int getSingles() {
+        return singles;
     }
 
-    public void setHits(int hits) {
-        this.hits = hits;
+    public void setSingles(int singles) {
+        this.singles = singles;
     }
 
     public int getDoubles() {
@@ -186,34 +186,38 @@ public class HittingStats {
     }
 
     public double calcBattingAvg() {
-        return 0;
+        return ((double) calcHits()) / ((double) getAtBats());
     }
 
     public double calcOnBasePct() {
-        return 0;
+        return ((double) calcHits() + (double) getWalks() + (double) getIntenWalks() + (double) getHitByPitch()) / ((double) calcPlateApps() - (double) getSacBunts());
     }
 
     public double calcSlugPct() {
-        return 0;
+        return ((double) calcTotalBases()) / (double) getAtBats();
     }
 
     public double calcOBPS() {
-        return 0;
+        return calcOnBasePct() + calcSlugPct();
     }
 
-    public double calcTotalBases() {
-        return 0;
+    public int calcTotalBases() {
+        return ((getSingles()) + (getDoubles() * 2) + (getTriples() * 3) + (getHomeRuns() * 4));
     }
 
-    public double calcXBH() {
-        return 0;
+    public int calcXBH() {
+        return getDoubles() + getTriples() + getHomeRuns(); // More efficient than subtracting singles from hits.
     }
 
     public double calcGOAO() {
-        return 0;
+        return ((double) getGroundOuts()) / ((double) getFlyOuts());
     }
 
-    public double calcPlateApps() {
-        return 0;
+    public int calcPlateApps() {
+        return getAtBats() + getWalks() + getIntenWalks() + getHitByPitch() + getSacBunts() + getSacFlys();
+    }
+
+    public int calcHits() {
+        return getSingles() + getDoubles() + getTriples() + getHomeRuns();
     }
 }
