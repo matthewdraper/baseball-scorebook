@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="com.duxnort.baseballscorebook.LineupFragment"
+    tools:context=".View.Fragment.LineupFragment"
     android:id="@+id/lineupContainer">
 
     <!-- TODO: Update blank fragment layout -->

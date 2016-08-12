@@ -1,4 +1,9 @@
-package com.duxnort.baseballscorebook;
+/*
+ * Copyright (c) 2016. This file and any source code contained in this project are soley owned by Matthew R. Draper and may not be used or copied by anyone else.
+ *
+ */
+
+package com.duxnort.baseballscorebook.View.Activity;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -10,6 +15,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
+import com.duxnort.baseballscorebook.R;
+import com.duxnort.baseballscorebook.View.Fragment.AtBatFragment;
+import com.duxnort.baseballscorebook.View.Fragment.BatterRetiredFragment;
+import com.duxnort.baseballscorebook.View.Fragment.FieldersRetiredFragment;
+import com.duxnort.baseballscorebook.View.Fragment.ReachedBaseFragment;
+import com.duxnort.baseballscorebook.View.Fragment.RunnerFragment;
+import com.duxnort.baseballscorebook.View.Fragment.ScoreboardFragment;
+import com.duxnort.baseballscorebook.Model.ScoringSymbol;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;

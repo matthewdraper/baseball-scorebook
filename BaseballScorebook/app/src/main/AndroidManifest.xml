@@ -8,19 +8,19 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".View.Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateTeamActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".HelpActivity" />
-        <activity android:name=".RecordGameSetupActivity" />
-        <activity android:name=".LineupSetupActivity" />
-        <activity android:name=".RecordGameActivity" />
+        <activity android:name=".View.Activity.CreateTeamActivity" />
+        <activity android:name=".View.Activity.SettingsActivity" />
+        <activity android:name=".View.Activity.HelpActivity" />
+        <activity android:name=".View.Activity.RecordGameSetupActivity" />
+        <activity android:name=".View.Activity.LineupSetupActivity" />
+        <activity android:name=".View.Activity.RecordGameActivity" />
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data

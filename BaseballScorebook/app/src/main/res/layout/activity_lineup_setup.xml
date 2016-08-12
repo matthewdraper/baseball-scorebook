@@ -7,7 +7,7 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context="com.duxnort.baseballscorebook.LineupSetupActivity"
+    tools:context=".View.Activity.LineupSetupActivity"
     android:background="@drawable/fieldbackground">
 
     <TabHost
@@ -63,7 +63,7 @@
                     <fragment
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:name="com.duxnort.baseballscorebook.LineupFragment"
+                        android:name="com.duxnort.baseballscorebook.View.Fragment.LineupFragment"
                         android:id="@+id/homeLineup"
                         tools:layout="@layout/fragment_lineup" />
 
@@ -100,7 +100,7 @@
                         tools:layout="@layout/fragment_lineup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:name="com.duxnort.baseballscorebook.LineupFragment"
+                        android:name="com.duxnort.baseballscorebook.View.Fragment.LineupFragment"
                         android:id="@+id/awayLineup" />
 
                 </LinearLayout>

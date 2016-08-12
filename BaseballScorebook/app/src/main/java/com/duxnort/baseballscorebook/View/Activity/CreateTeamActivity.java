@@ -1,9 +1,17 @@
-package com.duxnort.baseballscorebook;
+/*
+ * Copyright (c) 2016. This file and any source code contained in this project are soley owned by Matthew R. Draper and may not be used or copied by anyone else.
+ *
+ */
+
+package com.duxnort.baseballscorebook.View.Activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.duxnort.baseballscorebook.R;
+import com.duxnort.baseballscorebook.View.Fragment.AddPlayerFragment;
 
 import java.util.ArrayList;
 

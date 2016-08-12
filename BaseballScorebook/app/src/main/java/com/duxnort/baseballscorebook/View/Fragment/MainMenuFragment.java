@@ -1,4 +1,9 @@
-package com.duxnort.baseballscorebook;
+/*
+ * Copyright (c) 2016. This file and any source code contained in this project are soley owned by Matthew R. Draper and may not be used or copied by anyone else.
+ *
+ */
+
+package com.duxnort.baseballscorebook.View.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +15,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.duxnort.baseballscorebook.R;
+import com.duxnort.baseballscorebook.View.Activity.CreateTeamActivity;
+import com.duxnort.baseballscorebook.View.Activity.HelpActivity;
+import com.duxnort.baseballscorebook.View.Activity.RecordGameSetupActivity;
+import com.duxnort.baseballscorebook.View.Activity.SettingsActivity;
 
 public class MainMenuFragment extends Fragment {
 

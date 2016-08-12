@@ -8,7 +8,7 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context="com.duxnort.baseballscorebook.RecordGameActivity"
+    tools:context=".View.Activity.RecordGameActivity"
     android:background="@color/colorPrimaryBackground">
 
     <LinearLayout
@@ -26,7 +26,7 @@
                 android:layout_height="100dp"
                 app:layout_widthPercent="100%"
                 app:layout_heightPercent="18%"
-                android:name="com.duxnort.baseballscorebook.ScoreboardFragment"
+                android:name="com.duxnort.baseballscorebook.View.Fragment.ScoreboardFragment"
                 android:id="@+id/fragScoreboard"
                 tools:layout="@layout/fragment_scoreboard"
                  />
@@ -172,7 +172,7 @@
                             app:layout_widthPercent="100%"
                             android:layout_height="wrap_content"
                             app:layout_heightPercent="45%"
-                            android:name="com.duxnort.baseballscorebook.AtBatFragment"
+                            android:name="com.duxnort.baseballscorebook.View.Fragment.AtBatFragment"
                             android:id="@+id/fragEvents"
 
                             tools:layout="@layout/fragment_at_bat"

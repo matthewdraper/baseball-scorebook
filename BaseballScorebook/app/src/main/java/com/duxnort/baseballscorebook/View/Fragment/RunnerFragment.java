@@ -1,4 +1,9 @@
-package com.duxnort.baseballscorebook;
+/*
+ * Copyright (c) 2016. This file and any source code contained in this project are soley owned by Matthew R. Draper and may not be used or copied by anyone else.
+ *
+ */
+
+package com.duxnort.baseballscorebook.View.Fragment;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -9,6 +14,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.duxnort.baseballscorebook.R;
 
 public class RunnerFragment extends Fragment {
 

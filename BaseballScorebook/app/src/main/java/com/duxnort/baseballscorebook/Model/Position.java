@@ -1,4 +1,9 @@
-package com.duxnort.baseballscorebook;
+/*
+ * Copyright (c) 2016. This file and any source code contained in this project are soley owned by Matthew R. Draper and may not be used or copied by anyone else.
+ *
+ */
+
+package com.duxnort.baseballscorebook.Model;
 
 
 public enum Position {

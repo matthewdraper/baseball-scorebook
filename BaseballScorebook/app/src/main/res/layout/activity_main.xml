@@ -7,7 +7,7 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context="com.duxnort.baseballscorebook.MainActivity"
+    tools:context=".View.Activity.MainActivity"
     android:background="@color/colorPrimaryBackground">
 
     <LinearLayout
@@ -37,7 +37,7 @@
             <fragment
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:name="com.duxnort.baseballscorebook.MainMenuFragment"
+                android:name="com.duxnort.baseballscorebook.View.Fragment.MainMenuFragment"
                 android:id="@+id/fragment"
                 tools:layout="@layout/fragment_main_menu"
                 android:layout_alignParentBottom="true"
