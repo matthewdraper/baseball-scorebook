@@ -96,22 +96,22 @@ public class FieldingStats {
     }
 
     public String calcInnings() {
-        return null;
+        return Integer.toString(getOutInField() / 3).concat(".").concat(Integer.toString(getOutInField() % 3));
     }
 
     public int calcTotalChances() {
-        return 0;
+        return getAssists() + getPutOuts() + getErrors();
     }
 
     public double calcStolenBasePct() {
-        return 0;
+        return ((double) getStolenBases()) / ((double) getStolenBases() + (double) getCaughtStealing());
     }
 
     public double calcFieldingPct() {
-        return 0;
+        return ((double) getPutOuts() + (double) getAssists()) / ((double) getPutOuts() + (double) getAssists() + (double) getErrors());
     }
 
     public double calcRangeFactor() {
-        return 0;
+        return ((double) getPutOuts() + (double) getAssists()) / ((double) getOutInField() / 3);
     }
 }
