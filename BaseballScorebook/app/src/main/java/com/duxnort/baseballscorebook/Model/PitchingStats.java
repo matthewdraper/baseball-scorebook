@@ -7,7 +7,11 @@ public class PitchingStats {
     private int gamesStarted = 0;
     private int saves = 0;
     private int saveOpps = 0;
-    private int hits = 0;
+    private int numOutsPitched = 0;
+    private int singles = 0;
+    private int doubles = 0;
+    private int triples = 0;
+    private int sacBunts = 0;
     private int runs = 0;
     private int earnedRuns = 0;
     private int homeRuns = 0;
@@ -30,6 +34,8 @@ public class PitchingStats {
     private int pickOffs = 0;
     private int totalNumBF = 0;
     private int numPitches = 0;
+    private int atBats = 0;
+
 
     public PitchingStats() {
     }
@@ -82,12 +88,44 @@ public class PitchingStats {
         this.saveOpps = saveOpps;
     }
 
-    public int getHits() {
-        return hits;
+    public int getNumOutsPitched() {
+        return numOutsPitched;
     }
 
-    public void setHits(int hits) {
-        this.hits = hits;
+    public void setNumOutsPitched(int numOutsPitched) {
+        this.numOutsPitched = numOutsPitched;
+    }
+
+    public int getSingles() {
+        return singles;
+    }
+
+    public void setSingles(int singles) {
+        this.singles = singles;
+    }
+
+    public int getDoubles() {
+        return doubles;
+    }
+
+    public void setDoubles(int doubles) {
+        this.doubles = doubles;
+    }
+
+    public int getTriples() {
+        return triples;
+    }
+
+    public void setTriples(int triples) {
+        this.triples = triples;
+    }
+
+    public int getSacBunts() {
+        return sacBunts;
+    }
+
+    public void setSacBunts(int sacBunts) {
+        this.sacBunts = sacBunts;
     }
 
     public int getRuns() {
@@ -266,63 +304,75 @@ public class PitchingStats {
         this.numPitches = numPitches;
     }
 
+    public int getAtBats() {
+        return atBats;
+    }
+
+    public void setAtBats(int atBats) {
+        this.atBats = atBats;
+    }
+
     public double calcEarnedRunAvg() {
-        return 0;
+        return ((9 * (double) getEarnedRuns()) / ((double) getNumOutsPitched() / 3));
     }
 
     public String calcInningsPitched() {
-        return null;
+        return Integer.toString(getNumOutsPitched() / 3).concat(".").concat(Integer.toString(getNumOutsPitched() % 3));
     }
 
     public int calcStrikeOuts() {
-        return 0;
+        return getStrikeOutLook() + getStrikeOutSwing();
     }
 
     public double calcAverage() {
-        return 0;
+        return (double) calcHits() / (double) getAtBats();
     }
 
     public double calcWHIP() {
-        return 0;
+        return ((double) calcHits() + (double) getWalks()) / ((double) getNumOutsPitched() / 3);
     }
 
     public double calcWinPct() {
-        return 0;
+        return ((double) getWins()) / ((double) getWins() + (double) getLosses());
     }
 
     public double calcGOAO() {
-        return 0;
+        return ((double) getGroundOuts()) / ((double) getFlyOuts());
     }
 
     public double calcOBP() {
-        return 0;
+        return ((double) calcHits() + (double) getWalks() + (double) getIntenWalks() + (double) getHitBatsmen()) / ((double) getTotalNumBF() - (double) getSacBunts());
     }
 
     public double calcSlugPct() {
-        return 0;
+        return ((double) getSingles() + (2 * (double) getDoubles()) + (3 * (double) getTriples()) + (4 * (double) getHomeRuns())) / (double) getAtBats();
     }
 
     public double calcOBPS() {
-        return 0;
+        return calcOBP() + calcSlugPct();
     }
 
     public double calcKsPerNine() {
-        return 0;
+        return (((double) calcStrikeOuts()) / ((double) getNumOutsPitched() / 3)) * 9;
     }
 
     public double calcWalksPerNine() {
-        return 0;
+        return (((double) getWalks()) / ((double) getNumOutsPitched() / 3)) * 9;
     }
 
     public double calcHitsPerNine() {
-        return 0;
+        return (((double) calcHits()) / ((double) getNumOutsPitched() / 3)) * 9;
     }
 
     public double calcKBB() {
-        return 0;
+        return ((double) calcStrikeOuts()) / ((double) getWalks());
     }
 
     public double calcPIP() {
-        return 0;
+        return ((double) getNumPitches()) / ((double) getNumOutsPitched() / 3);
+    }
+
+    public int calcHits() {
+        return getSingles() + getDoubles() + getTriples() + getHomeRuns();
     }
 }
