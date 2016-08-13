@@ -113,4 +113,8 @@ public class Game {
         this.fieldName = fieldName;
     }
 
+    public GameState getCurrentGameState(){
+        return getGameStateList().get(getCurrGameStateIndex());
+    }
+
 }

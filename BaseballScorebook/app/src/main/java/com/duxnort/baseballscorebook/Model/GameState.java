@@ -3,7 +3,8 @@ package com.duxnort.baseballscorebook.Model;
 public class GameState {
     private int ballCount = 0;
     private int strikeCount = 0;
-    private int pitchCount = 0;
+    private int homePitchCount = 0;
+    private int awayPitchCount = 0;
     private boolean isTop = true;
     private int inning = 1;
     private int lineupStateIndex = 0;
@@ -38,12 +39,20 @@ public class GameState {
         this.strikeCount = strikeCount;
     }
 
-    public int getPitchCount() {
-        return pitchCount;
+    public int getHomePitchCount() {
+        return homePitchCount;
     }
 
-    public void setPitchCount(int pitchCount) {
-        this.pitchCount = pitchCount;
+    public void setHomePitchCount(int pitchCount) {
+        this.homePitchCount = pitchCount;
+    }
+
+    public int getAwayPitchCount() {
+        return awayPitchCount;
+    }
+
+    public void setAwayPitchCount(int pitchCount) {
+        this.awayPitchCount = pitchCount;
     }
 
     public boolean isTop() {
