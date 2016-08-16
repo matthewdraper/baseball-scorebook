@@ -102,4 +102,11 @@ public class Player extends Person {
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
+
+    public boolean isSwitchHitter() {
+        if(isBatRight() && isBatLeft()){
+            return true;
+        }
+        return false;
+    }
 }

@@ -28,7 +28,6 @@ public class Recorder {
 
     public void recordStrike() throws Exception {
         GameState gs = getGame().getCurrentGameState();
-
         if(gs.getStrikeCount() < 3){
             gs.setStrikeCount(gs.getStrikeCount() + 1);
             if(gs.isTop()){
@@ -65,7 +64,35 @@ public class Recorder {
     }
 
     public void recordSingle() {
-        GameState gs = getGame().getCurrentGameState();
+        GameState gs = getGame().getCurrentGameState(); // Gets the current game state
+
+        // If it is the top of the inning
+        if(gs.isTop()){
+            // Gets the current batter from the away team
+            // Holy method chaining...
+            Player batter = getGame().getAwayTeam().getRoster().get(gs.getCurrAwayBatterIndex());
+            // If the batter is a switch hitter see what hand the pitcher is.
+            if(batter.isSwitchHitter()){
+                Lineup homeLineup = getGame().getLineupStatesList().get(
+                        getGame().getCurrLineupStateIndex()).getHomeLineup();
+                int homePitcherIndex = homeLineup.positionsRosterIndex(Position.PITCHER);
+                Player homePitcher = getGame().getHomeTeam().getRoster().get(homePitcherIndex);
+                // If the pitcher is right handed the batter must bat from the left side
+                if(homePitcher.isThrowRight()){
+//                    batter.getStats().getHitStatsLeft().setSingles(batter.getStats().getHitStatsLeft().getSingles() + 1);
+//                    homePitcher.getStats().getPitchStatsRight().setSingles(homePitcher.getStats().getPitchStatsRight().getSingles() + 1);
+                }
+            } else {
+                if(batter.isBatRight()){
+
+                }
+                if(batter.isBatLeft()){
+
+                }
+            }
+        } else {
+            gs.setAwayPitchCount(gs.getAwayPitchCount() + 1);
+        }
     }
 
     public void recordDouble() {
