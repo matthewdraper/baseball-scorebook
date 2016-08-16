@@ -735,51 +735,84 @@ public class PitchingStats {
         return getStrikeOutLook() + getStrikeOutSwing();
     }
 
-    public double calcAverage() {
+    public double calcAverage() throws Exception {
+        if(getAtBats() < 1){
+            throw new Exception("Cannot calculate Batting Average Against with less than 1 at bat.");
+        }
         return (double) calcHits() / (double) getAtBats();
     }
 
-    public double calcWHIP() {
+    public double calcWHIP() throws Exception {
+        if(getNumOutsPitched() < 1){
+            throw new Exception("Cannot calculate WHIP with less than 1 out pitched.");
+        }
         return ((double) calcHits() + (double) getWalks()) / ((double) getNumOutsPitched() / 3);
     }
 
-    public double calcWinPct() {
+    public double calcWinPct() throws Exception {
+        if((getWins() + getLosses()) < 1){
+            throw new Exception("Cannot calculate Win % with no wins or losses");
+        }
         return ((double) getWins()) / ((double) getWins() + (double) getLosses());
     }
 
-    public double calcGOAO() {
+    public double calcGOAO() throws Exception {
+        if(getFlyOuts() < 1){
+            throw new Exception("Cannot calculate GO_AO with no fly outs.");
+        }
         return ((double) getGroundOuts()) / ((double) getFlyOuts());
     }
 
-    public double calcOBP() {
+    public double calcOBP() throws Exception {
+        if((getTotalNumBF() - getSacBunts()) < 1){
+            throw new Exception("Cannot calculate OBP when number of batters faced minus sac bunts is less than 1.");
+        }
         return ((double) calcHits() + (double) getWalks() + (double) getIntenWalks() + (double) getHitBatsmen()) / ((double) getTotalNumBF() - (double) getSacBunts());
     }
 
-    public double calcSlugPct() {
+    public double calcSlugPct() throws Exception {
+        if(getAtBats() < 1){
+            throw new Exception("Cannot calculate Slugging % when number of at bats is less than 1.");
+        }
         return ((double) getSingles() + (2 * (double) getDoubles()) + (3 * (double) getTriples()) + (4 * (double) getHomeRuns())) / (double) getAtBats();
     }
 
-    public double calcOBPS() {
+    public double calcOBPS() throws Exception {
         return calcOBP() + calcSlugPct();
     }
 
-    public double calcKsPerNine() {
+    public double calcKsPerNine() throws Exception {
+        if(getNumOutsPitched() < 1){
+            throw new Exception("Cannot calculate K's per 9 with less than 1 out pitched.");
+        }
         return (((double) calcStrikeOuts()) / ((double) getNumOutsPitched() / 3)) * 9;
     }
 
-    public double calcWalksPerNine() {
+    public double calcWalksPerNine() throws Exception {
+        if(getNumOutsPitched() < 1){
+            throw new Exception(("Cannot calculate BB's per 9 with less than 1 out pitched."));
+        }
         return (((double) getWalks()) / ((double) getNumOutsPitched() / 3)) * 9;
     }
 
-    public double calcHitsPerNine() {
+    public double calcHitsPerNine() throws Exception {
+        if(getNumOutsPitched() < 1){
+            throw new Exception(("Cannot calculate Hits per 9 with less than 1 out pitched."));
+        }
         return (((double) calcHits()) / ((double) getNumOutsPitched() / 3)) * 9;
     }
 
-    public double calcKBB() {
+    public double calcKBB() throws Exception {
+        if(getWalks() < 1){
+            throw new Exception("Cannot calculate K's per BB with less than 1 walk.");
+        }
         return ((double) calcStrikeOuts()) / ((double) getWalks());
     }
 
-    public double calcPIP() {
+    public double calcPIP() throws Exception {
+        if(getNumOutsPitched() < 1){
+            throw new Exception("Cannot calculate Pitches per Inning Pitched(PIP) with no outs pitched.");
+        }
         return ((double) getNumPitches()) / ((double) getNumOutsPitched() / 3);
     }
 

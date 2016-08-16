@@ -41,7 +41,7 @@ public class HittingStats {
         if(getGames() > 0){
             setGames(getGames() - 1);
         } else {
-            throw new Exception("Cannot have negative Games.");
+            throw new Exception("Cannot have negative Games(Batter).");
         }
     }
 
@@ -61,7 +61,7 @@ public class HittingStats {
         if(getAtBats() > 0){
             setAtBats(getAtBats() - 1);
         } else {
-            throw new Exception("Cannot have negative At Bats.");
+            throw new Exception("Cannot have negative At Bats(Batter).");
         }
     }
 
@@ -81,7 +81,7 @@ public class HittingStats {
         if(getRuns() > 0){
             setRuns(getRuns() - 1);
         } else {
-            throw new Exception("Cannot have negative Runs.");
+            throw new Exception("Cannot have negative Runs(Batter).");
         }
     }
 
@@ -101,7 +101,7 @@ public class HittingStats {
         if(getSingles() > 0){
             setSingles(getSingles() - 1);
         } else {
-            throw new Exception("Cannot have negative Singles.");
+            throw new Exception("Cannot have negative Singles(Batter).");
         }
     }
 
@@ -121,7 +121,7 @@ public class HittingStats {
         if(getDoubles() > 0){
             setDoubles(getDoubles() - 1);
         } else {
-            throw new Exception("Cannot have negative Doubles");
+            throw new Exception("Cannot have negative Doubles(Batter).");
         }
     }
 
@@ -141,7 +141,7 @@ public class HittingStats {
         if(getTriples() > 0){
             setTriples(getTriples() - 1);
         } else {
-            throw new Exception("Cannot have negative Triples");
+            throw new Exception("Cannot have negative Triples(Batter).");
         }
     }
 
@@ -161,7 +161,7 @@ public class HittingStats {
         if(getHomeRuns() > 0){
             setHomeRuns(getHomeRuns() - 1);
         } else {
-            throw new Exception("Cannot have negative Home Runs.");
+            throw new Exception("Cannot have negative Home Runs(Batter).");
         }
     }
 
@@ -181,7 +181,7 @@ public class HittingStats {
         if(getRbis() > 0){
             setRbis(getRbis() - 1);
         } else {
-            throw new Exception("Cannot have negative RBIs.");
+            throw new Exception("Cannot have negative RBIs(Batter).");
         }
     }
 
@@ -201,7 +201,7 @@ public class HittingStats {
         if(getWalks() > 0){
             setWalks(getWalks() - 1);
         } else {
-            throw new Exception("Cannot have negative Walks.");
+            throw new Exception("Cannot have negative Walks(Batter).");
         }
     }
 
@@ -221,7 +221,7 @@ public class HittingStats {
         if(getStrikeOuts() > 0) {
             setStrikeOuts(getStrikeOuts() - 1);
         } else {
-            throw new Exception("Cannot have negative Strike Outs.");
+            throw new Exception("Cannot have negative Strike Outs(Batter).");
         }
     }
 
@@ -241,7 +241,7 @@ public class HittingStats {
         if(getStolenBases() > 0){
             setStolenBases(getStolenBases() - 1);
         } else {
-            throw new Exception("Cannot have negative Stolen Bases.");
+            throw new Exception("Cannot have negative Stolen Bases(Batter).");
         }
     }
 
@@ -261,7 +261,7 @@ public class HittingStats {
         if(getCaughtStealing() > 0){
             setCaughtStealing(getCaughtStealing() - 1);
         } else {
-            throw new Exception("Cannot have negative Caught Stealing.");
+            throw new Exception("Cannot have negative Caught Stealing(Batter).");
         }
     }
 
@@ -281,7 +281,7 @@ public class HittingStats {
         if(getIntenWalks() > 0){
             setIntenWalks(getIntenWalks() - 1);
         } else {
-            throw new Exception("Cannot have negative Intentional Walks.");
+            throw new Exception("Cannot have negative Intentional Walks(Batter).");
         }
     }
 
@@ -301,7 +301,7 @@ public class HittingStats {
         if(getHitByPitch() > 0){
             setHitByPitch(getHitByPitch() - 1);
         } else {
-            throw new Exception("Cannot have negative Hit By Pitches.");
+            throw new Exception("Cannot have negative Hit By Pitches(Batter).");
         }
     }
 
@@ -321,7 +321,7 @@ public class HittingStats {
         if(getSacBunts() > 0){
             setSacBunts(getSacBunts() - 1);
         } else {
-            throw new Exception("Cannot have negative Sacrifice Bunts");
+            throw new Exception("Cannot have negative Sacrifice Bunts(Batter).");
         }
     }
 
@@ -341,7 +341,7 @@ public class HittingStats {
         if(getSacFlys() > 0){
             setSacFlys(getSacFlys() - 1);
         } else {
-            throw new Exception("Cannot have negative Sacrifice Flys.");
+            throw new Exception("Cannot have negative Sacrifice Flys(Batter).");
         }
     }
 
@@ -361,7 +361,7 @@ public class HittingStats {
         if(getGroundBallDP() > 0) {
             setGroundBallDP(getGroundBallDP() - 1);
         } else {
-            throw new Exception("Cannot have negative Ground Ball Double Plays.");
+            throw new Exception("Cannot have negative Ground Ball Double Plays(Batter).");
         }
     }
 
@@ -381,7 +381,7 @@ public class HittingStats {
         if(getGroundOuts() > 0){
             setGroundOuts(getGroundOuts() - 1);
         } else {
-            throw new Exception("Cannot have negative Ground Outs.");
+            throw new Exception("Cannot have negative Ground Outs(Batter).");
         }
     }
 
@@ -401,7 +401,7 @@ public class HittingStats {
         if(getFlyOuts() > 0){
             setFlyOuts(getFlyOuts() - 1);
         } else {
-            throw new Exception("Cannot have negative Fly Outs.");
+            throw new Exception("Cannot have negative Fly Outs(Batter).");
         }
     }
 
@@ -425,19 +425,28 @@ public class HittingStats {
         }
     }
 
-    public double calcBattingAvg() {
+    public double calcBattingAvg() throws Exception {
+        if(getAtBats() < 1){
+            throw new Exception("Cannot calculate Batting Average with less than 1 at bat.");
+        }
         return ((double) calcHits()) / ((double) getAtBats());
     }
 
-    public double calcOnBasePct() {
+    public double calcOnBasePct() throws Exception {
+        if((calcPlateApps() - getSacBunts()) < 1){
+            throw new Exception("Cannot calculate On Base % if plate appearances minus number of sacrifice bunts is less than 1.");
+        }
         return ((double) calcHits() + (double) getWalks() + (double) getIntenWalks() + (double) getHitByPitch()) / ((double) calcPlateApps() - (double) getSacBunts());
     }
 
-    public double calcSlugPct() {
+    public double calcSlugPct() throws Exception {
+        if(getAtBats() < 1){
+            throw new Exception("Cannot calculate Batting Average with less than 1 at bat.");
+        }
         return ((double) calcTotalBases()) / (double) getAtBats();
     }
 
-    public double calcOBPS() {
+    public double calcOBPS() throws Exception {
         return calcOnBasePct() + calcSlugPct();
     }
 
@@ -449,7 +458,10 @@ public class HittingStats {
         return getDoubles() + getTriples() + getHomeRuns(); // More efficient than subtracting singles from hits.
     }
 
-    public double calcGOAO() {
+    public double calcGOAO() throws Exception {
+        if(getFlyOuts() < 1){
+            throw new Exception("Cannot calculate GO_AO with less than 1 fly out.");
+        }
         return ((double) getGroundOuts()) / ((double) getFlyOuts());
     }
 
