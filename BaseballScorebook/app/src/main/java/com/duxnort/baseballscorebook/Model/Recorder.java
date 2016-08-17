@@ -306,4 +306,59 @@ public class Recorder {
     public void recordTriplePlay(){
 
     }
+
+    public Lineup getCurrentHomeLineup(){
+        return getGame().getLineupStatesList().get(getGame().getCurrLineupStateIndex()).getHomeLineup();
+    }
+
+    public Lineup getCurrentAwayLineup(){
+        return getGame().getLineupStatesList().get(getGame().getCurrLineupStateIndex()).getAwayLineup();
+    }
+
+    public Player getHomePlayerAtPos(Position pos){
+        int homePlayerIndex = getCurrentHomeLineup().positionsRosterIndex(pos);
+        return getGame().getHomeTeam().getRoster().get(homePlayerIndex);
+    }
+
+    public Player getAwayPlayerAtPos(Position pos){
+        int awayPlayerIndex = getCurrentAwayLineup().positionsRosterIndex(pos);
+        return getGame().getAwayTeam().getRoster().get(awayPlayerIndex);
+    }
+
+    public Player getCurrentHomeBatter(){
+        return getGame().getHomeTeam().getRoster().get(getGame().getCurrentGameState().getCurrHomeBatterIndex());
+    }
+
+    public Player getCurrentAwayBatter(){
+        return getGame().getAwayTeam().getRoster().get(getGame().getCurrentGameState().getCurrAwayBatterIndex());
+    }
+
+    public Player getCurrentRunnerOnFirst(){
+        if(getGame().getCurrentGameState().isTop()){
+            return getGame().getAwayTeam().getRoster().get(getGame().getCurrentGameState().getCurrRunnerFirstIndex());
+        }
+        return getGame().getHomeTeam().getRoster().get(getGame().getCurrentGameState().getCurrRunnerFirstIndex());
+    }
+
+    public Player getCurrentRunnerOnSecond(){
+        if(getGame().getCurrentGameState().isTop()){
+            return getGame().getAwayTeam().getRoster().get(getGame().getCurrentGameState().getCurrRunnerSecondIndex());
+        }
+        return getGame().getHomeTeam().getRoster().get(getGame().getCurrentGameState().getCurrRunnerSecondIndex());
+    }
+
+    public Player getCurrentRunnerOnThird(){
+        if(getGame().getCurrentGameState().isTop()){
+            return getGame().getAwayTeam().getRoster().get(getGame().getCurrentGameState().getCurrRunnerThirdIndex());
+        }
+        return getGame().getHomeTeam().getRoster().get(getGame().getCurrentGameState().getCurrRunnerThirdIndex());
+    }
+
+    public void nextBatter(){
+
+    }
+
+    public void newGameState(){
+        // Copy current game state then add it to the game's gamestate array list and then shift the curr
+    }
 }
