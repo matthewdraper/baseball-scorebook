@@ -161,6 +161,8 @@ public class HittingStats {
 
     public void incrementHomeRuns() {
         setHomeRuns(getHomeRuns() + 1);
+        incrementRuns();
+        incrementRbis();
         incrementAtBats();
     }
 

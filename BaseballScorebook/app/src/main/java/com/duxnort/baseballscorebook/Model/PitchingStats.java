@@ -298,11 +298,13 @@ public class PitchingStats {
 
     public void incrementEarnedRuns(){
         setEarnedRuns(getEarnedRuns() + 1);
+        incrementRuns();
     }
 
     public void decrementEarnedRuns() throws Exception {
         if(getEarnedRuns() > 0){
             setEarnedRuns(getEarnedRuns() - 1);
+            decrementRuns();
         } else {
             throw new Exception("Cannot have negative Earned Runs(Pitcher).");
         }
@@ -319,6 +321,7 @@ public class PitchingStats {
     public void incrementHomeRuns(){
         setHomeRuns(getHomeRuns() + 1);
         incrementAtBats();
+        incrementEarnedRuns();
     }
 
     public void decrementHomeRuns() throws Exception {

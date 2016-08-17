@@ -1,6 +1,7 @@
 package com.duxnort.baseballscorebook.Model;
 
 public class OverallStats {
+    // Only hitStatsRight contain baserunning stats.
     private HittingStats hitStatsRight = null;
     private HittingStats hitStatsLeft = null;
     private PitchingStats pitchStatsRight = null;

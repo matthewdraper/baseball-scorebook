@@ -70,15 +70,17 @@ public class Recorder {
         recordGameState();
         getPitcherStats().incrementHomeRuns();
         getBatterStats().incrementHomeRuns();
-        for(int i = getNumberOfBaserunners(); i > 0; i--){
-
-        }
+        // Have to manually record whether or not any existing base runners were earned or unearned
+        // runs.
         clearCount();
         recordHit();
+        recordRunScored();
     }
 
-    public void recordStolenBase(){
-        GameState gs = getGame().getCurrentGameState();
+    public void recordStolenBase(Player baseRunner){
+        baseRunner.getStats().getHitStatsRight().incrementStolenBases();
+        getPitcherStats().incrementStolenBases();
+        getCatcherStats().incrementStolenBases();
     }
 
     public void recordRunScored(){
@@ -224,9 +226,16 @@ public class Recorder {
 
     public Player getCurrentPitcher(){
         if(getGame().getCurrentGameState().isTop()){
-            return getGame().getHomeTeam().getRoster().get(getCurrentHomeLineup().positionsRosterIndex(Position.PITCHER));
+            return getHomePlayerAtPos(Position.PITCHER);
         }
-        return getGame().getAwayTeam().getRoster().get(getCurrentAwayLineup().positionsRosterIndex(Position.PITCHER));
+        return getAwayPlayerAtPos(Position.PITCHER);
+    }
+
+    public Player getCurrentCatcher(){
+        if(getGame().getCurrentGameState().isTop()){
+            return getHomePlayerAtPos(Position.CATCHER);
+        }
+        return  getAwayPlayerAtPos(Position.CATCHER);
     }
 
     public Player getCurrentRunnerOnFirst(){
@@ -297,7 +306,11 @@ public class Recorder {
         return getCurrentPitcher().getStats().getPitchStatsLeft();
     }
 
-    public int getNumberOfBaserunners(){
+    public FieldingStats getCatcherStats(){
+        return getCurrentCatcher().getStats().getFieldingStats();
+    }
 
+    public int getNumberOfBaserunners(){
+        return 0;
     }
 }
