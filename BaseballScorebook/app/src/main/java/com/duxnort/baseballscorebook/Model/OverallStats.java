@@ -7,18 +7,20 @@ public class OverallStats {
     private PitchingStats pitchStatsRight = null;
     private PitchingStats pitchStatsLeft = null;
     private FieldingStats fieldingStats = null;
+    private RunningStats runningStats = null;
 
     public OverallStats() {
     }
 
     public OverallStats(HittingStats hitStatsRight, HittingStats hitStatsLeft,
                         PitchingStats pitchStatsRight, PitchingStats pitchStatsLeft,
-                        FieldingStats fieldingStats) {
+                        FieldingStats fieldingStats, RunningStats runningStats) {
         this.hitStatsRight = hitStatsRight;
         this.hitStatsLeft = hitStatsLeft;
         this.pitchStatsRight = pitchStatsRight;
         this.pitchStatsLeft = pitchStatsLeft;
         this.fieldingStats = fieldingStats;
+        this.runningStats = runningStats;
     }
 
     public HittingStats getHitStatsRight() {
@@ -59,6 +61,14 @@ public class OverallStats {
 
     public void setFieldingStats(FieldingStats fieldingStats) {
         this.fieldingStats = fieldingStats;
+    }
+
+    public RunningStats getRunningStats() {
+        return runningStats;
+    }
+
+    public void setRunningStats(RunningStats runningStats) {
+        this.runningStats = runningStats;
     }
 
     public PitchingStats calcOverallPitchingStats() {

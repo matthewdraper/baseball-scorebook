@@ -48,6 +48,7 @@ public class Recorder {
         getBatterStats().incrementSingles();
         clearCount();
         recordHit();
+        nextBatter();
     }
 
     public void recordDouble() {
@@ -56,6 +57,7 @@ public class Recorder {
         getBatterStats().incrementDoubles();
         clearCount();
         recordHit();
+        nextBatter();
     }
 
     public void recordTriple(){
@@ -64,6 +66,7 @@ public class Recorder {
         getBatterStats().incrementTriples();
         clearCount();
         recordHit();
+        nextBatter();
     }
 
     public void recordHomeRun(){
@@ -74,105 +77,182 @@ public class Recorder {
         // runs.
         clearCount();
         recordHit();
-        recordRunScored();
+        recordRunScored(getCurrentBatter(), true);
+        nextBatter();
     }
 
     public void recordStolenBase(Player baseRunner){
-        baseRunner.getStats().getHitStatsRight().incrementStolenBases();
+        recordGameState();
+        baseRunner.getStats().getRunningStats().incrementStolenBases();
         getPitcherStats().incrementStolenBases();
         getCatcherStats().incrementStolenBases();
     }
 
-    public void recordRunScored(){
-        GameState gs = getGame().getCurrentGameState();
+    public void recordRunScored(Player baseRunner, Boolean isEarnedRun){
+        recordGameState();
+        baseRunner.getStats().getRunningStats().incrementRuns();
+        getGame().getCurrentGameState().incrementRuns();
+
+        if(isEarnedRun == true){
+            recordEarnedRun();
+        } else {
+            getPitcherStats().incrementRuns();
+        }
     }
 
+    /**
+     * This method should only be used to describe when a base runner scores.
+     */
     public void recordRunBattedIn(){
+        getBatterStats().incrementRbis();
+    }
 
+    private void recordEarnedRun(){
+        getPitcherStats().incrementEarnedRuns();
     }
 
     public void recordWalk(){
-
+        recordGameState();
+        getPitcherStats().incrementWalks();
+        getBatterStats().incrementWalks();
+        clearCount();
+        nextBatter();
     }
 
     public void recordIntentionalWalk(){
-
+        recordGameState();
+        getPitcherStats().incrementIntenWalks();
+        getBatterStats().incrementIntenWalks();
+        clearCount();
+        nextBatter();
     }
 
-    public void recordCaughtStealing(){
-
+    public void recordCaughtStealing(Player baseRunner){
+        recordGameState();
+        baseRunner.getStats().getRunningStats().incrementCaughtStealing();
+        getPitcherStats().incrementCaughtStealing();
+        getCatcherStats().incrementCaughtStealing();
     }
 
-    public void recordStrikeOutLooking(){
-
+    public void recordStrikeOutLooking() throws Exception {
+        recordGameState();
+        getPitcherStats().incrementStrikeOutLook();
+        getBatterStats().incrementStrikeOuts();
+        incrementOuts();
+        clearCount();
+        nextBatter();
     }
 
-    public void recordStrikeOutSwinging(){
-
+    public void recordStrikeOutSwinging() throws Exception {
+        recordGameState();
+        getPitcherStats().incrementStrikeOutLook();
+        getBatterStats().incrementStrikeOuts();
+        incrementOuts();
+        clearCount();
+        nextBatter();
     }
 
     public void recordHitByPitch(){
-
+        recordGameState();
+        getPitcherStats().incrementHitBatsmen();
+        getBatterStats().incrementHitByPitch();
+        clearCount();
+        nextBatter();
     }
 
-    public void recordSacrificeBunt(){
-
+    public void recordSacrificeBunt(String positionsInvolved) throws Exception {
+        recordGameState();
+        getPitcherStats().incrementSacBunts();
+        getBatterStats().incrementSacBunts();
+        incrementOuts();
+        // Record fielding stats here.
+        clearCount();
+        nextBatter();
     }
 
-    public void recordSacrificeFly(){
+    public void recordSacrificeFly(String positionsInvolved, boolean isEarnedRun) throws Exception {
+        recordGameState();
+        getPitcherStats().incrementTotalNumBF();
+        getBatterStats().incrementSacFlys();
+        incrementOuts();
+        if(isEarnedRun){
+            getPitcherStats().incrementEarnedRuns();
+        } else {
+            getPitcherStats().incrementRuns();
+        }
+        // todo: Record fielding stats here.
 
+        clearCount();
+        nextBatter();
     }
 
-    public void recordGroundBallDoublePlay(){
+    public void recordGroundBallDoublePlay(String positionsInvolved) throws Exception {
+        recordGameState();
+        getPitcherStats().incrementInducedGBDPs();
+        getBatterStats().incrementGroundBallDP();
+        incrementOuts();
+        incrementOuts();
+        // todo: Record fielding stats here.
 
+        clearCount();
+        nextBatter();
     }
 
-    public void recordGroundBallOut(){
+    public void recordGroundBallOut(String positionsInvolved) throws Exception {
+        recordGameState();
+        getPitcherStats().incrementGroundOuts();
+        getBatterStats().incrementGroundOuts();
+        incrementOuts();
+        // todo: Record fielding stats here.
 
+        clearCount();
+        nextBatter();
     }
 
-    public void recordFlyBallOut(){
+    public void recordFlyBallOut(String positionsInvolved) throws Exception {
+        recordGameState();
+        getPitcherStats().incrementFlyOuts();
+        getBatterStats().incrementFlyOuts();
+        incrementOuts();
+        // todo: Record fielding stats here.
 
+        clearCount();
+        nextBatter();
     }
 
-    public void recordAtBat(){
-
+    public void recordPutOut(Position pos){
+        getCurrentDefensivePlayer(pos).getStats().getFieldingStats().incrementPutOuts();
     }
 
-    public void recordBatterFaced(){
-
-    }
-
-    public void recordPlateAppearance(){
-
-    }
-
-    public void recordPutOut(){
-
-    }
-
-    public void recordAssist(){
-
+    public void recordAssist(Position pos){
+        getCurrentDefensivePlayer(pos).getStats().getFieldingStats().incrementAssists();
     }
 
     public void recordWildPitch(){
-
+        getPitcherStats().incrementWildPitches();
+        getCatcherStats().incrementWpCatching();
     }
 
     public void recordPassedBall(){
-
+        getCatcherStats().incrementPassedBalls();
     }
 
     public void recordBalk(){
-
+        getPitcherStats().incrementBalks();
     }
 
-    public void recordPickOff(){
+    public void recordPickOff() throws Exception {
+        getPitcherStats().incrementPickOffs();
+        incrementOuts();
+        // todo: Record fielding stats here.
 
+        clearCount();
+        nextBatter();
     }
 
-    public void recordUnassistedPutOut(){
-
+    public void recordUnassistedPutOut(Position pos){
+        recordPutOut(pos);
+        // Record in scorebook as unassited.
     }
 
     public void recordFieldersChoice(){
@@ -207,6 +287,13 @@ public class Recorder {
     public Player getAwayPlayerAtPos(Position pos){
         int awayPlayerIndex = getCurrentAwayLineup().positionsRosterIndex(pos);
         return getGame().getAwayTeam().getRoster().get(awayPlayerIndex);
+    }
+
+    public Player getCurrentDefensivePlayer(Position pos){
+        if(getGame().getCurrentGameState().isTop()){
+           return getHomePlayerAtPos(pos);
+        }
+        return getAwayPlayerAtPos(pos);
     }
 
     public Player getCurrentHomeBatter(){

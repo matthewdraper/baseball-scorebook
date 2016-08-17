@@ -3,7 +3,7 @@ package com.duxnort.baseballscorebook.Model;
 public class HittingStats {
     private int games = 0;
     private int atBats = 0;
-    private int runs = 0;
+//    private int runs = 0;
     private int singles = 0;
     private int doubles = 0;
     private int triples = 0;
@@ -11,8 +11,8 @@ public class HittingStats {
     private int rbis = 0;
     private int walks = 0;
     private int strikeOuts = 0;
-    private int stolenBases = 0;
-    private int caughtStealing = 0;
+//    private int stolenBases = 0;
+//    private int caughtStealing = 0;
     private int intenWalks = 0;
     private int hitByPitch = 0;
     private int sacBunts = 0;
@@ -62,26 +62,6 @@ public class HittingStats {
             setAtBats(getAtBats() - 1);
         } else {
             throw new Exception("Cannot have negative At Bats(Batter).");
-        }
-    }
-
-    public int getRuns() {
-        return runs;
-    }
-
-    private void setRuns(int runs) {
-        this.runs = runs;
-    }
-
-    public void incrementRuns(){
-        setRuns(getRuns() + 1);
-    }
-
-    public void decrementRuns() throws Exception {
-        if(getRuns() > 0){
-            setRuns(getRuns() - 1);
-        } else {
-            throw new Exception("Cannot have negative Runs(Batter).");
         }
     }
 
@@ -161,7 +141,6 @@ public class HittingStats {
 
     public void incrementHomeRuns() {
         setHomeRuns(getHomeRuns() + 1);
-        incrementRuns();
         incrementRbis();
         incrementAtBats();
     }
@@ -237,46 +216,6 @@ public class HittingStats {
         }
     }
 
-    public int getStolenBases() {
-        return stolenBases;
-    }
-
-    private void setStolenBases(int stolenBases) {
-        this.stolenBases = stolenBases;
-    }
-
-    public void incrementStolenBases() {
-        setStolenBases(getStolenBases() + 1);
-    }
-
-    public void decrementStolenBases() throws Exception {
-        if(getStolenBases() > 0){
-            setStolenBases(getStolenBases() - 1);
-        } else {
-            throw new Exception("Cannot have negative Stolen Bases(Batter).");
-        }
-    }
-
-    public int getCaughtStealing() {
-        return caughtStealing;
-    }
-
-    private void setCaughtStealing(int caughtStealing) {
-        this.caughtStealing = caughtStealing;
-    }
-
-    public void incrementCaughtStealing() {
-        setCaughtStealing(getCaughtStealing() + 1);
-    }
-
-    public void decrementCaughtStealing() throws Exception {
-        if(getCaughtStealing() > 0){
-            setCaughtStealing(getCaughtStealing() - 1);
-        } else {
-            throw new Exception("Cannot have negative Caught Stealing(Batter).");
-        }
-    }
-
     public int getIntenWalks() {
         return intenWalks;
     }
@@ -347,6 +286,7 @@ public class HittingStats {
 
     public void incrementSacFlys(){
         setSacFlys(getSacFlys() + 1);
+        incrementRbis();
     }
 
     public void decrementSacFlys() throws Exception {

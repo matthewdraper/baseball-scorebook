@@ -275,4 +275,28 @@ public class GameState {
         setBallCount(0);
         setStrikeCount(0);
     }
+
+    public void incrementRuns(){
+        if(isTop()){
+            setAwayScore(getAwayScore() + 1);
+        } else {
+            setHomeScore(getHomeScore() + 1);
+        }
+    }
+
+    public void decrementRuns() throws Exception {
+        if(isTop()){
+            if(getAwayScore() > 0){
+                setAwayScore(getAwayScore() - 1);
+            } else {
+                throw new Exception("Cannot have negative away tean runs.");
+            }
+        } else {
+            if(getHomeScore() > 0){
+                setHomeScore(getHomeScore() - 1);
+            } else {
+                throw new Exception("Cannot have negative home team runs.");
+            }
+        }
+    }
 }
