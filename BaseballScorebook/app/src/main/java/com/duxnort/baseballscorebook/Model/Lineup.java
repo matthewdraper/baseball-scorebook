@@ -1,32 +1,41 @@
 package com.duxnort.baseballscorebook.Model;
 
 public class Lineup {
-    private final int ROWS = 10;
-    private final int COLS = 2;
-    private int[][] lineup = new int[COLS][ROWS];
+    private final int NUM_PLAYERS = 10;
+    private int[] defensiveArr = new int[NUM_PLAYERS];
+    private int[] battingArr = new int[NUM_PLAYERS];;
 
     public Lineup() {
     }
 
-    public int[][] getLineup() {
-        return lineup;
-    }
-    // 0, 0 is the Designated Hitter at in
-    public void setLineup(int[][] lineup) {
-        this.lineup = lineup;
+    public int[] getDefensiveArr() {
+        return defensiveArr;
     }
 
-    public void designatedHitterIndex() {
+    public void setDefensiveArr(int[] defensiveArr) {
+        this.defensiveArr = defensiveArr;
+    }
 
+    public int[] getBattingArr() {
+        return battingArr;
+    }
+
+    public void setBattingArr(int[] battingOrder) {
+        this.battingArr = battingOrder;
     }
 
     public int positionsRosterIndex(Position pos){
-        return getLineup()[0][pos.getScoreNum()];
+        return getDefensiveArr()[pos.getScoreNum()];
     }
 
-    public int getBattingOrderPosition(Position pos){
-        return 0; // Not finished...
+    /**
+     * This method takes a position in the batting order and returns the index of the player
+     * in the Team's roster ArrayList.
+     * @param spot
+     * @return Index of the player in the team roster ArrayList.
+     */
+    public int getBattingArrPosition(int spot){
+        return  getBattingArr()[spot];
     }
 
-    // Maybe do a position array and a batting order array for each...
 }

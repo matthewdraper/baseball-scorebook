@@ -190,11 +190,13 @@ public class PitchingStats {
 
     public void incrementSingles(){
         setSingles(getSingles() + 1);
+        incrementAtBats();
     }
 
     public void decrementSingles() throws Exception {
         if(getSingles() > 0){
         setSingles(getSingles() - 1);
+            decrementAtBats();
         } else {
             throw new Exception("Cannot have negative Singles(Pitcher).");
         }
@@ -210,11 +212,13 @@ public class PitchingStats {
 
     public void incrementDoubles(){
         setDoubles(getDoubles() + 1);
+        incrementAtBats();
     }
 
     public void decrementDoubles() throws Exception {
         if(getDoubles() > 0){
             setDoubles(getDoubles() - 1);
+            decrementAtBats();
         } else {
             throw new Exception("Cannot have negative Doubles(Pitcher).");
         }
@@ -230,11 +234,13 @@ public class PitchingStats {
 
     public void incrementTriples(){
         setTriples(getTriples() + 1);
+        incrementAtBats();
     }
 
     public void decrementTriples() throws Exception {
         if(getTriples() > 0){
             setTriples(getTriples() - 1);
+            decrementAtBats();
         } else {
             throw new Exception("Cannot have negative Triples(Pitcher).");
         }
@@ -250,11 +256,13 @@ public class PitchingStats {
 
     public void incrementSacBunts(){
         setSacBunts(getSacBunts() + 1);
+        incrementTotalNumBF();
     }
 
     public void decrementSacBunts() throws Exception {
         if(getSacBunts() > 0){
             setSacBunts(getSacBunts() - 1);
+            decrementTotalNumBF();
         } else {
             throw new Exception("Cannot have negative Sacrifice Bunts(Pitcher).");
         }
@@ -310,11 +318,13 @@ public class PitchingStats {
 
     public void incrementHomeRuns(){
         setHomeRuns(getHomeRuns() + 1);
+        incrementAtBats();
     }
 
     public void decrementHomeRuns() throws Exception {
         if(getHomeRuns() > 0){
             setHomeRuns(getHomeRuns() - 1);
+            decrementAtBats();
         } else {
             throw new Exception("Cannot have negative Home Runs(Pitcher).");
         }
@@ -330,11 +340,13 @@ public class PitchingStats {
 
     public void incrementWalks(){
         setWalks(getWalks() + 1);
+        incrementTotalNumBF();
     }
 
     public void decrementWalks() throws Exception {
         if(getWalks() > 0){
             setWalks(getWalks() - 1);
+            decrementTotalNumBF();
         } else {
             throw new Exception("Cannot have negaitve Walks(Pitcher)");
         }
@@ -350,11 +362,13 @@ public class PitchingStats {
 
     public void incrementStrikeOutSwing() {
         setStrikeOutSwing(getStrikeOutSwing() + 1);
+        incrementAtBats();
     }
 
     public void decrementStrikeOutSwing() throws Exception {
         if(getStrikeOutSwing() > 0){
             setStrikeOutSwing(getStrikeOutSwing() - 1);
+            decrementAtBats();
         } else {
             throw new Exception("Cannot have negative Swinging Strike Outs(Pitcher).");
         }
@@ -370,11 +384,13 @@ public class PitchingStats {
 
     public void incrementStrikeOutLook(){
         setStrikeOutLook(getStrikeOutLook() + 1);
+        incrementAtBats();
     }
 
     public void decrementStrikeOutLook() throws Exception {
         if(getStrikeOutLook() > 0){
             setStrikeOutLook(getStrikeOutLook() - 1);
+            decrementAtBats();
         } else {
             throw new Exception("Cannot have negaitve Looking Strike Outs(Pitcher),");
         }
@@ -430,11 +446,13 @@ public class PitchingStats {
 
     public void incrementHitBatsmen() {
         setHitBatsmen(getHitBatsmen() + 1);
+        incrementTotalNumBF();
     }
 
     public void decrementHitBatsmen() throws Exception {
         if(getHitBatsmen() > 0){
             setHitBatsmen(getHitBatsmen() - 1);
+            decrementTotalNumBF();
         } else {
             throw new Exception("Cannot have negative Hit Batsmen(Pitcher).");
         }
@@ -450,11 +468,13 @@ public class PitchingStats {
 
     public void incrementIntenWalks(){
         setIntenWalks(getIntenWalks() + 1);
+        incrementTotalNumBF();
     }
 
     public void decrementIntenWalks() throws Exception {
         if(getIntenWalks() > 0){
             setIntenWalks(getIntenWalks() - 1);
+            decrementTotalNumBF();
         } else {
             throw new Exception("Cannot have negative Intentional Walks(Pitcher).");
         }
@@ -510,11 +530,13 @@ public class PitchingStats {
 
     public void incrementInducedGBDPs() {
         setInducedGBDPs(getInducedGBDPs() + 1);
+        incrementAtBats();
     }
 
     public void decrementInducedGBDPs() throws Exception {
         if(getInducedGBDPs() > 0){
-        setInducedGBDPs(getInducedGBDPs() - 1);
+            setInducedGBDPs(getInducedGBDPs() - 1);
+            decrementAtBats();
         } else {
             throw new Exception("Cannot have negative Induced Ground Ball Double Plays(Pitcher).");
         }
@@ -530,11 +552,13 @@ public class PitchingStats {
 
     public void incrementGroundOuts(){
         setGroundOuts(getGroundOuts() + 1);
+        incrementAtBats();
     }
 
     public void decrementGroundOuts() throws Exception {
         if(getGroundOuts() > 0){
             setGroundOuts(getGroundOuts() - 1);
+            decrementAtBats();
         } else {
             throw new Exception("Cannot have negative Ground Outs(Pitcher).");
         }
@@ -550,11 +574,13 @@ public class PitchingStats {
 
     public void incrementFlyOuts() {
         setFlyOuts(getFlyOuts() + 1);
+        incrementTotalNumBF();
     }
 
-    public void decremetnFlyOuts() throws Exception {
+    public void decrementFlyOuts() throws Exception {
         if(getFlyOuts() > 0){
             setFlyOuts(getFlyOuts() - 1);
+            decrementTotalNumBF();
         } else {
             throw new Exception("Cannot have negative Fly Outs(Pitcher).");
         }
@@ -710,11 +736,13 @@ public class PitchingStats {
 
     public void incrementAtBats() {
         setAtBats(getAtBats() + 1);
+        incrementTotalNumBF();
     }
 
     public void decrementAtBats() throws Exception {
         if(getAtBats() > 0){
             setAtBats(getAtBats() - 1);
+            decrementTotalNumBF();
         } else {
             throw new Exception("Cannot have negative At Bats(Pitcher).");
         }

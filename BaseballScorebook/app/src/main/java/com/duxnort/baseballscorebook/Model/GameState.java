@@ -1,8 +1,10 @@
 package com.duxnort.baseballscorebook.Model;
 
 public class GameState {
+    private final int NUM_BATTERS = 9;
     private int ballCount = 0;
     private int strikeCount = 0;
+    private int numOuts = 0;
     private int homePitchCount = 0;
     private int awayPitchCount = 0;
     private boolean isTop = true;
@@ -50,16 +52,74 @@ public class GameState {
         return ballCount;
     }
 
-    public void setBallCount(int ballCount) {
+    private void setBallCount(int ballCount) {
         this.ballCount = ballCount;
+    }
+
+    public void incrementBalls() throws Exception {
+        if(getBallCount() < 3){
+            setBallCount(getBallCount() + 1);
+        } else {
+            throw new Exception("Cannot have four balls. Must handle walk.");
+        }
+    }
+
+    public void decrementBalls() throws Exception {
+        if(getBallCount() > 0){
+            setBallCount(getBallCount() - 1);
+        } else {
+            throw new Exception("Cannot have negative balls.");
+        }
     }
 
     public int getStrikeCount() {
         return strikeCount;
     }
 
-    public void setStrikeCount(int strikeCount) {
+    private void setStrikeCount(int strikeCount) {
         this.strikeCount = strikeCount;
+    }
+
+    public void incrementStrikes() throws Exception {
+        if(getStrikeCount() < 2){
+            setStrikeCount(getStrikeCount() + 1);
+        } else {
+            throw new Exception("Cannot have three strikes. Must handle strikeout.");
+        }
+    }
+
+    public void decrementStrikes() throws Exception {
+        if(getStrikeCount() > 0){
+            setStrikeCount(getStrikeCount() - 1);
+        } else {
+            throw new Exception("Cannot have negative strikes.");
+        }
+    }
+
+    public int getNumOuts() {
+        return numOuts;
+    }
+
+    public void setNumOuts(int numOuts) {
+        this.numOuts = numOuts;
+    }
+
+    public void incrementOuts() throws Exception {
+        if(getNumOuts() < 3){
+            setNumOuts(getNumOuts() + 1);
+        } else {
+            throw new Exception("Cannot have more than 3 outs in a half inning.");
+        }
+        // Checks if there is three outs and increments inning appropriately.
+        incrementInning();
+    }
+
+    public void decrementOuts() throws Exception {
+        if(getNumOuts() > 0){
+            setNumOuts(getNumOuts() - 1);
+        } else {
+            throw new Exception("Cannot have negative outs.");
+        }
     }
 
     public int getHomePitchCount() {
@@ -88,6 +148,19 @@ public class GameState {
 
     public int getInning() {
         return inning;
+    }
+
+    public void incrementInning() {
+        if(!isTop() && getNumOuts() == 3){
+            setInning(getInning() + 1);
+            setTop(true);
+            clearCount();
+            setNumOuts(0);
+        } else if(isTop() && getNumOuts() == 3){
+            setTop(false);
+            clearCount();
+            setNumOuts(0);
+        }
     }
 
     public void setInning(int inning) {
@@ -188,5 +261,18 @@ public class GameState {
 
     public void setAwayErrors(int awayErrors) {
         this.awayErrors = awayErrors;
+    }
+
+    public void nextBatter(){
+        if(isTop()){
+            setCurrAwayBatterIndex((getCurrAwayBatterIndex() + 1) % NUM_BATTERS);
+        } else {
+            setCurrHomeBatterIndex((getCurrHomeBatterIndex() + 1) % NUM_BATTERS);
+        }
+    }
+
+    public void clearCount(){
+        setBallCount(0);
+        setStrikeCount(0);
     }
 }

@@ -27,172 +27,54 @@ public class Recorder {
     }
 
     public void recordStrike() throws Exception {
-        GameState gs = getGame().getCurrentGameState();
-        if(gs.getStrikeCount() < 3){
-            gs.setStrikeCount(gs.getStrikeCount() + 1);
-            if(gs.isTop()){
-                gs.setHomePitchCount(gs.getHomePitchCount() + 1);
-            } else {
-                gs.setAwayPitchCount(gs.getAwayPitchCount() + 1);
-            }
-        } else {
-            throw new Exception("Too many strikes.");
-        }
+
     }
 
     public void recordBall() throws Exception {
-        GameState gs = getGame().getCurrentGameState();
-        if(gs.getBallCount() < 4){
-            gs.setBallCount(gs.getBallCount() + 1);
-            if(gs.isTop()){
-                gs.setHomePitchCount(gs.getHomePitchCount() + 1);
-            } else {
-                gs.setAwayPitchCount(gs.getAwayPitchCount() + 1);
-            }
-        } else {
-            throw new Exception("Too many balls.");
-        }
+
     }
 
     public void recordHit() {
         GameState gs = getGame().getCurrentGameState();
         if(gs.isTop()){
             gs.setAwayHits(gs.getAwayHits() + 1);
-        } else {
-            gs.setHomeHits(gs.getHomeHits() + 1);
         }
+        gs.setHomeHits(gs.getHomeHits() + 1);
     }
 
     public void recordSingle() {
-        GameState gs = getGame().getCurrentGameState(); // Gets the current game state
-
-        // If it is the top of the inning
-        if(gs.isTop()){
-            // Gets the current awayBatter from the away team
-            Lineup homeLineup = getGame().getLineupStatesList().get(
-                    getGame().getCurrLineupStateIndex()).getHomeLineup();
-            int homePitcherIndex = homeLineup.positionsRosterIndex(Position.PITCHER);
-            Player homePitcher = getGame().getHomeTeam().getRoster().get(homePitcherIndex);
-            Player awayBatter = getGame().getAwayTeam().getRoster().get(gs.getCurrAwayBatterIndex());
-            // If the home pitcher is right handed..
-            if(homePitcher.isThrowRight()){
-                // If the away batter is a switch hitter or is left handed...
-                if(awayBatter.isSwitchHitter() || awayBatter.isBatLeft()){
-                    // Get Batter's Left handed stats
-                    HittingStats batterLeftStats = awayBatter.getStats().getHitStatsLeft();
-                    // Increment at bats
-                    batterLeftStats.incrementAtBats();
-                    // Increment singles
-                    batterLeftStats.incrementSingles();
-                } else if(awayBatter.isBatRight()) { // Else if the batter is right handed...
-                    // Get Batter's Left handed stats
-                    HittingStats batterRightStats = awayBatter.getStats().getHitStatsRight();
-                    // Increment at bats
-                    batterRightStats.incrementAtBats();
-                    // Increment singles
-                    batterRightStats.incrementSingles();
-                }
-                // Record Right Handed Pitcher stats...
-                PitchingStats pitcherRightStats = homePitcher.getStats().getPitchStatsRight();
-                pitcherRightStats.incrementAtBats();
-                pitcherRightStats.incrementTotalNumBF();
-                pitcherRightStats.incrementNumPitches();
-                pitcherRightStats.incrementSingles();
-            }
-
-            if(homePitcher.isThrowLeft()){
-                if(awayBatter.isSwitchHitter() || awayBatter.isBatRight()){
-                    // Get Batter's Right handed stats
-                    HittingStats batterRightStats = awayBatter.getStats().getHitStatsRight();
-                    // Increment at bats
-                    batterRightStats.incrementAtBats();
-                    // Increment singles
-                    batterRightStats.incrementSingles();
-                } else if(awayBatter.isBatLeft()) { // Else if the batter is Left handed...
-                    // Get Batter's Left handed stats
-                    HittingStats batterLeftStats = awayBatter.getStats().getHitStatsLeft();
-                    // Increment at bats
-                    batterLeftStats.incrementAtBats();
-                    // Increment singles
-                    batterLeftStats.incrementSingles();
-                }
-                // Record Left Handed Pitcher stats...
-                PitchingStats pitcherLeftStats = homePitcher.getStats().getPitchStatsLeft();
-                pitcherLeftStats.incrementAtBats();
-                pitcherLeftStats.incrementTotalNumBF();
-                pitcherLeftStats.incrementNumPitches();
-                pitcherLeftStats.incrementSingles();
-            }
-            // It is the bottom half of the inning...
-        } else {
-            // Gets the current awayBatter from the away team
-            Lineup awayLineup = getGame().getLineupStatesList().get(
-                    getGame().getCurrLineupStateIndex()).getAwayLineup();
-            int awayPitcherIndex = awayLineup.positionsRosterIndex(Position.PITCHER);
-            Player awayPitcher = getGame().getAwayTeam().getRoster().get(awayPitcherIndex);
-            Player homeBatter = getGame().getHomeTeam().getRoster().get(gs.getCurrHomeBatterIndex());
-            // If the home pitcher is right handed..
-            if(awayPitcher.isThrowRight()){
-                // If the away batter is a switch hitter or is left handed...
-                if(homeBatter.isSwitchHitter() || homeBatter.isBatLeft()){
-                    // Get Batter's Left handed stats
-                    HittingStats batterLeftStats = homeBatter.getStats().getHitStatsLeft();
-                    // Increment at bats
-                    batterLeftStats.incrementAtBats();
-                    // Increment singles
-                    batterLeftStats.incrementSingles();
-                } else if(homeBatter.isBatRight()) { // Else if the batter is right handed...
-                    // Get Batter's Left handed stats
-                    HittingStats batterRightStats = homeBatter.getStats().getHitStatsRight();
-                    // Increment at bats
-                    batterRightStats.incrementAtBats();
-                    // Increment singles
-                    batterRightStats.incrementSingles();
-                }
-                // Record Right Handed Pitcher stats...
-                PitchingStats pitcherRightStats = awayPitcher.getStats().getPitchStatsRight();
-                pitcherRightStats.incrementAtBats();
-                pitcherRightStats.incrementTotalNumBF();
-                pitcherRightStats.incrementNumPitches();
-                pitcherRightStats.incrementSingles();
-            }
-
-            if(awayPitcher.isThrowLeft()){
-                if(homeBatter.isSwitchHitter() || homeBatter.isBatRight()){
-                    // Get Batter's Right handed stats
-                    HittingStats batterRightStats = homeBatter.getStats().getHitStatsRight();
-                    // Increment at bats
-                    batterRightStats.incrementAtBats();
-                    // Increment singles
-                    batterRightStats.incrementSingles();
-                } else if(homeBatter.isBatLeft()) { // Else if the batter is Left handed...
-                    // Get Batter's Left handed stats
-                    HittingStats batterLeftStats = homeBatter.getStats().getHitStatsLeft();
-                    // Increment at bats
-                    batterLeftStats.incrementAtBats();
-                    // Increment singles
-                    batterLeftStats.incrementSingles();
-                }
-                // Record Left Handed Pitcher stats...
-                PitchingStats pitcherLeftStats = awayPitcher.getStats().getPitchStatsLeft();
-                pitcherLeftStats.incrementAtBats();
-                pitcherLeftStats.incrementTotalNumBF();
-                pitcherLeftStats.incrementNumPitches();
-                pitcherLeftStats.incrementSingles();
-            }
-        }
+        recordGameState();
+        getPitcherStats().incrementSingles();
+        getBatterStats().incrementSingles();
+        clearCount();
+        recordHit();
     }
 
     public void recordDouble() {
-        GameState gs = getGame().getCurrentGameState();
+        recordGameState();
+        getPitcherStats().incrementDoubles();
+        getBatterStats().incrementDoubles();
+        clearCount();
+        recordHit();
     }
 
     public void recordTriple(){
-        GameState gs = getGame().getCurrentGameState();
+        recordGameState();
+        getPitcherStats().incrementTriples();
+        getBatterStats().incrementTriples();
+        clearCount();
+        recordHit();
     }
 
     public void recordHomeRun(){
-        GameState gs = getGame().getCurrentGameState();
+        recordGameState();
+        getPitcherStats().incrementHomeRuns();
+        getBatterStats().incrementHomeRuns();
+        for(int i = getNumberOfBaserunners(); i > 0; i--){
+
+        }
+        clearCount();
+        recordHit();
     }
 
     public void recordStolenBase(){
@@ -333,6 +215,20 @@ public class Recorder {
         return getGame().getAwayTeam().getRoster().get(getGame().getCurrentGameState().getCurrAwayBatterIndex());
     }
 
+    public Player getCurrentBatter(){
+        if(getGame().getCurrentGameState().isTop()){
+            return getCurrentAwayBatter();
+        }
+        return getCurrentHomeBatter();
+    }
+
+    public Player getCurrentPitcher(){
+        if(getGame().getCurrentGameState().isTop()){
+            return getGame().getHomeTeam().getRoster().get(getCurrentHomeLineup().positionsRosterIndex(Position.PITCHER));
+        }
+        return getGame().getAwayTeam().getRoster().get(getCurrentAwayLineup().positionsRosterIndex(Position.PITCHER));
+    }
+
     public Player getCurrentRunnerOnFirst(){
         if(getGame().getCurrentGameState().isTop()){
             return getGame().getAwayTeam().getRoster().get(getGame().getCurrentGameState().getCurrRunnerFirstIndex());
@@ -355,10 +251,53 @@ public class Recorder {
     }
 
     public void nextBatter(){
-
+        getGame().getCurrentGameState().nextBatter();
     }
 
     public void recordGameState(){
         getGame().newGameState();
+    }
+
+    public void plateAppearanceFinished(){
+        recordGameState();
+        clearCount();
+    }
+
+    public void clearCount(){
+        getGame().getCurrentGameState().clearCount();
+    }
+
+    /**
+     * This method must be implemented after plateAppearanceFinished()
+     * @throws Exception
+     */
+    public void incrementOuts() throws Exception {
+        getGame().getCurrentGameState().incrementOuts();
+    }
+
+    public HittingStats getBatterStats(){
+        if(getCurrentBatter().isSwitchHitter()){
+            if(getCurrentPitcher().isThrowRight()){
+                return getCurrentBatter().getStats().getHitStatsLeft();
+            }
+            if(getCurrentPitcher().isThrowLeft()){
+                return getCurrentBatter().getStats().getHitStatsRight();
+            }
+        }
+            if(getCurrentBatter().isBatRight()){
+                return getCurrentBatter().getStats().getHitStatsRight();
+            }
+        return getCurrentBatter().getStats().getHitStatsLeft();
+    }
+
+    public PitchingStats getPitcherStats(){
+        if(getCurrentPitcher().isThrowRight()){
+            return getCurrentPitcher().getStats().getPitchStatsRight();
+        }
+        return getCurrentPitcher().getStats().getPitchStatsLeft();
+    }
+
+    public int getNumberOfBaserunners(){
+
     }
 }

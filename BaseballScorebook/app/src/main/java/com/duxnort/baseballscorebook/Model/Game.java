@@ -49,11 +49,11 @@ public class Game {
         this.lineupStatesList = lineupStatesList;
     }
 
-    public int getCurrGameStateIndex() {
+    private int getCurrGameStateIndex() {
         return currGameStateIndex;
     }
 
-    public void setCurrGameStateIndex(int currGameStateIndex) {
+    private void setCurrGameStateIndex(int currGameStateIndex) {
         this.currGameStateIndex = currGameStateIndex;
     }
 

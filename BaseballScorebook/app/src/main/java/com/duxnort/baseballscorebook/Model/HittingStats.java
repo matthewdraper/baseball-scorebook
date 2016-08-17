@@ -95,11 +95,13 @@ public class HittingStats {
 
     public void incrementSingles(){
         setSingles(getSingles() + 1);
+        incrementAtBats();
     }
 
     public void decrementSingles() throws Exception {
         if(getSingles() > 0){
             setSingles(getSingles() - 1);
+            decrementAtBats();
         } else {
             throw new Exception("Cannot have negative Singles(Batter).");
         }
@@ -115,11 +117,13 @@ public class HittingStats {
 
     public void incrementDoubles() {
         setDoubles(getDoubles() + 1);
+        incrementAtBats();
     }
 
     public void decrementDoubles() throws Exception {
         if(getDoubles() > 0){
             setDoubles(getDoubles() - 1);
+            decrementAtBats();
         } else {
             throw new Exception("Cannot have negative Doubles(Batter).");
         }
@@ -133,13 +137,15 @@ public class HittingStats {
         this.triples = triples;
     }
 
-    public void incrementTriple(){
+    public void incrementTriples(){
         setTriples(getTriples() + 1);
+        incrementAtBats();
     }
 
     public void decrementTriples() throws Exception {
         if(getTriples() > 0){
             setTriples(getTriples() - 1);
+            decrementAtBats();
         } else {
             throw new Exception("Cannot have negative Triples(Batter).");
         }
@@ -155,11 +161,13 @@ public class HittingStats {
 
     public void incrementHomeRuns() {
         setHomeRuns(getHomeRuns() + 1);
+        incrementAtBats();
     }
 
     public void decrementHomeRuns() throws Exception {
         if(getHomeRuns() > 0){
             setHomeRuns(getHomeRuns() - 1);
+            decrementAtBats();
         } else {
             throw new Exception("Cannot have negative Home Runs(Batter).");
         }
@@ -215,11 +223,13 @@ public class HittingStats {
 
     public void incrementStrikeOuts(){
         setStrikeOuts(getStrikeOuts() + 1);
+        incrementAtBats();
     }
 
     public void decrementStrikeOuts() throws Exception {
         if(getStrikeOuts() > 0) {
             setStrikeOuts(getStrikeOuts() - 1);
+            decrementAtBats();
         } else {
             throw new Exception("Cannot have negative Strike Outs(Batter).");
         }
@@ -355,11 +365,13 @@ public class HittingStats {
 
     public void incrementGroundBallDP() {
         setGroundBallDP(getGroundBallDP() + 1);
+        incrementAtBats();
     }
 
     public void decrementGroundBallDP() throws Exception {
         if(getGroundBallDP() > 0) {
             setGroundBallDP(getGroundBallDP() - 1);
+            decrementAtBats();
         } else {
             throw new Exception("Cannot have negative Ground Ball Double Plays(Batter).");
         }
@@ -375,11 +387,13 @@ public class HittingStats {
 
     public void incrementGroundOuts() {
         setGroundOuts(getGroundOuts() + 1);
+        incrementAtBats();
     }
 
     public void decrementGroundOuts() throws Exception {
         if(getGroundOuts() > 0){
             setGroundOuts(getGroundOuts() - 1);
+            decrementAtBats();
         } else {
             throw new Exception("Cannot have negative Ground Outs(Batter).");
         }
@@ -395,11 +409,13 @@ public class HittingStats {
 
     public void incrementFlyOuts() {
         setFlyOuts(getFlyOuts() + 1);
+        incrementAtBats();
     }
 
     public void decrementFlyOuts() throws Exception {
         if(getFlyOuts() > 0){
             setFlyOuts(getFlyOuts() - 1);
+            decrementAtBats();
         } else {
             throw new Exception("Cannot have negative Fly Outs(Batter).");
         }
