@@ -358,7 +358,7 @@ public class Recorder {
 
     }
 
-    public void newGameState(){
-        // Copy current game state then add it to the game's gamestate array list and then shift the curr
+    public void recordGameState(){
+        getGame().newGameState();
     }
 }

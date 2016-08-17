@@ -23,6 +23,29 @@ public class GameState {
     public GameState() {
     }
 
+    // copy constructor
+    public GameState(GameState gameState){
+        setBallCount(gameState.getBallCount());
+        setStrikeCount(gameState.getStrikeCount());
+        setHomePitchCount(gameState.getHomePitchCount());
+        setAwayPitchCount(gameState.getAwayPitchCount());
+        setTop(gameState.isTop());
+        setInning(gameState.getInning());
+        setLineupStateIndex(gameState.getLineupStateIndex());
+        setCurrHomeBatterIndex(gameState.getCurrHomeBatterIndex());
+        setCurrAwayBatterIndex(gameState.getCurrAwayBatterIndex());
+        setCurrRunnerFirstIndex(gameState.getCurrRunnerFirstIndex());
+        setCurrRunnerSecondIndex(gameState.getCurrRunnerSecondIndex());
+        setCurrRunnerThirdIndex(gameState.getCurrRunnerThirdIndex());
+        setHomeScore(gameState.getHomeScore());
+        setAwayScore(gameState.getAwayScore());
+        setHomeHits(gameState.getHomeHits());
+        setAwayHits(gameState.getAwayHits());
+        setHomeErrors(gameState.getHomeErrors());
+        setAwayErrors(gameState.getAwayErrors());
+    }
+
+
     public int getBallCount() {
         return ballCount;
     }

@@ -117,4 +117,14 @@ public class Game {
         return getGameStateList().get(getCurrGameStateIndex());
     }
 
+    public void newGameState(){
+        getGameStateList().add(copyGameState());
+        setCurrGameStateIndex(getCurrGameStateIndex() + 1);
+    }
+
+    public GameState copyGameState(){
+        return new GameState(getCurrentGameState());
+    }
+    
+
 }

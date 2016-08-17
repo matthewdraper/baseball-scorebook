@@ -24,4 +24,9 @@ public class Lineup {
         return getLineup()[0][pos.getScoreNum()];
     }
 
+    public int getBattingOrderPosition(Position pos){
+        return 0; // Not finished...
+    }
+
+    // Maybe do a position array and a batting order array for each...
 }
