@@ -38,7 +38,7 @@ public class PlayerTest {
     public void testGetStats() throws Exception {
         OverallStats stats = new OverallStats();
         RunningStats runningStats = new RunningStats();
-        runningStats.setRuns(2);
+        runningStats.incrementRuns();
         stats.setRunningStats(runningStats);
         Player p = new Player();
         p.setStats(stats);
@@ -49,7 +49,7 @@ public class PlayerTest {
     public void testSetStats() throws Exception {
         OverallStats stats = new OverallStats();
         RunningStats runningStats = new RunningStats();
-        runningStats.setRuns(2);
+        runningStats.incrementRuns();
         stats.setRunningStats(runningStats);
         Player p = new Player();
         p.setStats(stats);

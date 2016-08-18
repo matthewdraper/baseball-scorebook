@@ -2,6 +2,7 @@ package com.duxnort.baseballscorebook.Model;
 
 public class Lineup {
     private final int NUM_PLAYERS = 10;
+    public final int NUM_BATTERS = 9;
     private int[] defensiveArr = new int[NUM_PLAYERS];
     private int[] battingArr = new int[NUM_PLAYERS];;
 

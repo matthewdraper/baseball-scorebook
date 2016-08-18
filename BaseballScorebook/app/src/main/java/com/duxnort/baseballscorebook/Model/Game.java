@@ -10,25 +10,22 @@ public class Game {
     private int currLineupStateIndex = 0;
     private Team homeTeam = null;
     private Team awayTeam = null;
-    private Date startTime = null;
-    private Date endTime = null;
     private ArrayList<Umpire> umpireList = null;
     private String fieldName = null;
+    // TODO: 8/18/16 Need to implement some sort of date API at some point.
 
     public Game() {
     }
 
     public Game(ArrayList<GameState> gameStateList, ArrayList<LineupState> lineupStatesList,
                 int currGameStateIndex, int currLineupStateIndex, Team homeTeam, Team awayTeam,
-                Date startTime, Date endTime, ArrayList<Umpire> umpireList, String fieldName) {
+                ArrayList<Umpire> umpireList, String fieldName) {
         this.gameStateList = gameStateList;
         this.lineupStatesList = lineupStatesList;
         this.currGameStateIndex = currGameStateIndex;
         this.currLineupStateIndex = currLineupStateIndex;
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
-        this.startTime = startTime;
-        this.endTime = endTime;
         this.umpireList = umpireList;
         this.fieldName = fieldName;
     }
@@ -79,22 +76,6 @@ public class Game {
 
     public void setAwayTeam(Team awayTeam) {
         this.awayTeam = awayTeam;
-    }
-
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
     }
 
     public ArrayList<Umpire> getUmpireList() {

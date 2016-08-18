@@ -27,22 +27,34 @@ public class Recorder {
     }
 
     public void recordStrike() throws Exception {
-
+        // 1) Record Strike in GameStats
+        // 2) Record a pitch thrown for the pitcher
+        // 3) Record a pitch seen for the batter
+        // 4) Do not let their be a strike recorded if their are two strikes already
     }
 
     public void recordBall() throws Exception {
-
+        // 1) Record Ball in GameStats
+        // 2) Record a pitch thrown for the pitcher
+        // 3) Record a pitch seen for the batter
+        // 4) Do not let their be a strike recorded if their are three balls already
     }
 
     public void recordHit() {
-        GameState gs = getGame().getCurrentGameState();
-        if(gs.isTop()){
-            gs.setAwayHits(gs.getAwayHits() + 1);
-        }
-        gs.setHomeHits(gs.getHomeHits() + 1);
+        // 1) Record a hit in GameStats
+        // That's it for now...
     }
 
     public void recordSingle() {
+        // 1) Record the GameState just before the hit.
+        // 2) Increment the singles stat for the pitcher.
+        // 3) Increment the singles stat for the batter.
+        // 4) Increment the pitches thrown for pitcher.
+        // 5) Increment the pitches seen for the batter.
+        // 6) Record the location of hit in the scorebox.
+        // 7) Record the single in the scorebox.
+        // 8) Update the Bases. Need to think of how to do this!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // 8) Next batter(clearing the count should be implemented in the next batter method)
         recordGameState();
         getPitcherStats().incrementSingles();
         getBatterStats().incrementSingles();
@@ -52,6 +64,14 @@ public class Recorder {
     }
 
     public void recordDouble() {
+        // 1) Record the GameState just before the hit.
+        // 2) Increment the doubles stat for the pitcher.
+        // 3) Increment the doubles stat for the batter.
+        // 4) Increment the pitches thrown for pitcher.
+        // 5) Increment the pitches seen for the batter.
+        // 6) Record the location of hit in the scorebox.
+        // 7) Record the doubles in the scorebox.
+        // 8) Next batter(clearing the count should be implemented in the next batter method)
         recordGameState();
         getPitcherStats().incrementDoubles();
         getBatterStats().incrementDoubles();
