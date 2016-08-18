@@ -40,6 +40,50 @@ public class PitchingStats {
     public PitchingStats() {
     }
 
+    public PitchingStats(int wins, int losses, int games, int gamesStarted, int saves, int saveOpps,
+                         int numOutsPitched, int singles, int doubles, int triples, int sacBunts,
+                         int runs, int earnedRuns, int homeRuns, int walks, int strikeOutSwing,
+                         int strikeOutLook, int completeGames, int shutOuts, int hitBatsmen,
+                         int intenWalks, int gamesFinished, int holds, int inducedGBDPs,
+                         int groundOuts, int flyOuts, int wildPitches, int balks, int stolenBases,
+                         int caughtStealing, int pickOffs, int totalNumBF, int numPitches,
+                         int atBats) {
+        this.wins = wins;
+        this.losses = losses;
+        this.games = games;
+        this.gamesStarted = gamesStarted;
+        this.saves = saves;
+        this.saveOpps = saveOpps;
+        this.numOutsPitched = numOutsPitched;
+        this.singles = singles;
+        this.doubles = doubles;
+        this.triples = triples;
+        this.sacBunts = sacBunts;
+        this.runs = runs;
+        this.earnedRuns = earnedRuns;
+        this.homeRuns = homeRuns;
+        this.walks = walks;
+        this.strikeOutSwing = strikeOutSwing;
+        this.strikeOutLook = strikeOutLook;
+        this.completeGames = completeGames;
+        this.shutOuts = shutOuts;
+        this.hitBatsmen = hitBatsmen;
+        this.intenWalks = intenWalks;
+        this.gamesFinished = gamesFinished;
+        this.holds = holds;
+        this.inducedGBDPs = inducedGBDPs;
+        this.groundOuts = groundOuts;
+        this.flyOuts = flyOuts;
+        this.wildPitches = wildPitches;
+        this.balks = balks;
+        this.stolenBases = stolenBases;
+        this.caughtStealing = caughtStealing;
+        this.pickOffs = pickOffs;
+        this.totalNumBF = totalNumBF;
+        this.numPitches = numPitches;
+        this.atBats = atBats;
+    }
+
     public int getWins() {
         return wins;
     }
@@ -328,6 +372,7 @@ public class PitchingStats {
         if(getHomeRuns() > 0){
             setHomeRuns(getHomeRuns() - 1);
             decrementAtBats();
+            decrementEarnedRuns();
         } else {
             throw new Exception("Cannot have negative Home Runs(Pitcher).");
         }
@@ -577,13 +622,13 @@ public class PitchingStats {
 
     public void incrementFlyOuts() {
         setFlyOuts(getFlyOuts() + 1);
-        incrementTotalNumBF();
+        incrementAtBats();
     }
 
     public void decrementFlyOuts() throws Exception {
         if(getFlyOuts() > 0){
             setFlyOuts(getFlyOuts() - 1);
-            decrementTotalNumBF();
+            decrementAtBats();
         } else {
             throw new Exception("Cannot have negative Fly Outs(Pitcher).");
         }
@@ -777,7 +822,7 @@ public class PitchingStats {
         if(getNumOutsPitched() < 1){
             throw new Exception("Cannot calculate WHIP with less than 1 out pitched.");
         }
-        return ((double) calcHits() + (double) getWalks()) / ((double) getNumOutsPitched() / 3);
+        return ((double) calcHits() + (double) getWalks() + (double) getIntenWalks()) / ((double) getNumOutsPitched() / 3);
     }
 
     public double calcWinPct() throws Exception {
@@ -791,7 +836,7 @@ public class PitchingStats {
         if(getFlyOuts() < 1){
             throw new Exception("Cannot calculate GO_AO with no fly outs.");
         }
-        return ((double) getGroundOuts()) / ((double) getFlyOuts());
+        return ((double) getGroundOuts() + (double) getInducedGBDPs()) / ((double) getFlyOuts());
     }
 
     public double calcOBP() throws Exception {
@@ -816,14 +861,14 @@ public class PitchingStats {
         if(getNumOutsPitched() < 1){
             throw new Exception("Cannot calculate K's per 9 with less than 1 out pitched.");
         }
-        return (((double) calcStrikeOuts()) / ((double) getNumOutsPitched() / 3)) * 9;
+        return (((double) calcStrikeOuts()) / ((double) getNumOutsPitched() / (double)3)) * (double)9;
     }
 
     public double calcWalksPerNine() throws Exception {
         if(getNumOutsPitched() < 1){
             throw new Exception(("Cannot calculate BB's per 9 with less than 1 out pitched."));
         }
-        return (((double) getWalks()) / ((double) getNumOutsPitched() / 3)) * 9;
+        return (((double) getWalks() + (double) getIntenWalks()) / ((double) getNumOutsPitched() / (double)3)) * (double)9;
     }
 
     public double calcHitsPerNine() throws Exception {
@@ -837,14 +882,14 @@ public class PitchingStats {
         if(getWalks() < 1){
             throw new Exception("Cannot calculate K's per BB with less than 1 walk.");
         }
-        return ((double) calcStrikeOuts()) / ((double) getWalks());
+        return ((double) calcStrikeOuts()) / (((double) getWalks() + (double) getIntenWalks()));
     }
 
     public double calcPIP() throws Exception {
         if(getNumOutsPitched() < 1){
             throw new Exception("Cannot calculate Pitches per Inning Pitched(PIP) with no outs pitched.");
         }
-        return ((double) getNumPitches()) / ((double) getNumOutsPitched() / 3);
+        return ((double) getNumPitches()) / ((double) getNumOutsPitched() / (double)3);
     }
 
     public int calcHits() {

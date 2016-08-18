@@ -20,7 +20,7 @@ public class RunningStats {
         return runs;
     }
 
-    public void setRuns(int runs) {
+    private void setRuns(int runs) {
         this.runs = runs;
     }
 
@@ -40,7 +40,7 @@ public class RunningStats {
         return stolenBases;
     }
 
-    public void setStolenBases(int stolenBases) {
+    private void setStolenBases(int stolenBases) {
         this.stolenBases = stolenBases;
     }
 
@@ -60,7 +60,7 @@ public class RunningStats {
         return caughtStealing;
     }
 
-    public void setCaughtStealing(int caughtStealing) {
+    private void setCaughtStealing(int caughtStealing) {
         this.caughtStealing = caughtStealing;
     }
 

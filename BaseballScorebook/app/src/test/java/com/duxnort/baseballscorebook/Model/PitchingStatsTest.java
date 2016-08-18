@@ -20,7 +20,7 @@ public class PitchingStatsTest {
         for(int i = 0; i < inc; i++){
             p.incrementWins();
         }
-        assertEquals(0, p.getWins());
+        assertEquals(inc, p.getWins());
         assertEquals(0, p.getLosses());
         assertEquals(0, p.getGames());
         assertEquals(0, p.getGamesStarted());
@@ -67,7 +67,7 @@ public class PitchingStatsTest {
         for(int i = 0; i < dec; i++){
             p.decrementWins();
         }
-        assertEquals(0, p.getWins());
+        assertEquals(inc - dec, p.getWins());
         assertEquals(0, p.getLosses());
         assertEquals(0, p.getGames());
         assertEquals(0, p.getGamesStarted());
@@ -111,7 +111,7 @@ public class PitchingStatsTest {
             p.incrementLosses();
         }
         assertEquals(0, p.getWins());
-        assertEquals(0, p.getLosses());
+        assertEquals(inc, p.getLosses());
         assertEquals(0, p.getGames());
         assertEquals(0, p.getGamesStarted());
         assertEquals(0, p.getSaves());
@@ -158,7 +158,7 @@ public class PitchingStatsTest {
             p.decrementLossses();
         }
         assertEquals(0, p.getWins());
-        assertEquals(0, p.getLosses());
+        assertEquals(inc - dec, p.getLosses());
         assertEquals(0, p.getGames());
         assertEquals(0, p.getGamesStarted());
         assertEquals(0, p.getSaves());
@@ -202,7 +202,7 @@ public class PitchingStatsTest {
         }
         assertEquals(0, p.getWins());
         assertEquals(0, p.getLosses());
-        assertEquals(0, p.getGames());
+        assertEquals(inc, p.getGames());
         assertEquals(0, p.getGamesStarted());
         assertEquals(0, p.getSaves());
         assertEquals(0, p.getSaveOpps());
@@ -249,7 +249,7 @@ public class PitchingStatsTest {
         }
         assertEquals(0, p.getWins());
         assertEquals(0, p.getLosses());
-        assertEquals(0, p.getGames());
+        assertEquals(inc - dec, p.getGames());
         assertEquals(0, p.getGamesStarted());
         assertEquals(0, p.getSaves());
         assertEquals(0, p.getSaveOpps());
@@ -293,7 +293,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getWins());
         assertEquals(0, p.getLosses());
         assertEquals(0, p.getGames());
-        assertEquals(0, p.getGamesStarted());
+        assertEquals(inc, p.getGamesStarted());
         assertEquals(0, p.getSaves());
         assertEquals(0, p.getSaveOpps());
         assertEquals(0, p.getNumOutsPitched());
@@ -340,7 +340,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getWins());
         assertEquals(0, p.getLosses());
         assertEquals(0, p.getGames());
-        assertEquals(0, p.getGamesStarted());
+        assertEquals(inc - dec, p.getGamesStarted());
         assertEquals(0, p.getSaves());
         assertEquals(0, p.getSaveOpps());
         assertEquals(0, p.getNumOutsPitched());
@@ -384,7 +384,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getLosses());
         assertEquals(0, p.getGames());
         assertEquals(0, p.getGamesStarted());
-        assertEquals(0, p.getSaves());
+        assertEquals(inc, p.getSaves());
         assertEquals(0, p.getSaveOpps());
         assertEquals(0, p.getNumOutsPitched());
         assertEquals(0, p.getSingles());
@@ -431,7 +431,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getLosses());
         assertEquals(0, p.getGames());
         assertEquals(0, p.getGamesStarted());
-        assertEquals(0, p.getSaves());
+        assertEquals(inc - dec, p.getSaves());
         assertEquals(0, p.getSaveOpps());
         assertEquals(0, p.getNumOutsPitched());
         assertEquals(0, p.getSingles());
@@ -475,7 +475,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getGames());
         assertEquals(0, p.getGamesStarted());
         assertEquals(0, p.getSaves());
-        assertEquals(0, p.getSaveOpps());
+        assertEquals(inc, p.getSaveOpps());
         assertEquals(0, p.getNumOutsPitched());
         assertEquals(0, p.getSingles());
         assertEquals(0, p.getDoubles());
@@ -522,7 +522,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getGames());
         assertEquals(0, p.getGamesStarted());
         assertEquals(0, p.getSaves());
-        assertEquals(0, p.getSaveOpps());
+        assertEquals(inc - dec, p.getSaveOpps());
         assertEquals(0, p.getNumOutsPitched());
         assertEquals(0, p.getSingles());
         assertEquals(0, p.getDoubles());
@@ -567,7 +567,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getGamesStarted());
         assertEquals(0, p.getSaves());
         assertEquals(0, p.getSaveOpps());
-        assertEquals(0, p.getNumOutsPitched());
+        assertEquals(inc, p.getNumOutsPitched());
         assertEquals(0, p.getSingles());
         assertEquals(0, p.getDoubles());
         assertEquals(0, p.getTriples());
@@ -614,7 +614,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getGamesStarted());
         assertEquals(0, p.getSaves());
         assertEquals(0, p.getSaveOpps());
-        assertEquals(0, p.getNumOutsPitched());
+        assertEquals(inc - dec, p.getNumOutsPitched());
         assertEquals(0, p.getSingles());
         assertEquals(0, p.getDoubles());
         assertEquals(0, p.getTriples());
@@ -658,7 +658,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getSaves());
         assertEquals(0, p.getSaveOpps());
         assertEquals(0, p.getNumOutsPitched());
-        assertEquals(0, p.getSingles());
+        assertEquals(inc, p.getSingles());
         assertEquals(0, p.getDoubles());
         assertEquals(0, p.getTriples());
         assertEquals(0, p.getSacBunts());
@@ -682,9 +682,9 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
-        assertEquals(0, p.getAtBats());
+        assertEquals(inc, p.getAtBats());
     }
 
     @Test
@@ -705,7 +705,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getSaves());
         assertEquals(0, p.getSaveOpps());
         assertEquals(0, p.getNumOutsPitched());
-        assertEquals(0, p.getSingles());
+        assertEquals(inc - dec, p.getSingles());
         assertEquals(0, p.getDoubles());
         assertEquals(0, p.getTriples());
         assertEquals(0, p.getSacBunts());
@@ -729,9 +729,9 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc - dec, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
-        assertEquals(0, p.getAtBats());
+        assertEquals(inc - dec, p.getAtBats());
     }
 
     @Test
@@ -749,7 +749,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getSaveOpps());
         assertEquals(0, p.getNumOutsPitched());
         assertEquals(0, p.getSingles());
-        assertEquals(0, p.getDoubles());
+        assertEquals(inc, p.getDoubles());
         assertEquals(0, p.getTriples());
         assertEquals(0, p.getSacBunts());
         assertEquals(0, p.getRuns());
@@ -772,9 +772,9 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
-        assertEquals(0, p.getAtBats());
+        assertEquals(inc, p.getAtBats());
     }
 
     @Test
@@ -796,7 +796,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getSaveOpps());
         assertEquals(0, p.getNumOutsPitched());
         assertEquals(0, p.getSingles());
-        assertEquals(0, p.getDoubles());
+        assertEquals(inc - dec, p.getDoubles());
         assertEquals(0, p.getTriples());
         assertEquals(0, p.getSacBunts());
         assertEquals(0, p.getRuns());
@@ -819,9 +819,9 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc - dec, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
-        assertEquals(0, p.getAtBats());
+        assertEquals(inc - dec, p.getAtBats());
     }
 
     @Test
@@ -840,7 +840,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getNumOutsPitched());
         assertEquals(0, p.getSingles());
         assertEquals(0, p.getDoubles());
-        assertEquals(0, p.getTriples());
+        assertEquals(inc, p.getTriples());
         assertEquals(0, p.getSacBunts());
         assertEquals(0, p.getRuns());
         assertEquals(0, p.getEarnedRuns());
@@ -862,9 +862,9 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
-        assertEquals(0, p.getAtBats());
+        assertEquals(inc, p.getAtBats());
     }
 
     @Test
@@ -887,7 +887,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getNumOutsPitched());
         assertEquals(0, p.getSingles());
         assertEquals(0, p.getDoubles());
-        assertEquals(0, p.getTriples());
+        assertEquals(inc - dec, p.getTriples());
         assertEquals(0, p.getSacBunts());
         assertEquals(0, p.getRuns());
         assertEquals(0, p.getEarnedRuns());
@@ -909,9 +909,9 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc - dec, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
-        assertEquals(0, p.getAtBats());
+        assertEquals(inc - dec, p.getAtBats());
     }
 
     @Test
@@ -931,7 +931,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getSingles());
         assertEquals(0, p.getDoubles());
         assertEquals(0, p.getTriples());
-        assertEquals(0, p.getSacBunts());
+        assertEquals(inc, p.getSacBunts());
         assertEquals(0, p.getRuns());
         assertEquals(0, p.getEarnedRuns());
         assertEquals(0, p.getHomeRuns());
@@ -952,7 +952,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
         assertEquals(0, p.getAtBats());
     }
@@ -978,7 +978,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getSingles());
         assertEquals(0, p.getDoubles());
         assertEquals(0, p.getTriples());
-        assertEquals(0, p.getSacBunts());
+        assertEquals(inc - dec, p.getSacBunts());
         assertEquals(0, p.getRuns());
         assertEquals(0, p.getEarnedRuns());
         assertEquals(0, p.getHomeRuns());
@@ -999,7 +999,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc - dec, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
         assertEquals(0, p.getAtBats());
     }
@@ -1022,7 +1022,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getDoubles());
         assertEquals(0, p.getTriples());
         assertEquals(0, p.getSacBunts());
-        assertEquals(0, p.getRuns());
+        assertEquals(inc, p.getRuns());
         assertEquals(0, p.getEarnedRuns());
         assertEquals(0, p.getHomeRuns());
         assertEquals(0, p.getWalks());
@@ -1069,7 +1069,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getDoubles());
         assertEquals(0, p.getTriples());
         assertEquals(0, p.getSacBunts());
-        assertEquals(0, p.getRuns());
+        assertEquals(inc - dec, p.getRuns());
         assertEquals(0, p.getEarnedRuns());
         assertEquals(0, p.getHomeRuns());
         assertEquals(0, p.getWalks());
@@ -1112,8 +1112,8 @@ public class PitchingStatsTest {
         assertEquals(0, p.getDoubles());
         assertEquals(0, p.getTriples());
         assertEquals(0, p.getSacBunts());
-        assertEquals(0, p.getRuns());
-        assertEquals(0, p.getEarnedRuns());
+        assertEquals(inc, p.getRuns());
+        assertEquals(inc, p.getEarnedRuns());
         assertEquals(0, p.getHomeRuns());
         assertEquals(0, p.getWalks());
         assertEquals(0, p.getStrikeOutSwing());
@@ -1159,8 +1159,8 @@ public class PitchingStatsTest {
         assertEquals(0, p.getDoubles());
         assertEquals(0, p.getTriples());
         assertEquals(0, p.getSacBunts());
-        assertEquals(0, p.getRuns());
-        assertEquals(0, p.getEarnedRuns());
+        assertEquals(inc - dec, p.getRuns());
+        assertEquals(inc - dec, p.getEarnedRuns());
         assertEquals(0, p.getHomeRuns());
         assertEquals(0, p.getWalks());
         assertEquals(0, p.getStrikeOutSwing());
@@ -1202,9 +1202,9 @@ public class PitchingStatsTest {
         assertEquals(0, p.getDoubles());
         assertEquals(0, p.getTriples());
         assertEquals(0, p.getSacBunts());
-        assertEquals(0, p.getRuns());
-        assertEquals(0, p.getEarnedRuns());
-        assertEquals(0, p.getHomeRuns());
+        assertEquals(inc, p.getRuns());
+        assertEquals(inc, p.getEarnedRuns());
+        assertEquals(inc, p.getHomeRuns());
         assertEquals(0, p.getWalks());
         assertEquals(0, p.getStrikeOutSwing());
         assertEquals(0, p.getStrikeOutLook());
@@ -1222,9 +1222,9 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
-        assertEquals(0, p.getAtBats());
+        assertEquals(inc, p.getAtBats());
     }
 
     @Test
@@ -1249,9 +1249,9 @@ public class PitchingStatsTest {
         assertEquals(0, p.getDoubles());
         assertEquals(0, p.getTriples());
         assertEquals(0, p.getSacBunts());
-        assertEquals(0, p.getRuns());
-        assertEquals(0, p.getEarnedRuns());
-        assertEquals(0, p.getHomeRuns());
+        assertEquals(inc - dec, p.getRuns());
+        assertEquals(inc - dec, p.getEarnedRuns());
+        assertEquals(inc - dec, p.getHomeRuns());
         assertEquals(0, p.getWalks());
         assertEquals(0, p.getStrikeOutSwing());
         assertEquals(0, p.getStrikeOutLook());
@@ -1269,9 +1269,9 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc - dec, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
-        assertEquals(0, p.getAtBats());
+        assertEquals(inc - dec, p.getAtBats());
     }
 
     @Test
@@ -1295,7 +1295,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getRuns());
         assertEquals(0, p.getEarnedRuns());
         assertEquals(0, p.getHomeRuns());
-        assertEquals(0, p.getWalks());
+        assertEquals(inc, p.getWalks());
         assertEquals(0, p.getStrikeOutSwing());
         assertEquals(0, p.getStrikeOutLook());
         assertEquals(0, p.getCompleteGames());
@@ -1312,7 +1312,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
         assertEquals(0, p.getAtBats());
     }
@@ -1342,7 +1342,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getRuns());
         assertEquals(0, p.getEarnedRuns());
         assertEquals(0, p.getHomeRuns());
-        assertEquals(0, p.getWalks());
+        assertEquals(inc - dec, p.getWalks());
         assertEquals(0, p.getStrikeOutSwing());
         assertEquals(0, p.getStrikeOutLook());
         assertEquals(0, p.getCompleteGames());
@@ -1359,7 +1359,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc - dec, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
         assertEquals(0, p.getAtBats());
     }
@@ -1386,7 +1386,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getEarnedRuns());
         assertEquals(0, p.getHomeRuns());
         assertEquals(0, p.getWalks());
-        assertEquals(0, p.getStrikeOutSwing());
+        assertEquals(inc, p.getStrikeOutSwing());
         assertEquals(0, p.getStrikeOutLook());
         assertEquals(0, p.getCompleteGames());
         assertEquals(0, p.getShutOuts());
@@ -1402,9 +1402,9 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
-        assertEquals(0, p.getAtBats());
+        assertEquals(inc, p.getAtBats());
     }
 
     @Test
@@ -1433,7 +1433,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getEarnedRuns());
         assertEquals(0, p.getHomeRuns());
         assertEquals(0, p.getWalks());
-        assertEquals(0, p.getStrikeOutSwing());
+        assertEquals(inc - dec, p.getStrikeOutSwing());
         assertEquals(0, p.getStrikeOutLook());
         assertEquals(0, p.getCompleteGames());
         assertEquals(0, p.getShutOuts());
@@ -1449,9 +1449,9 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc - dec, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
-        assertEquals(0, p.getAtBats());
+        assertEquals(inc - dec, p.getAtBats());
     }
 
     @Test
@@ -1477,7 +1477,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getHomeRuns());
         assertEquals(0, p.getWalks());
         assertEquals(0, p.getStrikeOutSwing());
-        assertEquals(0, p.getStrikeOutLook());
+        assertEquals(inc, p.getStrikeOutLook());
         assertEquals(0, p.getCompleteGames());
         assertEquals(0, p.getShutOuts());
         assertEquals(0, p.getHitBatsmen());
@@ -1492,9 +1492,9 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
-        assertEquals(0, p.getAtBats());
+        assertEquals(inc, p.getAtBats());
     }
 
     @Test
@@ -1524,7 +1524,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getHomeRuns());
         assertEquals(0, p.getWalks());
         assertEquals(0, p.getStrikeOutSwing());
-        assertEquals(0, p.getStrikeOutLook());
+        assertEquals(inc - dec, p.getStrikeOutLook());
         assertEquals(0, p.getCompleteGames());
         assertEquals(0, p.getShutOuts());
         assertEquals(0, p.getHitBatsmen());
@@ -1539,9 +1539,9 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc - dec, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
-        assertEquals(0, p.getAtBats());
+        assertEquals(inc - dec, p.getAtBats());
     }
 
     @Test
@@ -1568,7 +1568,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getWalks());
         assertEquals(0, p.getStrikeOutSwing());
         assertEquals(0, p.getStrikeOutLook());
-        assertEquals(0, p.getCompleteGames());
+        assertEquals(inc, p.getCompleteGames());
         assertEquals(0, p.getShutOuts());
         assertEquals(0, p.getHitBatsmen());
         assertEquals(0, p.getIntenWalks());
@@ -1615,7 +1615,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getWalks());
         assertEquals(0, p.getStrikeOutSwing());
         assertEquals(0, p.getStrikeOutLook());
-        assertEquals(0, p.getCompleteGames());
+        assertEquals(inc - dec, p.getCompleteGames());
         assertEquals(0, p.getShutOuts());
         assertEquals(0, p.getHitBatsmen());
         assertEquals(0, p.getIntenWalks());
@@ -1659,7 +1659,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStrikeOutSwing());
         assertEquals(0, p.getStrikeOutLook());
         assertEquals(0, p.getCompleteGames());
-        assertEquals(0, p.getShutOuts());
+        assertEquals(inc, p.getShutOuts());
         assertEquals(0, p.getHitBatsmen());
         assertEquals(0, p.getIntenWalks());
         assertEquals(0, p.getGamesFinished());
@@ -1706,7 +1706,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStrikeOutSwing());
         assertEquals(0, p.getStrikeOutLook());
         assertEquals(0, p.getCompleteGames());
-        assertEquals(0, p.getShutOuts());
+        assertEquals(inc - dec, p.getShutOuts());
         assertEquals(0, p.getHitBatsmen());
         assertEquals(0, p.getIntenWalks());
         assertEquals(0, p.getGamesFinished());
@@ -1750,7 +1750,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStrikeOutLook());
         assertEquals(0, p.getCompleteGames());
         assertEquals(0, p.getShutOuts());
-        assertEquals(0, p.getHitBatsmen());
+        assertEquals(inc, p.getHitBatsmen());
         assertEquals(0, p.getIntenWalks());
         assertEquals(0, p.getGamesFinished());
         assertEquals(0, p.getHolds());
@@ -1762,7 +1762,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
         assertEquals(0, p.getAtBats());
     }
@@ -1797,7 +1797,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStrikeOutLook());
         assertEquals(0, p.getCompleteGames());
         assertEquals(0, p.getShutOuts());
-        assertEquals(0, p.getHitBatsmen());
+        assertEquals(inc - dec, p.getHitBatsmen());
         assertEquals(0, p.getIntenWalks());
         assertEquals(0, p.getGamesFinished());
         assertEquals(0, p.getHolds());
@@ -1809,7 +1809,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc - dec, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
         assertEquals(0, p.getAtBats());
     }
@@ -1841,7 +1841,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getCompleteGames());
         assertEquals(0, p.getShutOuts());
         assertEquals(0, p.getHitBatsmen());
-        assertEquals(0, p.getIntenWalks());
+        assertEquals(inc, p.getIntenWalks());
         assertEquals(0, p.getGamesFinished());
         assertEquals(0, p.getHolds());
         assertEquals(0, p.getInducedGBDPs());
@@ -1852,7 +1852,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
         assertEquals(0, p.getAtBats());
     }
@@ -1888,7 +1888,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getCompleteGames());
         assertEquals(0, p.getShutOuts());
         assertEquals(0, p.getHitBatsmen());
-        assertEquals(0, p.getIntenWalks());
+        assertEquals(inc - dec, p.getIntenWalks());
         assertEquals(0, p.getGamesFinished());
         assertEquals(0, p.getHolds());
         assertEquals(0, p.getInducedGBDPs());
@@ -1899,7 +1899,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc - dec, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
         assertEquals(0, p.getAtBats());
     }
@@ -1932,7 +1932,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getShutOuts());
         assertEquals(0, p.getHitBatsmen());
         assertEquals(0, p.getIntenWalks());
-        assertEquals(0, p.getGamesFinished());
+        assertEquals(inc, p.getGamesFinished());
         assertEquals(0, p.getHolds());
         assertEquals(0, p.getInducedGBDPs());
         assertEquals(0, p.getGroundOuts());
@@ -1979,7 +1979,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getShutOuts());
         assertEquals(0, p.getHitBatsmen());
         assertEquals(0, p.getIntenWalks());
-        assertEquals(0, p.getGamesFinished());
+        assertEquals(inc - dec, p.getGamesFinished());
         assertEquals(0, p.getHolds());
         assertEquals(0, p.getInducedGBDPs());
         assertEquals(0, p.getGroundOuts());
@@ -2023,7 +2023,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getHitBatsmen());
         assertEquals(0, p.getIntenWalks());
         assertEquals(0, p.getGamesFinished());
-        assertEquals(0, p.getHolds());
+        assertEquals(inc, p.getHolds());
         assertEquals(0, p.getInducedGBDPs());
         assertEquals(0, p.getGroundOuts());
         assertEquals(0, p.getFlyOuts());
@@ -2070,7 +2070,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getHitBatsmen());
         assertEquals(0, p.getIntenWalks());
         assertEquals(0, p.getGamesFinished());
-        assertEquals(0, p.getHolds());
+        assertEquals(inc - dec, p.getHolds());
         assertEquals(0, p.getInducedGBDPs());
         assertEquals(0, p.getGroundOuts());
         assertEquals(0, p.getFlyOuts());
@@ -2114,7 +2114,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getIntenWalks());
         assertEquals(0, p.getGamesFinished());
         assertEquals(0, p.getHolds());
-        assertEquals(0, p.getInducedGBDPs());
+        assertEquals(inc, p.getInducedGBDPs());
         assertEquals(0, p.getGroundOuts());
         assertEquals(0, p.getFlyOuts());
         assertEquals(0, p.getWildPitches());
@@ -2122,9 +2122,9 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
-        assertEquals(0, p.getAtBats());
+        assertEquals(inc, p.getAtBats());
     }
 
     @Test
@@ -2161,7 +2161,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getIntenWalks());
         assertEquals(0, p.getGamesFinished());
         assertEquals(0, p.getHolds());
-        assertEquals(0, p.getInducedGBDPs());
+        assertEquals(inc - dec, p.getInducedGBDPs());
         assertEquals(0, p.getGroundOuts());
         assertEquals(0, p.getFlyOuts());
         assertEquals(0, p.getWildPitches());
@@ -2169,9 +2169,9 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc - dec, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
-        assertEquals(0, p.getAtBats());
+        assertEquals(inc - dec, p.getAtBats());
     }
 
     @Test
@@ -2205,16 +2205,16 @@ public class PitchingStatsTest {
         assertEquals(0, p.getGamesFinished());
         assertEquals(0, p.getHolds());
         assertEquals(0, p.getInducedGBDPs());
-        assertEquals(0, p.getGroundOuts());
+        assertEquals(inc, p.getGroundOuts());
         assertEquals(0, p.getFlyOuts());
         assertEquals(0, p.getWildPitches());
         assertEquals(0, p.getBalks());
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
-        assertEquals(0, p.getAtBats());
+        assertEquals(inc, p.getAtBats());
     }
 
     @Test
@@ -2252,16 +2252,16 @@ public class PitchingStatsTest {
         assertEquals(0, p.getGamesFinished());
         assertEquals(0, p.getHolds());
         assertEquals(0, p.getInducedGBDPs());
-        assertEquals(0, p.getGroundOuts());
+        assertEquals(inc - dec, p.getGroundOuts());
         assertEquals(0, p.getFlyOuts());
         assertEquals(0, p.getWildPitches());
         assertEquals(0, p.getBalks());
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc - dec, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
-        assertEquals(0, p.getAtBats());
+        assertEquals(inc - dec, p.getAtBats());
     }
 
     @Test
@@ -2296,15 +2296,15 @@ public class PitchingStatsTest {
         assertEquals(0, p.getHolds());
         assertEquals(0, p.getInducedGBDPs());
         assertEquals(0, p.getGroundOuts());
-        assertEquals(0, p.getFlyOuts());
+        assertEquals(inc, p.getFlyOuts());
         assertEquals(0, p.getWildPitches());
         assertEquals(0, p.getBalks());
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
-        assertEquals(0, p.getAtBats());
+        assertEquals(inc, p.getAtBats());
     }
 
     @Test
@@ -2343,15 +2343,15 @@ public class PitchingStatsTest {
         assertEquals(0, p.getHolds());
         assertEquals(0, p.getInducedGBDPs());
         assertEquals(0, p.getGroundOuts());
-        assertEquals(0, p.getFlyOuts());
+        assertEquals(inc - dec, p.getFlyOuts());
         assertEquals(0, p.getWildPitches());
         assertEquals(0, p.getBalks());
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc - dec, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
-        assertEquals(0, p.getAtBats());
+        assertEquals(inc - dec, p.getAtBats());
     }
 
     @Test
@@ -2387,7 +2387,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getInducedGBDPs());
         assertEquals(0, p.getGroundOuts());
         assertEquals(0, p.getFlyOuts());
-        assertEquals(0, p.getWildPitches());
+        assertEquals(inc, p.getWildPitches());
         assertEquals(0, p.getBalks());
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
@@ -2434,7 +2434,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getInducedGBDPs());
         assertEquals(0, p.getGroundOuts());
         assertEquals(0, p.getFlyOuts());
-        assertEquals(0, p.getWildPitches());
+        assertEquals(inc - dec, p.getWildPitches());
         assertEquals(0, p.getBalks());
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
@@ -2478,7 +2478,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getGroundOuts());
         assertEquals(0, p.getFlyOuts());
         assertEquals(0, p.getWildPitches());
-        assertEquals(0, p.getBalks());
+        assertEquals(inc, p.getBalks());
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
@@ -2525,7 +2525,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getGroundOuts());
         assertEquals(0, p.getFlyOuts());
         assertEquals(0, p.getWildPitches());
-        assertEquals(0, p.getBalks());
+        assertEquals(inc - dec, p.getBalks());
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
@@ -2569,7 +2569,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getFlyOuts());
         assertEquals(0, p.getWildPitches());
         assertEquals(0, p.getBalks());
-        assertEquals(0, p.getStolenBases());
+        assertEquals(inc, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
         assertEquals(0, p.getTotalNumBF());
@@ -2616,7 +2616,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getFlyOuts());
         assertEquals(0, p.getWildPitches());
         assertEquals(0, p.getBalks());
-        assertEquals(0, p.getStolenBases());
+        assertEquals(inc - dec, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
         assertEquals(0, p.getTotalNumBF());
@@ -2660,7 +2660,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getWildPitches());
         assertEquals(0, p.getBalks());
         assertEquals(0, p.getStolenBases());
-        assertEquals(0, p.getCaughtStealing());
+        assertEquals(inc, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
         assertEquals(0, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
@@ -2707,7 +2707,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getWildPitches());
         assertEquals(0, p.getBalks());
         assertEquals(0, p.getStolenBases());
-        assertEquals(0, p.getCaughtStealing());
+        assertEquals(inc - dec, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
         assertEquals(0, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
@@ -2751,7 +2751,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getBalks());
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
-        assertEquals(0, p.getPickOffs());
+        assertEquals(inc, p.getPickOffs());
         assertEquals(0, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
         assertEquals(0, p.getAtBats());
@@ -2798,7 +2798,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getBalks());
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
-        assertEquals(0, p.getPickOffs());
+        assertEquals(inc - dec, p.getPickOffs());
         assertEquals(0, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
         assertEquals(0, p.getAtBats());
@@ -2842,7 +2842,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
         assertEquals(0, p.getAtBats());
     }
@@ -2889,7 +2889,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(dec, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
         assertEquals(0, p.getAtBats());
     }
@@ -2933,7 +2933,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
         assertEquals(0, p.getTotalNumBF());
-        assertEquals(0, p.getNumPitches());
+        assertEquals(inc, p.getNumPitches());
         assertEquals(0, p.getAtBats());
     }
 
@@ -2980,7 +2980,7 @@ public class PitchingStatsTest {
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
         assertEquals(0, p.getTotalNumBF());
-        assertEquals(0, p.getNumPitches());
+        assertEquals(inc - dec, p.getNumPitches());
         assertEquals(0, p.getAtBats());
     }
 
@@ -3022,9 +3022,9 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
-        assertEquals(0, p.getAtBats());
+        assertEquals(inc, p.getAtBats());
     }
 
     @Test
@@ -3069,88 +3069,150 @@ public class PitchingStatsTest {
         assertEquals(0, p.getStolenBases());
         assertEquals(0, p.getCaughtStealing());
         assertEquals(0, p.getPickOffs());
-        assertEquals(0, p.getTotalNumBF());
+        assertEquals(inc - dec, p.getTotalNumBF());
         assertEquals(0, p.getNumPitches());
-        assertEquals(0, p.getAtBats());
+        assertEquals(inc - dec, p.getAtBats());
+    }
+
+    private PitchingStats initializePitchingStats() {
+        int wins = 6;
+        int losses = 10;
+        int games = 22;
+        int gamesStarted = 7;
+        int saves = 2;
+        int saveOpps = 3;
+        int numOutsPitched = 502;
+        int singles = 34;
+        int doubles = 22;
+        int triples = 6;
+        int sacBunts = 3;
+        int runs = 16;
+        int earnedRuns = 7;
+        int homeRuns = 3;
+        int walks = 19;
+        int strikeOutSwing = 28;
+        int strikeOutLook = 18;
+        int completeGames = 1;
+        int shutOuts = 1;
+        int hitBatsmen = 3;
+        int intenWalks = 2;
+        int gamesFinished = 2;
+        int holds = 1;
+        int inducedGBDPs = 5;
+        int groundOuts = 6;
+        int flyOuts = 7;
+        int wildPitches = 4;
+        int balks = 1;
+        int stolenBases = 2;
+        int caughtStealing = 3;
+        int pickOffs = 2;
+        int totalNumBF = 153;
+        int numPitches = 2030;
+        int atBats = 130;
+
+        return new PitchingStats( wins,  losses,  games,  gamesStarted,  saves,  saveOpps,
+         numOutsPitched,  singles,  doubles,  triples,  sacBunts,
+         runs,  earnedRuns,  homeRuns,  walks,  strikeOutSwing,
+         strikeOutLook,  completeGames,  shutOuts,  hitBatsmen,
+         intenWalks,  gamesFinished,  holds,  inducedGBDPs,
+         groundOuts,  flyOuts,  wildPitches,  balks,  stolenBases,
+         caughtStealing,  pickOffs,  totalNumBF,  numPitches,
+         atBats);
     }
 
     @Test
     public void testCalcEarnedRunAvg() throws Exception {
-
+        PitchingStats p = initializePitchingStats();
+        Assert.assertEquals(((double)63 / ((double)502 / (double)3)), p.calcEarnedRunAvg());
     }
 
     @Test
     public void testCalcInningsPitched() throws Exception {
-
+        PitchingStats p = initializePitchingStats();
+        Assert.assertEquals("167.1", p.calcInningsPitched());
     }
 
     @Test
     public void testCalcStrikeOuts() throws Exception {
-
+        PitchingStats p = initializePitchingStats();
+        Assert.assertEquals(46, p.calcStrikeOuts());
     }
 
     @Test
     public void testCalcAverage() throws Exception {
-
+        PitchingStats p = initializePitchingStats();
+        Assert.assertEquals(((double)65 / (double)130) , p.calcAverage());
     }
 
     @Test
     public void testCalcWHIP() throws Exception {
-
+        PitchingStats p = initializePitchingStats();
+        Assert.assertEquals(((double)86 / ((double)502/(double)3)), p.calcWHIP());
     }
 
     @Test
     public void testCalcWinPct() throws Exception {
-
+        PitchingStats p = initializePitchingStats();
+        Assert.assertEquals(((double)6 / (double)16), p.calcWinPct());
     }
 
     @Test
     public void testCalcGOAO() throws Exception {
-
+        PitchingStats p = initializePitchingStats();
+        Assert.assertEquals(((double)11 / (double)7), p.calcGOAO());
     }
 
     @Test
     public void testCalcOBP() throws Exception {
-
+        PitchingStats p = initializePitchingStats();
+        Assert.assertEquals(((double)89 / (double)150), p.calcOBP());
     }
 
     @Test
     public void testCalcSlugPct() throws Exception {
-
+        PitchingStats p = initializePitchingStats();
+        Assert.assertEquals(((double)108 / (double)130), p.calcSlugPct());
     }
 
     @Test
     public void testCalcOBPS() throws Exception {
-
+        PitchingStats p = initializePitchingStats();
+        Assert.assertEquals((((double)89 / (double)150) + ((double)108 / (double)130)), p.calcOBPS());
     }
 
     @Test
     public void testCalcKsPerNine() throws Exception {
-
+        PitchingStats p = initializePitchingStats();
+        Assert.assertEquals(((double)46 / (((double)502) / (double) 3) * ((double)9)), p.calcKsPerNine());
     }
 
     @Test
     public void testCalcWalksPerNine() throws Exception {
-
+        PitchingStats p = initializePitchingStats();
+        Assert.assertEquals(((double)21 / (((double)502) / (double) 3) * ((double)9)), p.calcWalksPerNine());
     }
 
     @Test
     public void testCalcHitsPerNine() throws Exception {
-
+        PitchingStats p = initializePitchingStats();
+        Assert.assertEquals(((double)65 / (((double)502) / (double) 3) * ((double)9)), p.calcHitsPerNine());
     }
 
     @Test
     public void testCalcKBB() throws Exception {
-
+        PitchingStats p = initializePitchingStats();
+        Assert.assertEquals(((double)46 / (double)21), p.calcKBB());
     }
 
     @Test
     public void testCalcPIP() throws Exception {
-
+        PitchingStats p = initializePitchingStats();
+        Assert.assertEquals(((double)2030 / (((double)502) / (double) 3)), p.calcPIP());
     }
 
     @Test
     public void testCalcHits() throws Exception {
-
+        PitchingStats p = initializePitchingStats();
+        Assert.assertEquals(65, p.calcHits());
     }
 }
