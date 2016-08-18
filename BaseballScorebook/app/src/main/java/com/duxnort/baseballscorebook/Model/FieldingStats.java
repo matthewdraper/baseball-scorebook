@@ -15,6 +15,21 @@ public class FieldingStats {
     public FieldingStats() {
     }
 
+    public FieldingStats(int games, int gamesStarted, int outInField, int putOuts, int assists,
+                         int errors, int stolenBases, int caughtStealing, int passedBalls,
+                         int wpCatching) {
+        this.games = games;
+        this.gamesStarted = gamesStarted;
+        this.outInField = outInField;
+        this.putOuts = putOuts;
+        this.assists = assists;
+        this.errors = errors;
+        this.stolenBases = stolenBases;
+        this.caughtStealing = caughtStealing;
+        this.passedBalls = passedBalls;
+        this.wpCatching = wpCatching;
+    }
+
     public int getGames() {
         return games;
     }
