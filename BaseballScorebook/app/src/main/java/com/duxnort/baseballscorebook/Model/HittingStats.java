@@ -3,7 +3,6 @@ package com.duxnort.baseballscorebook.Model;
 public class HittingStats {
     private int games = 0;
     private int atBats = 0;
-//    private int runs = 0;
     private int singles = 0;
     private int doubles = 0;
     private int triples = 0;
@@ -11,8 +10,6 @@ public class HittingStats {
     private int rbis = 0;
     private int walks = 0;
     private int strikeOuts = 0;
-//    private int stolenBases = 0;
-//    private int caughtStealing = 0;
     private int intenWalks = 0;
     private int hitByPitch = 0;
     private int sacBunts = 0;
@@ -149,6 +146,7 @@ public class HittingStats {
         if(getHomeRuns() > 0){
             setHomeRuns(getHomeRuns() - 1);
             decrementAtBats();
+            decrementRbis();
         } else {
             throw new Exception("Cannot have negative Home Runs(Batter).");
         }
@@ -292,6 +290,7 @@ public class HittingStats {
     public void decrementSacFlys() throws Exception {
         if(getSacFlys() > 0){
             setSacFlys(getSacFlys() - 1);
+            decrementRbis();
         } else {
             throw new Exception("Cannot have negative Sacrifice Flys(Batter).");
         }
@@ -428,7 +427,7 @@ public class HittingStats {
     }
 
     public int calcHits() {
-        return getSingles() + getDoubles() + getTriples() + getHomeRuns();
+        return (getSingles() + getDoubles() + getTriples() + getHomeRuns());
     }
 
 }

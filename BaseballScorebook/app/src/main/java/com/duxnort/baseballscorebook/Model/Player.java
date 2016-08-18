@@ -11,14 +11,14 @@ public class Player extends Person {
     private boolean throwLeft = false;
     private int heightInches = 0;
     private int weight = 0;
-    private Date dateOfBirth = null;
+//    private Date dateOfBirth = null;
 
     public Player() {
     }
 
     public Player(String firstName, String lastName, String jerseyNumber, OverallStats stats,
                   boolean batRight, boolean batLeft, boolean throwRight, boolean throwLeft,
-                  int heightInches, int weight, Date dateOfBirth) {
+                  int heightInches, int weight) {
         super(firstName, lastName);
         this.jerseyNumber = jerseyNumber;
         this.stats = stats;
@@ -28,7 +28,7 @@ public class Player extends Person {
         this.throwLeft = throwLeft;
         this.heightInches = heightInches;
         this.weight = weight;
-        this.dateOfBirth = dateOfBirth;
+//        this.dateOfBirth = dateOfBirth;
     }
 
     public String getJerseyNumber() {
@@ -95,13 +95,13 @@ public class Player extends Person {
         this.weight = weight;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
+//    public Date getDateOfBirth() {
+//        return dateOfBirth;
+//    }
+//
+//    public void setDateOfBirth(Date dateOfBirth) {
+//        this.dateOfBirth = dateOfBirth;
+//    }
 
     public boolean isSwitchHitter() {
         if(isBatRight() && isBatLeft()){
