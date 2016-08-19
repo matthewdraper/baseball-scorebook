@@ -18,6 +18,7 @@ public class HittingStats {
     private int groundOuts = 0;
     private int flyOuts = 0;
     private int numPitches = 0;
+    private int plateAppearance = 0;
 
     public HittingStats() {
     }
@@ -52,6 +53,7 @@ public class HittingStats {
 
     public void incrementAtBats() {
         setAtBats(getAtBats() + 1);
+        incrementPlateApperance();
     }
 
     public void decrementAtBats() throws Exception {
@@ -182,6 +184,7 @@ public class HittingStats {
 
     public void incrementWalks(){
         setWalks(getWalks() + 1);
+        incrementPlateApperance();
     }
 
     public void decrementWalks() throws Exception {
@@ -224,6 +227,7 @@ public class HittingStats {
 
     public void incrementIntenWalks() {
         setIntenWalks(getIntenWalks() + 1);
+        incrementPlateApperance();
     }
 
     public void decrementIntenWalks() throws Exception {
@@ -244,6 +248,7 @@ public class HittingStats {
 
     public void incrementHitByPitch() {
         setHitByPitch(getHitByPitch() + 1);
+        incrementPlateApperance();
     }
 
     public void decrementHitByPitch() throws Exception {
@@ -264,6 +269,7 @@ public class HittingStats {
 
     public void incrementSacBunts(){
         setSacBunts(getSacBunts() + 1);
+        incrementPlateApperance();
     }
 
     public void decrementSacBunts() throws Exception {
@@ -285,6 +291,7 @@ public class HittingStats {
     public void incrementSacFlys(){
         setSacFlys(getSacFlys() + 1);
         incrementRbis();
+        incrementPlateApperance();
     }
 
     public void decrementSacFlys() throws Exception {
@@ -306,6 +313,7 @@ public class HittingStats {
 
     public void incrementGroundBallDP() {
         setGroundBallDP(getGroundBallDP() + 1);
+        incrementGroundOuts();
         incrementAtBats();
     }
 
@@ -382,6 +390,18 @@ public class HittingStats {
         }
     }
 
+    public int getPlateAppearance() {
+        return plateAppearance;
+    }
+
+    private void setPlateAppearance(int plateAppearance) {
+        this.plateAppearance = plateAppearance;
+    }
+
+    public void incrementPlateApperance(){
+        setPlateAppearance(getPlateAppearance() + 1);
+    }
+
     public double calcBattingAvg() throws Exception {
         if(getAtBats() < 1){
             throw new Exception("Cannot calculate Batting Average with less than 1 at bat.");
@@ -390,10 +410,10 @@ public class HittingStats {
     }
 
     public double calcOnBasePct() throws Exception {
-        if((calcPlateApps() - getSacBunts()) < 1){
+        if((getPlateAppearance() - getSacBunts()) < 1){
             throw new Exception("Cannot calculate On Base % if plate appearances minus number of sacrifice bunts is less than 1.");
         }
-        return ((double) calcHits() + (double) getWalks() + (double) getIntenWalks() + (double) getHitByPitch()) / ((double) calcPlateApps() - (double) getSacBunts());
+        return ((double) calcHits() + (double) getWalks() + (double) getIntenWalks() + (double) getHitByPitch()) / ((double) getPlateAppearance() - (double) getSacBunts());
     }
 
     public double calcSlugPct() throws Exception {
@@ -422,9 +442,6 @@ public class HittingStats {
         return ((double) getGroundOuts()) / ((double) getFlyOuts());
     }
 
-    public int calcPlateApps() {
-        return getAtBats() + getWalks() + getIntenWalks() + getHitByPitch() + getSacBunts() + getSacFlys();
-    }
 
     public int calcHits() {
         return (getSingles() + getDoubles() + getTriples() + getHomeRuns());

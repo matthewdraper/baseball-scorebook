@@ -500,13 +500,13 @@ public class Recorder {
         getPitcherStats().incrementBalks();
     }
 
-    public void recordPickOff() throws Exception {
+    public void recordPickOff(String positionsInvolved, int baseRunnerIndex) throws Exception {
         getPitcherStats().incrementPickOffs();
-        incrementOuts();
-        // todo: Record fielding stats here.
-
-        clearCount();
-        nextBatter();
+        recordImpliedFieldingStats(positionsInvolved);
+        if(getGame().getCurrentGameState().getCurrRunnerThirdIndex() == baseRunnerIndex){
+            getGame().getScorecard().currentRunnerOnThirdScorecardBox().setThirdToHomeScoringEvent(new ScoringEvent(positionsInvolved, ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
+        }
+        recordOut();
     }
 
     public void recordUnassistedPutOut(Position pos){
@@ -530,8 +530,30 @@ public class Recorder {
         recordOut();
     }
 
-    public void recordInterference(){
+    public void recordOffensiveInterference(int runnerIndex) throws Exception {
+        recordGameState();
+        if(runnerIndex == getGame().getCurrentGameState().getCurrRunnerThirdIndex()){
+            getGame().getScorecard().currentRunnerOnThirdScorecardBox().setThirdToHomeScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
+        } else if(runnerIndex == getGame().getCurrentGameState().getCurrRunnerSecondIndex()){
+            getGame().getScorecard().currentRunnerOnSecondScorecardBox().setSecondToThirdScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
+        } else if(runnerIndex == getGame().getCurrentGameState().getCurrRunnerFirstIndex()){
+            getGame().getScorecard().currentRunnerOnFirstScorecardBox().setFirstToSecondScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
+        } else if(runnerIndex == getGame().getCurrentGameState().getCurrBatterIndex()){
+            getGame().getScorecard().currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
+        }
+        recordOut();
+    }
 
+    public void recordDefensiveInterference(){
+
+    }
+
+    public void recordCatchersInterference(){
+        recordGameState();
+        getCatcherStats().incrementErrors();
+        getPitcherStats().incrementTotalNumBF();
+        getBatterStats().incrementPlateApperance();
+        getGame().getScorecard().currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.INTERFERENCE));
     }
 
     public void recordFlyOutDoublePlay(String positionsInvolved, String firstPutout, int baseRunnerIndex) throws Exception {
@@ -554,7 +576,10 @@ public class Recorder {
         recordOut();
     }
 
-    public void recordTriplePlay(){
+    public void recordGroundBallTriplePlay(String positionsInvolved, String firstPutout, int firstRunnerOutIndex, int secondRunnerOutIndex, int thirdRunnerOutIndex){
+        recordGameState();
+        getPitcherStats().incrementInducedGBDPs();
+        getBatterStats().incrementGroundBallDP();
 
     }
 
