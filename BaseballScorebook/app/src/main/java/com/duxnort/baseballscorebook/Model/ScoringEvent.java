@@ -12,6 +12,7 @@ public class ScoringEvent {
     private ScoringSymbol scoringSymbol = null;
     private ArrayList<Integer> putOuts = null;
     private ArrayList<Integer> assists = null;
+    private int outNumber = 0;
 
     public ScoringEvent() {
     }
@@ -20,9 +21,20 @@ public class ScoringEvent {
         this.scoringSymbol = scoringSymbol;
     }
 
+    public ScoringEvent(ScoringSymbol scoringSymbol, int outNumber) {
+        this.outNumber = outNumber;
+        this.scoringSymbol = scoringSymbol;
+    }
+
     public ScoringEvent(String positionsInvolved, ScoringSymbol scoringSymbol) {
         this.positionsInvolved = positionsInvolved;
         this.scoringSymbol = scoringSymbol;
+    }
+
+    public ScoringEvent(String positionsInvolved, ScoringSymbol scoringSymbol, int outNumber) {
+        this.positionsInvolved = positionsInvolved;
+        this.scoringSymbol = scoringSymbol;
+        this.outNumber = outNumber;
     }
 
     public ScoringEvent(String positionsInvolved, ScoringSymbol scoringSymbol,
@@ -31,6 +43,14 @@ public class ScoringEvent {
         this.scoringSymbol = scoringSymbol;
         this.putOuts = putOuts;
         this.assists = assists;
+    }
+
+    public ScoringEvent(String positionsInvolved, ScoringSymbol scoringSymbol, ArrayList<Integer> putOuts, ArrayList<Integer> assists, int outNumber) {
+        this.positionsInvolved = positionsInvolved;
+        this.scoringSymbol = scoringSymbol;
+        this.putOuts = putOuts;
+        this.assists = assists;
+        this.outNumber = outNumber;
     }
 
     public String getPositionsInvolved() {
@@ -63,5 +83,13 @@ public class ScoringEvent {
 
     public void setAssists(ArrayList<Integer> assists) {
         this.assists = assists;
+    }
+
+    public int getOutNumber() {
+        return outNumber;
+    }
+
+    public void setOutNumber(int outNumber) {
+        this.outNumber = outNumber;
     }
 }

@@ -16,7 +16,8 @@ public enum Position {
     SHORTSTOP("Shortstop", "SS", 6),
     LEFTFIELD("Left Field", "LF", 7),
     CENTERFIELD("Center Field", "CF", 8),
-    RIGHTFIELD("Right Field", "RF", 9);
+    RIGHTFIELD("Right Field", "RF", 9),
+    NONE("None", "NA", 10);
 
     private final String fullName;
     private final String abbrev;
@@ -38,5 +39,32 @@ public enum Position {
 
     public int getScoreNum() {
         return scoreNum;
+    }
+
+    public static Position positionFromInt(int pos){
+        switch (pos){
+            case 0:
+                return Position.DESIGNATED_HITTER;
+            case 1:
+                return Position.PITCHER;
+            case 2:
+                return Position.CATCHER;
+            case 3:
+                return Position.FIRSTBASE;
+            case 4:
+                return Position.SECONDBASE;
+            case 5:
+                return Position.THIRDBASE;
+            case 6:
+                return Position.SHORTSTOP;
+            case 7:
+                return Position.LEFTFIELD;
+            case 8:
+                return Position.CENTERFIELD;
+            case 9:
+                return Position.RIGHTFIELD;
+            default:
+                return Position.NONE;
+        }
     }
 }

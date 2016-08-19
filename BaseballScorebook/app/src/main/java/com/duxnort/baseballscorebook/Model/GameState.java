@@ -211,9 +211,13 @@ public class GameState {
     public void nextHalfInning(){
         if(isTop()){
             setTop(false);
+            clearOuts();
+            clearBaseRunners();
         } else {
             incrementInning();
             setTop(true);
+            clearOuts();
+            clearBaseRunners();
         }
     }
 
@@ -466,6 +470,10 @@ public class GameState {
         setStrikeCount(0);
     }
 
+    public void clearOuts(){
+        setNumOuts(0);
+    }
+
     public void incrementRuns(){
         if(isTop()){
             setAwayScore(getAwayScore() + 1);
@@ -559,6 +567,14 @@ public class GameState {
             decrementHomeErrors();
         } else {
             decrementAwayErrors();
+        }
+    }
+
+    public int getCurrBatterIndex(){
+        if(isTop()){
+            return getCurrAwayBatterIndex();
+        } else {
+            return getCurrHomeBatterIndex();
         }
     }
 }
