@@ -2,9 +2,62 @@ package com.duxnort.baseballscorebook.Model;
 
 import java.util.ArrayList;
 
-/**
- * Created by matt on 8/12/16.
- */
 public class Scorecard {
-    private ArrayList[][] scoreBoxes = new ArrayList[9][9];
+    private final int BO_LENGTH = 9;
+    private ArrayList[][] scoreBoxes = new ArrayList[BO_LENGTH][12];
+
+    public Scorecard() {
+    }
+
+    public Scorecard(ArrayList[][] scoreBoxes) {
+        this.scoreBoxes = scoreBoxes;
+    }
+
+    public ArrayList[][] getScoreBoxes() {
+        return scoreBoxes;
+    }
+
+    public void setScoreBoxes(ArrayList[][] scoreBoxes) {
+        this.scoreBoxes = scoreBoxes;
+    }
+
+    public ScorecardBox currentBatterScorecardBox() {
+        // TODO: 8/19/16 Fill out method
+        return null;
+    }
+
+    public ScorecardBox currentRunnerOnFirstScorecardBox() {
+        // TODO: 8/19/16 Fill out method
+        return null;
+    }
+
+    public ScorecardBox currentRunnerOnSecondScorecardBox() {
+        // TODO: 8/19/16 Fill out method
+        return null;
+    }
+
+    public ScorecardBox currentRunnerOnThirdScorecardBox() {
+        // TODO: 8/19/16 Fill out method
+        return null;
+    }
+
+    public void recordBatterEvent(ScoringEvent batterEvent){
+        ScorecardBox batterBox = currentBatterScorecardBox();
+        batterBox.setBatterScoringEvent(batterEvent);
+    }
+
+    public void recordRunnerOnFirstEvent(ScoringEvent rofEvent){
+        ScorecardBox runnerBox = currentRunnerOnFirstScorecardBox();
+        runnerBox.setFirstToSecondScoringEvent(rofEvent);
+    }
+
+    public void recordRunnerOnSecondEvent(ScoringEvent rosEvent){
+        ScorecardBox runnerBox = currentRunnerOnSecondScorecardBox();
+        runnerBox.setFirstToSecondScoringEvent(rosEvent);
+    }
+
+    public void recordRunnerOnThirdEvent(ScoringEvent rotEvent){
+        ScorecardBox runnerBox = currentRunnerOnThirdScorecardBox();
+        runnerBox.setFirstToSecondScoringEvent(rotEvent);
+    }
 }

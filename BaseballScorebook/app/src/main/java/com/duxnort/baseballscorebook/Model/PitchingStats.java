@@ -365,14 +365,12 @@ public class PitchingStats {
     public void incrementHomeRuns(){
         setHomeRuns(getHomeRuns() + 1);
         incrementAtBats();
-        incrementEarnedRuns();
     }
 
     public void decrementHomeRuns() throws Exception {
         if(getHomeRuns() > 0){
             setHomeRuns(getHomeRuns() - 1);
             decrementAtBats();
-            decrementEarnedRuns();
         } else {
             throw new Exception("Cannot have negative Home Runs(Pitcher).");
         }
