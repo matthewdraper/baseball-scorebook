@@ -412,16 +412,64 @@ public class Recorder {
         recordOut();
     }
 
-    public void recordGroundBallDoublePlay(String positionsInvolved) throws Exception {
+    public void recordRegularGroundBallDoublePlay(String positionsInvolved, int baseRunnerIndex, boolean wasBatterFirstOut) throws Exception {
+        recordNonRegularGroundBallDoublePlay(positionsInvolved, positionsInvolved.charAt(positionsInvolved.length() - 2)+ "", baseRunnerIndex, wasBatterFirstOut);
+    }
 
+    public void recordNonRegularGroundBallDoublePlay(String positionsInvolved, String firstPutout, int baseRunnerIndex, boolean wasBatterFirstOut) throws Exception {
+        recordGameState();
+        getPitcherStats().incrementInducedGBDPs();
+        getBatterStats().incrementGroundBallDP();
+        recordPutOut(Position.positionFromInt(Integer.parseInt(positionsInvolved.charAt(positionsInvolved.length() - 1)+ "")));
+        recordPutOut(Position.positionFromInt(Integer.parseInt(firstPutout)));
+        for(int i = 0; i < positionsInvolved.length() - 1; i++){
+            recordAssist(Position.positionFromInt(Integer.parseInt(positionsInvolved.charAt(i) + "")));
+        }
+        if(wasBatterFirstOut){
+            getGame().getScorecard().currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.DOUBLE_PLAY, getGame().getCurrentGameState().getNumOuts() + 1));
+            //Record Second out at the base that the runner was heading to. Use runner index to find what base the runner is on.
+            if(getGame().getCurrentGameState().getCurrRunnerThirdIndex() == baseRunnerIndex){
+                getGame().getScorecard().currentRunnerOnThirdScorecardBox().setThirdToHomeScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 2));
+            } else if(getGame().getCurrentGameState().getCurrRunnerSecondIndex() == baseRunnerIndex){
+                getGame().getScorecard().currentRunnerOnSecondScorecardBox().setSecondToThirdScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 2));
+            } else if(getGame().getCurrentGameState().getCurrRunnerFirstIndex() == baseRunnerIndex){
+                getGame().getScorecard().currentRunnerOnFirstScorecardBox().setFirstToSecondScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 2));
+            }
+        } else {
+            getGame().getScorecard().currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.DOUBLE_PLAY, getGame().getCurrentGameState().getNumOuts() + 2));
+            //Record Second out at the base that the runner was heading to. Use runner index to find what base the runner is on.
+            if(getGame().getCurrentGameState().getCurrRunnerThirdIndex() == baseRunnerIndex){
+                getGame().getScorecard().currentRunnerOnThirdScorecardBox().setThirdToHomeScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
+            } else if(getGame().getCurrentGameState().getCurrRunnerSecondIndex() == baseRunnerIndex){
+                getGame().getScorecard().currentRunnerOnSecondScorecardBox().setSecondToThirdScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
+            } else if(getGame().getCurrentGameState().getCurrRunnerFirstIndex() == baseRunnerIndex){
+                getGame().getScorecard().currentRunnerOnFirstScorecardBox().setFirstToSecondScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
+            }
+        }
+        recordOut();
+        recordOut();
     }
 
     public void recordGroundBallOut(String positionsInvolved) throws Exception {
-
+        recordGameState();
+        getPitcherStats().incrementGroundOuts();
+        getBatterStats().incrementGroundOuts();
+        recordImpliedFieldingStats(positionsInvolved);
+        getGame().getScorecard().currentBatterScorecardBox().setBatterScoringEvent(
+                new ScoringEvent(positionsInvolved, ScoringSymbol.GROUNDOUT,
+                        getGame().getCurrentGameState().getNumOuts() + 1));
+        recordOut();
     }
 
     public void recordFlyBallOut(String positionsInvolved) throws Exception {
-
+        recordGameState();
+        getPitcherStats().incrementGroundOuts();
+        getBatterStats().incrementGroundOuts();
+        recordImpliedFieldingStats(positionsInvolved);
+        getGame().getScorecard().currentBatterScorecardBox().setBatterScoringEvent(
+                new ScoringEvent(positionsInvolved, ScoringSymbol.FLYOUT,
+                        getGame().getCurrentGameState().getNumOuts() + 1));
+        recordOut();
     }
 
     public void recordImpliedFieldingStats(String positionsInvolved){
@@ -466,16 +514,44 @@ public class Recorder {
         // Record in scorebook as unassited.
     }
 
-    public void recordFieldersChoice(){
-
+    public void recordFieldersChoice(String positionsInvolved, int runnerIndex) throws Exception {
+        recordGameState();
+        getPitcherStats().incrementGroundOuts();
+        getBatterStats().incrementGroundOuts();
+        recordImpliedFieldingStats(positionsInvolved);
+        getGame().getScorecard().currentBatterScorecardBox().setBatterScoringEvent((new ScoringEvent(positionsInvolved, ScoringSymbol.FIELDERS_CHOICE)));
+        if(runnerIndex == getGame().getCurrentGameState().getCurrRunnerThirdIndex()){
+            getGame().getScorecard().currentRunnerOnThirdScorecardBox().setThirdToHomeScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
+        } else if(runnerIndex == getGame().getCurrentGameState().getCurrRunnerSecondIndex()){
+            getGame().getScorecard().currentRunnerOnSecondScorecardBox().setSecondToThirdScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
+        } else if(runnerIndex == getGame().getCurrentGameState().getCurrRunnerFirstIndex()){
+            getGame().getScorecard().currentRunnerOnFirstScorecardBox().setFirstToSecondScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
+        }
+        recordOut();
     }
 
     public void recordInterference(){
 
     }
 
-    public void recordDoublePlay(){
+    public void recordFlyOutDoublePlay(String positionsInvolved, String firstPutout, int baseRunnerIndex) throws Exception {
+        recordFlyBallOut(positionsInvolved);
+        recordAssist(Position.positionFromInt(Integer.parseInt(positionsInvolved.charAt(0)+ "")));
+        for(int i = 1; i < positionsInvolved.length() - 1; i++){
+            recordAssist(Position.positionFromInt(Integer.parseInt(positionsInvolved.charAt(i) + "")));
+        }
 
+        getGame().getScorecard().currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.DOUBLE_PLAY, getGame().getCurrentGameState().getNumOuts()));
+        //Record Second out at the base that the runner was heading to. Use runner index to find what base the runner is on.
+        if(getGame().getCurrentGameState().getCurrRunnerThirdIndex() == baseRunnerIndex){
+            getGame().getScorecard().currentRunnerOnThirdScorecardBox().setThirdToHomeScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
+        } else if(getGame().getCurrentGameState().getCurrRunnerSecondIndex() == baseRunnerIndex){
+            getGame().getScorecard().currentRunnerOnSecondScorecardBox().setSecondToThirdScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
+        } else if(getGame().getCurrentGameState().getCurrRunnerFirstIndex() == baseRunnerIndex){
+            getGame().getScorecard().currentRunnerOnFirstScorecardBox().setFirstToSecondScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
+        }
+
+        recordOut();
     }
 
     public void recordTriplePlay(){
@@ -483,6 +559,7 @@ public class Recorder {
     }
 
     public void recordOut() throws Exception {
+        getPitcherStats().incrementNumOutsPitched();
         if(getGame().getCurrentGameState().getNumOuts() < 3){
             getGame().getCurrentGameState().incrementOuts();
         } else {

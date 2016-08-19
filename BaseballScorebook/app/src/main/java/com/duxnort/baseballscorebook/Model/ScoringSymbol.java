@@ -35,7 +35,8 @@ public enum ScoringSymbol {
     PASSED_BALL("Passed Ball", "PB"),
     WILD_PITCH("Wild Pitch", "WP"),
     RUNNER_ADVANCED("Runner Advanced", "RA"),
-    STOLEN_BASE("Stolen Base", "SB");
+    STOLEN_BASE("Stolen Base", "SB"),
+    RUNNER_OUT("Runner Out", "RO");
 
     private final String fullName;
     private final String scoringSymbol;
