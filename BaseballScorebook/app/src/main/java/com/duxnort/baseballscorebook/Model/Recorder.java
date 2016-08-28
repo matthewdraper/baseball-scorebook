@@ -24,30 +24,18 @@ public class Recorder {
     }
 
     public void recordStrike() throws Exception {
-        // Do not let their be a strike recorded if their are two strikes already
         if (getGame().getCurrentGameState().getStrikeCount() < 2) {
-            // 1) Record a pitch to the pitch count in GameState
-//            getGame().getCurrentGameState().incrementPitchCount();
-            // 2) Record a pitch thrown for the pitcher
             getPitcherStats().incrementNumPitches();
-            // 3) Record a pitch seen for the batter
             getBatterStats().incrementNumPitches();
-            // 4) Record a strike in GameState
             getGame().getCurrentGameState().incrementStrikes();
             recordGameState();
         }
     }
 
     public void recordBall() throws Exception {
-        // Do not let their be a ball recorded if their are three strikes already
         if (getGame().getCurrentGameState().getBallCount() < 3) {
-            // 1) Record a pitch to the pitch count in GameState
-//            getGame().getCurrentGameState().incrementPitchCount();
-            // 2) Record a pitch thrown for the pitcher
             getPitcherStats().incrementNumPitches();
-            // 3) Record a pitch seen for the batter
             getBatterStats().incrementNumPitches();
-            // 4) Record a strike in GameState
             getGame().getCurrentGameState().incrementBalls();
             recordGameState();
         }
@@ -55,108 +43,62 @@ public class Recorder {
 
     public void recordSingle() {
         getGame().getCurrentGameState().incrementPitchCount();
-        // 2) Increment the singles stat for the pitcher.
         getPitcherStats().incrementSingles();
-        // 3) Increment the singles stat for the batter.
         getBatterStats().incrementSingles();
-        // 4) Increment the pitches thrown for pitcher.
         getPitcherStats().incrementNumPitches();
-        // 5) Increment the pitches seen for the batter.
         getBatterStats().incrementNumPitches();
-        // 6) Record the location of hit in the scorebox.
         // TODO: 8/19/16 Figure out how to record location
-        // 7) Record the single in the scorebox.
-        // TODO: 8/28/16  Fix the scorecard problem. Initilize the card with boxes.
-//        getGame().getScorecard().recordBatterEvent(new ScoringEvent(ScoringSymbol.SINGLE));
-        // 8) Update the Bases.
+        getGame().getScorecard().recordBatterEvent(new ScoringEvent(ScoringSymbol.SINGLE));
         // TODO: 8/19/16 Need to figure out how to deal with the other base runners before scoring
         // TODO: 8/19/16 the single.
         getGame().getCurrentGameState().setCurrRunnerFirstIndex(getCurrentBatterIndex());
-        // 9) Update hits column.
         getGame().getCurrentGameState().incrementHits();
-        // 10) Next batter(clearing the count should be implemented in the next batter method)
         recordGameState();
         nextBatter();
     }
 
     public void recordDouble() {
-        // 1) Record the GameState just before the hit.
         getGame().getCurrentGameState().incrementPitchCount();
-
-        // 2) Increment the singles stat for the pitcher.
         getPitcherStats().incrementDoubles();
-        // 3) Increment the singles stat for the batter.
         getBatterStats().incrementDoubles();
-        // 4) Increment the pitches thrown for pitcher.
         getPitcherStats().incrementNumPitches();
-        // 5) Increment the pitches seen for the batter.
         getBatterStats().incrementNumPitches();
-        // 6) Record the location of hit in the scorebox.
         // TODO: 8/19/16 Figure out how to record location
-        // 7) Record the single in the scorebox.
-        // TODO: 8/28/16  Fix the scorecard problem. Initilize the card with boxes.
-//        getGame().getScorecard().recordBatterEvent(new ScoringEvent(ScoringSymbol.DOUBLE));
-        // 8) Update the Bases.
+        getGame().getScorecard().recordBatterEvent(new ScoringEvent(ScoringSymbol.DOUBLE));
         // TODO: 8/19/16 Need to figure out how to deal with the other base runners before scoring
         // TODO: 8/19/16 the single.
         getGame().getCurrentGameState().setCurrRunnerSecondIndex(getCurrentBatterIndex());
-        // 9) Update hits column.
         getGame().getCurrentGameState().incrementHits();
-        // 10) Next batter(clearing the count should be implemented in the next batter method)
         recordGameState();
         nextBatter();
     }
 
     public void recordTriple() {
-        // 1) Record the GameState just before the hit.
         getGame().getCurrentGameState().incrementPitchCount();
-        // 2) Increment the singles stat for the pitcher.
         getPitcherStats().incrementTriples();
-        // 3) Increment the singles stat for the batter.
         getBatterStats().incrementTriples();
-        // 4) Increment the pitches thrown for pitcher.
         getPitcherStats().incrementNumPitches();
-        // 5) Increment the pitches seen for the batter.
         getBatterStats().incrementNumPitches();
-        // 6) Record the location of hit in the scorebox.
         // TODO: 8/19/16 Figure out how to record location
-        // 7) Record the single in the scorebox.
-        // TODO: 8/28/16  Fix the scorecard problem. Initilize the card with boxes.
-        // getGame().getScorecard().recordBatterEvent(new ScoringEvent(ScoringSymbol.TRIPLE));
-        // 8) Update the Bases.
+        getGame().getScorecard().recordBatterEvent(new ScoringEvent(ScoringSymbol.TRIPLE));
         // TODO: 8/19/16 Need to figure out how to deal with the other base runners before scoring
         // TODO: 8/19/16 the single.
         getGame().getCurrentGameState().setCurrRunnerThirdIndex(getCurrentBatterIndex());
-        // 9) Update hits column.
         getGame().getCurrentGameState().incrementHits();
-        // 10) Next batter(clearing the count should be implemented in the next batter method)
         recordGameState();
         nextBatter();
     }
 
     public void recordHomeRun(boolean isBatterEarned, boolean isFirstEarned, boolean isSecondEarned, boolean isThirdEarned) {
-        // 1) Record the GameState just before the hit
         getGame().getCurrentGameState().incrementPitchCount();
-        // 2) Increment the singles stat for the pitcher.
         getPitcherStats().incrementHomeRuns();
-        // 3) Increment the singles stat for the batter.
         getBatterStats().incrementHomeRuns();
-        // 4) Increment the pitches thrown for pitcher.
         getPitcherStats().incrementNumPitches();
-        // 5) Increment the pitches seen for the batter.
         getBatterStats().incrementNumPitches();
         getCurrentBatter().getStats().getRunningStats().incrementRuns();
-        // 6) Record the location of hit in the scorebox.
         // TODO: 8/19/16 Figure out how to record location
-        // 7) Record the single in the scorebox.
-        // TODO: 8/28/16  Fix the scorecard problem. Initilize the card with boxes.
-//        getGame().getScorecard().recordBatterEvent(new ScoringEvent(ScoringSymbol.HOMERUN));
-        // 8) Update the Bases.
-        // TODO: 8/19/16 Need to figure out how to deal with the other base runners before scoring
-        // TODO: 8/19/16 the single.
-        // 9) Update hits column.
+        getGame().getScorecard().recordBatterEvent(new ScoringEvent(ScoringSymbol.HOMERUN));
         getGame().getCurrentGameState().incrementHits();
-        // 10) Update the runs column.
         for (int i = 0; i < getNumberOfBaserunners(); i++) {
             // Increment the score and RBIs
             getGame().getCurrentGameState().incrementScore();
@@ -221,7 +163,6 @@ public class Recorder {
                 }
             }
         }
-
         if (isBatterEarned) {
             getPitcherStats().incrementEarnedRuns();
         } else {

@@ -17,7 +17,7 @@ public class RecorderTest {
         game.setHomeTeam(initializeHomeTeam());
         game.setUmpireList(initializeUmpires());
         game.setFieldName("Jacobs Field");
-        game.setScorecard(new Scorecard());
+        game.setScorebook(new Scorebook());
         ArrayList<LineupState> ls = new ArrayList<>();
         ls.add(initializeLineups());
         game.setLineupStatesList(ls);
@@ -223,7 +223,7 @@ public class RecorderTest {
         assertEquals(0, r.getGame().getCurrentGameState().getStrikeCount());
         assertEquals(1, r.getGame().getCurrentGameState().getPitchCount());
         assertEquals(1, r.getGame().getCurrentGameState().getAwayHits());
-//        assertEquals(ScoringSymbol.SINGLE, r.getGame().getScorecard().currentRunnerOnFirstScorecardBox().getBatterScoringEvent().getScoringSymbol());
+        assertEquals(ScoringSymbol.SINGLE, r.getGame().getScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
     }
 
     @Test
@@ -244,7 +244,7 @@ public class RecorderTest {
         assertEquals(0, r.getGame().getCurrentGameState().getStrikeCount());
         assertEquals(1, r.getGame().getCurrentGameState().getPitchCount());
         assertEquals(1, r.getGame().getCurrentGameState().getAwayHits());
-//        assertEquals(ScoringSymbol.DOUBLE, r.getGame().getScorecard().currentRunnerOnSecondScorecardBox().getBatterScoringEvent().getScoringSymbol());
+        assertEquals(ScoringSymbol.DOUBLE, r.getGame().getScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
     }
 
     @Test
@@ -265,7 +265,7 @@ public class RecorderTest {
         assertEquals(0, r.getGame().getCurrentGameState().getStrikeCount());
         assertEquals(1, r.getGame().getCurrentGameState().getPitchCount());
         assertEquals(1, r.getGame().getCurrentGameState().getAwayHits());
-//        assertEquals(ScoringSymbol.DOUBLE, r.getGame().getScorecard().currentRunnerOnSecondScorecardBox().getBatterScoringEvent().getScoringSymbol());
+        assertEquals(ScoringSymbol.TRIPLE, r.getGame().getScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
     }
 
     @Test
@@ -290,7 +290,7 @@ public class RecorderTest {
         assertEquals(1, r.getGame().getCurrentGameState().getPitchCount());
         assertEquals(1, r.getGame().getCurrentGameState().getAwayHits());
         assertEquals(1, r.getGame().getCurrentGameState().getAwayScore());
-//        assertEquals(ScoringSymbol.DOUBLE, r.getGame().getScorecard().currentRunnerOnSecondScorecardBox().getBatterScoringEvent().getScoringSymbol());
+        assertEquals(ScoringSymbol.HOMERUN, r.getGame().getScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
     }
 
     @Test

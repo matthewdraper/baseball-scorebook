@@ -11,7 +11,7 @@ public class Game {
     private Team awayTeam = null;
     private ArrayList<Umpire> umpireList = null;
     private String fieldName = null;
-    private Scorecard scorecard = null;
+    private Scorebook scorebook = null;
     // TODO: 8/18/16 Need to implement some sort of date API at some point.
 
     public Game() {
@@ -98,12 +98,27 @@ public class Game {
         return getGameStateList().get(getCurrGameStateIndex());
     }
 
-    public Scorecard getScorecard() {
-        return scorecard;
+    public Scorebook getScorebook() {
+        return scorebook;
     }
 
-    public void setScorecard(Scorecard scorecard) {
-        this.scorecard = scorecard;
+    public void setScorebook(Scorebook scorebook) {
+        this.scorebook = scorebook;
+    }
+
+    public Scorecard getHomeScorecard() {
+        return getScorebook().getHomeScorecard();
+    }
+
+    public Scorecard getAwayScorecard() {
+        return getScorebook().getAwayScorecard();
+    }
+
+    public Scorecard getScorecard() {
+        if (getCurrentGameState().isTop()) {
+            return getAwayScorecard();
+        }
+        return getHomeScorecard();
     }
 
     public void newGameState(){
