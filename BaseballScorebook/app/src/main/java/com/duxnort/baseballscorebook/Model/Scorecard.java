@@ -60,4 +60,14 @@ public class Scorecard {
         ScorecardBox runnerBox = currentRunnerOnThirdScorecardBox();
         runnerBox.setFirstToSecondScoringEvent(rotEvent);
     }
+
+    public void initializeScoreBoxes() {
+        for (int i = 0; i < BO_LENGTH; i++) {
+            for (int j = 0; j < 12; j++) {
+//                ScorecardBox[][] s = getScoreBoxes();
+//                .add(new ScorecardBox());
+//                setScoreBoxes(getScoreBoxes()[i][j].add(new ScorecardBox()));
+            }
+        }
+    }
 }

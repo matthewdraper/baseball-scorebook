@@ -25,35 +25,36 @@ public class Recorder {
 
     public void recordStrike() throws Exception {
         // Do not let their be a strike recorded if their are two strikes already
-        if(getGame().getCurrentGameState().getStrikeCount() < 2){
+        if (getGame().getCurrentGameState().getStrikeCount() < 2) {
             // 1) Record a pitch to the pitch count in GameState
-            getGame().getCurrentGameState().incrementPitchCount();
+//            getGame().getCurrentGameState().incrementPitchCount();
             // 2) Record a pitch thrown for the pitcher
             getPitcherStats().incrementNumPitches();
             // 3) Record a pitch seen for the batter
             getBatterStats().incrementNumPitches();
             // 4) Record a strike in GameState
             getGame().getCurrentGameState().incrementStrikes();
+            recordGameState();
         }
     }
 
     public void recordBall() throws Exception {
         // Do not let their be a ball recorded if their are three strikes already
-        if(getGame().getCurrentGameState().getBallCount() < 3){
+        if (getGame().getCurrentGameState().getBallCount() < 3) {
             // 1) Record a pitch to the pitch count in GameState
-            getGame().getCurrentGameState().incrementPitchCount();
+//            getGame().getCurrentGameState().incrementPitchCount();
             // 2) Record a pitch thrown for the pitcher
             getPitcherStats().incrementNumPitches();
             // 3) Record a pitch seen for the batter
             getBatterStats().incrementNumPitches();
             // 4) Record a strike in GameState
             getGame().getCurrentGameState().incrementBalls();
+            recordGameState();
         }
     }
 
     public void recordSingle() {
-        // 1) Record the GameState just before the hit.
-        recordGameState();
+        getGame().getCurrentGameState().incrementPitchCount();
         // 2) Increment the singles stat for the pitcher.
         getPitcherStats().incrementSingles();
         // 3) Increment the singles stat for the batter.
@@ -65,19 +66,23 @@ public class Recorder {
         // 6) Record the location of hit in the scorebox.
         // TODO: 8/19/16 Figure out how to record location
         // 7) Record the single in the scorebox.
-        getGame().getScorecard().recordBatterEvent(new ScoringEvent(ScoringSymbol.SINGLE));
+        // TODO: 8/28/16  Fix the scorecard problem. Initilize the card with boxes.
+//        getGame().getScorecard().recordBatterEvent(new ScoringEvent(ScoringSymbol.SINGLE));
         // 8) Update the Bases.
         // TODO: 8/19/16 Need to figure out how to deal with the other base runners before scoring
         // TODO: 8/19/16 the single.
+        getGame().getCurrentGameState().setCurrRunnerFirstIndex(getCurrentBatterIndex());
         // 9) Update hits column.
         getGame().getCurrentGameState().incrementHits();
         // 10) Next batter(clearing the count should be implemented in the next batter method)
+        recordGameState();
         nextBatter();
     }
 
     public void recordDouble() {
         // 1) Record the GameState just before the hit.
-        recordGameState();
+        getGame().getCurrentGameState().incrementPitchCount();
+
         // 2) Increment the singles stat for the pitcher.
         getPitcherStats().incrementDoubles();
         // 3) Increment the singles stat for the batter.
@@ -89,19 +94,22 @@ public class Recorder {
         // 6) Record the location of hit in the scorebox.
         // TODO: 8/19/16 Figure out how to record location
         // 7) Record the single in the scorebox.
-        getGame().getScorecard().recordBatterEvent(new ScoringEvent(ScoringSymbol.DOUBLE));
+        // TODO: 8/28/16  Fix the scorecard problem. Initilize the card with boxes.
+//        getGame().getScorecard().recordBatterEvent(new ScoringEvent(ScoringSymbol.DOUBLE));
         // 8) Update the Bases.
         // TODO: 8/19/16 Need to figure out how to deal with the other base runners before scoring
         // TODO: 8/19/16 the single.
+        getGame().getCurrentGameState().setCurrRunnerSecondIndex(getCurrentBatterIndex());
         // 9) Update hits column.
         getGame().getCurrentGameState().incrementHits();
         // 10) Next batter(clearing the count should be implemented in the next batter method)
+        recordGameState();
         nextBatter();
     }
 
-    public void recordTriple(){
+    public void recordTriple() {
         // 1) Record the GameState just before the hit.
-        recordGameState();
+        getGame().getCurrentGameState().incrementPitchCount();
         // 2) Increment the singles stat for the pitcher.
         getPitcherStats().incrementTriples();
         // 3) Increment the singles stat for the batter.
@@ -113,17 +121,20 @@ public class Recorder {
         // 6) Record the location of hit in the scorebox.
         // TODO: 8/19/16 Figure out how to record location
         // 7) Record the single in the scorebox.
-        getGame().getScorecard().recordBatterEvent(new ScoringEvent(ScoringSymbol.TRIPLE));
+        // TODO: 8/28/16  Fix the scorecard problem. Initilize the card with boxes.
+        // getGame().getScorecard().recordBatterEvent(new ScoringEvent(ScoringSymbol.TRIPLE));
         // 8) Update the Bases.
         // TODO: 8/19/16 Need to figure out how to deal with the other base runners before scoring
         // TODO: 8/19/16 the single.
+        getGame().getCurrentGameState().setCurrRunnerThirdIndex(getCurrentBatterIndex());
         // 9) Update hits column.
         getGame().getCurrentGameState().incrementHits();
         // 10) Next batter(clearing the count should be implemented in the next batter method)
+        recordGameState();
         nextBatter();
     }
 
-    public void recordHomeRun(boolean isBatterEarned, boolean isFirstEarned, boolean isSecondEarned, boolean isThirdEarned){
+    public void recordHomeRun(boolean isBatterEarned, boolean isFirstEarned, boolean isSecondEarned, boolean isThirdEarned) {
         // 1) Record the GameState just before the hit.
         recordGameState();
         // 2) Increment the singles stat for the pitcher.
@@ -144,57 +155,57 @@ public class Recorder {
         // 9) Update hits column.
         getGame().getCurrentGameState().incrementHits();
         // 10) Update the runs column.
-        for(int i = 0; i < getNumberOfBaserunners(); i++){
+        for (int i = 0; i < getNumberOfBaserunners(); i++) {
             // Increment the score and RBIs
             getGame().getCurrentGameState().incrementScore();
             recordRunBattedIn();
         }
-        // Update the runners' and pitchers runs stat.
-        if(getGame().getCurrentGameState().isTop()){
-            if(getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1){
+        // Update the runners' and pitcher's runs stat.
+        if (getGame().getCurrentGameState().isTop()) {
+            if (getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1) {
                 getGame().getAwayTeam().getRoster().get(getGame().getCurrentGameState().getCurrRunnerFirstIndex()).getStats().getRunningStats().incrementRuns();
-                if(isFirstEarned){
+                if (isFirstEarned) {
                     getPitcherStats().incrementEarnedRuns();
                 } else {
                     getPitcherStats().incrementRuns();
                 }
             }
-            if(getGame().getCurrentGameState().getCurrRunnerSecondIndex() != -1){
+            if (getGame().getCurrentGameState().getCurrRunnerSecondIndex() != -1) {
                 getGame().getAwayTeam().getRoster().get(getGame().getCurrentGameState().getCurrRunnerSecondIndex()).getStats().getRunningStats().incrementRuns();
-                if(isSecondEarned){
+                if (isSecondEarned) {
                     getPitcherStats().incrementEarnedRuns();
                 } else {
                     getPitcherStats().incrementRuns();
                 }
             }
-            if(getGame().getCurrentGameState().getCurrRunnerThirdIndex() != -1){
+            if (getGame().getCurrentGameState().getCurrRunnerThirdIndex() != -1) {
                 getGame().getAwayTeam().getRoster().get(getGame().getCurrentGameState().getCurrRunnerThirdIndex()).getStats().getRunningStats().incrementRuns();
-                if(isThirdEarned){
+                if (isThirdEarned) {
                     getPitcherStats().incrementEarnedRuns();
                 } else {
                     getPitcherStats().incrementRuns();
                 }
             }
         } else {
-            if(getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1){
+            if (getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1) {
                 getGame().getHomeTeam().getRoster().get(getGame().getCurrentGameState().getCurrRunnerFirstIndex()).getStats().getRunningStats().incrementRuns();
-                if(isFirstEarned){
+                if (isFirstEarned) {
                     getPitcherStats().incrementEarnedRuns();
                 } else {
                     getPitcherStats().incrementRuns();
                 }
             }
-            if(getGame().getCurrentGameState().getCurrRunnerSecondIndex() != -1){
+            if (getGame().getCurrentGameState().getCurrRunnerSecondIndex() != -1) {
                 getGame().getHomeTeam().getRoster().get(getGame().getCurrentGameState().getCurrRunnerSecondIndex()).getStats().getRunningStats().incrementRuns();
-                if(isSecondEarned){
+                if (isSecondEarned) {
                     getPitcherStats().incrementEarnedRuns();
                 } else {
                     getPitcherStats().incrementRuns();
                 }
             }
-            if(getGame().getCurrentGameState().getCurrRunnerThirdIndex() != -1){
+            if (getGame().getCurrentGameState().getCurrRunnerThirdIndex() != -1) {
                 getGame().getHomeTeam().getRoster().get(getGame().getCurrentGameState().getCurrRunnerThirdIndex()).getStats().getRunningStats().incrementRuns();
-                if(isThirdEarned){
+                if (isThirdEarned) {
                     getPitcherStats().incrementEarnedRuns();
                 } else {
                     getPitcherStats().incrementRuns();
@@ -202,7 +213,7 @@ public class Recorder {
             }
         }
 
-        if(isBatterEarned){
+        if (isBatterEarned) {
             getPitcherStats().incrementEarnedRuns();
         } else {
             getPitcherStats().incrementRuns();
@@ -213,25 +224,25 @@ public class Recorder {
         nextBatter();
     }
 
-    public void recordStolenBase(int runnerIndex, boolean earnedRun){
+    public void recordStolenBase(int runnerIndex, boolean earnedRun) {
         // Record the GameState before the stolen base.
         recordGameState();
         // Store the player
         Player runner;
-        if(getGame().getCurrentGameState().isTop()){
+        if (getGame().getCurrentGameState().isTop()) {
             runner = getGame().getAwayTeam().getRoster().get(runnerIndex);
         } else {
             runner = getGame().getHomeTeam().getRoster().get(runnerIndex);
         }
         // Advance the runner to the next base if it is not occupied.
-        if(getGame().getCurrentGameState().getCurrRunnerThirdIndex() != runnerIndex){
+        if (getGame().getCurrentGameState().getCurrRunnerThirdIndex() != runnerIndex) {
             moveToNextBase(runnerIndex, ScoringSymbol.STOLEN_BASE);
         } else {
             getGame().getScorecard().currentRunnerOnThirdScorecardBox().setThirdToHomeScoringEvent(new ScoringEvent(ScoringSymbol.STOLEN_BASE));
             getGame().getCurrentGameState().clearRunnerOnThird();
             getGame().getCurrentGameState().incrementScore();
             runner.getStats().getRunningStats().incrementRuns();
-            if(earnedRun){
+            if (earnedRun) {
                 getPitcherStats().incrementEarnedRuns();
             } else {
                 getPitcherStats().incrementRuns();
@@ -242,38 +253,38 @@ public class Recorder {
         runner.getStats().getRunningStats().incrementStolenBases();
     }
 
-    public void recordRunBattedIn(){
+    public void recordRunBattedIn() {
         getBatterStats().incrementRbis();
     }
 
-    public void recordWalk(boolean earnedRun){
+    public void recordWalk(boolean earnedRun) {
         recordGameState();
         // Record stats for the pitcher
         getPitcherStats().incrementWalks();
         // Record stats for the batter
         getBatterStats().incrementWalks();
         // If the bases are loaded
-        if(getGame().getCurrentGameState().getCurrRunnerThirdIndex() != -1 &&
+        if (getGame().getCurrentGameState().getCurrRunnerThirdIndex() != -1 &&
                 getGame().getCurrentGameState().getCurrRunnerSecondIndex() != -1 &&
-                getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1){
-                getGame().getScorecard().currentRunnerOnThirdScorecardBox().setThirdToHomeScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_ADVANCED));
-                getGame().getCurrentGameState().incrementScore();
-                getCurrentRunnerOnThird().getStats().getRunningStats().incrementRuns();
-                getGame().getCurrentGameState().clearRunnerOnThird();
-                recordRunBattedIn();
-                if(earnedRun){
-                    getPitcherStats().incrementEarnedRuns();
-                } else {
-                    getPitcherStats().incrementRuns();
-                }
+                getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1) {
+            getGame().getScorecard().currentRunnerOnThirdScorecardBox().setThirdToHomeScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_ADVANCED));
+            getGame().getCurrentGameState().incrementScore();
+            getCurrentRunnerOnThird().getStats().getRunningStats().incrementRuns();
+            getGame().getCurrentGameState().clearRunnerOnThird();
+            recordRunBattedIn();
+            if (earnedRun) {
+                getPitcherStats().incrementEarnedRuns();
+            } else {
+                getPitcherStats().incrementRuns();
+            }
         }
         // If there are runners on first and second
-        if(getGame().getCurrentGameState().getCurrRunnerSecondIndex() != -1 &&
-                getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1){
+        if (getGame().getCurrentGameState().getCurrRunnerSecondIndex() != -1 &&
+                getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1) {
             moveToNextBase(getGame().getCurrentGameState().getCurrRunnerSecondIndex(), ScoringSymbol.RUNNER_ADVANCED);
         }
         // If there is a runner on first
-        if(getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1){
+        if (getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1) {
             moveToNextBase(getGame().getCurrentGameState().getCurrRunnerFirstIndex(), ScoringSymbol.RUNNER_ADVANCED);
         }
         // If first base is empty
@@ -281,34 +292,34 @@ public class Recorder {
 
     }
 
-    public void recordIntentionalWalk(boolean earnedRun){
+    public void recordIntentionalWalk(boolean earnedRun) {
         recordGameState();
         // Record stats for the pitcher
         getPitcherStats().incrementIntenWalks();
         // Record stats for the batter
         getBatterStats().incrementIntenWalks();
         // If the bases are loaded
-        if(getGame().getCurrentGameState().getCurrRunnerThirdIndex() != -1 &&
+        if (getGame().getCurrentGameState().getCurrRunnerThirdIndex() != -1 &&
                 getGame().getCurrentGameState().getCurrRunnerSecondIndex() != -1 &&
-                getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1){
+                getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1) {
             getGame().getScorecard().currentRunnerOnThirdScorecardBox().setThirdToHomeScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_ADVANCED));
             getGame().getCurrentGameState().incrementScore();
             getCurrentRunnerOnThird().getStats().getRunningStats().incrementRuns();
             getGame().getCurrentGameState().clearRunnerOnThird();
             recordRunBattedIn();
-            if(earnedRun){
+            if (earnedRun) {
                 getPitcherStats().incrementEarnedRuns();
             } else {
                 getPitcherStats().incrementRuns();
             }
         }
         // If there are runners on first and second
-        if(getGame().getCurrentGameState().getCurrRunnerSecondIndex() != -1 &&
-                getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1){
+        if (getGame().getCurrentGameState().getCurrRunnerSecondIndex() != -1 &&
+                getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1) {
             moveToNextBase(getGame().getCurrentGameState().getCurrRunnerSecondIndex(), ScoringSymbol.RUNNER_ADVANCED);
         }
         // If there is a runner on first
-        if(getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1){
+        if (getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1) {
             moveToNextBase(getGame().getCurrentGameState().getCurrRunnerFirstIndex(), ScoringSymbol.RUNNER_ADVANCED);
         }
         // If first base is empty
@@ -319,14 +330,14 @@ public class Recorder {
         recordGameState();
         getPitcherStats().incrementCaughtStealing();
         getCatcherStats().incrementCaughtStealing();
-        if(runnerIndex == getGame().getCurrentGameState().getCurrRunnerFirstIndex()){
+        if (runnerIndex == getGame().getCurrentGameState().getCurrRunnerFirstIndex()) {
             getCurrentRunnerOnFirst().getStats().getRunningStats().incrementCaughtStealing();
             // Failed to advance
             getGame().getScorecard().currentRunnerOnFirstScorecardBox().setFirstToSecondScoringEvent(new ScoringEvent(posInvolved, ScoringSymbol.CAUGHT_STEALING, getGame().getCurrentGameState().getNumOuts() + 1));
-        } else if(runnerIndex == getGame().getCurrentGameState().getCurrRunnerSecondIndex()){
+        } else if (runnerIndex == getGame().getCurrentGameState().getCurrRunnerSecondIndex()) {
             getCurrentRunnerOnSecond().getStats().getRunningStats().incrementCaughtStealing();
             getGame().getScorecard().currentRunnerOnSecondScorecardBox().setSecondToThirdScoringEvent(new ScoringEvent(posInvolved, ScoringSymbol.CAUGHT_STEALING, getGame().getCurrentGameState().getNumOuts() + 1));
-        } else if(runnerIndex == getGame().getCurrentGameState().getCurrRunnerThirdIndex()) {
+        } else if (runnerIndex == getGame().getCurrentGameState().getCurrRunnerThirdIndex()) {
             getCurrentRunnerOnThird().getStats().getRunningStats().incrementCaughtStealing();
             getGame().getScorecard().currentRunnerOnThirdScorecardBox().setThirdToHomeScoringEvent(new ScoringEvent(posInvolved, ScoringSymbol.CAUGHT_STEALING, getGame().getCurrentGameState().getNumOuts() + 1));
         }
@@ -351,34 +362,34 @@ public class Recorder {
         recordOut();
     }
 
-    public void recordHitByPitch(boolean earnedRun){
+    public void recordHitByPitch(boolean earnedRun) {
         recordGameState();
         // Record stats for the pitcher
         getPitcherStats().incrementHitBatsmen();
         // Record stats for the batter
         getBatterStats().incrementHitByPitch();
         // If the bases are loaded
-        if(getGame().getCurrentGameState().getCurrRunnerThirdIndex() != -1 &&
+        if (getGame().getCurrentGameState().getCurrRunnerThirdIndex() != -1 &&
                 getGame().getCurrentGameState().getCurrRunnerSecondIndex() != -1 &&
-                getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1){
+                getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1) {
             getGame().getScorecard().currentRunnerOnThirdScorecardBox().setThirdToHomeScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_ADVANCED));
             getGame().getCurrentGameState().incrementScore();
             getCurrentRunnerOnThird().getStats().getRunningStats().incrementRuns();
             getGame().getCurrentGameState().clearRunnerOnThird();
             recordRunBattedIn();
-            if(earnedRun){
+            if (earnedRun) {
                 getPitcherStats().incrementEarnedRuns();
             } else {
                 getPitcherStats().incrementRuns();
             }
         }
         // If there are runners on first and second
-        if(getGame().getCurrentGameState().getCurrRunnerSecondIndex() != -1 &&
-                getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1){
+        if (getGame().getCurrentGameState().getCurrRunnerSecondIndex() != -1 &&
+                getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1) {
             moveToNextBase(getGame().getCurrentGameState().getCurrRunnerSecondIndex(), ScoringSymbol.RUNNER_ADVANCED);
         }
         // If there is a runner on first
-        if(getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1){
+        if (getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1) {
             moveToNextBase(getGame().getCurrentGameState().getCurrRunnerFirstIndex(), ScoringSymbol.RUNNER_ADVANCED);
         }
         // If first base is empty
@@ -398,7 +409,7 @@ public class Recorder {
 
     public void recordSacrificeFly(String positionsInvolved, boolean isEarnedRun) throws Exception {
         recordGameState();
-        if(isEarnedRun){
+        if (isEarnedRun) {
             getPitcherStats().incrementEarnedRuns();
         } else {
             getPitcherStats().incrementRuns();
@@ -413,36 +424,36 @@ public class Recorder {
     }
 
     public void recordRegularGroundBallDoublePlay(String positionsInvolved, int baseRunnerIndex, boolean wasBatterFirstOut) throws Exception {
-        recordNonRegularGroundBallDoublePlay(positionsInvolved, positionsInvolved.charAt(positionsInvolved.length() - 2)+ "", baseRunnerIndex, wasBatterFirstOut);
+        recordNonRegularGroundBallDoublePlay(positionsInvolved, positionsInvolved.charAt(positionsInvolved.length() - 2) + "", baseRunnerIndex, wasBatterFirstOut);
     }
 
     public void recordNonRegularGroundBallDoublePlay(String positionsInvolved, String firstPutout, int baseRunnerIndex, boolean wasBatterFirstOut) throws Exception {
         recordGameState();
         getPitcherStats().incrementInducedGBDPs();
         getBatterStats().incrementGroundBallDP();
-        recordPutOut(Position.positionFromInt(Integer.parseInt(positionsInvolved.charAt(positionsInvolved.length() - 1)+ "")));
+        recordPutOut(Position.positionFromInt(Integer.parseInt(positionsInvolved.charAt(positionsInvolved.length() - 1) + "")));
         recordPutOut(Position.positionFromInt(Integer.parseInt(firstPutout)));
-        for(int i = 0; i < positionsInvolved.length() - 1; i++){
+        for (int i = 0; i < positionsInvolved.length() - 1; i++) {
             recordAssist(Position.positionFromInt(Integer.parseInt(positionsInvolved.charAt(i) + "")));
         }
-        if(wasBatterFirstOut){
+        if (wasBatterFirstOut) {
             getGame().getScorecard().currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.DOUBLE_PLAY, getGame().getCurrentGameState().getNumOuts() + 1));
             //Record Second out at the base that the runner was heading to. Use runner index to find what base the runner is on.
-            if(getGame().getCurrentGameState().getCurrRunnerThirdIndex() == baseRunnerIndex){
+            if (getGame().getCurrentGameState().getCurrRunnerThirdIndex() == baseRunnerIndex) {
                 getGame().getScorecard().currentRunnerOnThirdScorecardBox().setThirdToHomeScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 2));
-            } else if(getGame().getCurrentGameState().getCurrRunnerSecondIndex() == baseRunnerIndex){
+            } else if (getGame().getCurrentGameState().getCurrRunnerSecondIndex() == baseRunnerIndex) {
                 getGame().getScorecard().currentRunnerOnSecondScorecardBox().setSecondToThirdScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 2));
-            } else if(getGame().getCurrentGameState().getCurrRunnerFirstIndex() == baseRunnerIndex){
+            } else if (getGame().getCurrentGameState().getCurrRunnerFirstIndex() == baseRunnerIndex) {
                 getGame().getScorecard().currentRunnerOnFirstScorecardBox().setFirstToSecondScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 2));
             }
         } else {
             getGame().getScorecard().currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.DOUBLE_PLAY, getGame().getCurrentGameState().getNumOuts() + 2));
             //Record Second out at the base that the runner was heading to. Use runner index to find what base the runner is on.
-            if(getGame().getCurrentGameState().getCurrRunnerThirdIndex() == baseRunnerIndex){
+            if (getGame().getCurrentGameState().getCurrRunnerThirdIndex() == baseRunnerIndex) {
                 getGame().getScorecard().currentRunnerOnThirdScorecardBox().setThirdToHomeScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
-            } else if(getGame().getCurrentGameState().getCurrRunnerSecondIndex() == baseRunnerIndex){
+            } else if (getGame().getCurrentGameState().getCurrRunnerSecondIndex() == baseRunnerIndex) {
                 getGame().getScorecard().currentRunnerOnSecondScorecardBox().setSecondToThirdScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
-            } else if(getGame().getCurrentGameState().getCurrRunnerFirstIndex() == baseRunnerIndex){
+            } else if (getGame().getCurrentGameState().getCurrRunnerFirstIndex() == baseRunnerIndex) {
                 getGame().getScorecard().currentRunnerOnFirstScorecardBox().setFirstToSecondScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
             }
         }
@@ -472,44 +483,44 @@ public class Recorder {
         recordOut();
     }
 
-    public void recordImpliedFieldingStats(String positionsInvolved){
-        recordPutOut(Position.positionFromInt(Integer.parseInt(positionsInvolved.charAt(positionsInvolved.length() - 1)+ "")));
-        for(int i = 0; i < positionsInvolved.length() - 1; i++){
+    public void recordImpliedFieldingStats(String positionsInvolved) {
+        recordPutOut(Position.positionFromInt(Integer.parseInt(positionsInvolved.charAt(positionsInvolved.length() - 1) + "")));
+        for (int i = 0; i < positionsInvolved.length() - 1; i++) {
             recordAssist(Position.positionFromInt(Integer.parseInt(positionsInvolved.charAt(i) + "")));
         }
     }
 
-    public void recordPutOut(Position pos){
+    public void recordPutOut(Position pos) {
         getCurrentDefensivePlayer(pos).getStats().getFieldingStats().incrementPutOuts();
     }
 
-    public void recordAssist(Position pos){
+    public void recordAssist(Position pos) {
         getCurrentDefensivePlayer(pos).getStats().getFieldingStats().incrementAssists();
     }
 
-    public void recordWildPitch(){
+    public void recordWildPitch() {
         getPitcherStats().incrementWildPitches();
         getCatcherStats().incrementWpCatching();
     }
 
-    public void recordPassedBall(){
+    public void recordPassedBall() {
         getCatcherStats().incrementPassedBalls();
     }
 
-    public void recordBalk(){
+    public void recordBalk() {
         getPitcherStats().incrementBalks();
     }
 
     public void recordPickOff(String positionsInvolved, int baseRunnerIndex) throws Exception {
         getPitcherStats().incrementPickOffs();
         recordImpliedFieldingStats(positionsInvolved);
-        if(getGame().getCurrentGameState().getCurrRunnerThirdIndex() == baseRunnerIndex){
+        if (getGame().getCurrentGameState().getCurrRunnerThirdIndex() == baseRunnerIndex) {
             getGame().getScorecard().currentRunnerOnThirdScorecardBox().setThirdToHomeScoringEvent(new ScoringEvent(positionsInvolved, ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
         }
         recordOut();
     }
 
-    public void recordUnassistedPutOut(Position pos){
+    public void recordUnassistedPutOut(Position pos) {
         recordPutOut(pos);
         // Record in scorebook as unassited.
     }
@@ -520,11 +531,11 @@ public class Recorder {
         getBatterStats().incrementGroundOuts();
         recordImpliedFieldingStats(positionsInvolved);
         getGame().getScorecard().currentBatterScorecardBox().setBatterScoringEvent((new ScoringEvent(positionsInvolved, ScoringSymbol.FIELDERS_CHOICE)));
-        if(runnerIndex == getGame().getCurrentGameState().getCurrRunnerThirdIndex()){
+        if (runnerIndex == getGame().getCurrentGameState().getCurrRunnerThirdIndex()) {
             getGame().getScorecard().currentRunnerOnThirdScorecardBox().setThirdToHomeScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
-        } else if(runnerIndex == getGame().getCurrentGameState().getCurrRunnerSecondIndex()){
+        } else if (runnerIndex == getGame().getCurrentGameState().getCurrRunnerSecondIndex()) {
             getGame().getScorecard().currentRunnerOnSecondScorecardBox().setSecondToThirdScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
-        } else if(runnerIndex == getGame().getCurrentGameState().getCurrRunnerFirstIndex()){
+        } else if (runnerIndex == getGame().getCurrentGameState().getCurrRunnerFirstIndex()) {
             getGame().getScorecard().currentRunnerOnFirstScorecardBox().setFirstToSecondScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
         }
         recordOut();
@@ -532,23 +543,23 @@ public class Recorder {
 
     public void recordOffensiveInterference(int runnerIndex) throws Exception {
         recordGameState();
-        if(runnerIndex == getGame().getCurrentGameState().getCurrRunnerThirdIndex()){
+        if (runnerIndex == getGame().getCurrentGameState().getCurrRunnerThirdIndex()) {
             getGame().getScorecard().currentRunnerOnThirdScorecardBox().setThirdToHomeScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
-        } else if(runnerIndex == getGame().getCurrentGameState().getCurrRunnerSecondIndex()){
+        } else if (runnerIndex == getGame().getCurrentGameState().getCurrRunnerSecondIndex()) {
             getGame().getScorecard().currentRunnerOnSecondScorecardBox().setSecondToThirdScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
-        } else if(runnerIndex == getGame().getCurrentGameState().getCurrRunnerFirstIndex()){
+        } else if (runnerIndex == getGame().getCurrentGameState().getCurrRunnerFirstIndex()) {
             getGame().getScorecard().currentRunnerOnFirstScorecardBox().setFirstToSecondScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
-        } else if(runnerIndex == getGame().getCurrentGameState().getCurrBatterIndex()){
+        } else if (runnerIndex == getGame().getCurrentGameState().getCurrBatterIndex()) {
             getGame().getScorecard().currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
         }
         recordOut();
     }
 
-    public void recordDefensiveInterference(){
+    public void recordDefensiveInterference() {
 
     }
 
-    public void recordCatchersInterference(){
+    public void recordCatchersInterference() {
         recordGameState();
         getCatcherStats().incrementErrors();
         getPitcherStats().incrementTotalNumBF();
@@ -558,25 +569,25 @@ public class Recorder {
 
     public void recordFlyOutDoublePlay(String positionsInvolved, String firstPutout, int baseRunnerIndex) throws Exception {
         recordFlyBallOut(positionsInvolved);
-        recordAssist(Position.positionFromInt(Integer.parseInt(positionsInvolved.charAt(0)+ "")));
-        for(int i = 1; i < positionsInvolved.length() - 1; i++){
+        recordAssist(Position.positionFromInt(Integer.parseInt(positionsInvolved.charAt(0) + "")));
+        for (int i = 1; i < positionsInvolved.length() - 1; i++) {
             recordAssist(Position.positionFromInt(Integer.parseInt(positionsInvolved.charAt(i) + "")));
         }
 
         getGame().getScorecard().currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.DOUBLE_PLAY, getGame().getCurrentGameState().getNumOuts()));
         //Record Second out at the base that the runner was heading to. Use runner index to find what base the runner is on.
-        if(getGame().getCurrentGameState().getCurrRunnerThirdIndex() == baseRunnerIndex){
+        if (getGame().getCurrentGameState().getCurrRunnerThirdIndex() == baseRunnerIndex) {
             getGame().getScorecard().currentRunnerOnThirdScorecardBox().setThirdToHomeScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
-        } else if(getGame().getCurrentGameState().getCurrRunnerSecondIndex() == baseRunnerIndex){
+        } else if (getGame().getCurrentGameState().getCurrRunnerSecondIndex() == baseRunnerIndex) {
             getGame().getScorecard().currentRunnerOnSecondScorecardBox().setSecondToThirdScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
-        } else if(getGame().getCurrentGameState().getCurrRunnerFirstIndex() == baseRunnerIndex){
+        } else if (getGame().getCurrentGameState().getCurrRunnerFirstIndex() == baseRunnerIndex) {
             getGame().getScorecard().currentRunnerOnFirstScorecardBox().setFirstToSecondScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_OUT, getGame().getCurrentGameState().getNumOuts() + 1));
         }
 
         recordOut();
     }
 
-    public void recordGroundBallTriplePlay(String positionsInvolved, String firstPutout, int firstRunnerOutIndex, int secondRunnerOutIndex, int thirdRunnerOutIndex){
+    public void recordGroundBallTriplePlay(String positionsInvolved, String firstPutout, int firstRunnerOutIndex, int secondRunnerOutIndex, int thirdRunnerOutIndex) {
         recordGameState();
         getPitcherStats().incrementInducedGBDPs();
         getBatterStats().incrementGroundBallDP();
@@ -585,161 +596,160 @@ public class Recorder {
 
     public void recordOut() throws Exception {
         getPitcherStats().incrementNumOutsPitched();
-        if(getGame().getCurrentGameState().getNumOuts() < 3){
+        if (getGame().getCurrentGameState().getNumOuts() < 3) {
             getGame().getCurrentGameState().incrementOuts();
         } else {
             getGame().getCurrentGameState().nextHalfInning();
         }
     }
 
-    public Lineup getCurrentHomeLineup(){
+    public Lineup getCurrentHomeLineup() {
         return getGame().getLineupStatesList().get(getGame().getCurrLineupStateIndex()).getHomeLineup();
     }
 
-    public Lineup getCurrentAwayLineup(){
+    public Lineup getCurrentAwayLineup() {
         return getGame().getLineupStatesList().get(getGame().getCurrLineupStateIndex()).getAwayLineup();
     }
 
-    public Player getHomePlayerAtPos(Position pos){
+    public Player getHomePlayerAtPos(Position pos) {
         int homePlayerIndex = getCurrentHomeLineup().positionsRosterIndex(pos);
         return getGame().getHomeTeam().getRoster().get(homePlayerIndex);
     }
 
-    public Player getAwayPlayerAtPos(Position pos){
+    public Player getAwayPlayerAtPos(Position pos) {
         int awayPlayerIndex = getCurrentAwayLineup().positionsRosterIndex(pos);
         return getGame().getAwayTeam().getRoster().get(awayPlayerIndex);
     }
 
-    public Player getCurrentDefensivePlayer(Position pos){
-        if(getGame().getCurrentGameState().isTop()){
-           return getHomePlayerAtPos(pos);
+    public Player getCurrentDefensivePlayer(Position pos) {
+        if (getGame().getCurrentGameState().isTop()) {
+            return getHomePlayerAtPos(pos);
         }
         return getAwayPlayerAtPos(pos);
     }
 
-    public Player getCurrentHomeBatter(){
+    public Player getCurrentHomeBatter() {
         return getGame().getHomeTeam().getRoster().get(getGame().getCurrentGameState().getCurrHomeBatterIndex());
     }
 
-    public Player getCurrentAwayBatter(){
+    public Player getCurrentAwayBatter() {
         return getGame().getAwayTeam().getRoster().get(getGame().getCurrentGameState().getCurrAwayBatterIndex());
     }
 
-    public Player getCurrentBatter(){
-        if(getGame().getCurrentGameState().isTop()){
+    public Player getCurrentBatter() {
+        if (getGame().getCurrentGameState().isTop()) {
             return getCurrentAwayBatter();
         }
         return getCurrentHomeBatter();
     }
 
-    public Player getCurrentPitcher(){
-        if(getGame().getCurrentGameState().isTop()){
+    public int getCurrentBatterIndex() {
+        if (getGame().getCurrentGameState().isTop()) {
+            return getGame().getCurrentGameState().getCurrAwayBatterIndex();
+        }
+        return getGame().getCurrentGameState().getCurrHomeBatterIndex();
+    }
+
+    public Player getCurrentPitcher() {
+        if (getGame().getCurrentGameState().isTop()) {
             return getHomePlayerAtPos(Position.PITCHER);
         }
         return getAwayPlayerAtPos(Position.PITCHER);
     }
 
-    public Player getCurrentCatcher(){
-        if(getGame().getCurrentGameState().isTop()){
+    public Player getCurrentCatcher() {
+        if (getGame().getCurrentGameState().isTop()) {
             return getHomePlayerAtPos(Position.CATCHER);
         }
-        return  getAwayPlayerAtPos(Position.CATCHER);
+        return getAwayPlayerAtPos(Position.CATCHER);
     }
 
-    public Player getCurrentRunnerOnFirst(){
-        if(getGame().getCurrentGameState().isTop()){
+    public Player getCurrentRunnerOnFirst() {
+        if (getGame().getCurrentGameState().isTop()) {
             return getGame().getAwayTeam().getRoster().get(getGame().getCurrentGameState().getCurrRunnerFirstIndex());
         }
         return getGame().getHomeTeam().getRoster().get(getGame().getCurrentGameState().getCurrRunnerFirstIndex());
     }
 
-    public Player getCurrentRunnerOnSecond(){
-        if(getGame().getCurrentGameState().isTop()){
+    public Player getCurrentRunnerOnSecond() {
+        if (getGame().getCurrentGameState().isTop()) {
             return getGame().getAwayTeam().getRoster().get(getGame().getCurrentGameState().getCurrRunnerSecondIndex());
         }
         return getGame().getHomeTeam().getRoster().get(getGame().getCurrentGameState().getCurrRunnerSecondIndex());
     }
 
-    public Player getCurrentRunnerOnThird(){
-        if(getGame().getCurrentGameState().isTop()){
+    public Player getCurrentRunnerOnThird() {
+        if (getGame().getCurrentGameState().isTop()) {
             return getGame().getAwayTeam().getRoster().get(getGame().getCurrentGameState().getCurrRunnerThirdIndex());
         }
         return getGame().getHomeTeam().getRoster().get(getGame().getCurrentGameState().getCurrRunnerThirdIndex());
     }
 
-    public void nextBatter(){
+    public void nextBatter() {
         clearCount();
         getGame().getCurrentGameState().nextBatter();
     }
 
-    public void recordGameState(){
+    public void recordGameState() {
         getGame().newGameState();
     }
 
-    public void plateAppearanceFinished(){
+    public void plateAppearanceFinished() {
         recordGameState();
         clearCount();
     }
 
-    public void clearCount(){
+    public void clearCount() {
         getGame().getCurrentGameState().clearCount();
     }
 
     /**
      * This method must be implemented after plateAppearanceFinished()
+     *
      * @throws Exception
      */
     public void incrementOuts() throws Exception {
         getGame().getCurrentGameState().incrementOuts();
     }
 
-    public HittingStats getBatterStats(){
-        if(getCurrentBatter().isSwitchHitter()){
-            if(getCurrentPitcher().isThrowRight()){
+    public HittingStats getBatterStats() {
+        if (getCurrentBatter().isSwitchHitter()) {
+            if (getCurrentPitcher().isThrowRight()) {
                 return getCurrentBatter().getStats().getHitStatsLeft();
             }
-            if(getCurrentPitcher().isThrowLeft()){
+            if (getCurrentPitcher().isThrowLeft()) {
                 return getCurrentBatter().getStats().getHitStatsRight();
             }
         }
-            if(getCurrentBatter().isBatRight()){
-                return getCurrentBatter().getStats().getHitStatsRight();
-            }
+        if (getCurrentBatter().isBatRight()) {
+            return getCurrentBatter().getStats().getHitStatsRight();
+        }
         return getCurrentBatter().getStats().getHitStatsLeft();
     }
 
-    public PitchingStats getPitcherStats(){
-        if(getCurrentPitcher().isThrowRight()){
+    public PitchingStats getPitcherStats() {
+        if (getCurrentPitcher().isThrowRight()) {
             return getCurrentPitcher().getStats().getPitchStatsRight();
         }
         return getCurrentPitcher().getStats().getPitchStatsLeft();
     }
 
-    public FieldingStats getCatcherStats(){
+    public FieldingStats getCatcherStats() {
         return getCurrentCatcher().getStats().getFieldingStats();
     }
 
-    public int getNumberOfBaserunners(){
+    public int getNumberOfBaserunners() {
         return 0;
     }
 
-    public boolean isNextBaseOccupied(int baseNumber){
-        switch (baseNumber){
+    public boolean isNextBaseOccupied(int baseNumber) {
+        switch (baseNumber) {
             case 0:
-                if(getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1){
-                    return true;
-                }
-                return false;
+                return getGame().getCurrentGameState().getCurrRunnerFirstIndex() != -1;
             case 1:
-                if(getGame().getCurrentGameState().getCurrRunnerSecondIndex() != -1){
-                    return true;
-                }
-                return false;
+                return getGame().getCurrentGameState().getCurrRunnerSecondIndex() != -1;
             case 2:
-                if(getGame().getCurrentGameState().getCurrRunnerThirdIndex() != -1){
-                    return true;
-                }
-                return false;
+                return getGame().getCurrentGameState().getCurrRunnerThirdIndex() != -1;
             case 3:
                 return false;
             default:
@@ -752,13 +762,13 @@ public class Recorder {
         recordGameState();
         // Advance the runner to the next base if it is not occupied.
         int currBase = 0;
-        if(getGame().getCurrentGameState().getCurrRunnerFirstIndex() == runnerIndex){
+        if (getGame().getCurrentGameState().getCurrRunnerFirstIndex() == runnerIndex) {
             currBase = 1;
-        } else if(getGame().getCurrentGameState().getCurrRunnerSecondIndex() == runnerIndex){
+        } else if (getGame().getCurrentGameState().getCurrRunnerSecondIndex() == runnerIndex) {
             currBase = 2;
         }
-        if(!isNextBaseOccupied(currBase) && currBase != 3){
-            switch (currBase){
+        if (!isNextBaseOccupied(currBase) && currBase != 3) {
+            switch (currBase) {
                 case 0:
                     getGame().getScorecard().currentBatterScorecardBox().setHomeToFirstScoringEvent(new ScoringEvent(symbol));
                     getGame().getCurrentGameState().setCurrRunnerFirstIndex(runnerIndex);

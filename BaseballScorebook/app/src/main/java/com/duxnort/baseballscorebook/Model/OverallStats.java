@@ -2,12 +2,12 @@ package com.duxnort.baseballscorebook.Model;
 
 public class OverallStats {
     // Only hitStatsRight contain baserunning stats.
-    private HittingStats hitStatsRight = null;
-    private HittingStats hitStatsLeft = null;
-    private PitchingStats pitchStatsRight = null;
-    private PitchingStats pitchStatsLeft = null;
-    private FieldingStats fieldingStats = null;
-    private RunningStats runningStats = null;
+    private HittingStats hitStatsRight = new HittingStats();
+    private HittingStats hitStatsLeft = new HittingStats();
+    private PitchingStats pitchStatsRight = new PitchingStats();
+    private PitchingStats pitchStatsLeft = new PitchingStats();
+    private FieldingStats fieldingStats = new FieldingStats();
+    private RunningStats runningStats = new RunningStats();
 
     public OverallStats() {
     }

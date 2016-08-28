@@ -9,8 +9,6 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class HittingStatsTest {
 
     @Test
@@ -1559,7 +1557,7 @@ public class HittingStatsTest {
     @Test
     public void testCalcPlateApps() throws Exception {
         HittingStats h = initializeHittingStats();
-        Assert.assertEquals(125, h.calcPlateApps());
+        Assert.assertEquals(125, h.getPlateAppearance());
     }
 
     @Test

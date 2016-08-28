@@ -23,6 +23,25 @@ public class GameState {
     private int awayErrors = 0;
 
     public GameState() {
+        this.ballCount = 0;
+        this.strikeCount = 0;
+        this.numOuts = 0;
+        this.homePitchCount = 0;
+        this.awayPitchCount = 0;
+        this.isTop = true;
+        this.inning = 1;
+        this.lineupStateIndex = 0;
+        this.currHomeBatterIndex = 0;
+        this.currAwayBatterIndex = 0;
+        this.currRunnerFirstIndex = -1;
+        this.currRunnerSecondIndex = -1;
+        this.currRunnerThirdIndex = -1;
+        this.homeScore = 0;
+        this.awayScore = 0;
+        this.homeHits = 0;
+        this.awayHits = 0;
+        this.homeErrors = 0;
+        this.awayErrors = 0;
     }
 
     public GameState(int ballCount, int strikeCount, int numOuts, int homePitchCount,

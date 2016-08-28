@@ -1,7 +1,6 @@
 package com.duxnort.baseballscorebook.Model;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Game {
     private ArrayList<GameState> gameStateList = null;
@@ -51,7 +50,7 @@ public class Game {
         return currGameStateIndex;
     }
 
-    private void setCurrGameStateIndex(int currGameStateIndex) {
+    public void setCurrGameStateIndex(int currGameStateIndex) {
         this.currGameStateIndex = currGameStateIndex;
     }
 
