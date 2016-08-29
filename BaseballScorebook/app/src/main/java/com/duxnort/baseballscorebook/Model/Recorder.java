@@ -236,26 +236,34 @@ public class Recorder {
                             currentGameState().getNumOuts() + 1)); // record the caught stealing event
             currentGameState().setCurrRunnerThirdIndex(-1); // empty the base
         }
-        currentGameState().incrementOuts(); // increment the number of outs
+        recordOut(); // increment the number of outs
         recordGameState(); // record the game state
     }
 
     public void recordStrikeOutLooking() throws Exception {
-        recordGameState();
-        currentPitcherStats().incrementStrikeOutLook();
-        currentBatterStats().incrementStrikeOuts();
-        currentCatcherStats().incrementPutOuts();
-        currentScorecard().currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.STRIKEOUT_LOOKING, currentGameState().getNumOuts() + 1));
-        recordOut();
+        currentGameState().incrementPitchCount(); // increment the game state's pitch count
+        currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
+        currentBatterStats().incrementNumPitches(); // increment the batter's pitches
+        currentPitcherStats().incrementStrikeOutLook(); // increment the pitcher's strike out lookings
+        currentBatterStats().incrementStrikeOuts(); // increment the batter's strike outs
+        currentCatcherStats().incrementPutOuts(); // increment the catcher's putouts
+        currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.STRIKEOUT_LOOKING)); // record event in score book
+        recordOut(); // record an out
+        recordGameState(); // record the game state
+        nextBatter(); // next batter up
     }
 
     public void recordStrikeOutSwinging() throws Exception {
-        recordGameState();
-        currentPitcherStats().incrementStrikeOutSwing();
-        currentBatterStats().incrementStrikeOuts();
-        currentCatcherStats().incrementPutOuts();
-        currentScorecard().currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.STRIKEOUT_SWINGING, currentGameState().getNumOuts() + 1));
-        recordOut();
+        currentGameState().incrementPitchCount(); // increment the game state's pitch count
+        currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
+        currentBatterStats().incrementNumPitches(); // increment the batter's pitches
+        currentPitcherStats().incrementStrikeOutSwing(); // increment the pitcher's strike out swinging
+        currentBatterStats().incrementStrikeOuts(); // increment the batter's strike outs
+        currentCatcherStats().incrementPutOuts(); // increment the catcher's putouts
+        currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.STRIKEOUT_SWINGING)); // record event in score book
+        recordOut(); // record an out
+        recordGameState(); // record the game state
+        nextBatter(); // next batter up
     }
 
     public void recordHitByPitch(boolean earnedRun) {

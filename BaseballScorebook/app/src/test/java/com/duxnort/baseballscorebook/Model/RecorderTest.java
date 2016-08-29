@@ -303,6 +303,7 @@ public class RecorderTest {
         assertEquals(-1, r.currentRunnerOnFirstIndex());
         assertEquals(1, r.currentPitcherStats().getStolenBases());
         assertEquals(1, r.currentCatcherStats().getStolenBases());
+        assertEquals(ScoringSymbol.STOLEN_BASE, r.currentScorecard().playerScorecardBox(0, 1).getFirstToSecondScoringEvent().getScoringSymbol());
     }
 
     @Test
@@ -321,6 +322,7 @@ public class RecorderTest {
         assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getPlateAppearance());
         assertEquals(1, r.currentPitcherStats().getWalks());
         assertEquals(1, r.currentPitcherStats().getTotalNumBF());
+        assertEquals(ScoringSymbol.WALK, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
     }
 
     @Test
@@ -332,6 +334,7 @@ public class RecorderTest {
         assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getPlateAppearance());
         assertEquals(1, r.currentPitcherStats().getIntenWalks());
         assertEquals(1, r.currentPitcherStats().getTotalNumBF());
+        assertEquals(ScoringSymbol.INTENTIONAL_WALK, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
     }
 
     @Test
@@ -344,16 +347,41 @@ public class RecorderTest {
         assertEquals(1, r.offensivePlayer(0).getStats().getRunningStats().getCaughtStealing());
         assertEquals(1, r.currentGameState().getNumOuts());
         assertEquals(-1, r.currentRunnerOnFirstIndex());
+        assertEquals(ScoringSymbol.CAUGHT_STEALING, r.currentScorecard().playerScorecardBox(0, 1).getFirstToSecondScoringEvent().getScoringSymbol());
     }
 
     @Test
     public void testRecordStrikeOutLooking() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        r.recordStrike();
+        r.recordStrike();
+        r.recordStrikeOutLooking();
+        assertEquals(3, r.currentGameState().getPitchCount());
+        assertEquals(1, r.currentPitcherStats().getStrikeOutLook());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getStrikeOuts());
+        assertEquals(1, r.currentCatcherStats().getPutOuts());
+        assertEquals(1, r.currentPitcherStats().getTotalNumBF());
+        assertEquals(1, r.currentPitcherStats().getAtBats());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getAtBats());
+        assertEquals(1, r.currentGameState().getNumOuts());
+        assertEquals(ScoringSymbol.STRIKEOUT_LOOKING, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
     }
 
     @Test
     public void testRecordStrikeOutSwinging() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        r.recordStrike();
+        r.recordStrike();
+        r.recordStrikeOutSwinging();
+        assertEquals(3, r.currentGameState().getPitchCount());
+        assertEquals(1, r.currentPitcherStats().getStrikeOutSwing());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getStrikeOuts());
+        assertEquals(1, r.currentCatcherStats().getPutOuts());
+        assertEquals(1, r.currentPitcherStats().getTotalNumBF());
+        assertEquals(1, r.currentPitcherStats().getAtBats());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getAtBats());
+        assertEquals(1, r.currentGameState().getNumOuts());
+        assertEquals(ScoringSymbol.STRIKEOUT_SWINGING, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
     }
 
     @Test
