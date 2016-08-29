@@ -298,25 +298,40 @@ public class RecorderTest {
         Recorder r = new Recorder(initializeGame());
         r.recordSingle();
         r.recordStolenBase(r.currentRunnerOnFirstIndex(), false);
-        assertEquals(1, r.currentRunnerOnFirst().getStats().getRunningStats().getStolenBases());
-        assertEquals(0, r.currentRunnerOnFirstIndex());
+        assertEquals(1, r.currentRunnerOnSecond().getStats().getRunningStats().getStolenBases());
+        assertEquals(0, r.currentRunnerOnSecondIndex());
+        assertEquals(-1, r.currentRunnerOnFirstIndex());
         assertEquals(1, r.currentPitcherStats().getStolenBases());
         assertEquals(1, r.currentCatcherStats().getStolenBases());
     }
 
     @Test
     public void testRecordRunBattedIn() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        r.recordRunBattedIn();
+        assertEquals(1, r.currentBatterStats().getRbis());
     }
 
     @Test
     public void testRecordWalk() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        r.recordWalk();
+        assertEquals(0, r.currentRunnerOnFirstIndex());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getWalks());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getPlateAppearance());
+        assertEquals(1, r.currentPitcherStats().getWalks());
+        assertEquals(1, r.currentPitcherStats().getTotalNumBF());
     }
 
     @Test
     public void testRecordIntentionalWalk() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        r.recordIntentionalWalk();
+        assertEquals(0, r.currentRunnerOnFirstIndex());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getIntenWalks());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getPlateAppearance());
+        assertEquals(1, r.currentPitcherStats().getIntenWalks());
+        assertEquals(1, r.currentPitcherStats().getTotalNumBF());
     }
 
     @Test
