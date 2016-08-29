@@ -336,7 +336,14 @@ public class RecorderTest {
 
     @Test
     public void testRecordCaughtStealing() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        r.recordIntentionalWalk();
+        r.recordCaughtStealing(0, "26");
+        assertEquals(1, r.currentPitcherStats().getCaughtStealing());
+        assertEquals(1, r.currentCatcherStats().getCaughtStealing());
+        assertEquals(1, r.offensivePlayer(0).getStats().getRunningStats().getCaughtStealing());
+        assertEquals(1, r.currentGameState().getNumOuts());
+        assertEquals(-1, r.currentRunnerOnFirstIndex());
     }
 
     @Test

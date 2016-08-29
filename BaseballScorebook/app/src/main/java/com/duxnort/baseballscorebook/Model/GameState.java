@@ -74,6 +74,7 @@ public class GameState {
     public GameState(GameState gameState){
         setBallCount(gameState.getBallCount());
         setStrikeCount(gameState.getStrikeCount());
+        setNumOuts(gameState.getNumOuts());
         setHomePitchCount(gameState.getHomePitchCount());
         setAwayPitchCount(gameState.getAwayPitchCount());
         setTop(gameState.isTop());
@@ -160,7 +161,14 @@ public class GameState {
             throw new Exception("Cannot have more than 3 outs in a half inning.");
         }
         // Checks if there is three outs and increments inning appropriately.
-        incrementInning();
+        if (getNumOuts() == 3) {
+            if (isTop()) {
+                setTop(false);
+            } else {
+                setTop(true);
+                incrementInning();
+            }
+        }
     }
 
     public void decrementOuts() throws Exception {
