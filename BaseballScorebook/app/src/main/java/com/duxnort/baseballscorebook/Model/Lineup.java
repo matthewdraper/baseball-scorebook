@@ -35,8 +35,19 @@ public class Lineup {
      * @param spot
      * @return Index of the player in the team roster ArrayList.
      */
+
     public int getBattingArrPosition(int spot){
         return  getBattingArr()[spot];
+    }
+
+    public int getBattingOrderIndex(int playerIndex) {
+        int index = 0;
+        while (index < NUM_BATTERS) {
+            if (battingArr[index] == playerIndex) {
+                return index;
+            }
+        }
+        return -1;
     }
 
 }

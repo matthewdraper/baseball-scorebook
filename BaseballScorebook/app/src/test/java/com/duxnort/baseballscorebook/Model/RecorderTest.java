@@ -295,7 +295,13 @@ public class RecorderTest {
 
     @Test
     public void testRecordStolenBase() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        r.recordSingle();
+        r.recordStolenBase(r.getCurrentRunnerOnFirstIndex(), false);
+        assertEquals(1, r.getCurrentRunnerOnFirst().getStats().getRunningStats().getStolenBases());
+        assertEquals(0, r.getCurrentRunnerOnFirstIndex());
+        assertEquals(1, r.getPitcherStats().getStolenBases());
+        assertEquals(1, r.getCatcherStats().getStolenBases());
     }
 
     @Test
