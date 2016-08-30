@@ -316,7 +316,13 @@ public class RecorderTest {
     @Test
     public void testRecordWalk() throws Exception {
         Recorder r = new Recorder(initializeGame());
+        r.recordBall();
+        r.recordBall();
+        r.recordBall();
         r.recordWalk();
+        assertEquals(4, r.getGame().getCurrentGameState().getPitchCount());
+        assertEquals(4, r.offensivePlayer(0).getStats().getHitStatsRight().getNumPitches());
+        assertEquals(4, r.currentPitcherStats().getNumPitches());
         assertEquals(0, r.currentRunnerOnFirstIndex());
         assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getWalks());
         assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getPlateAppearance());
@@ -328,7 +334,13 @@ public class RecorderTest {
     @Test
     public void testRecordIntentionalWalk() throws Exception {
         Recorder r = new Recorder(initializeGame());
+        r.recordBall();
+        r.recordBall();
+        r.recordBall();
         r.recordIntentionalWalk();
+        assertEquals(4, r.getGame().getCurrentGameState().getPitchCount());
+        assertEquals(4, r.offensivePlayer(0).getStats().getHitStatsRight().getNumPitches());
+        assertEquals(4, r.currentPitcherStats().getNumPitches());
         assertEquals(0, r.currentRunnerOnFirstIndex());
         assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getIntenWalks());
         assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getPlateAppearance());
@@ -340,7 +352,7 @@ public class RecorderTest {
     @Test
     public void testRecordCaughtStealing() throws Exception {
         Recorder r = new Recorder(initializeGame());
-        r.recordIntentionalWalk();
+        r.recordSingle();
         r.recordCaughtStealing(0, "26");
         assertEquals(1, r.currentPitcherStats().getCaughtStealing());
         assertEquals(1, r.currentCatcherStats().getCaughtStealing());
@@ -348,6 +360,8 @@ public class RecorderTest {
         assertEquals(1, r.currentGameState().getNumOuts());
         assertEquals(-1, r.currentRunnerOnFirstIndex());
         assertEquals(ScoringSymbol.CAUGHT_STEALING, r.currentScorecard().playerScorecardBox(0, 1).getFirstToSecondScoringEvent().getScoringSymbol());
+        assertEquals("26", r.currentScorecard().playerScorecardBox(0, 1).getFirstToSecondScoringEvent().getPositionsInvolved());
+        assertEquals(1, r.currentScorecard().playerScorecardBox(0, 1).getFirstToSecondScoringEvent().getOutNumber());
     }
 
     @Test
@@ -386,12 +400,30 @@ public class RecorderTest {
 
     @Test
     public void testRecordHitByPitch() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        r.recordHitByPitch();
+        assertEquals(1, r.getGame().getCurrentGameState().getPitchCount());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getNumPitches());
+        assertEquals(1, r.currentPitcherStats().getNumPitches());
+        assertEquals(0, r.currentRunnerOnFirstIndex());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getHitByPitch());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getPlateAppearance());
+        assertEquals(1, r.currentPitcherStats().getHitBatsmen());
+        assertEquals(1, r.currentPitcherStats().getTotalNumBF());
+        assertEquals(ScoringSymbol.HIT_BY_PITCH, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
     }
 
     @Test
     public void testRecordSacrificeBunt() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        r.recordTriple();
+        r.recordSacrificeBunt("13");
+        assertEquals(2, r.getGame().getCurrentGameState().getPitchCount());
+        assertEquals(1, r.offensivePlayer(1).getStats().getHitStatsLeft().getNumPitches());
+        assertEquals(2, r.currentPitcherStats().getNumPitches());
+        assertEquals(ScoringSymbol.SACRIFICE_BUNT, r.currentScorecard().playerScorecardBox(1, 1).getBatterScoringEvent().getScoringSymbol());
+        assertEquals("13", r.currentScorecard().playerScorecardBox(1, 1).getBatterScoringEvent().getPositionsInvolved());
+        assertEquals(1, r.currentScorecard().playerScorecardBox(1, 1).getBatterScoringEvent().getOutNumber());
     }
 
     @Test

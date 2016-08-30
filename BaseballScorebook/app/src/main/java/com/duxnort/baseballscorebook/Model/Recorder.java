@@ -185,28 +185,38 @@ public class Recorder {
     }
 
     public void recordWalk() throws Exception {
-        // If first base is empty
-        if (!isBaseOccupied(1)) {
+        // If first base is empty and there are three balls
+        if (!isBaseOccupied(1) && currentGameState().getBallCount() == 3) {
+            currentGameState().incrementPitchCount(); // increment the game state's pitch count
+            currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
+            currentBatterStats().incrementNumPitches(); // increment the batter's pitches
             currentPitcherStats().incrementWalks(); // increment the pitcher's walks
             currentBatterStats().incrementWalks(); // increment the batter's walks
             currentGameState().setCurrRunnerFirstIndex(currentBatterIndex()); // move the batter to first base
             currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.WALK)); // record the event
-        } else {
+        } else if (isBaseOccupied(1)) {
             throw new Exception("First base is not empty. You must handle other base runners before you record the walk.");
+        } else if (currentGameState().getBallCount() != 3) {
+            throw new Exception("There must be three balls recorded before you can record a walk.");
         }
         recordGameState(); // record the game state
         nextBatter(); // next batter up
     }
 
     public void recordIntentionalWalk() throws Exception {
-        // If first base is empty
-        if (!isBaseOccupied(1)) {
+        // If first base is empty and there are three balls
+        if (!isBaseOccupied(1) && currentGameState().getBallCount() == 3) {
+            currentGameState().incrementPitchCount(); // increment the game state's pitch count
+            currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
+            currentBatterStats().incrementNumPitches(); // increment the batter's pitches
             currentPitcherStats().incrementIntenWalks(); // increment the pitcher's intentional walks
             currentBatterStats().incrementIntenWalks(); // increment the batter's intentional walks
             currentGameState().setCurrRunnerFirstIndex(currentBatterIndex()); // move the batter to first base
             currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.INTENTIONAL_WALK)); // record the event
-        } else {
+        } else if (isBaseOccupied(1)) {
             throw new Exception("First base is not empty. You must handle other base runners before you record the intentional walk.");
+        } else if (currentGameState().getBallCount() != 3) {
+            throw new Exception("There must be three balls recorded before you can record a walk.");
         }
         recordGameState(); // record the game state
         nextBatter(); // next batter up
@@ -266,50 +276,40 @@ public class Recorder {
         nextBatter(); // next batter up
     }
 
-    public void recordHitByPitch(boolean earnedRun) {
-//        recordGameState();
-//        // Record stats for the pitcher
-//        currentPitcherStats().incrementHitBatsmen();
-//        // Record stats for the batter
-//        currentBatterStats().incrementHitByPitch();
-//        // If the bases are loaded
-//        if (currentGameState().getCurrRunnerThirdIndex() != -1 &&
-//                currentGameState().getCurrRunnerSecondIndex() != -1 &&
-//                currentGameState().getCurrRunnerFirstIndex() != -1) {
-//            currentScorecard().currentRunnerOnThirdScorecardBox().setThirdToHomeScoringEvent(new ScoringEvent(ScoringSymbol.RUNNER_ADVANCED));
-//            currentGameState().incrementScore();
-//            currentRunnerOnThird().getStats().getRunningStats().incrementRuns();
-//            currentGameState().clearRunnerOnThird();
-//            recordRunBattedIn();
-//            if (earnedRun) {
-//                currentPitcherStats().incrementEarnedRuns();
-//            } else {
-//                currentPitcherStats().incrementRuns();
-//            }
-//        }
-//        // If there are runners on first and second
-//        if (currentGameState().getCurrRunnerSecondIndex() != -1 &&
-//                currentGameState().getCurrRunnerFirstIndex() != -1) {
-//            moveToNextBase(currentGameState().getCurrRunnerSecondIndex(), ScoringSymbol.RUNNER_ADVANCED);
-//        }
-//        // If there is a runner on first
-//        if (currentGameState().getCurrRunnerFirstIndex() != -1) {
-//            moveToNextBase(currentGameState().getCurrRunnerFirstIndex(), ScoringSymbol.RUNNER_ADVANCED);
-//        }
-//        // If first base is empty
-//        moveToNextBase(currentGameState().getCurrBatterIndex(), ScoringSymbol.HIT_BY_PITCH);
+    public void recordHitByPitch() throws Exception {
+        // If first base is empty
+        if (!isBaseOccupied(1)) {
+            currentGameState().incrementPitchCount(); // increment the game state's pitch count
+            currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
+            currentBatterStats().incrementNumPitches(); // increment the batter's pitches
+            currentPitcherStats().incrementHitBatsmen(); // increment the pitcher's walks
+            currentBatterStats().incrementHitByPitch(); // increment the batter's walks
+            currentGameState().setCurrRunnerFirstIndex(currentBatterIndex()); // move the batter to first base
+            currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.HIT_BY_PITCH)); // record the event
+        } else {
+            throw new Exception("First base is not empty. You must handle other base runners before you record the hit by pitch.");
+        }
+        recordGameState(); // record the game state
+        nextBatter(); // next batter up
     }
 
     public void recordSacrificeBunt(String positionsInvolved) throws Exception {
-
-        currentPitcherStats().incrementSacBunts();
-        currentBatterStats().incrementSacBunts();
-        recordImpliedFieldingStats(positionsInvolved);
-        currentScorecard().currentBatterScorecardBox().setBatterScoringEvent(
-                new ScoringEvent(positionsInvolved, ScoringSymbol.SACRIFICE_BUNT,
-                        currentGameState().getNumOuts() + 1));
-        recordOut();
-        recordGameState();
+        // If there is a runner on base
+        if (currNumBaserunners() > 0 && currentGameState().getNumOuts() < 2) {
+            currentGameState().incrementPitchCount(); // increment the game state's pitch count
+            currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
+            currentBatterStats().incrementNumPitches(); // increment the batter's pitches
+            currentPitcherStats().incrementSacBunts(); // increment the pitcher's sac bunts
+            currentBatterStats().incrementSacBunts(); // increment the batter's sac bunts
+            currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(positionsInvolved, ScoringSymbol.SACRIFICE_BUNT, currentGameState().getNumOuts() + 1)); // record the event
+        } else if (currNumBaserunners() <= 0) {
+            throw new Exception("Must have a base runner in order to have a sacrifice bunt.");
+        } else if (currentGameState().getNumOuts() >= 2) {
+            throw new Exception("Must have less than two outs for a sacrifice to be recorded.");
+        }
+        recordOut(); // increment the number of outs
+        recordGameState(); // record the game state
+        nextBatter(); // next batter up
     }
 
     public void recordSacrificeFly(String positionsInvolved, boolean isEarnedRun) throws Exception {
@@ -702,6 +702,8 @@ public class Recorder {
     public void nextBatter() {
         clearCount();
         currentGameState().nextBatter();
+        currentScorecard().setCurrRow(currentScorecard().getCurrRow() + 1);
+        currentScorecard().setCurrCol(currentGameState().getInning() - 1);
     }
 
     public void recordGameState() {
@@ -751,8 +753,16 @@ public class Recorder {
         return currentCatcher().getStats().getFieldingStats();
     }
 
-    public int currentNumberOfBaserunners() {
-        return 0;
+    public int currNumBaserunners() {
+        int num = 0;
+        if (isBaseOccupied(1)) {
+            num++;
+        } else if (isBaseOccupied(2)) {
+            num++;
+        } else if (isBaseOccupied(3)) {
+            num++;
+        }
+        return num;
     }
 
     public boolean isBaseOccupied(int baseNumber) {
