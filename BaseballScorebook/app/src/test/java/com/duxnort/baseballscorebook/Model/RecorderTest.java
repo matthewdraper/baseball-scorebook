@@ -440,7 +440,7 @@ public class RecorderTest {
     }
 
     @Test
-    public void testRecordRegularGroundBallDoublePlay() throws Exception {
+    public void testRecordGroundBallDoublePlay() throws Exception {
         Recorder r = new Recorder(initializeGame());
         r.recordSingle();
         r.recordGroundBallDoublePlay("563", 0, false);
@@ -448,7 +448,7 @@ public class RecorderTest {
         assertEquals(1, r.offensivePlayer(1).getStats().getHitStatsLeft().getNumPitches());
         assertEquals(2, r.currentPitcherStats().getNumPitches());
         assertEquals(1, r.offensivePlayer(1).getStats().getHitStatsLeft().getGroundBallDP());
-        assertEquals(1, r.currentPitcherStats().getGroundOuts());
+        assertEquals(1, r.currentPitcherStats().getInducedGBDPs());
         assertEquals(ScoringSymbol.DOUBLE_PLAY, r.currentScorecard().playerScorecardBox(1, 1).getBatterScoringEvent().getScoringSymbol());
         assertEquals("563", r.currentScorecard().playerScorecardBox(1, 1).getBatterScoringEvent().getPositionsInvolved());
         assertEquals(1, r.currentScorecard().playerScorecardBox(0, 1).getFirstToSecondScoringEvent().getOutNumber());
@@ -458,13 +458,18 @@ public class RecorderTest {
     }
 
     @Test
-    public void testRecordNonRegularGroundBallDoublePlay() throws Exception {
-
-    }
-
-    @Test
     public void testRecordGroundBallOut() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        r.recordGroundBallOut("43");
+        assertEquals(1, r.getGame().getCurrentGameState().getPitchCount());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getNumPitches());
+        assertEquals(1, r.currentPitcherStats().getNumPitches());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getGroundOuts());
+        assertEquals(1, r.currentPitcherStats().getGroundOuts());
+        assertEquals(ScoringSymbol.GROUNDOUT, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
+        assertEquals("43", r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getPositionsInvolved());
+        assertEquals(1, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getOutNumber());
+        assertEquals(1, r.currentGameState().getNumOuts());
     }
 
     @Test

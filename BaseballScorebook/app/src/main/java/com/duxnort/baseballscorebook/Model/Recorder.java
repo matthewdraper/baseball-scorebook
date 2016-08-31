@@ -335,8 +335,8 @@ public class Recorder {
             currentGameState().incrementPitchCount(); // increment the game state's pitch count
             currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
             currentBatterStats().incrementNumPitches(); // increment the batter's pitches
-            currentPitcherStats().incrementInducedGBDPs(); // increment the pitcher's fly outs
-            currentBatterStats().incrementGroundBallDP(); // increment the batter's sac flys
+            currentPitcherStats().incrementInducedGBDPs(); // increment the pitcher's ground ball double plays
+            currentBatterStats().incrementGroundBallDP(); // increment the batter's ground ball double plays
             int currBase = 0;
             if (currentRunnerOnFirstIndex() == runnerIndex) {
                 currBase = 1;
@@ -383,15 +383,15 @@ public class Recorder {
 
 
     public void recordGroundBallOut(String positionsInvolved) throws Exception {
-        currentPitcherStats().incrementGroundOuts();
-        currentBatterStats().incrementGroundOuts();
-        recordImpliedFieldingStats(positionsInvolved);
-        currentScorecard().currentBatterScorecardBox().setBatterScoringEvent(
-                new ScoringEvent(positionsInvolved, ScoringSymbol.GROUNDOUT,
-                        currentGameState().getNumOuts() + 1));
+        currentGameState().incrementPitchCount(); // increment the game state's pitch count
+        currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
+        currentBatterStats().incrementNumPitches(); // increment the batter's pitches
+        currentPitcherStats().incrementGroundOuts(); // increment the pitcher's ground outs
+        currentBatterStats().incrementGroundOuts(); // increment the batter's ground outs
+        currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(positionsInvolved, ScoringSymbol.GROUNDOUT, currentGameState().getNumOuts() + 1));
         recordOut();
-        recordLocation();
-        recordGameState();
+        recordGameState(); // record the game state
+        nextBatter(); // next batter up
     }
 
     public void recordFlyBallOut(String positionsInvolved) throws Exception {
