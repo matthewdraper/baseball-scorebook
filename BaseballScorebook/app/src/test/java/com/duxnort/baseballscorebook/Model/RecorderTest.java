@@ -428,12 +428,33 @@ public class RecorderTest {
 
     @Test
     public void testRecordSacrificeFly() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        r.recordTriple();
+        r.recordSacrificeFly("7");
+        assertEquals(2, r.getGame().getCurrentGameState().getPitchCount());
+        assertEquals(1, r.offensivePlayer(1).getStats().getHitStatsLeft().getNumPitches());
+        assertEquals(2, r.currentPitcherStats().getNumPitches());
+        assertEquals(ScoringSymbol.SACRIFICE_FLY, r.currentScorecard().playerScorecardBox(1, 1).getBatterScoringEvent().getScoringSymbol());
+        assertEquals("7", r.currentScorecard().playerScorecardBox(1, 1).getBatterScoringEvent().getPositionsInvolved());
+        assertEquals(1, r.currentScorecard().playerScorecardBox(1, 1).getBatterScoringEvent().getOutNumber());
     }
 
     @Test
     public void testRecordRegularGroundBallDoublePlay() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        r.recordSingle();
+        r.recordGroundBallDoublePlay("563", 0, false);
+        assertEquals(2, r.getGame().getCurrentGameState().getPitchCount());
+        assertEquals(1, r.offensivePlayer(1).getStats().getHitStatsLeft().getNumPitches());
+        assertEquals(2, r.currentPitcherStats().getNumPitches());
+        assertEquals(1, r.offensivePlayer(1).getStats().getHitStatsLeft().getGroundBallDP());
+        assertEquals(1, r.currentPitcherStats().getGroundOuts());
+        assertEquals(ScoringSymbol.DOUBLE_PLAY, r.currentScorecard().playerScorecardBox(1, 1).getBatterScoringEvent().getScoringSymbol());
+        assertEquals("563", r.currentScorecard().playerScorecardBox(1, 1).getBatterScoringEvent().getPositionsInvolved());
+        assertEquals(1, r.currentScorecard().playerScorecardBox(0, 1).getFirstToSecondScoringEvent().getOutNumber());
+        assertEquals(ScoringSymbol.RUNNER_OUT, r.currentScorecard().playerScorecardBox(0, 1).getFirstToSecondScoringEvent().getScoringSymbol());
+        assertEquals(2, r.currentScorecard().playerScorecardBox(1, 1).getBatterScoringEvent().getOutNumber());
+        assertEquals(2, r.currentGameState().getNumOuts());
     }
 
     @Test
