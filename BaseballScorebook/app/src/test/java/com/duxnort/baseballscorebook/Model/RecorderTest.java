@@ -474,7 +474,17 @@ public class RecorderTest {
 
     @Test
     public void testRecordFlyBallOut() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        r.recordFlyBallOut("7");
+        assertEquals(1, r.getGame().getCurrentGameState().getPitchCount());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getNumPitches());
+        assertEquals(1, r.currentPitcherStats().getNumPitches());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getFlyOuts());
+        assertEquals(1, r.currentPitcherStats().getFlyOuts());
+        assertEquals(ScoringSymbol.FLYOUT, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
+        assertEquals("7", r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getPositionsInvolved());
+        assertEquals(1, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getOutNumber());
+        assertEquals(1, r.currentGameState().getNumOuts());
     }
 
     @Test
