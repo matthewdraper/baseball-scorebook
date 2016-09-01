@@ -451,7 +451,7 @@ public class RecorderTest {
         assertEquals(1, r.currentPitcherStats().getInducedGBDPs());
         assertEquals(ScoringSymbol.DOUBLE_PLAY, r.currentScorecard().playerScorecardBox(1, 1).getBatterScoringEvent().getScoringSymbol());
         assertEquals("563", r.currentScorecard().playerScorecardBox(1, 1).getBatterScoringEvent().getPositionsInvolved());
-        assertEquals(2, r.currentScorecard().playerScorecardBox(1, 1).getBatterScoringEvent().getOutNumber());
+        assertEquals(1, r.currentScorecard().playerScorecardBox(1, 1).getBatterScoringEvent().getOutNumber());
         assertEquals(1, r.currentGameState().getNumOuts());
     }
 
@@ -483,6 +483,472 @@ public class RecorderTest {
         assertEquals("7", r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getPositionsInvolved());
         assertEquals(1, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getOutNumber());
         assertEquals(1, r.currentGameState().getNumOuts());
+    }
+
+    @Test
+    public void testRecordCatchersInterference() throws Exception {
+        Recorder r = new Recorder(initializeGame());
+        r.recordCatchersInterference();
+        assertEquals(1, r.getGame().getCurrentGameState().getPitchCount());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getNumPitches());
+        assertEquals(1, r.currentPitcherStats().getNumPitches());
+        assertEquals(ScoringSymbol.INTERFERENCE, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
+        assertEquals("2", r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getPositionsInvolved());
+        assertEquals(0, r.currentRunnerOnFirstIndex());
+    }
+
+
+    @Test
+    public void testRecordDroppedStrikeOutLookingPB() throws Exception {
+        Recorder r = new Recorder(initializeGame());
+        r.recordDroppedStrikeOutLookingPB();
+        assertEquals(1, r.getGame().getCurrentGameState().getPitchCount());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getNumPitches());
+        assertEquals(1, r.currentPitcherStats().getNumPitches());
+        assertEquals(1, r.currentPitcherStats().getStrikeOutLook());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getStrikeOuts());
+        assertEquals(1, r.currentCatcherStats().getPassedBalls());
+        assertEquals(ScoringSymbol.STRIKEOUT_LOOKING, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
+        assertEquals(ScoringSymbol.PASSED_BALL, r.currentScorecard().playerScorecardBox(0, 1).getHomeToFirstScoringEvent().getScoringSymbol());
+        assertEquals(0, r.currentRunnerOnFirstIndex());
+        assertEquals(0, r.currentGameState().getNumOuts());
+    }
+
+    @Test
+    public void testRecordDroppedStrikeOutSwingingPB() throws Exception {
+        Recorder r = new Recorder(initializeGame());
+        r.recordDroppedStrikeOutSwingingPB();
+        assertEquals(1, r.getGame().getCurrentGameState().getPitchCount());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getNumPitches());
+        assertEquals(1, r.currentPitcherStats().getNumPitches());
+        assertEquals(1, r.currentPitcherStats().getStrikeOutSwing());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getStrikeOuts());
+        assertEquals(1, r.currentCatcherStats().getPassedBalls());
+        assertEquals(ScoringSymbol.STRIKEOUT_SWINGING, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
+        assertEquals(ScoringSymbol.PASSED_BALL, r.currentScorecard().playerScorecardBox(0, 1).getHomeToFirstScoringEvent().getScoringSymbol());
+        assertEquals(0, r.currentRunnerOnFirstIndex());
+        assertEquals(0, r.currentGameState().getNumOuts());
+    }
+
+    @Test
+    public void testRecordDroppedStrikeOutSwingingWP() throws Exception {
+        Recorder r = new Recorder(initializeGame());
+        r.recordDroppedStrikeOutSwingingWP();
+        assertEquals(1, r.getGame().getCurrentGameState().getPitchCount());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getNumPitches());
+        assertEquals(1, r.currentPitcherStats().getNumPitches());
+        assertEquals(1, r.currentPitcherStats().getStrikeOutSwing());
+        assertEquals(1, r.currentPitcherStats().getWildPitches());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getStrikeOuts());
+        assertEquals(1, r.currentCatcherStats().getWpCatching());
+        assertEquals(ScoringSymbol.STRIKEOUT_SWINGING, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
+        assertEquals(ScoringSymbol.WILD_PITCH, r.currentScorecard().playerScorecardBox(0, 1).getHomeToFirstScoringEvent().getScoringSymbol());
+        assertEquals(0, r.currentRunnerOnFirstIndex());
+        assertEquals(0, r.currentGameState().getNumOuts());
+    }
+
+    @Test
+    public void testRecordBatterGroundBallDoublePlay() throws Exception {
+        Recorder r = new Recorder(initializeGame());
+        r.recordBatterGroundBallDoublePlay("543");
+        assertEquals(1, r.getGame().getCurrentGameState().getPitchCount());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getNumPitches());
+        assertEquals(1, r.currentPitcherStats().getNumPitches());
+        assertEquals(1, r.currentPitcherStats().getInducedGBDPs());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getGroundBallDP());
+        assertEquals(1, r.currentPitcherStats().getGroundOuts());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getGroundOuts());
+        assertEquals(1, r.currentGameState().getNumOuts());
+        assertEquals(ScoringSymbol.DOUBLE_PLAY, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
+        assertEquals("543", r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getPositionsInvolved());
+    }
+
+    @Test
+    public void testRecordBatterFlyBallDoublePlay() throws Exception {
+        Recorder r = new Recorder(initializeGame());
+        r.recordBatterFlyBallDoublePlay("74");
+        assertEquals(1, r.getGame().getCurrentGameState().getPitchCount());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getNumPitches());
+        assertEquals(1, r.currentPitcherStats().getNumPitches());
+        assertEquals(1, r.currentPitcherStats().getFlyOuts());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getFlyOuts());
+        assertEquals(1, r.currentGameState().getNumOuts());
+        assertEquals(ScoringSymbol.DOUBLE_PLAY, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
+        assertEquals("74", r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getPositionsInvolved());
+    }
+
+    @Test
+    public void testRecordBatterGroundBallTriplePlay() throws Exception {
+        Recorder r = new Recorder(initializeGame());
+        r.recordBatterGroundBallTriplePlay("543");
+        assertEquals(1, r.getGame().getCurrentGameState().getPitchCount());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getNumPitches());
+        assertEquals(1, r.currentPitcherStats().getNumPitches());
+        assertEquals(1, r.currentPitcherStats().getInducedGBDPs());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getGroundBallDP());
+        assertEquals(1, r.currentPitcherStats().getGroundOuts());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getGroundOuts());
+        assertEquals(1, r.currentGameState().getNumOuts());
+        assertEquals(ScoringSymbol.TRIPLE_PLAY, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
+        assertEquals("543", r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getPositionsInvolved());
+    }
+
+    @Test
+    public void testRecordBatterFlyBallTriplePlay() throws Exception {
+        Recorder r = new Recorder(initializeGame());
+        r.recordBatterFlyBallTriplePlay("53");
+        assertEquals(1, r.getGame().getCurrentGameState().getPitchCount());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getNumPitches());
+        assertEquals(1, r.currentPitcherStats().getNumPitches());
+        assertEquals(1, r.currentPitcherStats().getFlyOuts());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getFlyOuts());
+        assertEquals(1, r.currentGameState().getNumOuts());
+        assertEquals(ScoringSymbol.TRIPLE_PLAY, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
+        assertEquals("53", r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getPositionsInvolved());
+    }
+
+    @Test
+    public void testRecordRunnerAdvanced() throws Exception {
+        Recorder r = new Recorder(initializeGame());
+        r.recordSingle();
+        r.recordRunnerAdvanced(0);
+        r.recordSingle();
+        assertEquals(2, r.getGame().getCurrentGameState().getPitchCount());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getNumPitches());
+        assertEquals(2, r.currentPitcherStats().getNumPitches());
+        assertEquals(2, r.currentGameState().getAwayHits());
+        assertEquals(0, r.currentRunnerOnSecondIndex());
+        assertEquals(1, r.currentRunnerOnFirstIndex());
+        assertEquals(ScoringSymbol.RUNNER_ADVANCED, r.currentScorecard().playerScorecardBox(0, 1).getFirstToSecondScoringEvent().getScoringSymbol());
+    }
+
+    @Test
+    public void testRecordRunnerAdvancedError() throws Exception {
+        Recorder r = new Recorder(initializeGame());
+        r.recordSingle();
+        r.recordRunnerAdvancedError(0, "7");
+        r.recordBatterReachedOnError("7");
+        assertEquals(2, r.getGame().getCurrentGameState().getPitchCount());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getNumPitches());
+        assertEquals(2, r.currentPitcherStats().getNumPitches());
+        assertEquals(1, r.currentGameState().getAwayHits());
+        assertEquals(0, r.currentRunnerOnSecondIndex());
+        assertEquals(1, r.currentRunnerOnFirstIndex());
+        assertEquals(ScoringSymbol.ERROR, r.currentScorecard().playerScorecardBox(0, 1).getFirstToSecondScoringEvent().getScoringSymbol());
+        assertEquals("7", r.currentScorecard().playerScorecardBox(0, 1).getFirstToSecondScoringEvent().getPositionsInvolved());
+    }
+
+    @Test
+    public void testRecordBatterReachedOnError() throws Exception {
+        Recorder r = new Recorder(initializeGame());
+        r.recordBatterReachedOnError("7");
+        assertEquals(1, r.getGame().getCurrentGameState().getPitchCount());
+        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getNumPitches());
+        assertEquals(1, r.currentPitcherStats().getNumPitches());
+        assertEquals(0, r.currentGameState().getAwayHits());
+        assertEquals(0, r.currentRunnerOnFirstIndex());
+        assertEquals(ScoringSymbol.ERROR, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
+        assertEquals("7", r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getPositionsInvolved());
+    }
+
+    @Test
+    public void testRecordRunnerAdvancedInterference() throws Exception {
+
+    }
+
+    @Test
+    public void testRecordRunnerAdvancedBalk() throws Exception {
+
+    }
+
+    @Test
+    public void testRecordRunnerAdvancedWP() throws Exception {
+
+    }
+
+    @Test
+    public void testRecordRunnerAdvancedPB() throws Exception {
+
+    }
+
+    @Test
+    public void testRecordRunnerOut() throws Exception {
+
+    }
+
+    @Test
+    public void testRecordPutOut() throws Exception {
+
+    }
+
+    @Test
+    public void testRecordAssist() throws Exception {
+
+    }
+
+    @Test
+    public void testRecordWildPitch() throws Exception {
+
+    }
+
+    @Test
+    public void testRecordPassedBall() throws Exception {
+
+    }
+
+    @Test
+    public void testRecordRunnerPickOff() throws Exception {
+
+    }
+
+    @Test
+    public void testRecordRunnerPickoffCaughtStealing() throws Exception {
+
+    }
+
+    @Test
+    public void testRecordUnassistedPutOut() throws Exception {
+
+    }
+
+    @Test
+    public void testRecordFieldersChoice() throws Exception {
+
+    }
+
+    @Test
+    public void testRecordRunnerInterference() throws Exception {
+
+    }
+
+    @Test
+    public void testRecordBatterInterference() throws Exception {
+
+    }
+
+    @Test
+    public void testRecordOut() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentHomeLineup() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentAwayLineup() throws Exception {
+
+    }
+
+    @Test
+    public void testHomePlayerAtPos() throws Exception {
+
+    }
+
+    @Test
+    public void testAwayPlayerAtPos() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentDefensivePlayer() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentHomeBatter() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentAwayBatter() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentBatter() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentBatterIndex() throws Exception {
+
+    }
+
+    @Test
+    public void testPreviousBatter() throws Exception {
+
+    }
+
+    @Test
+    public void testPreviousBatterIndex() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentPitcher() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentCatcher() throws Exception {
+
+    }
+
+    @Test
+    public void testPlayerBattingOrderIndex() throws Exception {
+
+    }
+
+    @Test
+    public void testHomePlayerIndex() throws Exception {
+
+    }
+
+    @Test
+    public void testAwayPlayerIndex() throws Exception {
+
+    }
+
+    @Test
+    public void testHomePlayer() throws Exception {
+
+    }
+
+    @Test
+    public void testAwayPlayer() throws Exception {
+
+    }
+
+    @Test
+    public void testOffensivePlayer() throws Exception {
+
+    }
+
+    @Test
+    public void testOffensivePlayerIndex() throws Exception {
+
+    }
+
+    @Test
+    public void testDefensivePlayer() throws Exception {
+
+    }
+
+    @Test
+    public void testDefensivePlayerIndex() throws Exception {
+
+    }
+
+    @Test
+    public void testPlayerScorecardBox() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentBatterScorecardBox() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentGameState() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentScorecard() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentRunnerOnFirst() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentRunnerOnFirstIndex() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentRunnerOnSecond() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentRunnerOnSecondIndex() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentRunnerOnThird() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentRunnerOnThirdIndex() throws Exception {
+
+    }
+
+    @Test
+    public void testNextBatter() throws Exception {
+
+    }
+
+    @Test
+    public void testRecordGameState() throws Exception {
+
+    }
+
+    @Test
+    public void testRecordBatterEvent() throws Exception {
+
+    }
+
+    @Test
+    public void testClearCount() throws Exception {
+
+    }
+
+    @Test
+    public void testIncrementOuts() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentBatterStats() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentPitcherStats() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrentCatcherStats() throws Exception {
+
+    }
+
+    @Test
+    public void testCurrNumBaserunners() throws Exception {
+
+    }
+
+    @Test
+    public void testIsBaseOccupied() throws Exception {
+
+    }
+
+    @Test
+    public void testMoveToNextBase() throws Exception {
+
+    }
+
+    @Test
+    public void testRecordLocation() throws Exception {
+
     }
 
 
