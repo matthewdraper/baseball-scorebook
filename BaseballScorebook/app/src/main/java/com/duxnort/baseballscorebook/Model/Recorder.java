@@ -59,20 +59,24 @@ public class Recorder {
      * This method updates the stats for the pitcher and the batter, moves the batter to first base,
      * records the event in the score book, and changes the current batter to the next batter.
      */
-    public void recordSingle() {
-        currentGameState().incrementPitchCount(); // update game state pitch count
-        currentPitcherStats().incrementSingles(); // update pitcher singles
-        currentBatterStats().incrementSingles(); // update batter singles
-        currentPitcherStats().incrementNumPitches(); // update pitcher number of pitches
-        currentBatterStats().incrementNumPitches(); // update batter number of pitches
-        recordLocation(); // record the location of the hit
-        recordBatterEvent(new ScoringEvent(ScoringSymbol.SINGLE)); // record the event in the scorebook
-        // TODO: 8/19/16 Need to figure out how to deal with the other base runners before scoring
-        // TODO: 8/19/16 the single.
-        currentGameState().setCurrRunnerFirstIndex(currentBatterIndex()); // set the index of the runner on first to the batter
-        currentGameState().incrementHits(); // update game state hits
-        recordGameState(); // record the game state
-        nextBatter(); // next batter up
+    public void recordSingle() throws Exception {
+        if(!isBaseOccupied(1)){
+            currentGameState().incrementPitchCount(); // update game state pitch count
+            currentPitcherStats().incrementSingles(); // update pitcher singles
+            currentBatterStats().incrementSingles(); // update batter singles
+            currentPitcherStats().incrementNumPitches(); // update pitcher number of pitches
+            currentBatterStats().incrementNumPitches(); // update batter number of pitches
+            recordLocation(); // record the location of the hit
+            recordBatterEvent(new ScoringEvent(ScoringSymbol.SINGLE)); // record the event in the scorebook
+            // TODO: 8/19/16 Need to figure out how to deal with the other base runners before scoring
+            // TODO: 8/19/16 the single.
+            currentGameState().setCurrRunnerFirstIndex(currentBatterIndex()); // set the index of the runner on first to the batter
+            currentGameState().incrementHits(); // update game state hits
+            recordGameState(); // record the game state
+            nextBatter(); // next batter up
+        } else {
+            throw new Exception("First base is not empty. You must deal with the runner before recording the single.");
+        }
     }
 
     /**
@@ -80,20 +84,27 @@ public class Recorder {
      * This method updates the stats for the pitcher and the batter, moves the batter to second
      * base, records the event in the score book, and changes the current batter to the next batter.
      */
-    public void recordDouble() {
-        currentGameState().incrementPitchCount(); // update the game state pitch count
-        currentPitcherStats().incrementDoubles(); // update the pitcher doubles
-        currentBatterStats().incrementDoubles(); // update the batter doubles
-        currentPitcherStats().incrementNumPitches(); // update the pitcher number of pitches
-        currentBatterStats().incrementNumPitches(); // update the batter number of pitches
-        recordLocation(); // record the location of the hit
-        recordBatterEvent(new ScoringEvent(ScoringSymbol.DOUBLE)); // record the event in the scorebook
-        // TODO: 8/19/16 Need to figure out how to deal with the other base runners before scoring
-        // TODO: 8/19/16 the single.
-        currentGameState().setCurrRunnerSecondIndex(currentBatterIndex()); // set the index of the runner on second to the batter
-        currentGameState().incrementHits(); // update game state hits
-        recordGameState(); // record the game state
-        nextBatter(); // next batter up
+    public void recordDouble() throws Exception {
+        // If first and second base are not occupied
+        if(!isBaseOccupied(1) && !isBaseOccupied(2)){
+            currentGameState().incrementPitchCount(); // update the game state pitch count
+            currentPitcherStats().incrementDoubles(); // update the pitcher doubles
+            currentBatterStats().incrementDoubles(); // update the batter doubles
+            currentPitcherStats().incrementNumPitches(); // update the pitcher number of pitches
+            currentBatterStats().incrementNumPitches(); // update the batter number of pitches
+            recordLocation(); // record the location of the hit
+            recordBatterEvent(new ScoringEvent(ScoringSymbol.DOUBLE)); // record the event in the scorebook
+            // TODO: 8/19/16 Need to figure out how to deal with the other base runners before scoring
+            // TODO: 8/19/16 the single.
+            currentGameState().setCurrRunnerSecondIndex(currentBatterIndex()); // set the index of the runner on second to the batter
+            currentGameState().incrementHits(); // update game state hits
+            recordGameState(); // record the game state
+            nextBatter(); // next batter up
+        } else if(isBaseOccupied(2)){
+            throw new Exception("Second base is not empty. You must deal with the base runner before recording the double.");
+        } else {
+            throw new Exception("First base is not empty. You must deal with the base runner before recording the double.");
+        }
     }
 
     /**
@@ -101,20 +112,26 @@ public class Recorder {
      * method updates the stats for the pitcher and the batter, moves the batter to third base,
      * records the event in the score book, and changes the current batter to the next batter.
      */
-    public void recordTriple() {
-        currentGameState().incrementPitchCount(); // update the game state pitch count
-        currentPitcherStats().incrementTriples(); // update the pitcher triples
-        currentBatterStats().incrementTriples(); // update the batter triples
-        currentPitcherStats().incrementNumPitches(); // update the pitcher number of pitches
-        currentBatterStats().incrementNumPitches();  // updat the batter number of pitches
-        recordLocation(); // record the location of the hit
-        recordBatterEvent(new ScoringEvent(ScoringSymbol.TRIPLE)); // record the event in the scorebook
-        // TODO: 8/19/16 Need to figure out how to deal with the other base runners before scoring
-        // TODO: 8/19/16 the single.
-        currentGameState().setCurrRunnerThirdIndex(currentBatterIndex()); // set the index of the runner on third to the batter
-        currentGameState().incrementHits(); // update game state hits
-        recordGameState(); // record the game state
-        nextBatter(); // next batter up
+    public void recordTriple() throws Exception {
+        // If the bases are empty
+        if(!isBaseOccupied(1) && !isBaseOccupied(2) && !isBaseOccupied(3)){
+            currentGameState().incrementPitchCount(); // update the game state pitch count
+            currentPitcherStats().incrementTriples(); // update the pitcher triples
+            currentBatterStats().incrementTriples(); // update the batter triples
+            currentPitcherStats().incrementNumPitches(); // update the pitcher number of pitches
+            currentBatterStats().incrementNumPitches();  // updat the batter number of pitches
+            recordLocation(); // record the location of the hit
+            recordBatterEvent(new ScoringEvent(ScoringSymbol.TRIPLE)); // record the event in the scorebook
+            // TODO: 8/19/16 Need to figure out how to deal with the other base runners before scoring
+            // TODO: 8/19/16 the single.
+            currentGameState().setCurrRunnerThirdIndex(currentBatterIndex()); // set the index of the runner on third to the batter
+            currentGameState().incrementHits(); // update game state hits
+            recordGameState(); // record the game state
+            nextBatter(); // next batter up
+        } else {
+            throw new Exception("The bases are not empty. You must deal with the baserunner(s) before you record the triple.");
+        }
+
     }
 
     /**
@@ -226,6 +243,9 @@ public class Recorder {
         recordGameState(); // record the game state
     }
 
+    /**
+     * This method records a run batted in for the current batter.
+     */
     public void recordRunBattedIn() {
         currentBatterStats().incrementRbis(); // increment the current batter's rbis
     }
@@ -280,11 +300,23 @@ public class Recorder {
         nextBatter(); // next batter up
     }
 
-    public void recordCatchersInterference() {
-        currentGameState().incrementPitchCount(); // increment the game state's pitch count
-        currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
-        currentBatterStats().incrementNumPitches(); // increment the batter's pitches
-        currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent("2", ScoringSymbol.INTERFERENCE)); // record the event
+    /**
+     * This method records an event where the catcher causes interference on the batter and the
+     * batter is awarded first base.
+     * @throws Exception
+     */
+    public void recordCatchersInterference() throws Exception {
+        // If first base is not occupied
+        if(!isBaseOccupied(1)){
+            currentGameState().incrementPitchCount(); // increment the game state's pitch count
+            currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
+            currentBatterStats().incrementNumPitches(); // increment the batter's pitches
+            currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent("2", ScoringSymbol.INTERFERENCE)); // record the event
+
+        } else {
+            throw new Exception("First base is not empty. You must handle the runner on first " +
+                    "before you record the catcher's interference.");
+        }
     }
 
     /**
@@ -343,18 +375,28 @@ public class Recorder {
         nextBatter(); // next batter up
     }
 
+    /**
+     * This method records a dropped third strike where the strikeout is considered a looking
+     * strike out and the runner advances to first base.
+     * @throws Exception
+     */
     public void recordDroppedStrikeOutLookingPB() throws Exception {
-        currentGameState().incrementPitchCount(); // increment the game state's pitch count
-        currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
-        currentBatterStats().incrementNumPitches(); // increment the batter's pitches
-        currentPitcherStats().incrementStrikeOutLook(); // increment the pitcher's strike out lookings
-        currentBatterStats().incrementStrikeOuts(); // increment the batter's strike outs
-        currentCatcherStats().incrementPassedBalls(); // increment the catcher's passed balls
-        currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.STRIKEOUT_LOOKING)); // record event in score book
-        currentBatterScorecardBox().setHomeToFirstScoringEvent(new ScoringEvent(ScoringSymbol.PASSED_BALL)); // record passed ball and reached base
-        recordOut(); // record an out
-        recordGameState(); // record the game state
-        nextBatter(); // next batter up
+        if(!isBaseOccupied(1)){
+            currentGameState().incrementPitchCount(); // increment the game state's pitch count
+            currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
+            currentBatterStats().incrementNumPitches(); // increment the batter's pitches
+            currentPitcherStats().incrementStrikeOutLook(); // increment the pitcher's strike out lookings
+            currentBatterStats().incrementStrikeOuts(); // increment the batter's strike outs
+            currentCatcherStats().incrementPassedBalls(); // increment the catcher's passed balls
+            currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.STRIKEOUT_LOOKING)); // record event in score book
+            currentBatterScorecardBox().setHomeToFirstScoringEvent(new ScoringEvent(ScoringSymbol.PASSED_BALL)); // record passed ball and reached base
+            recordOut(); // record an out
+            recordGameState(); // record the game state
+            nextBatter(); // next batter up
+        } else {
+            throw new Exception("First base is not empty. You must deal with the base runner on" +
+                    "first before you record the dropped third strikeout.");
+        }
     }
 
     /**
@@ -376,33 +418,53 @@ public class Recorder {
         nextBatter(); // next batter up
     }
 
+    /**
+     * This method records a dropped swinging third strike that is recorded as a passed ball to the catcher.
+     * As a result the batter reaches first base.
+     * @throws Exception
+     */
     public void recordDroppedStrikeOutSwingingPB() throws Exception {
-        currentGameState().incrementPitchCount(); // increment the game state's pitch count
-        currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
-        currentBatterStats().incrementNumPitches(); // increment the batter's pitches
-        currentPitcherStats().incrementStrikeOutSwing(); // increment the pitcher's strike out swinging
-        currentBatterStats().incrementStrikeOuts(); // increment the batter's strike outs
-        currentCatcherStats().incrementPassedBalls(); // increment the catcher's passed balls
-        currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.STRIKEOUT_SWINGING)); // record event in score book
-        currentBatterScorecardBox().setHomeToFirstScoringEvent(new ScoringEvent(ScoringSymbol.PASSED_BALL)); // record passed ball and reached base
-        recordOut(); // record an out
-        recordGameState(); // record the game state
-        nextBatter(); // next batter up
+        if(!isBaseOccupied(1)){
+            currentGameState().incrementPitchCount(); // increment the game state's pitch count
+            currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
+            currentBatterStats().incrementNumPitches(); // increment the batter's pitches
+            currentPitcherStats().incrementStrikeOutSwing(); // increment the pitcher's strike out swinging
+            currentBatterStats().incrementStrikeOuts(); // increment the batter's strike outs
+            currentCatcherStats().incrementPassedBalls(); // increment the catcher's passed balls
+            currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.STRIKEOUT_SWINGING)); // record event in score book
+            currentBatterScorecardBox().setHomeToFirstScoringEvent(new ScoringEvent(ScoringSymbol.PASSED_BALL)); // record passed ball and reached base
+            recordOut(); // record an out
+            recordGameState(); // record the game state
+            nextBatter(); // next batter up
+        } else {
+            throw new Exception("First base is not empty. You must deal with the base runner on" +
+                    "first before you record the dropped third strikeout.");
+        }
     }
 
+    /**
+     * This method records a dropped swinging third strike that is considered a wild pitch. As a
+     * result the batter advances to first base.
+     * @throws Exception
+     */
     public void recordDroppedStrikeOutSwingingWP() throws Exception {
-        currentGameState().incrementPitchCount(); // increment the game state's pitch count
-        currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
-        currentBatterStats().incrementNumPitches(); // increment the batter's pitches
-        currentPitcherStats().incrementStrikeOutSwing(); // increment the pitcher's strike out swinging
-        currentBatterStats().incrementStrikeOuts(); // increment the batter's strike outs
-        currentCatcherStats().incrementWpCatching(); // increment the catcher's wild pitches
-        currentPitcherStats().incrementWildPitches(); // increment the pitcher's wild pitches
-        currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.STRIKEOUT_SWINGING)); // record event in score book
-        currentBatterScorecardBox().setHomeToFirstScoringEvent(new ScoringEvent(ScoringSymbol.WILD_PITCH)); // record passed ball and reached base
-        recordOut(); // record an out
-        recordGameState(); // record the game state
-        nextBatter(); // next batter up
+        if(!isBaseOccupied(1)){
+            currentGameState().incrementPitchCount(); // increment the game state's pitch count
+            currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
+            currentBatterStats().incrementNumPitches(); // increment the batter's pitches
+            currentPitcherStats().incrementStrikeOutSwing(); // increment the pitcher's strike out swinging
+            currentBatterStats().incrementStrikeOuts(); // increment the batter's strike outs
+            currentCatcherStats().incrementWpCatching(); // increment the catcher's wild pitches
+            currentPitcherStats().incrementWildPitches(); // increment the pitcher's wild pitches
+            currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.STRIKEOUT_SWINGING)); // record event in score book
+            currentBatterScorecardBox().setHomeToFirstScoringEvent(new ScoringEvent(ScoringSymbol.WILD_PITCH)); // record passed ball and reached base
+            recordOut(); // record an out
+            recordGameState(); // record the game state
+            nextBatter(); // next batter up
+        } else {
+            throw new Exception("First base is not empty. You must deal with the base runner on" +
+                    "first before you record the dropped third strikeout.");
+        }
     }
 
     /**
@@ -421,35 +483,28 @@ public class Recorder {
             currentBatterStats().incrementHitByPitch(); // increment the batter's walks
             currentGameState().setCurrRunnerFirstIndex(currentBatterIndex()); // move the batter to first base
             currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.HIT_BY_PITCH)); // record the event
+            recordGameState(); // record the game state
+            nextBatter(); // next batter up
         } else {
             throw new Exception("First base is not empty. You must handle other base runners before you record the hit by pitch.");
         }
-        recordGameState(); // record the game state
-        nextBatter(); // next batter up
     }
 
     /**
      * This method records a sacrifice bunt and saves the game state so that the action may be undone.
      * It update the stats for the pitcher and the batter and updates the scorebook. It then updates
      * the current batter to the next batter.
-     * @param positionsInvolved
+     * @param positionsInvolved This reflects the players that were involved in the sacrifice bunt.
      * @throws Exception
      */
     public void recordSacrificeBunt(String positionsInvolved) throws Exception {
-        // If there is a runner on base
-        if (currNumBaserunners() > 0 && currentGameState().getNumOuts() < 2) {
-            currentGameState().incrementPitchCount(); // increment the game state's pitch count
-            currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
-            currentBatterStats().incrementNumPitches(); // increment the batter's pitches
-            currentPitcherStats().incrementSacBunts(); // increment the pitcher's sac bunts
-            currentBatterStats().incrementSacBunts(); // increment the batter's sac bunts
-            currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(positionsInvolved,
-                    ScoringSymbol.SACRIFICE_BUNT, currentGameState().getNumOuts() + 1)); // record the event
-        } else if (currNumBaserunners() <= 0) {
-            throw new Exception("Must have a base runner in order to have a sacrifice bunt.");
-        } else if (currentGameState().getNumOuts() >= 2) {
-            throw new Exception("Must have less than two outs for a sacrifice to be recorded.");
-        }
+        currentGameState().incrementPitchCount(); // increment the game state's pitch count
+        currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
+        currentBatterStats().incrementNumPitches(); // increment the batter's pitches
+        currentPitcherStats().incrementSacBunts(); // increment the pitcher's sac bunts
+        currentBatterStats().incrementSacBunts(); // increment the batter's sac bunts
+        currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(positionsInvolved,
+                ScoringSymbol.SACRIFICE_BUNT, currentGameState().getNumOuts() + 1)); // record the event
         recordOut(); // increment the number of outs
         recordGameState(); // record the game state
         nextBatter(); // next batter up
@@ -459,11 +514,10 @@ public class Recorder {
      * This method records a sacrifice fly and saves the game state so that the action may be undone.
      * It updates the stats for the batter and the pitcher and also records the event in the score
      * book. It then updates the batter to the next batter.
-     * @param positionsInvolved
+     * @param positionsInvolved This reflects the players that were involved in the sacrifice fly.
      * @throws Exception
      */
     public void recordSacrificeFly(String positionsInvolved) throws Exception {
-        if (currNumBaserunners() > 0 && currentGameState().getNumOuts() < 2) {
             currentGameState().incrementPitchCount(); // increment the game state's pitch count
             currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
             currentBatterStats().incrementNumPitches(); // increment the batter's pitches
@@ -471,14 +525,9 @@ public class Recorder {
             currentBatterStats().incrementSacFlys(); // increment the batter's sac flys
             currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(positionsInvolved,
                     ScoringSymbol.SACRIFICE_FLY, currentGameState().getNumOuts() + 1)); // record the event
-        } else if (currNumBaserunners() <= 0) {
-            throw new Exception("Must have a base runner in order to have a sacrifice fly.");
-        } else if (currentGameState().getNumOuts() >= 2) {
-            throw new Exception("Must have less than two outs for a sacrifice to be recorded.");
-        }
-        recordOut(); // increment the number of outs
-        recordGameState(); // record the game state
-        nextBatter(); // next batter up
+            recordOut(); // increment the number of outs
+            recordGameState(); // record the game state
+            nextBatter(); // next batter up
     }
 
     /**
@@ -494,64 +543,70 @@ public class Recorder {
         currentBatterStats().incrementNumPitches(); // increment the batter's pitches
         currentPitcherStats().incrementInducedGBDPs(); // increment the pitcher's ground ball double plays
         currentBatterStats().incrementGroundBallDP(); // increment the batter's ground ball double plays
-
         // Set the batter's batter scoring event to double play and give the event the first out
         currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(positionsInvolved,
                 ScoringSymbol.DOUBLE_PLAY, currentGameState().getNumOuts() + 1)); // record the event in the player scorecard box
-
         recordOut(); // increment the number of outs
-
         recordGameState(); // record the game state
         nextBatter(); // next batter up
     }
 
+    /**
+     * This method records a fly ball double play. It increments the fly ball stats for both the
+     * pitcher and the batter.
+     * @param posInvolved The players involved in the fly ball double play.
+     * @throws Exception
+     */
     public void recordBatterFlyBallDoublePlay(String posInvolved) throws Exception {
         currentGameState().incrementPitchCount(); // increment the game state's pitch count
         currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
         currentBatterStats().incrementNumPitches(); // increment the batter's pitches
         currentPitcherStats().incrementFlyOuts(); // increment the pitcher's fly outs
         currentBatterStats().incrementFlyOuts(); // increment the batter's fly outs
-
         // Set the batter's batter scoring event to double play and give the event the first out
         currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(posInvolved,
                 ScoringSymbol.DOUBLE_PLAY, currentGameState().getNumOuts() + 1)); // record the event in the player scorecard box
-
         recordOut(); // increment the number of outs
-
         recordGameState(); // record the game state
         nextBatter(); // next batter up
     }
 
+    /**
+     * This method records the batter's third of a ground ball triple play. The batter and pitcher's
+     * ground ball double play stats are incremented as well.
+     * @param positionsInvolved The positions involved in the ground ball triple play.
+     * @throws Exception
+     */
     public void recordBatterGroundBallTriplePlay(String positionsInvolved) throws Exception {
         currentGameState().incrementPitchCount(); // increment the game state's pitch count
         currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
         currentBatterStats().incrementNumPitches(); // increment the batter's pitches
         currentPitcherStats().incrementInducedGBDPs(); // increment the pitcher's ground ball double plays
         currentBatterStats().incrementGroundBallDP(); // increment the batter's ground ball double plays
-
         // Set the batter's batter scoring event to double play and give the event the first out
         currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(positionsInvolved,
                 ScoringSymbol.TRIPLE_PLAY, currentGameState().getNumOuts() + 1)); // record the event in the player scorecard box
-
         recordOut(); // increment the number of outs
-
         recordGameState(); // record the game state
         nextBatter(); // next batter up
     }
 
+    /**
+     * This method records the batter's third of a fly ball triple play. The batter's and pitcher's
+     * flyball stats are incremented.
+     * @param posInvolved The positions involved in the fly ball triple play.
+     * @throws Exception
+     */
     public void recordBatterFlyBallTriplePlay(String posInvolved) throws Exception {
         currentGameState().incrementPitchCount(); // increment the game state's pitch count
         currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
         currentBatterStats().incrementNumPitches(); // increment the batter's pitches
         currentPitcherStats().incrementFlyOuts(); // increment the pitcher's fly outs
         currentBatterStats().incrementFlyOuts(); // increment the batter's fly outs
-
         // Set the batter's batter scoring event to double play and give the event the first out
         currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(posInvolved,
                 ScoringSymbol.TRIPLE_PLAY, currentGameState().getNumOuts() + 1)); // record the event in the player scorecard box
-
         recordOut(); // increment the number of outs
-
         recordGameState(); // record the game state
         nextBatter(); // next batter up
     }
@@ -596,7 +651,7 @@ public class Recorder {
     /**
      * This method handles the advancing the runner to the next base.
      *
-     * @param runnerIndex
+     * @param runnerIndex The index of the player that is advancing.
      * @throws Exception
      */
     public void recordRunnerAdvanced(int runnerIndex) throws Exception {
@@ -606,8 +661,8 @@ public class Recorder {
     /**
      * This method handles the advancing of the runner to the next base due to an error.
      *
-     * @param runnerIndex
-     * @param posInvolved
+     * @param runnerIndex The index of the player that is advancing due to the error.
+     * @param posInvolved The position(s) that committed the error(s).
      * @throws Exception
      */
     public void recordRunnerAdvancedError(int runnerIndex, String posInvolved) throws Exception {
@@ -617,8 +672,8 @@ public class Recorder {
     /**
      * This method deals with the advancing of the runner to the next base due to interference.
      *
-     * @param runnerIndex
-     * @param posInvolved
+     * @param runnerIndex The index of the runner that is advancing due to interference.
+     * @param posInvolved The position(s) involved in the interference.
      * @throws Exception
      */
     public void recordRunnerAdvancedInterference(int runnerIndex, String posInvolved) throws Exception {
@@ -628,7 +683,7 @@ public class Recorder {
     /**
      * This method deals with the advancing of the runner to the next base due to a balk.
      *
-     * @param runnerIndex
+     * @param runnerIndex The index of the runner that is advancing due to the balk.
      * @throws Exception
      */
     public void recordRunnerAdvancedBalk(int runnerIndex) throws Exception {
@@ -638,7 +693,7 @@ public class Recorder {
     /**
      * This method deals with the advancing of the runner to the next base due to a wild pitch.
      *
-     * @param runnerIndex
+     * @param runnerIndex The index of the runner that is advancing due to the wild pitch.
      * @throws Exception
      */
     public void recordRunnerAdvancedWP(int runnerIndex) throws Exception {
@@ -648,7 +703,7 @@ public class Recorder {
     /**
      * This method deals with the advancing of the runner to the next base due to a passed ball.
      *
-     * @param runnerIndex
+     * @param runnerIndex The index of the runner that is advancing due to the passed ball.
      * @throws Exception
      */
     public void recordRunnerAdvancedPB(int runnerIndex) throws Exception {
@@ -658,7 +713,7 @@ public class Recorder {
     /**
      * This method deals with the failure of the runner to advance to the next base.
      *
-     * @param runnerIndex
+     * @param runnerIndex The index of the runner whose attempt to advance to the next base failed.
      * @throws Exception
      */
     public void recordRunnerOut(int runnerIndex) throws Exception {
@@ -679,25 +734,47 @@ public class Recorder {
         }
     }
 
+    /**
+     * This method records a putout for the player that is currently in the position that is passed
+     * as an argument.
+     * @param pos The position of the player who made the put out.
+     */
     public void recordPutOut(Position pos) {
         currentDefensivePlayer(pos).getStats().getFieldingStats().incrementPutOuts();
     }
 
+    /**
+     * This method records an assist for the player that is currently in the position that is
+     * passed as an argument.
+     * @param pos The position of the player who made the assist.
+     */
     public void recordAssist(Position pos) {
         currentDefensivePlayer(pos).getStats().getFieldingStats().incrementAssists();
     }
 
+    /**
+     * This method records a wild pitch to the pitcher and catcher's stats.
+     */
     public void recordWildPitch() {
         currentPitcherStats().incrementWildPitches();
         currentCatcherStats().incrementWpCatching();
         recordGameState();
     }
 
+    /**
+     * This method records a passed ball to the catcher's stats.
+     */
     public void recordPassedBall() {
         currentCatcherStats().incrementPassedBalls();
         recordGameState();
     }
 
+    /**
+     * This method records a pick off of the base runner whose index is passed as an argument.
+     * @param posInvolved The positions involved in recording the out.
+     * @param runnerIndex The index of the base runner.
+     * @throws Exception
+     */
     public void recordRunnerPickOff(String posInvolved, int runnerIndex) throws Exception {
         currentPitcherStats().incrementPickOffs();
         if (runnerIndex == currentRunnerOnFirstIndex()) {
@@ -720,6 +797,12 @@ public class Recorder {
         recordGameState(); // record the game state
     }
 
+    /**
+     * This method records a pick off that is also considered a caught stealing event.
+     * @param runnerIndex The index of the base runner that is picked off.
+     * @param posInvolved The positions involved in recording the out.
+     * @throws Exception
+     */
     public void recordRunnerPickoffCaughtStealing(int runnerIndex, String posInvolved) throws Exception {
         currentPitcherStats().incrementPickOffs(); // Increment the pitcher's pick off stat
         Player runner = offensivePlayer(runnerIndex); // player object
@@ -744,6 +827,12 @@ public class Recorder {
         recordGameState(); // record the game state
     }
 
+    /**
+     * This method records an unassisted play where the fielder fields a ground ball and then makes
+     * an out.
+     * @param position The position that records the out.
+     * @throws Exception
+     */
     public void recordUnassistedPutOut(String position) throws Exception {
         currentGameState().incrementPitchCount(); // increment the game state's pitch count
         currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
@@ -774,6 +863,13 @@ public class Recorder {
         nextBatter();
     }
 
+    /**
+     * This method records runner interference. That is interference that the runner has caused and
+     * in having done so is called out by the umpire.
+     * @param runnerIndex The index of the runner that caused in the interference.
+     * @param posInvolved The positions that are interfered with.
+     * @throws Exception
+     */
     public void recordRunnerInterference(int runnerIndex, String posInvolved) throws Exception {
         if (runnerIndex == currentRunnerOnFirstIndex()) {
             playerScorecardBox(runnerIndex, currentGameState().getInning()).setFirstToSecondScoringEvent(
@@ -795,6 +891,10 @@ public class Recorder {
         recordGameState(); // record the game state
     }
 
+    /**
+     * This method records interference that the batter causes and subsequently is called out.
+     * @throws Exception
+     */
     public void recordBatterInterference() throws Exception {
         currentGameState().incrementPitchCount(); // increment the game state's pitch count
         currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
@@ -805,6 +905,10 @@ public class Recorder {
         nextBatter();
     }
 
+    /**
+     * This method records an out made on the field. It auto adjusts the half innings and innings.
+     * @throws Exception
+     */
     public void recordOut() throws Exception {
         currentPitcherStats().incrementNumOutsPitched();
         if (currentGameState().getNumOuts() < 3) {
@@ -814,10 +918,18 @@ public class Recorder {
         }
     }
 
+    /**
+     * This method finds the current home lineup.
+     * @return A Lineup object that reflects the home team's players currently in the game.
+     */
     public Lineup currentHomeLineup() {
         return getGame().getLineupStatesList().get(getGame().getCurrLineupStateIndex()).getHomeLineup();
     }
 
+    /**
+     * This method finds the current away lineup.
+     * @return A Lineup object that reflects the away team's players currently in the game.
+     */
     public Lineup currentAwayLineup() {
         return getGame().getLineupStatesList().get(getGame().getCurrLineupStateIndex()).getAwayLineup();
     }
@@ -1116,8 +1228,12 @@ public class Recorder {
                     currentGameState().incrementRuns();
                     break;
             }
+            recordGameState();
+        } else {
+            throw new Exception("The next base is occupied. You must handle that base runner" +
+                    " before you can handle this one.");
         }
-        recordGameState();
+
     }
 
     public void recordLocation() {
