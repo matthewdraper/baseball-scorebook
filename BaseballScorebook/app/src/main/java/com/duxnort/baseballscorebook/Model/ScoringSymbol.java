@@ -36,6 +36,7 @@ public enum ScoringSymbol {
     WILD_PITCH("Wild Pitch", "WP"),
     RUNNER_ADVANCED("Runner Advanced", "RA"),
     STOLEN_BASE("Stolen Base", "SB"),
+    PICKED_OFF("Picked Off", "PO"),
     RUNNER_OUT("Runner Out", "RO");
 
     private final String fullName;
