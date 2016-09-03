@@ -22,6 +22,7 @@ public class GameState {
     private int homeErrors = 0;
     private int awayErrors = 0;
 
+
     public GameState() {
         this.ballCount = 0;
         this.strikeCount = 0;

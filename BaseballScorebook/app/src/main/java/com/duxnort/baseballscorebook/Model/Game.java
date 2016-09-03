@@ -3,15 +3,15 @@ package com.duxnort.baseballscorebook.Model;
 import java.util.ArrayList;
 
 public class Game {
-    private ArrayList<GameState> gameStateList = null;
-    private ArrayList<LineupState> lineupStatesList = null;
+    private ArrayList<GameState> gameStateList = new ArrayList<>();
+    private ArrayList<LineupState> lineupStatesList = new ArrayList<>();
     private int currGameStateIndex = 0;
     private int currLineupStateIndex = 0;
-    private Team homeTeam = null;
-    private Team awayTeam = null;
-    private ArrayList<Umpire> umpireList = null;
+    private Team homeTeam = new Team();
+    private Team awayTeam = new Team();
+    private ArrayList<Umpire> umpireList = new ArrayList<>();
     private String fieldName = null;
-    private Scorebook scorebook = null;
+    private Scorebook scorebook = new Scorebook();
     // TODO: 8/18/16 Need to implement some sort of date API at some point.
 
     public Game() {
@@ -122,8 +122,14 @@ public class Game {
     }
 
     public void newGameState(){
-        getGameStateList().add(copyGameState());
-        setCurrGameStateIndex(getCurrGameStateIndex() + 1);
+        if (getGameStateList().size() == 0) {
+            ArrayList<GameState> gsList = getGameStateList();
+            gsList.add(new GameState());
+            setGameStateList(gsList);
+        } else {
+            getGameStateList().add(copyGameState());
+            setCurrGameStateIndex(getCurrGameStateIndex() + 1);
+        }
     }
 
     public GameState copyGameState(){

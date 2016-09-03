@@ -556,8 +556,8 @@ public class RecorderTest {
         assertEquals(1, r.currentPitcherStats().getNumPitches());
         assertEquals(1, r.currentPitcherStats().getInducedGBDPs());
         assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getGroundBallDP());
-        assertEquals(1, r.currentPitcherStats().getGroundOuts());
-        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getGroundOuts());
+        assertEquals(0, r.currentPitcherStats().getGroundOuts());
+        assertEquals(0, r.offensivePlayer(0).getStats().getHitStatsRight().getGroundOuts());
         assertEquals(1, r.currentGameState().getNumOuts());
         assertEquals(ScoringSymbol.DOUBLE_PLAY, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
         assertEquals("543", r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getPositionsInvolved());
@@ -586,8 +586,8 @@ public class RecorderTest {
         assertEquals(1, r.currentPitcherStats().getNumPitches());
         assertEquals(1, r.currentPitcherStats().getInducedGBDPs());
         assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getGroundBallDP());
-        assertEquals(1, r.currentPitcherStats().getGroundOuts());
-        assertEquals(1, r.offensivePlayer(0).getStats().getHitStatsRight().getGroundOuts());
+        assertEquals(0, r.currentPitcherStats().getGroundOuts());
+        assertEquals(0, r.offensivePlayer(0).getStats().getHitStatsRight().getGroundOuts());
         assertEquals(1, r.currentGameState().getNumOuts());
         assertEquals(ScoringSymbol.TRIPLE_PLAY, r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getScoringSymbol());
         assertEquals("543", r.currentScorecard().playerScorecardBox(0, 1).getBatterScoringEvent().getPositionsInvolved());

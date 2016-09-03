@@ -313,7 +313,7 @@ public class HittingStats {
 
     public void incrementGroundBallDP() {
         setGroundBallDP(getGroundBallDP() + 1);
-        incrementGroundOuts();
+//        incrementGroundOuts();
         incrementAtBats();
     }
 

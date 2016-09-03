@@ -9,7 +9,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class PitchingStatsTest {
 
@@ -1202,8 +1202,8 @@ public class PitchingStatsTest {
         assertEquals(0, p.getDoubles());
         assertEquals(0, p.getTriples());
         assertEquals(0, p.getSacBunts());
-        assertEquals(inc, p.getRuns());
-        assertEquals(inc, p.getEarnedRuns());
+        assertEquals(0, p.getRuns());
+        assertEquals(0, p.getEarnedRuns());
         assertEquals(inc, p.getHomeRuns());
         assertEquals(0, p.getWalks());
         assertEquals(0, p.getStrikeOutSwing());
@@ -1249,8 +1249,8 @@ public class PitchingStatsTest {
         assertEquals(0, p.getDoubles());
         assertEquals(0, p.getTriples());
         assertEquals(0, p.getSacBunts());
-        assertEquals(inc - dec, p.getRuns());
-        assertEquals(inc - dec, p.getEarnedRuns());
+        assertEquals(0, p.getRuns());
+        assertEquals(0, p.getEarnedRuns());
         assertEquals(inc - dec, p.getHomeRuns());
         assertEquals(0, p.getWalks());
         assertEquals(0, p.getStrikeOutSwing());

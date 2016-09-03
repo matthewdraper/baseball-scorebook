@@ -576,7 +576,8 @@ public class PitchingStats {
 
     public void incrementInducedGBDPs() {
         setInducedGBDPs(getInducedGBDPs() + 1);
-        incrementGroundOuts();
+//        incrementGroundOuts();
+        incrementAtBats();
     }
 
     public void decrementInducedGBDPs() throws Exception {
