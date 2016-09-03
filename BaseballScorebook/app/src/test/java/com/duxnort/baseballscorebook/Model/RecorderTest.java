@@ -21,7 +21,7 @@ public class RecorderTest {
         ArrayList<LineupState> ls = new ArrayList<>();
         ls.add(initializeLineups());
         game.setLineupStatesList(ls);
-        ArrayList<GameState> gs = new ArrayList<GameState>();
+        ArrayList<GameState> gs = new ArrayList<>();
         gs.add(new GameState());
         game.setGameStateList(gs);
         game.setCurrLineupStateIndex(0);
