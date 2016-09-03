@@ -46,7 +46,7 @@ public class Game {
         this.lineupStatesList = lineupStatesList;
     }
 
-    private int getCurrGameStateIndex() {
+    public int getCurrGameStateIndex() {
         return currGameStateIndex;
     }
 

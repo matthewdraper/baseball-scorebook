@@ -78,4 +78,36 @@ public class OverallStats {
     public HittingStats calcOverallHittingStats() {
         return null;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        OverallStats that = (OverallStats) o;
+
+        if (hitStatsRight != null ? !hitStatsRight.equals(that.hitStatsRight) : that.hitStatsRight != null)
+            return false;
+        if (hitStatsLeft != null ? !hitStatsLeft.equals(that.hitStatsLeft) : that.hitStatsLeft != null)
+            return false;
+        if (pitchStatsRight != null ? !pitchStatsRight.equals(that.pitchStatsRight) : that.pitchStatsRight != null)
+            return false;
+        if (pitchStatsLeft != null ? !pitchStatsLeft.equals(that.pitchStatsLeft) : that.pitchStatsLeft != null)
+            return false;
+        if (fieldingStats != null ? !fieldingStats.equals(that.fieldingStats) : that.fieldingStats != null)
+            return false;
+        return runningStats != null ? runningStats.equals(that.runningStats) : that.runningStats == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = hitStatsRight != null ? hitStatsRight.hashCode() : 0;
+        result = 31 * result + (hitStatsLeft != null ? hitStatsLeft.hashCode() : 0);
+        result = 31 * result + (pitchStatsRight != null ? pitchStatsRight.hashCode() : 0);
+        result = 31 * result + (pitchStatsLeft != null ? pitchStatsLeft.hashCode() : 0);
+        result = 31 * result + (fieldingStats != null ? fieldingStats.hashCode() : 0);
+        result = 31 * result + (runningStats != null ? runningStats.hashCode() : 0);
+        return result;
+    }
 }

@@ -49,4 +49,27 @@ public class Team {
     public void setState(State state) {
         this.state = state;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Team team = (Team) o;
+
+        if (roster != null ? !roster.equals(team.roster) : team.roster != null) return false;
+        if (name != null ? !name.equals(team.name) : team.name != null) return false;
+        if (city != null ? !city.equals(team.city) : team.city != null) return false;
+        return state == team.state;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = roster != null ? roster.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (city != null ? city.hashCode() : 0);
+        result = 31 * result + (state != null ? state.hashCode() : 0);
+        return result;
+    }
 }

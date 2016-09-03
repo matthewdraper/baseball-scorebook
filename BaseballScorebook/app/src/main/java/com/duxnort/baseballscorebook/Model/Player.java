@@ -1,7 +1,5 @@
 package com.duxnort.baseballscorebook.Model;
 
-import java.util.Date;
-
 public class Player extends Person {
     private String jerseyNumber = null;
     private OverallStats stats = null;
@@ -104,9 +102,7 @@ public class Player extends Person {
 //    }
 
     public boolean isSwitchHitter() {
-        if(isBatRight() && isBatLeft()){
-            return true;
-        }
-        return false;
+        return isBatRight() && isBatLeft();
     }
+
 }

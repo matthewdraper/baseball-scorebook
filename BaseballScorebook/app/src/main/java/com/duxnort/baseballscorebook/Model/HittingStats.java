@@ -447,4 +447,54 @@ public class HittingStats {
         return (getSingles() + getDoubles() + getTriples() + getHomeRuns());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        HittingStats that = (HittingStats) o;
+
+        if (games != that.games) return false;
+        if (atBats != that.atBats) return false;
+        if (singles != that.singles) return false;
+        if (doubles != that.doubles) return false;
+        if (triples != that.triples) return false;
+        if (homeRuns != that.homeRuns) return false;
+        if (rbis != that.rbis) return false;
+        if (walks != that.walks) return false;
+        if (strikeOuts != that.strikeOuts) return false;
+        if (intenWalks != that.intenWalks) return false;
+        if (hitByPitch != that.hitByPitch) return false;
+        if (sacBunts != that.sacBunts) return false;
+        if (sacFlys != that.sacFlys) return false;
+        if (groundBallDP != that.groundBallDP) return false;
+        if (groundOuts != that.groundOuts) return false;
+        if (flyOuts != that.flyOuts) return false;
+        if (numPitches != that.numPitches) return false;
+        return plateAppearance == that.plateAppearance;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = games;
+        result = 31 * result + atBats;
+        result = 31 * result + singles;
+        result = 31 * result + doubles;
+        result = 31 * result + triples;
+        result = 31 * result + homeRuns;
+        result = 31 * result + rbis;
+        result = 31 * result + walks;
+        result = 31 * result + strikeOuts;
+        result = 31 * result + intenWalks;
+        result = 31 * result + hitByPitch;
+        result = 31 * result + sacBunts;
+        result = 31 * result + sacFlys;
+        result = 31 * result + groundBallDP;
+        result = 31 * result + groundOuts;
+        result = 31 * result + flyOuts;
+        result = 31 * result + numPitches;
+        result = 31 * result + plateAppearance;
+        return result;
+    }
 }

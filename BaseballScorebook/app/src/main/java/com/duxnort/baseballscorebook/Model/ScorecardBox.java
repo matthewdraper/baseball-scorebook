@@ -146,4 +146,49 @@ public class ScorecardBox {
     public void setThirdToHomeScoringEvent(ScoringEvent thirdToHomeScoringEvent) {
         this.thirdToHomeScoringEvent = thirdToHomeScoringEvent;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ScorecardBox that = (ScorecardBox) o;
+
+        if (balls != that.balls) return false;
+        if (strikes != that.strikes) return false;
+        if (outNumber != that.outNumber) return false;
+        if (homeToFirstBaseLine != that.homeToFirstBaseLine) return false;
+        if (firstToSecondBaseLine != that.firstToSecondBaseLine) return false;
+        if (secondToThirdBaseLine != that.secondToThirdBaseLine) return false;
+        if (thirdToHomeBaseLine != that.thirdToHomeBaseLine) return false;
+        if (hasScored != that.hasScored) return false;
+        if (batterScoringEvent != null ? !batterScoringEvent.equals(that.batterScoringEvent) : that.batterScoringEvent != null)
+            return false;
+        if (homeToFirstScoringEvent != null ? !homeToFirstScoringEvent.equals(that.homeToFirstScoringEvent) : that.homeToFirstScoringEvent != null)
+            return false;
+        if (firstToSecondScoringEvent != null ? !firstToSecondScoringEvent.equals(that.firstToSecondScoringEvent) : that.firstToSecondScoringEvent != null)
+            return false;
+        if (secondToThirdScoringEvent != null ? !secondToThirdScoringEvent.equals(that.secondToThirdScoringEvent) : that.secondToThirdScoringEvent != null)
+            return false;
+        return thirdToHomeScoringEvent != null ? thirdToHomeScoringEvent.equals(that.thirdToHomeScoringEvent) : that.thirdToHomeScoringEvent == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = balls;
+        result = 31 * result + strikes;
+        result = 31 * result + outNumber;
+        result = 31 * result + homeToFirstBaseLine;
+        result = 31 * result + firstToSecondBaseLine;
+        result = 31 * result + secondToThirdBaseLine;
+        result = 31 * result + thirdToHomeBaseLine;
+        result = 31 * result + (hasScored ? 1 : 0);
+        result = 31 * result + (batterScoringEvent != null ? batterScoringEvent.hashCode() : 0);
+        result = 31 * result + (homeToFirstScoringEvent != null ? homeToFirstScoringEvent.hashCode() : 0);
+        result = 31 * result + (firstToSecondScoringEvent != null ? firstToSecondScoringEvent.hashCode() : 0);
+        result = 31 * result + (secondToThirdScoringEvent != null ? secondToThirdScoringEvent.hashCode() : 0);
+        result = 31 * result + (thirdToHomeScoringEvent != null ? thirdToHomeScoringEvent.hashCode() : 0);
+        return result;
+    }
 }

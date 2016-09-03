@@ -1,5 +1,7 @@
 package com.duxnort.baseballscorebook.Model;
 
+import java.util.Arrays;
+
 public class Lineup {
     public static final int NUM_PLAYERS = 10;
     public static final int NUM_BATTERS = 9;
@@ -46,8 +48,27 @@ public class Lineup {
             if (battingArr[index] == playerIndex) {
                 return index;
             }
+            index++;
         }
         return -1;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Lineup lineup = (Lineup) o;
+
+        if (!Arrays.equals(defensiveArr, lineup.defensiveArr)) return false;
+        return Arrays.equals(battingArr, lineup.battingArr);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Arrays.hashCode(defensiveArr);
+        result = 31 * result + Arrays.hashCode(battingArr);
+        return result;
+    }
 }

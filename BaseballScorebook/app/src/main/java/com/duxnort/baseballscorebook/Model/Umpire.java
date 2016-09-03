@@ -10,4 +10,6 @@ public class Umpire extends Person {
     public Umpire(String firstName, String lastName) {
         super(firstName, lastName);
     }
+
+
 }

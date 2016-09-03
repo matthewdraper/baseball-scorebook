@@ -164,9 +164,11 @@ public class GameState {
         if (getNumOuts() == 3) {
             if (isTop()) {
                 setTop(false);
+                setNumOuts(0);
             } else {
                 setTop(true);
                 incrementInning();
+                setNumOuts(0);
             }
         }
     }

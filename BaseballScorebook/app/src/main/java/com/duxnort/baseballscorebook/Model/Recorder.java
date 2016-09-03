@@ -370,9 +370,9 @@ public class Recorder {
         currentBatterStats().incrementStrikeOuts(); // increment the batter's strike outs
         currentCatcherStats().incrementPutOuts(); // increment the catcher's putouts
         currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.STRIKEOUT_LOOKING)); // record event in score book
+        nextBatter(); // next batter up
         recordOut(); // record an out
         recordGameState(); // record the game state
-        nextBatter(); // next batter up
     }
 
     /**
@@ -391,8 +391,8 @@ public class Recorder {
             currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.STRIKEOUT_LOOKING)); // record event in score book
             currentBatterScorecardBox().setHomeToFirstScoringEvent(new ScoringEvent(ScoringSymbol.PASSED_BALL)); // record passed ball and reached base
             currentGameState().setCurrRunnerFirstIndex(currentBatterIndex());
-            recordGameState(); // record the game state
             nextBatter(); // next batter up
+            recordGameState(); // record the game state
         } else {
             throw new Exception("First base is not empty. You must deal with the base runner on" +
                     "first before you record the dropped third strikeout.");
@@ -413,9 +413,9 @@ public class Recorder {
         currentBatterStats().incrementStrikeOuts(); // increment the batter's strike outs
         currentCatcherStats().incrementPutOuts(); // increment the catcher's putouts
         currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.STRIKEOUT_SWINGING)); // record event in score book
+        nextBatter(); // next batter up
         recordOut(); // record an out
         recordGameState(); // record the game state
-        nextBatter(); // next batter up
     }
 
     /**
@@ -434,8 +434,8 @@ public class Recorder {
             currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.STRIKEOUT_SWINGING)); // record event in score book
             currentBatterScorecardBox().setHomeToFirstScoringEvent(new ScoringEvent(ScoringSymbol.PASSED_BALL)); // record passed ball and reached base
             currentGameState().setCurrRunnerFirstIndex(currentBatterIndex());
-            recordGameState(); // record the game state
             nextBatter(); // next batter up
+            recordGameState(); // record the game state
         } else {
             throw new Exception("First base is not empty. You must deal with the base runner on" +
                     "first before you record the dropped third strikeout.");
@@ -459,8 +459,8 @@ public class Recorder {
             currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.STRIKEOUT_SWINGING)); // record event in score book
             currentBatterScorecardBox().setHomeToFirstScoringEvent(new ScoringEvent(ScoringSymbol.WILD_PITCH)); // record passed ball and reached base
             currentGameState().setCurrRunnerFirstIndex(currentBatterIndex());
-            recordGameState(); // record the game state
             nextBatter(); // next batter up
+            recordGameState(); // record the game state
         } else {
             throw new Exception("First base is not empty. You must deal with the base runner on" +
                     "first before you record the dropped third strikeout.");
@@ -483,8 +483,8 @@ public class Recorder {
             currentBatterStats().incrementHitByPitch(); // increment the batter's walks
             currentGameState().setCurrRunnerFirstIndex(currentBatterIndex()); // move the batter to first base
             currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(ScoringSymbol.HIT_BY_PITCH)); // record the event
-            recordGameState(); // record the game state
             nextBatter(); // next batter up
+            recordGameState(); // record the game state
         } else {
             throw new Exception("First base is not empty. You must handle other base runners before you record the hit by pitch.");
         }
@@ -505,9 +505,9 @@ public class Recorder {
         currentBatterStats().incrementSacBunts(); // increment the batter's sac bunts
         currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(positionsInvolved,
                 ScoringSymbol.SACRIFICE_BUNT, currentGameState().getNumOuts() + 1)); // record the event
+        nextBatter(); // next batter up
         recordOut(); // increment the number of outs
         recordGameState(); // record the game state
-        nextBatter(); // next batter up
     }
 
     /**
@@ -525,9 +525,9 @@ public class Recorder {
             currentBatterStats().incrementSacFlys(); // increment the batter's sac flys
             currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(positionsInvolved,
                     ScoringSymbol.SACRIFICE_FLY, currentGameState().getNumOuts() + 1)); // record the event
+        nextBatter(); // next batter up
             recordOut(); // increment the number of outs
             recordGameState(); // record the game state
-            nextBatter(); // next batter up
     }
 
     /**
@@ -546,9 +546,9 @@ public class Recorder {
         // Set the batter's batter scoring event to double play and give the event the first out
         currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(positionsInvolved,
                 ScoringSymbol.DOUBLE_PLAY, currentGameState().getNumOuts() + 1)); // record the event in the player scorecard box
+        nextBatter(); // next batter up
         recordOut(); // increment the number of outs
         recordGameState(); // record the game state
-        nextBatter(); // next batter up
     }
 
     /**
@@ -566,9 +566,9 @@ public class Recorder {
         // Set the batter's batter scoring event to double play and give the event the first out
         currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(posInvolved,
                 ScoringSymbol.DOUBLE_PLAY, currentGameState().getNumOuts() + 1)); // record the event in the player scorecard box
+        nextBatter(); // next batter up
         recordOut(); // increment the number of outs
         recordGameState(); // record the game state
-        nextBatter(); // next batter up
     }
 
     /**
@@ -586,9 +586,9 @@ public class Recorder {
         // Set the batter's batter scoring event to double play and give the event the first out
         currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(positionsInvolved,
                 ScoringSymbol.TRIPLE_PLAY, currentGameState().getNumOuts() + 1)); // record the event in the player scorecard box
+        nextBatter(); // next batter up
         recordOut(); // increment the number of outs
         recordGameState(); // record the game state
-        nextBatter(); // next batter up
     }
 
     /**
@@ -606,9 +606,9 @@ public class Recorder {
         // Set the batter's batter scoring event to double play and give the event the first out
         currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(posInvolved,
                 ScoringSymbol.TRIPLE_PLAY, currentGameState().getNumOuts() + 1)); // record the event in the player scorecard box
+        nextBatter(); // next batter up
         recordOut(); // increment the number of outs
         recordGameState(); // record the game state
-        nextBatter(); // next batter up
     }
 
     /**
@@ -625,9 +625,9 @@ public class Recorder {
         // Record the batter's batter scoring event
         currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(positionsInvolved,
                 ScoringSymbol.GROUNDOUT, currentGameState().getNumOuts() + 1)); // record the event in the player scorecard box
+        nextBatter(); // next batter up
         recordOut(); // increment the number of outs
         recordGameState(); // record the game state
-        nextBatter(); // next batter up
     }
 
     /**
@@ -643,9 +643,9 @@ public class Recorder {
         currentBatterStats().incrementFlyOuts(); // increment the batter's ground outs
         // Record the batter's batter scoring event
         currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(positionsInvolved, ScoringSymbol.FLYOUT, currentGameState().getNumOuts() + 1));
+        nextBatter(); // next batter up
         recordOut(); // increment the number of outs
         recordGameState(); // record the game state
-        nextBatter(); // next batter up
     }
 
     /**
@@ -656,6 +656,7 @@ public class Recorder {
      */
     public void recordRunnerAdvanced(int runnerIndex) throws Exception {
         moveToNextBase(runnerIndex, new ScoringEvent(ScoringSymbol.RUNNER_ADVANCED));
+        recordGameState(); // record the game state
     }
 
     /**
@@ -667,6 +668,7 @@ public class Recorder {
      */
     public void recordRunnerAdvancedError(int runnerIndex, String posInvolved) throws Exception {
         moveToNextBase(runnerIndex, new ScoringEvent(posInvolved, ScoringSymbol.ERROR));
+        recordGameState(); // record the game state
     }
 
     /**
@@ -677,7 +679,8 @@ public class Recorder {
      * @throws Exception
      */
     public void recordRunnerAdvancedInterference(int runnerIndex, String posInvolved) throws Exception {
-        moveToNextBase(runnerIndex, new ScoringEvent(posInvolved, ScoringSymbol.RUNNER_ADVANCED));
+        moveToNextBase(runnerIndex, new ScoringEvent(posInvolved, ScoringSymbol.INTERFERENCE));
+        recordGameState(); // record the game state
     }
 
     /**
@@ -688,6 +691,7 @@ public class Recorder {
      */
     public void recordRunnerAdvancedBalk(int runnerIndex) throws Exception {
         moveToNextBase(runnerIndex, new ScoringEvent(ScoringSymbol.BALK));
+        recordGameState(); // record the game state
     }
 
     /**
@@ -698,6 +702,7 @@ public class Recorder {
      */
     public void recordRunnerAdvancedWP(int runnerIndex) throws Exception {
         moveToNextBase(runnerIndex, new ScoringEvent(ScoringSymbol.WILD_PITCH));
+        recordGameState(); // record the game state
     }
 
     /**
@@ -708,6 +713,7 @@ public class Recorder {
      */
     public void recordRunnerAdvancedPB(int runnerIndex) throws Exception {
         moveToNextBase(runnerIndex, new ScoringEvent(ScoringSymbol.PASSED_BALL));
+        recordGameState(); // record the game state
     }
 
     /**
@@ -721,17 +727,22 @@ public class Recorder {
             playerScorecardBox(runnerIndex,
                     currentGameState().getInning()).setFirstToSecondScoringEvent(
                     new ScoringEvent(ScoringSymbol.RUNNER_OUT, currentGameState().getNumOuts() + 1));
+            currentGameState().setCurrRunnerFirstIndex(-1);
         } else if (runnerIndex == currentRunnerOnSecondIndex()) {
             playerScorecardBox(runnerIndex,
                     currentGameState().getInning()).setSecondToThirdScoringEvent(
                     new ScoringEvent(ScoringSymbol.RUNNER_OUT, currentGameState().getNumOuts() + 1));
+            currentGameState().setCurrRunnerSecondIndex(-1);
         } else if (runnerIndex == currentRunnerOnThirdIndex()) {
             playerScorecardBox(runnerIndex,
                     currentGameState().getInning()).setThirdToHomeScoringEvent(
                     new ScoringEvent(ScoringSymbol.RUNNER_OUT, currentGameState().getNumOuts() + 1));
+            currentGameState().setCurrRunnerThirdIndex(-1);
         } else {
             throw new Exception("The runner is not currently on any base.");
         }
+        recordOut();
+        recordGameState(); // record the game state
     }
 
     /**
@@ -803,7 +814,7 @@ public class Recorder {
      * @param posInvolved The positions involved in recording the out.
      * @throws Exception
      */
-    public void recordRunnerPickoffCaughtStealing(int runnerIndex, String posInvolved) throws Exception {
+    public void recordRunnerPickoffCaughtStealing(String posInvolved, int runnerIndex) throws Exception {
         currentPitcherStats().incrementPickOffs(); // Increment the pitcher's pick off stat
         Player runner = offensivePlayer(runnerIndex); // player object
         runner.getStats().getRunningStats().incrementCaughtStealing(); // Increment runner's caught stealing stat
@@ -840,9 +851,9 @@ public class Recorder {
         currentPitcherStats().incrementGroundOuts(); // increment ground outs
         currentBatterStats().incrementGroundOuts(); // increment ground outs
         currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(position, ScoringSymbol.UNASSISTED_PUTOUT, currentGameState().getNumOuts() + 1));
-        recordOut();
-        recordGameState();
-        nextBatter();
+        nextBatter(); // next batter up
+        recordOut(); // increment the number of outs
+        recordGameState(); // record the game state
     }
 
     /**
@@ -859,8 +870,8 @@ public class Recorder {
         currentPitcherStats().incrementGroundOuts(); // increment ground outs
         currentBatterStats().incrementGroundOuts(); // increment ground outs
         currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(posInvolved, ScoringSymbol.FIELDERS_CHOICE));
-        recordGameState();
-        nextBatter();
+        nextBatter(); // next batter up
+        recordGameState(); // record the game state
     }
 
     public void recordBatterReachedOnError(String posInvolved) {
@@ -869,8 +880,8 @@ public class Recorder {
         currentBatterStats().incrementNumPitches(); // increment the batter's pitches
         currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent(posInvolved, ScoringSymbol.ERROR));
         currentGameState().setCurrRunnerFirstIndex(currentBatterIndex()); // move the batter to first base
-        recordGameState();
-        nextBatter();
+        nextBatter(); // next batter up
+        recordGameState(); // record the game state
     }
 
     /**
@@ -910,9 +921,9 @@ public class Recorder {
         currentPitcherStats().incrementNumPitches(); // increment the pitcher's pitches
         currentBatterStats().incrementNumPitches(); // increment the batter's pitches
         currentBatterScorecardBox().setBatterScoringEvent(new ScoringEvent("2", ScoringSymbol.INTERFERENCE, currentGameState().getNumOuts() + 1));
-        recordOut();
-        recordGameState();
-        nextBatter();
+        nextBatter(); // next batter up
+        recordOut(); // increment the number of outs
+        recordGameState(); // record the game state
     }
 
     /**
@@ -983,19 +994,19 @@ public class Recorder {
         return currentGameState().getCurrHomeBatterIndex();
     }
 
-    public Player previousBatter() {
-        if (getGame().getGameStateList().get(getGame().getGameStateList().size() - 2).isTop()) {
-            return getGame().getAwayTeam().getRoster().get(previousBatterIndex());
-        }
-        return getGame().getHomeTeam().getRoster().get(previousBatterIndex());
-    }
-
-    public int previousBatterIndex() {
-        if (getGame().getGameStateList().get(getGame().getGameStateList().size() - 2).isTop()) {
-            return getGame().getGameStateList().get(getGame().getGameStateList().size() - 2).getCurrAwayBatterIndex();
-        }
-        return getGame().getGameStateList().get(getGame().getGameStateList().size() - 2).getCurrHomeBatterIndex();
-    }
+//    public Player previousBatter() {
+//        if (getGame().getGameStateList().get(getGame().getGameStateList().size() - 2).isTop()) {
+//            return getGame().getAwayTeam().getRoster().get(previousBatterIndex());
+//        }
+//        return getGame().getHomeTeam().getRoster().get(previousBatterIndex());
+//    }
+//
+//    public int previousBatterIndex() {
+//        if (getGame().getGameStateList().get(getGame().getGameStateList().size() - 2).isTop()) {
+//            return getGame().getGameStateList().get(getGame().getGameStateList().size() - 2).getCurrAwayBatterIndex();
+//        }
+//        return getGame().getGameStateList().get(getGame().getGameStateList().size() - 2).getCurrHomeBatterIndex();
+//    }
 
     public Player currentPitcher() {
         if (currentGameState().isTop()) {
@@ -1011,6 +1022,13 @@ public class Recorder {
         return awayPlayerAtPos(Position.CATCHER);
     }
 
+    /**
+     * This methods takes an index of a player in the roster of the team that is at bat and gives
+     * you their spot in the batting order.
+     *
+     * @param playerIndex
+     * @return
+     */
     public int playerBattingOrderIndex(int playerIndex) {
         if (currentGameState().isTop()) {
             return getGame().getLineupStatesList().get(getGame().getCurrLineupStateIndex()).getAwayLineup().getBattingOrderIndex(playerIndex);
@@ -1075,7 +1093,7 @@ public class Recorder {
     }
 
     public ScorecardBox playerScorecardBox(int playerIndex, int inning) {
-        return currentScorecard().playerScorecardBox(offensivePlayerIndex(offensivePlayer(playerIndex)), currentGameState().getInning());
+        return currentScorecard().playerScorecardBox(offensivePlayerIndex(offensivePlayer(playerIndex)), inning);
     }
 
     public ScorecardBox currentBatterScorecardBox() {

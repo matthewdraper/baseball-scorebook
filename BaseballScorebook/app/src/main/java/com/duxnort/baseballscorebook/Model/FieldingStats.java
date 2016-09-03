@@ -258,4 +258,39 @@ public class FieldingStats {
         }
         return ((double) getPutOuts() + (double) getAssists()) / ((double) getOutInField() / 3);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        FieldingStats that = (FieldingStats) o;
+
+        if (games != that.games) return false;
+        if (gamesStarted != that.gamesStarted) return false;
+        if (outInField != that.outInField) return false;
+        if (putOuts != that.putOuts) return false;
+        if (assists != that.assists) return false;
+        if (errors != that.errors) return false;
+        if (stolenBases != that.stolenBases) return false;
+        if (caughtStealing != that.caughtStealing) return false;
+        if (passedBalls != that.passedBalls) return false;
+        return wpCatching == that.wpCatching;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = games;
+        result = 31 * result + gamesStarted;
+        result = 31 * result + outInField;
+        result = 31 * result + putOuts;
+        result = 31 * result + assists;
+        result = 31 * result + errors;
+        result = 31 * result + stolenBases;
+        result = 31 * result + caughtStealing;
+        result = 31 * result + passedBalls;
+        result = 31 * result + wpCatching;
+        return result;
+    }
 }

@@ -893,4 +893,87 @@ public class PitchingStats {
     public int calcHits() {
         return getSingles() + getDoubles() + getTriples() + getHomeRuns();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PitchingStats that = (PitchingStats) o;
+
+        if (wins != that.wins) return false;
+        if (losses != that.losses) return false;
+        if (games != that.games) return false;
+        if (gamesStarted != that.gamesStarted) return false;
+        if (saves != that.saves) return false;
+        if (saveOpps != that.saveOpps) return false;
+        if (numOutsPitched != that.numOutsPitched) return false;
+        if (singles != that.singles) return false;
+        if (doubles != that.doubles) return false;
+        if (triples != that.triples) return false;
+        if (sacBunts != that.sacBunts) return false;
+        if (runs != that.runs) return false;
+        if (earnedRuns != that.earnedRuns) return false;
+        if (homeRuns != that.homeRuns) return false;
+        if (walks != that.walks) return false;
+        if (strikeOutSwing != that.strikeOutSwing) return false;
+        if (strikeOutLook != that.strikeOutLook) return false;
+        if (completeGames != that.completeGames) return false;
+        if (shutOuts != that.shutOuts) return false;
+        if (hitBatsmen != that.hitBatsmen) return false;
+        if (intenWalks != that.intenWalks) return false;
+        if (gamesFinished != that.gamesFinished) return false;
+        if (holds != that.holds) return false;
+        if (inducedGBDPs != that.inducedGBDPs) return false;
+        if (groundOuts != that.groundOuts) return false;
+        if (flyOuts != that.flyOuts) return false;
+        if (wildPitches != that.wildPitches) return false;
+        if (balks != that.balks) return false;
+        if (stolenBases != that.stolenBases) return false;
+        if (caughtStealing != that.caughtStealing) return false;
+        if (pickOffs != that.pickOffs) return false;
+        if (totalNumBF != that.totalNumBF) return false;
+        if (numPitches != that.numPitches) return false;
+        return atBats == that.atBats;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = wins;
+        result = 31 * result + losses;
+        result = 31 * result + games;
+        result = 31 * result + gamesStarted;
+        result = 31 * result + saves;
+        result = 31 * result + saveOpps;
+        result = 31 * result + numOutsPitched;
+        result = 31 * result + singles;
+        result = 31 * result + doubles;
+        result = 31 * result + triples;
+        result = 31 * result + sacBunts;
+        result = 31 * result + runs;
+        result = 31 * result + earnedRuns;
+        result = 31 * result + homeRuns;
+        result = 31 * result + walks;
+        result = 31 * result + strikeOutSwing;
+        result = 31 * result + strikeOutLook;
+        result = 31 * result + completeGames;
+        result = 31 * result + shutOuts;
+        result = 31 * result + hitBatsmen;
+        result = 31 * result + intenWalks;
+        result = 31 * result + gamesFinished;
+        result = 31 * result + holds;
+        result = 31 * result + inducedGBDPs;
+        result = 31 * result + groundOuts;
+        result = 31 * result + flyOuts;
+        result = 31 * result + wildPitches;
+        result = 31 * result + balks;
+        result = 31 * result + stolenBases;
+        result = 31 * result + caughtStealing;
+        result = 31 * result + pickOffs;
+        result = 31 * result + totalNumBF;
+        result = 31 * result + numPitches;
+        result = 31 * result + atBats;
+        return result;
+    }
 }
