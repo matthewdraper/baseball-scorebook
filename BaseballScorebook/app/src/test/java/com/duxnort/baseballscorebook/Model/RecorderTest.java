@@ -1333,17 +1333,62 @@ public class RecorderTest {
 
     @Test
     public void testCurrNumBaserunners() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        assertEquals(0, r.currNumBaserunners());
+        r.currentGameState().setCurrRunnerFirstIndex(2);
+        assertEquals(1, r.currNumBaserunners());
+        r.currentGameState().setCurrRunnerSecondIndex(3);
+        assertEquals(2, r.currNumBaserunners());
+        r.currentGameState().setCurrRunnerThirdIndex(4);
+        assertEquals(3, r.currNumBaserunners());
+        r.currentGameState().setCurrRunnerFirstIndex(-1);
+        assertEquals(2, r.currNumBaserunners());
+        r.currentGameState().setCurrRunnerSecondIndex(-1);
+        assertEquals(1, r.currNumBaserunners());
+        r.currentGameState().setCurrRunnerThirdIndex(-1);
+        assertEquals(0, r.currNumBaserunners());
     }
 
     @Test
     public void testIsBaseOccupied() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        assertEquals(false, r.isBaseOccupied(1));
+        assertEquals(false, r.isBaseOccupied(2));
+        assertEquals(false, r.isBaseOccupied(3));
+        r.currentGameState().setCurrRunnerSecondIndex(1);
+        assertEquals(false, r.isBaseOccupied(1));
+        assertEquals(true, r.isBaseOccupied(2));
+        assertEquals(false, r.isBaseOccupied(3));
+        r.currentGameState().setCurrRunnerFirstIndex(9);
+        assertEquals(true, r.isBaseOccupied(1));
+        assertEquals(true, r.isBaseOccupied(2));
+        assertEquals(false, r.isBaseOccupied(3));
+        r.currentGameState().setCurrRunnerThirdIndex(5);
+        assertEquals(true, r.isBaseOccupied(1));
+        assertEquals(true, r.isBaseOccupied(2));
+        assertEquals(true, r.isBaseOccupied(3));
     }
 
     @Test
     public void testMoveToNextBase() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        r.currentGameState().setCurrRunnerFirstIndex(1);
+        assertEquals(1, r.currentRunnerOnFirstIndex());
+        assertEquals(-1, r.currentRunnerOnSecondIndex());
+        assertEquals(-1, r.currentRunnerOnThirdIndex());
+        r.moveToNextBase(1, new ScoringEvent(ScoringSymbol.BALK));
+        assertEquals(-1, r.currentRunnerOnFirstIndex());
+        assertEquals(1, r.currentRunnerOnSecondIndex());
+        assertEquals(-1, r.currentRunnerOnThirdIndex());
+        r.moveToNextBase(1, new ScoringEvent(ScoringSymbol.BALK));
+        assertEquals(-1, r.currentRunnerOnFirstIndex());
+        assertEquals(-1, r.currentRunnerOnSecondIndex());
+        assertEquals(1, r.currentRunnerOnThirdIndex());
+        r.moveToNextBase(1, new ScoringEvent(ScoringSymbol.BALK));
+        assertEquals(-1, r.currentRunnerOnFirstIndex());
+        assertEquals(-1, r.currentRunnerOnSecondIndex());
+        assertEquals(-1, r.currentRunnerOnThirdIndex());
+        assertEquals(1, r.currentGameState().getAwayScore());
     }
 
     @Test

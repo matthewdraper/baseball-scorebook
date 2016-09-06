@@ -1199,9 +1199,11 @@ public class Recorder {
         int num = 0;
         if (isBaseOccupied(1)) {
             num++;
-        } else if (isBaseOccupied(2)) {
+        }
+        if (isBaseOccupied(2)) {
             num++;
-        } else if (isBaseOccupied(3)) {
+        }
+        if (isBaseOccupied(3)) {
             num++;
         }
         return num;
