@@ -1266,37 +1266,69 @@ public class RecorderTest {
     @Test
     public void testRecordGameState() throws Exception {
         Recorder r = new Recorder(initializeGame());
-
+        r.recordGameState();
+        assertEquals(2, r.getGame().getGameStateList().size());
+        assertEquals(r.currentGameState(), r.getGame().getGameStateList().get(r.getGame().getCurrGameStateIndex()));
+        assertEquals(r.currentGameState(), r.getGame().getGameStateList().get(1));
     }
 
     @Test
     public void testRecordBatterEvent() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        assertEquals(null, r.currentBatterScorecardBox().getBatterScoringEvent());
+        r.recordBatterEvent(new ScoringEvent("543", ScoringSymbol.GROUNDOUT, 1));
+        assertEquals("543", r.currentBatterScorecardBox().getBatterScoringEvent().getPositionsInvolved());
+        assertEquals(ScoringSymbol.GROUNDOUT, r.currentBatterScorecardBox().getBatterScoringEvent().getScoringSymbol());
+        assertEquals(1, r.currentBatterScorecardBox().getBatterScoringEvent().getOutNumber());
     }
 
     @Test
     public void testClearCount() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        r.recordBall();
+        r.recordStrike();
+        r.recordBall();
+        assertEquals(2, r.currentGameState().getBallCount());
+        assertEquals(1, r.currentGameState().getStrikeCount());
+        r.clearCount();
+        assertEquals(0, r.currentGameState().getBallCount());
+        assertEquals(0, r.currentGameState().getStrikeCount());
     }
 
     @Test
     public void testIncrementOuts() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        assertEquals(0, r.currentGameState().getNumOuts());
+        r.incrementOuts();
+        assertEquals(1, r.currentGameState().getNumOuts());
+        r.incrementOuts();
+        assertEquals(2, r.currentGameState().getNumOuts());
+        r.incrementOuts();
+        assertEquals(0, r.currentGameState().getNumOuts());
     }
 
     @Test
     public void testCurrentBatterStats() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        r.getGame().getAwayTeam().getRoster().get(0).getStats().getHitStatsRight().incrementHomeRuns();
+        assertEquals(1,  r.getGame().getAwayTeam().getRoster().get(0).getStats().getHitStatsRight().getHomeRuns());
+        assertEquals(r.getGame().getAwayTeam().getRoster().get(0).getStats().getHitStatsRight(), r.currentBatterStats());
     }
 
     @Test
     public void testCurrentPitcherStats() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        r.getGame().getHomeTeam().getRoster().get(1).getStats().getPitchStatsLeft().incrementHomeRuns();
+        assertEquals(1,  r.getGame().getHomeTeam().getRoster().get(1).getStats().getPitchStatsLeft().getHomeRuns());
+        assertEquals( r.getGame().getHomeTeam().getRoster().get(1).getStats().getPitchStatsLeft(), r.currentPitcherStats());
     }
 
     @Test
     public void testCurrentCatcherStats() throws Exception {
-
+        Recorder r = new Recorder(initializeGame());
+        r.getGame().getHomeTeam().getRoster().get(2).getStats().getFieldingStats().incrementPassedBalls();
+        assertEquals(1, r.getGame().getHomeTeam().getRoster().get(2).getStats().getFieldingStats().getPassedBalls());
+        assertEquals(r.getGame().getHomeTeam().getRoster().get(2).getStats().getFieldingStats(), r.currentCatcherStats());
     }
 
     @Test
